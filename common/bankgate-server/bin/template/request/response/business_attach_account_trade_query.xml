@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息 varchar(254) -->
+	<returnRecords></returnRecords><!--返回记录条数 int -->
+	<list name="userDataList">
+		<row>
+			<subAccNo></subAccNo><!--附属账号varchar(19) -->
+			<TRANTYPE></TRANTYPE><!--交易类型varchar(2)，值域参见附录4.8 -->
+			<TRANDATE></TRANDATE><!--交易日期char(8) -->
+			<TRANTIME></TRANTIME><!--交易时间char(6) -->
+			<HOSTFLW></HOSTFLW><!--柜员交易号varchar(14) -->
+			<HOSTSEQ></HOSTSEQ><!--交易序号varchar(13) -->
+			<OPPACCNO></OPPACCNO><!--对方账号varchar(19) -->
+			<OPPACCNAME></OPPACCNAME><!--对方账户名称varchar(60) -->
+			<OPPBRANCHNAME></OPPBRANCHNAME><!--对方开户行名称varchar(60) -->
+			<CDFG></CDFG><!--借贷标志varchar (1) D：借，C：贷 -->
+			<TRANAMT></TRANAMT><!--交易金额decimal(15,2) -->
+			<ACCBAL></ACCBAL><!--账户余额decimal(15,2) -->
+			<XTSFAM></XTSFAM><!--手续费金额decimal(15,2) -->
+			<RESUME></RESUME><!--摘要varchar(22) -->
+			<OPPBANKNO></OPPBANKNO><!--对方支付联行号char(14) -->
+		</row>
+	</list>
+</stream>

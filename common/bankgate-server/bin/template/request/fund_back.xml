@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLRFDSUB</action>
+	<userName></userName><!--登录名 varchar(30) -->
+	<clientID></clientID><!--客户流水号 char(20) -->
+	<accountNo></accountNo><!--付款账号varchar(19) -->
+	<tranAmt></tranAmt><!--退款金额decimal(15,2) -->
+	<orderNo></orderNo><!--原订单号varchar(20) -->
+	<memo></memo><!--摘要varchar(22) 可空 -->
+</stream>

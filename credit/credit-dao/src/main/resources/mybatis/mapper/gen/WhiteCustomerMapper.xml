@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.credit.dao.mapper.gen.WhiteCustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.credit.dao.po.WhiteCustomer" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="tz_short_id" property="tzShortId" jdbcType="INTEGER" />
+    <result column="tz_customer_id" property="tzCustomerId" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="cooperation_period" property="cooperationPeriod" jdbcType="INTEGER" />
+    <result column="purchase_order_growth_rate" property="purchaseOrderGrowthRate" jdbcType="DECIMAL" />
+    <result column="overdue_rate" property="overdueRate" jdbcType="DECIMAL" />
+    <result column="overdue_times" property="overdueTimes" jdbcType="INTEGER" />
+    <result column="rule_batch_no" property="ruleBatchNo" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, tz_short_id, tz_customer_id, customer_name, cooperation_period, purchase_order_growth_rate, 
+    overdue_rate, overdue_times, rule_batch_no, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.credit.dao.po.WhiteCustomerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from credit_white_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from credit_white_customer
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from credit_white_customer
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.credit.dao.po.WhiteCustomerExample" >
+    delete from credit_white_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.credit.dao.po.WhiteCustomer" >
+    insert into credit_white_customer (id, tz_short_id, tz_customer_id, 
+      customer_name, cooperation_period, purchase_order_growth_rate, 
+      overdue_rate, overdue_times, rule_batch_no, 
+      create_time, update_time)
+    values (#{id,jdbcType=VARCHAR}, #{tzShortId,jdbcType=INTEGER}, #{tzCustomerId,jdbcType=VARCHAR}, 
+      #{customerName,jdbcType=VARCHAR}, #{cooperationPeriod,jdbcType=INTEGER}, #{purchaseOrderGrowthRate,jdbcType=DECIMAL}, 
+      #{overdueRate,jdbcType=DECIMAL}, #{overdueTimes,jdbcType=INTEGER}, #{ruleBatchNo,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.credit.dao.po.WhiteCustomer" >
+    insert into credit_white_customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tzShortId != null" >
+        tz_short_id,
+      </if>
+      <if test="tzCustomerId != null" >
+        tz_customer_id,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="cooperationPeriod != null" >
+        cooperation_period,
+      </if>
+      <if test="purchaseOrderGrowthRate != null" >
+        purchase_order_growth_rate,
+      </if>
+      <if test="overdueRate != null" >
+        overdue_rate,
+      </if>
+      <if test="overdueTimes != null" >
+        overdue_times,
+      </if>
+      <if test="ruleBatchNo != null" >
+        rule_batch_no,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="tzShortId != null" >
+        #{tzShortId,jdbcType=INTEGER},
+      </if>
+      <if test="tzCustomerId != null" >
+        #{tzCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="cooperationPeriod != null" >
+        #{cooperationPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseOrderGrowthRate != null" >
+        #{purchaseOrderGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueRate != null" >
+        #{overdueRate,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueTimes != null" >
+        #{overdueTimes,jdbcType=INTEGER},
+      </if>
+      <if test="ruleBatchNo != null" >
+        #{ruleBatchNo,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.credit.dao.po.WhiteCustomerExample" resultType="java.lang.Integer" >
+    select count(*) from credit_white_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update credit_white_customer
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tzShortId != null" >
+        tz_short_id = #{record.tzShortId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tzCustomerId != null" >
+        tz_customer_id = #{record.tzCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerName != null" >
+        customer_name = #{record.customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cooperationPeriod != null" >
+        cooperation_period = #{record.cooperationPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.purchaseOrderGrowthRate != null" >
+        purchase_order_growth_rate = #{record.purchaseOrderGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.overdueRate != null" >
+        overdue_rate = #{record.overdueRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.overdueTimes != null" >
+        overdue_times = #{record.overdueTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.ruleBatchNo != null" >
+        rule_batch_no = #{record.ruleBatchNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update credit_white_customer
+    set id = #{record.id,jdbcType=VARCHAR},
+      tz_short_id = #{record.tzShortId,jdbcType=INTEGER},
+      tz_customer_id = #{record.tzCustomerId,jdbcType=VARCHAR},
+      customer_name = #{record.customerName,jdbcType=VARCHAR},
+      cooperation_period = #{record.cooperationPeriod,jdbcType=INTEGER},
+      purchase_order_growth_rate = #{record.purchaseOrderGrowthRate,jdbcType=DECIMAL},
+      overdue_rate = #{record.overdueRate,jdbcType=DECIMAL},
+      overdue_times = #{record.overdueTimes,jdbcType=INTEGER},
+      rule_batch_no = #{record.ruleBatchNo,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.credit.dao.po.WhiteCustomer" >
+    update credit_white_customer
+    <set >
+      <if test="tzShortId != null" >
+        tz_short_id = #{tzShortId,jdbcType=INTEGER},
+      </if>
+      <if test="tzCustomerId != null" >
+        tz_customer_id = #{tzCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="cooperationPeriod != null" >
+        cooperation_period = #{cooperationPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseOrderGrowthRate != null" >
+        purchase_order_growth_rate = #{purchaseOrderGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueRate != null" >
+        overdue_rate = #{overdueRate,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueTimes != null" >
+        overdue_times = #{overdueTimes,jdbcType=INTEGER},
+      </if>
+      <if test="ruleBatchNo != null" >
+        rule_batch_no = #{ruleBatchNo,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.credit.dao.po.WhiteCustomer" >
+    update credit_white_customer
+    set tz_short_id = #{tzShortId,jdbcType=INTEGER},
+      tz_customer_id = #{tzCustomerId,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      cooperation_period = #{cooperationPeriod,jdbcType=INTEGER},
+      purchase_order_growth_rate = #{purchaseOrderGrowthRate,jdbcType=DECIMAL},
+      overdue_rate = #{overdueRate,jdbcType=DECIMAL},
+      overdue_times = #{overdueTimes,jdbcType=INTEGER},
+      rule_batch_no = #{ruleBatchNo,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from credit_white_customer
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.credit.dao.po.WhiteCustomerExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from credit_white_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

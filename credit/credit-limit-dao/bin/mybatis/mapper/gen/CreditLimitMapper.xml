@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.credit.limit.dao.mapper.gen.CreditLimitMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.credit.limit.dao.po.CreditLimit" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="member_id" property="memberId" jdbcType="VARCHAR" />
+    <result column="project_id" property="projectId" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="identity_card_no" property="identityCardNo" jdbcType="VARCHAR" />
+    <result column="credit_mode" property="creditMode" jdbcType="VARCHAR" />
+    <result column="total_limit" property="totalLimit" jdbcType="DECIMAL" />
+    <result column="used_limit" property="usedLimit" jdbcType="DECIMAL" />
+    <result column="effective_date" property="effectiveDate" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="out_customer_id" property="outCustomerId" jdbcType="VARCHAR" />
+    <result column="out_customer_name" property="outCustomerName" jdbcType="VARCHAR" />
+    <result column="mobile_no" property="mobileNo" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, member_id, project_id, company_name, identity_card_no, credit_mode, total_limit, 
+    used_limit, effective_date, status, out_customer_id, out_customer_name, mobile_no, 
+    update_time, create_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.credit.limit.dao.po.CreditLimitExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from credit_limit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from credit_limit
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from credit_limit
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.credit.limit.dao.po.CreditLimitExample" >
+    delete from credit_limit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.credit.limit.dao.po.CreditLimit" >
+    insert into credit_limit (id, member_id, project_id, 
+      company_name, identity_card_no, credit_mode, 
+      total_limit, used_limit, effective_date, 
+      status, out_customer_id, out_customer_name, 
+      mobile_no, update_time, create_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, 
+      #{companyName,jdbcType=VARCHAR}, #{identityCardNo,jdbcType=VARCHAR}, #{creditMode,jdbcType=VARCHAR}, 
+      #{totalLimit,jdbcType=DECIMAL}, #{usedLimit,jdbcType=DECIMAL}, #{effectiveDate,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=VARCHAR}, #{outCustomerId,jdbcType=VARCHAR}, #{outCustomerName,jdbcType=VARCHAR}, 
+      #{mobileNo,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.credit.limit.dao.po.CreditLimit" >
+    insert into credit_limit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="identityCardNo != null" >
+        identity_card_no,
+      </if>
+      <if test="creditMode != null" >
+        credit_mode,
+      </if>
+      <if test="totalLimit != null" >
+        total_limit,
+      </if>
+      <if test="usedLimit != null" >
+        used_limit,
+      </if>
+      <if test="effectiveDate != null" >
+        effective_date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="outCustomerId != null" >
+        out_customer_id,
+      </if>
+      <if test="outCustomerName != null" >
+        out_customer_name,
+      </if>
+      <if test="mobileNo != null" >
+        mobile_no,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="identityCardNo != null" >
+        #{identityCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="creditMode != null" >
+        #{creditMode,jdbcType=VARCHAR},
+      </if>
+      <if test="totalLimit != null" >
+        #{totalLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="usedLimit != null" >
+        #{usedLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="effectiveDate != null" >
+        #{effectiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="outCustomerId != null" >
+        #{outCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="outCustomerName != null" >
+        #{outCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNo != null" >
+        #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.credit.limit.dao.po.CreditLimitExample" resultType="java.lang.Integer" >
+    select count(*) from credit_limit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update credit_limit
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectId != null" >
+        project_id = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyName != null" >
+        company_name = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.identityCardNo != null" >
+        identity_card_no = #{record.identityCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creditMode != null" >
+        credit_mode = #{record.creditMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalLimit != null" >
+        total_limit = #{record.totalLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.usedLimit != null" >
+        used_limit = #{record.usedLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.effectiveDate != null" >
+        effective_date = #{record.effectiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outCustomerId != null" >
+        out_customer_id = #{record.outCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outCustomerName != null" >
+        out_customer_name = #{record.outCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobileNo != null" >
+        mobile_no = #{record.mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update credit_limit
+    set id = #{record.id,jdbcType=VARCHAR},
+      member_id = #{record.memberId,jdbcType=VARCHAR},
+      project_id = #{record.projectId,jdbcType=VARCHAR},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      identity_card_no = #{record.identityCardNo,jdbcType=VARCHAR},
+      credit_mode = #{record.creditMode,jdbcType=VARCHAR},
+      total_limit = #{record.totalLimit,jdbcType=DECIMAL},
+      used_limit = #{record.usedLimit,jdbcType=DECIMAL},
+      effective_date = #{record.effectiveDate,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=VARCHAR},
+      out_customer_id = #{record.outCustomerId,jdbcType=VARCHAR},
+      out_customer_name = #{record.outCustomerName,jdbcType=VARCHAR},
+      mobile_no = #{record.mobileNo,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.credit.limit.dao.po.CreditLimit" >
+    update credit_limit
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="identityCardNo != null" >
+        identity_card_no = #{identityCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="creditMode != null" >
+        credit_mode = #{creditMode,jdbcType=VARCHAR},
+      </if>
+      <if test="totalLimit != null" >
+        total_limit = #{totalLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="usedLimit != null" >
+        used_limit = #{usedLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="effectiveDate != null" >
+        effective_date = #{effectiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="outCustomerId != null" >
+        out_customer_id = #{outCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="outCustomerName != null" >
+        out_customer_name = #{outCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNo != null" >
+        mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.credit.limit.dao.po.CreditLimit" >
+    update credit_limit
+    set member_id = #{memberId,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      identity_card_no = #{identityCardNo,jdbcType=VARCHAR},
+      credit_mode = #{creditMode,jdbcType=VARCHAR},
+      total_limit = #{totalLimit,jdbcType=DECIMAL},
+      used_limit = #{usedLimit,jdbcType=DECIMAL},
+      effective_date = #{effectiveDate,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      out_customer_id = #{outCustomerId,jdbcType=VARCHAR},
+      out_customer_name = #{outCustomerName,jdbcType=VARCHAR},
+      mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from credit_limit
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.credit.limit.dao.po.CreditLimitExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from credit_limit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

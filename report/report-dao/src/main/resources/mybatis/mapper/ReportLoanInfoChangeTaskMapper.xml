@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.report.dao.mapper.IReportLoanInfoChangeTaskMapper" >
+
+  <select id="getAllChangedLoanInfoIds" resultType="java.lang.String">
+	select id from repayment_loan_info left join report_loan_info_change_trace 
+	on repayment_loan_info.id = report_loan_info_change_trace.loan_info_id 
+	where report_loan_info_change_trace.loan_info_id is null
+ 	or repayment_loan_info.current_version != report_loan_info_change_trace.last_trace_version
+  </select>
+</mapper>

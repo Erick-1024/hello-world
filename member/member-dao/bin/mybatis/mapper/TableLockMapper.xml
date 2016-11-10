@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cana.member.dao.mapper.MemberTableLockMapper">
+	
+	<select id="lockMemberUserById" parameterType="string"  resultType="com.cana.member.dao.po.User">
+		select * from member_user where id=#{id} for update
+  	</select>
+  
+  	<select id="lockMemberUserByUsername" parameterType="string"  resultType="com.cana.member.dao.po.User">
+		select * from member_user where username=#{username} for update
+  	</select>
+  
+	<select id="lockMemberRoleById" parameterType="string"  resultType="com.cana.member.dao.po.Role">
+		select * from member_role where id=#{id} for update
+  	</select>
+</mapper>

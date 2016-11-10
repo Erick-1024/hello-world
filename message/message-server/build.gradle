@@ -1,0 +1,17 @@
+apply plugin: 'application'
+
+dependencies {
+	compile project(':message:message-dao')
+	compile project(':framework:framework-base')
+	compile project(':framework:framework-dubbo-support')
+	compile project(':common:vbam-rabbitmq')
+	compile project(':framework:framework-mongo-support')
+	compile project(':message:message-api')
+	compile project(':member:member-api')
+	compile project(':member:member-dao')
+	compile project(':common:vbam-common-service')
+}
+
+mainClassName = 'com.cana.message.server.main.Main'
+
+applicationDefaultJvmArgs = ["-server", "-Xms256m", "-Xmx2048m", "-XX:MaxPermSize=512m", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=12402", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false"]

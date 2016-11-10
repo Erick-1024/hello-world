@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLIRTCAL</action>
+	<userName></userName><!--登录名varchar(30) -->
+	<mainAccNo></mainAccNo><!--主体账号varchar(19) -->
+	<subAccNo></subAccNo><!--附属账号varchar(19) -->
+</stream>

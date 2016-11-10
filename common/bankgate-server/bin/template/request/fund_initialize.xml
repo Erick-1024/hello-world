@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLFNDINI</action>
+	<userName></userName><!--登录名 varchar(30) -->
+	<clientID></clientID><!--客户流水号 char(20) -->
+	<accountNo></accountNo><!--资金初始化账号varchar(19) -->
+	<subAccNo></subAccNo><!--调入附属账号varchar(19) -->
+	<subAccNm></subAccNm><!--调入附属账户名称varchar(60) -->
+	<tranAmt></tranAmt><!--初始化交易金额decimal(15,2) -->
+	<memo></memo><!--摘要varchar(22) 可空 -->
+</stream>

@@ -1,0 +1,12 @@
+dependencies {
+	
+	compile project(':framework:framework-core')
+	
+	compile libraries.aspectj
+	compile libraries.aspectj_rt
+	compile libraries.perf4j
+	
+	//needed by  advance logback config,  DO NOT remove this line
+	compile libraries.janino
+
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx		http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+		http://www.springframework.org/schema/aop					http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/context	http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<bean class="com.travelzen.framework.config.tops.TzPropertyPlaceholderConfigurer">
+		<property name="tzProperties">
+			<list>
+				<value>R:properties/mongo-database.properties</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- 自定义morphia，在初始化时扫描mongo entities 并且加上索引 -->
+	<bean id="msgDatastore" name="datastore" class="com.cana.message.mongo.core.MessagingDatastoreFactory">
+		<property name="entityPackage" value="com.cana.message.mongo.entity"/>
+		<property name="mongoUri" value="${message.mongodb.uri}"/>
+	</bean>
+
+	<!-- init annotated beans -->
+	<context:component-scan base-package="com.cana.message.mongo.dao" />
+
+</beans>

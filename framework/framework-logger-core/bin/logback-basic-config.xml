@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+
+	<property name="LOG_DIR" value="/data/log/tops/" />
+	<property resource="properties/logback-variables.properties" />
+
+	<!-- 文件输出日志(DEBUG) -->
+	<appender name="debug-file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${LOG_DIR}/${APP_NAME}(${HOSTNAME})-debug-current.log</File>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	      <fileNamePattern>${LOG_DIR}/history/${APP_NAME}(${HOSTNAME})-debug-%d{yyyy-MM-dd}.log</fileNamePattern>
+	      <maxHistory>60</maxHistory>
+	    </rollingPolicy>
+		<encoder charset="UTF-8">
+			<Pattern>[%d{HH:mm:ss}] [%thread] |%level| %marker %logger{50} -> %X{rpid} %msg %n%ex</Pattern>
+		</encoder>
+	</appender>
+
+	<!-- 异步输出 -->
+	<appender name="async-debug-file" class="ch.qos.logback.classic.AsyncAppender">
+		<discardingThreshold>0</discardingThreshold>
+		<queueSize>1000</queueSize>
+		<appender-ref ref="debug-file" />
+	</appender>
+
+	<!-- 文件输出日志(ERROR) -->
+	<appender name="error-file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${LOG_DIR}/${APP_NAME}(${HOSTNAME})-error-current.log</File>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+	      <level>error</level>
+	      <onMatch>ACCEPT</onMatch>
+	      <onMismatch>DENY</onMismatch>
+	    </filter>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	      <fileNamePattern>${LOG_DIR}/history/${APP_NAME}(${HOSTNAME})-error-%d{yyyy-MM}.log</fileNamePattern>
+	      <maxHistory>12</maxHistory>
+	    </rollingPolicy>
+		<encoder charset="UTF-8">
+			<Pattern>[%d{dd|HH:mm:ss}] [%thread] |%level| %marker %logger{50} -> %X{rpid} %msg %n%ex</Pattern>
+		</encoder>
+	</appender>
+
+	<root level="INFO">
+		<appender-ref ref="async-debug-file" />
+		<appender-ref ref="error-file"/>
+	</root>
+
+	<!-- 数据改变日志 -->
+	<appender name="data-manipulate" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${LOG_DIR}/${APP_NAME}(${HOSTNAME})-data-manipulate-current.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_DIR}/history/${APP_NAME}(${HOSTNAME})-data-manipulate-%d{yyyy-MM}.log</fileNamePattern>
+		</rollingPolicy>
+		<encoder charset="UTF-8">
+			<Pattern>[%d{dd|HH:mm:ss}] [%thread] |%level| %marker %X{rpid} %msg %n%ex</Pattern>
+		</encoder>
+	</appender>
+
+    <!-- perf4j -->
+    <appender name="perf-analysis" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_DIR}/${APP_NAME}(${HOSTNAME})-perf4j.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/history/${APP_NAME}(${HOSTNAME})-perf4j-%d{yyyy-MM}.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder charset="UTF-8">
+            <Pattern>[%d{dd|HH:mm:ss}] [%thread] |%level| %marker %X{rpid} %msg %n%ex</Pattern>
+        </encoder>
+    </appender>
+    
+    <!-- dubbo accesslog -->
+    <appender name="dubbo-accesslog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_DIR}/${APP_NAME}(${HOSTNAME})-dubbo-accesslog.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/history/${APP_NAME}(${HOSTNAME})-dubbo-accesslog-%d{yyyy-MM}.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder charset="UTF-8">
+            <Pattern>[%d{dd|HH:mm:ss}] [%thread] |%level| %marker %X{rpid} %msg %n%ex</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="session-analysis" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	<File>${LOG_DIR}/${APP_NAME}(${HOSTNAME})-session.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/history/${APP_NAME}(${HOSTNAME})-session-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>3</maxHistory>
+        </rollingPolicy>
+        <encoder charset="UTF-8">
+            <Pattern>[%d{dd|HH:mm:ss}] [%thread] |%level| %marker %X{rpid} %msg %n%ex</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="SID-analysis" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	<File>${LOG_DIR}/${APP_NAME}(${HOSTNAME})-SID.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/history/${APP_NAME}(${HOSTNAME})-SID-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>3</maxHistory>
+        </rollingPolicy>
+        <encoder charset="UTF-8">
+            <Pattern>[%d{dd|HH:mm:ss}] [%thread] |%level| %marker %X{rpid} %msg %n%ex</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="zk-debug-file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	<File>${LOG_DIR}/${APP_NAME}(${HOSTNAME})-zookeeper.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/history/${APP_NAME}(${HOSTNAME})-zookeeper-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>3</maxHistory>
+        </rollingPolicy>
+        <encoder charset="UTF-8">
+            <Pattern>[%d{dd|HH:mm:ss}] [%thread] |%level| %marker %X{rpid} %msg %n%ex</Pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.travelzen.logger.data.manipulate" level="info" additivity="false">
+		<appender-ref ref="data-manipulate" />
+	</logger>
+    <logger name="org.perf4j.TimingLogger" level="info" additivity="false">
+        <appender-ref ref="perf-analysis"/>
+    </logger>
+    <logger name="com.travelzen.tops.member.authorization.securityfilter.RedisSessionFilter" level="INFO" additivity="false">
+    	<appender-ref ref="session-analysis"></appender-ref>
+    </logger>
+    <logger name="com.travelzen.tops.member.authorization.common.MemberAuthUtils" level="warn" additivity="false">
+    	<appender-ref ref="SID-analysis"/>
+    </logger>
+    <logger name="com.travelzen.tops" level="INFO" additivity="false">
+		<appender-ref ref="async-debug-file" />
+	</logger>
+	<logger name="org.apache.zookeeper.ClientCnxn" level="INFO" additivity="false">
+		<appender-ref ref="zk-debug-file" />
+	</logger>
+	<logger name="dubbo.accesslog" level="INFO" additivity="false">
+		<appender-ref ref="dubbo-accesslog" />
+	</logger>
+	
+</included>

@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.report.dao.mapper.gen.ReportFundMonthlyMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.report.dao.po.ReportFundMonthly" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="month" property="month" jdbcType="VARCHAR" />
+    <result column="factor_id" property="factorId" jdbcType="VARCHAR" />
+    <result column="factor_name" property="factorName" jdbcType="VARCHAR" />
+    <result column="finance_name" property="financeName" jdbcType="VARCHAR" />
+    <result column="account_name" property="accountName" jdbcType="VARCHAR" />
+    <result column="account_no" property="accountNo" jdbcType="VARCHAR" />
+    <result column="account_type" property="accountType" jdbcType="VARCHAR" />
+    <result column="supervision_status" property="supervisionStatus" jdbcType="VARCHAR" />
+    <result column="is_transfer_in_account" property="isTransferInAccount" jdbcType="BIT" />
+    <result column="account_status" property="accountStatus" jdbcType="VARCHAR" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="result" property="result" jdbcType="VARCHAR" />
+    <result column="is_main_account" property="isMainAccount" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, month, factor_id, factor_name, finance_name, account_name, account_no, account_type, 
+    supervision_status, is_transfer_in_account, account_status, balance, result, is_main_account, 
+    create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.report.dao.po.ReportFundMonthlyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from report_fund_monthly
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from report_fund_monthly
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from report_fund_monthly
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.report.dao.po.ReportFundMonthlyExample" >
+    delete from report_fund_monthly
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.report.dao.po.ReportFundMonthly" >
+    insert into report_fund_monthly (id, month, factor_id, 
+      factor_name, finance_name, account_name, 
+      account_no, account_type, supervision_status, 
+      is_transfer_in_account, account_status, balance, 
+      result, is_main_account, create_time, 
+      update_time)
+    values (#{id,jdbcType=VARCHAR}, #{month,jdbcType=VARCHAR}, #{factorId,jdbcType=VARCHAR}, 
+      #{factorName,jdbcType=VARCHAR}, #{financeName,jdbcType=VARCHAR}, #{accountName,jdbcType=VARCHAR}, 
+      #{accountNo,jdbcType=VARCHAR}, #{accountType,jdbcType=VARCHAR}, #{supervisionStatus,jdbcType=VARCHAR}, 
+      #{isTransferInAccount,jdbcType=BIT}, #{accountStatus,jdbcType=VARCHAR}, #{balance,jdbcType=DECIMAL}, 
+      #{result,jdbcType=VARCHAR}, #{isMainAccount,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.report.dao.po.ReportFundMonthly" >
+    insert into report_fund_monthly
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="factorId != null" >
+        factor_id,
+      </if>
+      <if test="factorName != null" >
+        factor_name,
+      </if>
+      <if test="financeName != null" >
+        finance_name,
+      </if>
+      <if test="accountName != null" >
+        account_name,
+      </if>
+      <if test="accountNo != null" >
+        account_no,
+      </if>
+      <if test="accountType != null" >
+        account_type,
+      </if>
+      <if test="supervisionStatus != null" >
+        supervision_status,
+      </if>
+      <if test="isTransferInAccount != null" >
+        is_transfer_in_account,
+      </if>
+      <if test="accountStatus != null" >
+        account_status,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+      <if test="isMainAccount != null" >
+        is_main_account,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="factorId != null" >
+        #{factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="factorName != null" >
+        #{factorName,jdbcType=VARCHAR},
+      </if>
+      <if test="financeName != null" >
+        #{financeName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null" >
+        #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null" >
+        #{accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="supervisionStatus != null" >
+        #{supervisionStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isTransferInAccount != null" >
+        #{isTransferInAccount,jdbcType=BIT},
+      </if>
+      <if test="accountStatus != null" >
+        #{accountStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="isMainAccount != null" >
+        #{isMainAccount,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.report.dao.po.ReportFundMonthlyExample" resultType="java.lang.Integer" >
+    select count(*) from report_fund_monthly
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update report_fund_monthly
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.month != null" >
+        month = #{record.month,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factorId != null" >
+        factor_id = #{record.factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factorName != null" >
+        factor_name = #{record.factorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financeName != null" >
+        finance_name = #{record.financeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountName != null" >
+        account_name = #{record.accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountNo != null" >
+        account_no = #{record.accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountType != null" >
+        account_type = #{record.accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supervisionStatus != null" >
+        supervision_status = #{record.supervisionStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isTransferInAccount != null" >
+        is_transfer_in_account = #{record.isTransferInAccount,jdbcType=BIT},
+      </if>
+      <if test="record.accountStatus != null" >
+        account_status = #{record.accountStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.balance != null" >
+        balance = #{record.balance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.result != null" >
+        result = #{record.result,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isMainAccount != null" >
+        is_main_account = #{record.isMainAccount,jdbcType=BIT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update report_fund_monthly
+    set id = #{record.id,jdbcType=VARCHAR},
+      month = #{record.month,jdbcType=VARCHAR},
+      factor_id = #{record.factorId,jdbcType=VARCHAR},
+      factor_name = #{record.factorName,jdbcType=VARCHAR},
+      finance_name = #{record.financeName,jdbcType=VARCHAR},
+      account_name = #{record.accountName,jdbcType=VARCHAR},
+      account_no = #{record.accountNo,jdbcType=VARCHAR},
+      account_type = #{record.accountType,jdbcType=VARCHAR},
+      supervision_status = #{record.supervisionStatus,jdbcType=VARCHAR},
+      is_transfer_in_account = #{record.isTransferInAccount,jdbcType=BIT},
+      account_status = #{record.accountStatus,jdbcType=VARCHAR},
+      balance = #{record.balance,jdbcType=DECIMAL},
+      result = #{record.result,jdbcType=VARCHAR},
+      is_main_account = #{record.isMainAccount,jdbcType=BIT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.report.dao.po.ReportFundMonthly" >
+    update report_fund_monthly
+    <set >
+      <if test="month != null" >
+        month = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="factorId != null" >
+        factor_id = #{factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="factorName != null" >
+        factor_name = #{factorName,jdbcType=VARCHAR},
+      </if>
+      <if test="financeName != null" >
+        finance_name = #{financeName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null" >
+        account_no = #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null" >
+        account_type = #{accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="supervisionStatus != null" >
+        supervision_status = #{supervisionStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isTransferInAccount != null" >
+        is_transfer_in_account = #{isTransferInAccount,jdbcType=BIT},
+      </if>
+      <if test="accountStatus != null" >
+        account_status = #{accountStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="isMainAccount != null" >
+        is_main_account = #{isMainAccount,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.report.dao.po.ReportFundMonthly" >
+    update report_fund_monthly
+    set month = #{month,jdbcType=VARCHAR},
+      factor_id = #{factorId,jdbcType=VARCHAR},
+      factor_name = #{factorName,jdbcType=VARCHAR},
+      finance_name = #{financeName,jdbcType=VARCHAR},
+      account_name = #{accountName,jdbcType=VARCHAR},
+      account_no = #{accountNo,jdbcType=VARCHAR},
+      account_type = #{accountType,jdbcType=VARCHAR},
+      supervision_status = #{supervisionStatus,jdbcType=VARCHAR},
+      is_transfer_in_account = #{isTransferInAccount,jdbcType=BIT},
+      account_status = #{accountStatus,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=DECIMAL},
+      result = #{result,jdbcType=VARCHAR},
+      is_main_account = #{isMainAccount,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from report_fund_monthly
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.report.dao.po.ReportFundMonthlyExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from report_fund_monthly
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

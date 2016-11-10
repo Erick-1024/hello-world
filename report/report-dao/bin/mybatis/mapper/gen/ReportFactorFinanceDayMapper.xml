@@ -1,0 +1,945 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.report.dao.mapper.gen.ReportFactorFinanceDayMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.report.dao.po.ReportFactorFinanceDay" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="owner_id" property="ownerId" jdbcType="VARCHAR" />
+    <result column="report_date" property="reportDate" jdbcType="VARCHAR" />
+    <result column="user_type" property="userType" jdbcType="VARCHAR" />
+    <result column="business_product_id" property="businessProductId" jdbcType="VARCHAR" />
+    <result column="finance_balance" property="financeBalance" jdbcType="DECIMAL" />
+    <result column="finance_amount" property="financeAmount" jdbcType="DECIMAL" />
+    <result column="account_principal" property="accountPrincipal" jdbcType="DECIMAL" />
+    <result column="account_expense" property="accountExpense" jdbcType="DECIMAL" />
+    <result column="account_overdue_principal" property="accountOverduePrincipal" jdbcType="DECIMAL" />
+    <result column="account_overdue_interest" property="accountOverdueInterest" jdbcType="DECIMAL" />
+    <result column="account_overdue_service_charge" property="accountOverdueServiceCharge" jdbcType="DECIMAL" />
+    <result column="account_overdue_extension_charge" property="accountOverdueExtensionCharge" jdbcType="DECIMAL" />
+    <result column="account_overdue" property="accountOverdue" jdbcType="DECIMAL" />
+    <result column="account_interest" property="accountInterest" jdbcType="DECIMAL" />
+    <result column="account_service_charge" property="accountServiceCharge" jdbcType="DECIMAL" />
+    <result column="account_extension_charge" property="accountExtensionCharge" jdbcType="DECIMAL" />
+    <result column="account_overdue_principal_penalty" property="accountOverduePrincipalPenalty" jdbcType="DECIMAL" />
+    <result column="account_overdue_interest_penalty" property="accountOverdueInterestPenalty" jdbcType="DECIMAL" />
+    <result column="account_overdue_service_charge_penalty" property="accountOverdueServiceChargePenalty" jdbcType="DECIMAL" />
+    <result column="account_other_penalty" property="accountOtherPenalty" jdbcType="DECIMAL" />
+    <result column="account_charge" property="accountCharge" jdbcType="DECIMAL" />
+    <result column="paid_principal" property="paidPrincipal" jdbcType="DECIMAL" />
+    <result column="paid_interest" property="paidInterest" jdbcType="DECIMAL" />
+    <result column="paid_service_charge" property="paidServiceCharge" jdbcType="DECIMAL" />
+    <result column="paid_extension_charge" property="paidExtensionCharge" jdbcType="DECIMAL" />
+    <result column="paid_early_repayment_charge" property="paidEarlyRepaymentCharge" jdbcType="DECIMAL" />
+    <result column="paid_overdue_principal_penalty" property="paidOverduePrincipalPenalty" jdbcType="DECIMAL" />
+    <result column="paid_overdue_interest_penalty" property="paidOverdueInterestPenalty" jdbcType="DECIMAL" />
+    <result column="paid_overdue_service_charge_penalty" property="paidOverdueServiceChargePenalty" jdbcType="DECIMAL" />
+    <result column="paid_other_penalty" property="paidOtherPenalty" jdbcType="DECIMAL" />
+    <result column="paid_charge" property="paidCharge" jdbcType="DECIMAL" />
+    <result column="paid_expense" property="paidExpense" jdbcType="DECIMAL" />
+    <result column="paid_overdue_principal" property="paidOverduePrincipal" jdbcType="DECIMAL" />
+    <result column="paid_overdue_interest" property="paidOverdueInterest" jdbcType="DECIMAL" />
+    <result column="paid_overdue_service_charge" property="paidOverdueServiceCharge" jdbcType="DECIMAL" />
+    <result column="paid_overdue_extension_charge" property="paidOverdueExtensionCharge" jdbcType="DECIMAL" />
+    <result column="paid_overdue" property="paidOverdue" jdbcType="DECIMAL" />
+    <result column="adjust_principal" property="adjustPrincipal" jdbcType="DECIMAL" />
+    <result column="adjust_interest" property="adjustInterest" jdbcType="DECIMAL" />
+    <result column="adjust_service_charge" property="adjustServiceCharge" jdbcType="DECIMAL" />
+    <result column="adjust_extension" property="adjustExtension" jdbcType="DECIMAL" />
+    <result column="adjust_overdue_interest" property="adjustOverdueInterest" jdbcType="DECIMAL" />
+    <result column="adjust_overdue_service_charge" property="adjustOverdueServiceCharge" jdbcType="DECIMAL" />
+    <result column="adjust_penalty" property="adjustPenalty" jdbcType="DECIMAL" />
+    <result column="adjust_expense" property="adjustExpense" jdbcType="DECIMAL" />
+    <result column="adjust_amount" property="adjustAmount" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, owner_id, report_date, user_type, business_product_id, finance_balance, finance_amount, 
+    account_principal, account_expense, account_overdue_principal, account_overdue_interest, 
+    account_overdue_service_charge, account_overdue_extension_charge, account_overdue, 
+    account_interest, account_service_charge, account_extension_charge, account_overdue_principal_penalty, 
+    account_overdue_interest_penalty, account_overdue_service_charge_penalty, account_other_penalty, 
+    account_charge, paid_principal, paid_interest, paid_service_charge, paid_extension_charge, 
+    paid_early_repayment_charge, paid_overdue_principal_penalty, paid_overdue_interest_penalty, 
+    paid_overdue_service_charge_penalty, paid_other_penalty, paid_charge, paid_expense, 
+    paid_overdue_principal, paid_overdue_interest, paid_overdue_service_charge, paid_overdue_extension_charge, 
+    paid_overdue, adjust_principal, adjust_interest, adjust_service_charge, adjust_extension, 
+    adjust_overdue_interest, adjust_overdue_service_charge, adjust_penalty, adjust_expense, 
+    adjust_amount, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.report.dao.po.ReportFactorFinanceDayExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from report_factor_finance_day
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from report_factor_finance_day
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from report_factor_finance_day
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.report.dao.po.ReportFactorFinanceDayExample" >
+    delete from report_factor_finance_day
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.report.dao.po.ReportFactorFinanceDay" >
+    insert into report_factor_finance_day (id, owner_id, report_date, 
+      user_type, business_product_id, finance_balance, 
+      finance_amount, account_principal, account_expense, 
+      account_overdue_principal, account_overdue_interest, 
+      account_overdue_service_charge, account_overdue_extension_charge, 
+      account_overdue, account_interest, account_service_charge, 
+      account_extension_charge, account_overdue_principal_penalty, 
+      account_overdue_interest_penalty, account_overdue_service_charge_penalty, 
+      account_other_penalty, account_charge, paid_principal, 
+      paid_interest, paid_service_charge, paid_extension_charge, 
+      paid_early_repayment_charge, paid_overdue_principal_penalty, 
+      paid_overdue_interest_penalty, paid_overdue_service_charge_penalty, 
+      paid_other_penalty, paid_charge, paid_expense, 
+      paid_overdue_principal, paid_overdue_interest, 
+      paid_overdue_service_charge, paid_overdue_extension_charge, 
+      paid_overdue, adjust_principal, adjust_interest, 
+      adjust_service_charge, adjust_extension, adjust_overdue_interest, 
+      adjust_overdue_service_charge, adjust_penalty, 
+      adjust_expense, adjust_amount, create_time, 
+      update_time)
+    values (#{id,jdbcType=VARCHAR}, #{ownerId,jdbcType=VARCHAR}, #{reportDate,jdbcType=VARCHAR}, 
+      #{userType,jdbcType=VARCHAR}, #{businessProductId,jdbcType=VARCHAR}, #{financeBalance,jdbcType=DECIMAL}, 
+      #{financeAmount,jdbcType=DECIMAL}, #{accountPrincipal,jdbcType=DECIMAL}, #{accountExpense,jdbcType=DECIMAL}, 
+      #{accountOverduePrincipal,jdbcType=DECIMAL}, #{accountOverdueInterest,jdbcType=DECIMAL}, 
+      #{accountOverdueServiceCharge,jdbcType=DECIMAL}, #{accountOverdueExtensionCharge,jdbcType=DECIMAL}, 
+      #{accountOverdue,jdbcType=DECIMAL}, #{accountInterest,jdbcType=DECIMAL}, #{accountServiceCharge,jdbcType=DECIMAL}, 
+      #{accountExtensionCharge,jdbcType=DECIMAL}, #{accountOverduePrincipalPenalty,jdbcType=DECIMAL}, 
+      #{accountOverdueInterestPenalty,jdbcType=DECIMAL}, #{accountOverdueServiceChargePenalty,jdbcType=DECIMAL}, 
+      #{accountOtherPenalty,jdbcType=DECIMAL}, #{accountCharge,jdbcType=DECIMAL}, #{paidPrincipal,jdbcType=DECIMAL}, 
+      #{paidInterest,jdbcType=DECIMAL}, #{paidServiceCharge,jdbcType=DECIMAL}, #{paidExtensionCharge,jdbcType=DECIMAL}, 
+      #{paidEarlyRepaymentCharge,jdbcType=DECIMAL}, #{paidOverduePrincipalPenalty,jdbcType=DECIMAL}, 
+      #{paidOverdueInterestPenalty,jdbcType=DECIMAL}, #{paidOverdueServiceChargePenalty,jdbcType=DECIMAL}, 
+      #{paidOtherPenalty,jdbcType=DECIMAL}, #{paidCharge,jdbcType=DECIMAL}, #{paidExpense,jdbcType=DECIMAL}, 
+      #{paidOverduePrincipal,jdbcType=DECIMAL}, #{paidOverdueInterest,jdbcType=DECIMAL}, 
+      #{paidOverdueServiceCharge,jdbcType=DECIMAL}, #{paidOverdueExtensionCharge,jdbcType=DECIMAL}, 
+      #{paidOverdue,jdbcType=DECIMAL}, #{adjustPrincipal,jdbcType=DECIMAL}, #{adjustInterest,jdbcType=DECIMAL}, 
+      #{adjustServiceCharge,jdbcType=DECIMAL}, #{adjustExtension,jdbcType=DECIMAL}, #{adjustOverdueInterest,jdbcType=DECIMAL}, 
+      #{adjustOverdueServiceCharge,jdbcType=DECIMAL}, #{adjustPenalty,jdbcType=DECIMAL}, 
+      #{adjustExpense,jdbcType=DECIMAL}, #{adjustAmount,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.report.dao.po.ReportFactorFinanceDay" >
+    insert into report_factor_finance_day
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ownerId != null" >
+        owner_id,
+      </if>
+      <if test="reportDate != null" >
+        report_date,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="businessProductId != null" >
+        business_product_id,
+      </if>
+      <if test="financeBalance != null" >
+        finance_balance,
+      </if>
+      <if test="financeAmount != null" >
+        finance_amount,
+      </if>
+      <if test="accountPrincipal != null" >
+        account_principal,
+      </if>
+      <if test="accountExpense != null" >
+        account_expense,
+      </if>
+      <if test="accountOverduePrincipal != null" >
+        account_overdue_principal,
+      </if>
+      <if test="accountOverdueInterest != null" >
+        account_overdue_interest,
+      </if>
+      <if test="accountOverdueServiceCharge != null" >
+        account_overdue_service_charge,
+      </if>
+      <if test="accountOverdueExtensionCharge != null" >
+        account_overdue_extension_charge,
+      </if>
+      <if test="accountOverdue != null" >
+        account_overdue,
+      </if>
+      <if test="accountInterest != null" >
+        account_interest,
+      </if>
+      <if test="accountServiceCharge != null" >
+        account_service_charge,
+      </if>
+      <if test="accountExtensionCharge != null" >
+        account_extension_charge,
+      </if>
+      <if test="accountOverduePrincipalPenalty != null" >
+        account_overdue_principal_penalty,
+      </if>
+      <if test="accountOverdueInterestPenalty != null" >
+        account_overdue_interest_penalty,
+      </if>
+      <if test="accountOverdueServiceChargePenalty != null" >
+        account_overdue_service_charge_penalty,
+      </if>
+      <if test="accountOtherPenalty != null" >
+        account_other_penalty,
+      </if>
+      <if test="accountCharge != null" >
+        account_charge,
+      </if>
+      <if test="paidPrincipal != null" >
+        paid_principal,
+      </if>
+      <if test="paidInterest != null" >
+        paid_interest,
+      </if>
+      <if test="paidServiceCharge != null" >
+        paid_service_charge,
+      </if>
+      <if test="paidExtensionCharge != null" >
+        paid_extension_charge,
+      </if>
+      <if test="paidEarlyRepaymentCharge != null" >
+        paid_early_repayment_charge,
+      </if>
+      <if test="paidOverduePrincipalPenalty != null" >
+        paid_overdue_principal_penalty,
+      </if>
+      <if test="paidOverdueInterestPenalty != null" >
+        paid_overdue_interest_penalty,
+      </if>
+      <if test="paidOverdueServiceChargePenalty != null" >
+        paid_overdue_service_charge_penalty,
+      </if>
+      <if test="paidOtherPenalty != null" >
+        paid_other_penalty,
+      </if>
+      <if test="paidCharge != null" >
+        paid_charge,
+      </if>
+      <if test="paidExpense != null" >
+        paid_expense,
+      </if>
+      <if test="paidOverduePrincipal != null" >
+        paid_overdue_principal,
+      </if>
+      <if test="paidOverdueInterest != null" >
+        paid_overdue_interest,
+      </if>
+      <if test="paidOverdueServiceCharge != null" >
+        paid_overdue_service_charge,
+      </if>
+      <if test="paidOverdueExtensionCharge != null" >
+        paid_overdue_extension_charge,
+      </if>
+      <if test="paidOverdue != null" >
+        paid_overdue,
+      </if>
+      <if test="adjustPrincipal != null" >
+        adjust_principal,
+      </if>
+      <if test="adjustInterest != null" >
+        adjust_interest,
+      </if>
+      <if test="adjustServiceCharge != null" >
+        adjust_service_charge,
+      </if>
+      <if test="adjustExtension != null" >
+        adjust_extension,
+      </if>
+      <if test="adjustOverdueInterest != null" >
+        adjust_overdue_interest,
+      </if>
+      <if test="adjustOverdueServiceCharge != null" >
+        adjust_overdue_service_charge,
+      </if>
+      <if test="adjustPenalty != null" >
+        adjust_penalty,
+      </if>
+      <if test="adjustExpense != null" >
+        adjust_expense,
+      </if>
+      <if test="adjustAmount != null" >
+        adjust_amount,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerId != null" >
+        #{ownerId,jdbcType=VARCHAR},
+      </if>
+      <if test="reportDate != null" >
+        #{reportDate,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="businessProductId != null" >
+        #{businessProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="financeBalance != null" >
+        #{financeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="financeAmount != null" >
+        #{financeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="accountPrincipal != null" >
+        #{accountPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="accountExpense != null" >
+        #{accountExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="accountOverduePrincipal != null" >
+        #{accountOverduePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="accountOverdueInterest != null" >
+        #{accountOverdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="accountOverdueServiceCharge != null" >
+        #{accountOverdueServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="accountOverdueExtensionCharge != null" >
+        #{accountOverdueExtensionCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="accountOverdue != null" >
+        #{accountOverdue,jdbcType=DECIMAL},
+      </if>
+      <if test="accountInterest != null" >
+        #{accountInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="accountServiceCharge != null" >
+        #{accountServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="accountExtensionCharge != null" >
+        #{accountExtensionCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="accountOverduePrincipalPenalty != null" >
+        #{accountOverduePrincipalPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="accountOverdueInterestPenalty != null" >
+        #{accountOverdueInterestPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="accountOverdueServiceChargePenalty != null" >
+        #{accountOverdueServiceChargePenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="accountOtherPenalty != null" >
+        #{accountOtherPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="accountCharge != null" >
+        #{accountCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="paidPrincipal != null" >
+        #{paidPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="paidInterest != null" >
+        #{paidInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="paidServiceCharge != null" >
+        #{paidServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="paidExtensionCharge != null" >
+        #{paidExtensionCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="paidEarlyRepaymentCharge != null" >
+        #{paidEarlyRepaymentCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="paidOverduePrincipalPenalty != null" >
+        #{paidOverduePrincipalPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="paidOverdueInterestPenalty != null" >
+        #{paidOverdueInterestPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="paidOverdueServiceChargePenalty != null" >
+        #{paidOverdueServiceChargePenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="paidOtherPenalty != null" >
+        #{paidOtherPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="paidCharge != null" >
+        #{paidCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="paidExpense != null" >
+        #{paidExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="paidOverduePrincipal != null" >
+        #{paidOverduePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="paidOverdueInterest != null" >
+        #{paidOverdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="paidOverdueServiceCharge != null" >
+        #{paidOverdueServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="paidOverdueExtensionCharge != null" >
+        #{paidOverdueExtensionCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="paidOverdue != null" >
+        #{paidOverdue,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustPrincipal != null" >
+        #{adjustPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustInterest != null" >
+        #{adjustInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustServiceCharge != null" >
+        #{adjustServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustExtension != null" >
+        #{adjustExtension,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustOverdueInterest != null" >
+        #{adjustOverdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustOverdueServiceCharge != null" >
+        #{adjustOverdueServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustPenalty != null" >
+        #{adjustPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustExpense != null" >
+        #{adjustExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustAmount != null" >
+        #{adjustAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.report.dao.po.ReportFactorFinanceDayExample" resultType="java.lang.Integer" >
+    select count(*) from report_factor_finance_day
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update report_factor_finance_day
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ownerId != null" >
+        owner_id = #{record.ownerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reportDate != null" >
+        report_date = #{record.reportDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userType != null" >
+        user_type = #{record.userType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessProductId != null" >
+        business_product_id = #{record.businessProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financeBalance != null" >
+        finance_balance = #{record.financeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.financeAmount != null" >
+        finance_amount = #{record.financeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountPrincipal != null" >
+        account_principal = #{record.accountPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountExpense != null" >
+        account_expense = #{record.accountExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountOverduePrincipal != null" >
+        account_overdue_principal = #{record.accountOverduePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountOverdueInterest != null" >
+        account_overdue_interest = #{record.accountOverdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountOverdueServiceCharge != null" >
+        account_overdue_service_charge = #{record.accountOverdueServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountOverdueExtensionCharge != null" >
+        account_overdue_extension_charge = #{record.accountOverdueExtensionCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountOverdue != null" >
+        account_overdue = #{record.accountOverdue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountInterest != null" >
+        account_interest = #{record.accountInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountServiceCharge != null" >
+        account_service_charge = #{record.accountServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountExtensionCharge != null" >
+        account_extension_charge = #{record.accountExtensionCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountOverduePrincipalPenalty != null" >
+        account_overdue_principal_penalty = #{record.accountOverduePrincipalPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountOverdueInterestPenalty != null" >
+        account_overdue_interest_penalty = #{record.accountOverdueInterestPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountOverdueServiceChargePenalty != null" >
+        account_overdue_service_charge_penalty = #{record.accountOverdueServiceChargePenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountOtherPenalty != null" >
+        account_other_penalty = #{record.accountOtherPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountCharge != null" >
+        account_charge = #{record.accountCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paidPrincipal != null" >
+        paid_principal = #{record.paidPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paidInterest != null" >
+        paid_interest = #{record.paidInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paidServiceCharge != null" >
+        paid_service_charge = #{record.paidServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paidExtensionCharge != null" >
+        paid_extension_charge = #{record.paidExtensionCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paidEarlyRepaymentCharge != null" >
+        paid_early_repayment_charge = #{record.paidEarlyRepaymentCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paidOverduePrincipalPenalty != null" >
+        paid_overdue_principal_penalty = #{record.paidOverduePrincipalPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paidOverdueInterestPenalty != null" >
+        paid_overdue_interest_penalty = #{record.paidOverdueInterestPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paidOverdueServiceChargePenalty != null" >
+        paid_overdue_service_charge_penalty = #{record.paidOverdueServiceChargePenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paidOtherPenalty != null" >
+        paid_other_penalty = #{record.paidOtherPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paidCharge != null" >
+        paid_charge = #{record.paidCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paidExpense != null" >
+        paid_expense = #{record.paidExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paidOverduePrincipal != null" >
+        paid_overdue_principal = #{record.paidOverduePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paidOverdueInterest != null" >
+        paid_overdue_interest = #{record.paidOverdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paidOverdueServiceCharge != null" >
+        paid_overdue_service_charge = #{record.paidOverdueServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paidOverdueExtensionCharge != null" >
+        paid_overdue_extension_charge = #{record.paidOverdueExtensionCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paidOverdue != null" >
+        paid_overdue = #{record.paidOverdue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.adjustPrincipal != null" >
+        adjust_principal = #{record.adjustPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="record.adjustInterest != null" >
+        adjust_interest = #{record.adjustInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="record.adjustServiceCharge != null" >
+        adjust_service_charge = #{record.adjustServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.adjustExtension != null" >
+        adjust_extension = #{record.adjustExtension,jdbcType=DECIMAL},
+      </if>
+      <if test="record.adjustOverdueInterest != null" >
+        adjust_overdue_interest = #{record.adjustOverdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="record.adjustOverdueServiceCharge != null" >
+        adjust_overdue_service_charge = #{record.adjustOverdueServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.adjustPenalty != null" >
+        adjust_penalty = #{record.adjustPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.adjustExpense != null" >
+        adjust_expense = #{record.adjustExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="record.adjustAmount != null" >
+        adjust_amount = #{record.adjustAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update report_factor_finance_day
+    set id = #{record.id,jdbcType=VARCHAR},
+      owner_id = #{record.ownerId,jdbcType=VARCHAR},
+      report_date = #{record.reportDate,jdbcType=VARCHAR},
+      user_type = #{record.userType,jdbcType=VARCHAR},
+      business_product_id = #{record.businessProductId,jdbcType=VARCHAR},
+      finance_balance = #{record.financeBalance,jdbcType=DECIMAL},
+      finance_amount = #{record.financeAmount,jdbcType=DECIMAL},
+      account_principal = #{record.accountPrincipal,jdbcType=DECIMAL},
+      account_expense = #{record.accountExpense,jdbcType=DECIMAL},
+      account_overdue_principal = #{record.accountOverduePrincipal,jdbcType=DECIMAL},
+      account_overdue_interest = #{record.accountOverdueInterest,jdbcType=DECIMAL},
+      account_overdue_service_charge = #{record.accountOverdueServiceCharge,jdbcType=DECIMAL},
+      account_overdue_extension_charge = #{record.accountOverdueExtensionCharge,jdbcType=DECIMAL},
+      account_overdue = #{record.accountOverdue,jdbcType=DECIMAL},
+      account_interest = #{record.accountInterest,jdbcType=DECIMAL},
+      account_service_charge = #{record.accountServiceCharge,jdbcType=DECIMAL},
+      account_extension_charge = #{record.accountExtensionCharge,jdbcType=DECIMAL},
+      account_overdue_principal_penalty = #{record.accountOverduePrincipalPenalty,jdbcType=DECIMAL},
+      account_overdue_interest_penalty = #{record.accountOverdueInterestPenalty,jdbcType=DECIMAL},
+      account_overdue_service_charge_penalty = #{record.accountOverdueServiceChargePenalty,jdbcType=DECIMAL},
+      account_other_penalty = #{record.accountOtherPenalty,jdbcType=DECIMAL},
+      account_charge = #{record.accountCharge,jdbcType=DECIMAL},
+      paid_principal = #{record.paidPrincipal,jdbcType=DECIMAL},
+      paid_interest = #{record.paidInterest,jdbcType=DECIMAL},
+      paid_service_charge = #{record.paidServiceCharge,jdbcType=DECIMAL},
+      paid_extension_charge = #{record.paidExtensionCharge,jdbcType=DECIMAL},
+      paid_early_repayment_charge = #{record.paidEarlyRepaymentCharge,jdbcType=DECIMAL},
+      paid_overdue_principal_penalty = #{record.paidOverduePrincipalPenalty,jdbcType=DECIMAL},
+      paid_overdue_interest_penalty = #{record.paidOverdueInterestPenalty,jdbcType=DECIMAL},
+      paid_overdue_service_charge_penalty = #{record.paidOverdueServiceChargePenalty,jdbcType=DECIMAL},
+      paid_other_penalty = #{record.paidOtherPenalty,jdbcType=DECIMAL},
+      paid_charge = #{record.paidCharge,jdbcType=DECIMAL},
+      paid_expense = #{record.paidExpense,jdbcType=DECIMAL},
+      paid_overdue_principal = #{record.paidOverduePrincipal,jdbcType=DECIMAL},
+      paid_overdue_interest = #{record.paidOverdueInterest,jdbcType=DECIMAL},
+      paid_overdue_service_charge = #{record.paidOverdueServiceCharge,jdbcType=DECIMAL},
+      paid_overdue_extension_charge = #{record.paidOverdueExtensionCharge,jdbcType=DECIMAL},
+      paid_overdue = #{record.paidOverdue,jdbcType=DECIMAL},
+      adjust_principal = #{record.adjustPrincipal,jdbcType=DECIMAL},
+      adjust_interest = #{record.adjustInterest,jdbcType=DECIMAL},
+      adjust_service_charge = #{record.adjustServiceCharge,jdbcType=DECIMAL},
+      adjust_extension = #{record.adjustExtension,jdbcType=DECIMAL},
+      adjust_overdue_interest = #{record.adjustOverdueInterest,jdbcType=DECIMAL},
+      adjust_overdue_service_charge = #{record.adjustOverdueServiceCharge,jdbcType=DECIMAL},
+      adjust_penalty = #{record.adjustPenalty,jdbcType=DECIMAL},
+      adjust_expense = #{record.adjustExpense,jdbcType=DECIMAL},
+      adjust_amount = #{record.adjustAmount,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.report.dao.po.ReportFactorFinanceDay" >
+    update report_factor_finance_day
+    <set >
+      <if test="ownerId != null" >
+        owner_id = #{ownerId,jdbcType=VARCHAR},
+      </if>
+      <if test="reportDate != null" >
+        report_date = #{reportDate,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="businessProductId != null" >
+        business_product_id = #{businessProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="financeBalance != null" >
+        finance_balance = #{financeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="financeAmount != null" >
+        finance_amount = #{financeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="accountPrincipal != null" >
+        account_principal = #{accountPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="accountExpense != null" >
+        account_expense = #{accountExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="accountOverduePrincipal != null" >
+        account_overdue_principal = #{accountOverduePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="accountOverdueInterest != null" >
+        account_overdue_interest = #{accountOverdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="accountOverdueServiceCharge != null" >
+        account_overdue_service_charge = #{accountOverdueServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="accountOverdueExtensionCharge != null" >
+        account_overdue_extension_charge = #{accountOverdueExtensionCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="accountOverdue != null" >
+        account_overdue = #{accountOverdue,jdbcType=DECIMAL},
+      </if>
+      <if test="accountInterest != null" >
+        account_interest = #{accountInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="accountServiceCharge != null" >
+        account_service_charge = #{accountServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="accountExtensionCharge != null" >
+        account_extension_charge = #{accountExtensionCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="accountOverduePrincipalPenalty != null" >
+        account_overdue_principal_penalty = #{accountOverduePrincipalPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="accountOverdueInterestPenalty != null" >
+        account_overdue_interest_penalty = #{accountOverdueInterestPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="accountOverdueServiceChargePenalty != null" >
+        account_overdue_service_charge_penalty = #{accountOverdueServiceChargePenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="accountOtherPenalty != null" >
+        account_other_penalty = #{accountOtherPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="accountCharge != null" >
+        account_charge = #{accountCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="paidPrincipal != null" >
+        paid_principal = #{paidPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="paidInterest != null" >
+        paid_interest = #{paidInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="paidServiceCharge != null" >
+        paid_service_charge = #{paidServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="paidExtensionCharge != null" >
+        paid_extension_charge = #{paidExtensionCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="paidEarlyRepaymentCharge != null" >
+        paid_early_repayment_charge = #{paidEarlyRepaymentCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="paidOverduePrincipalPenalty != null" >
+        paid_overdue_principal_penalty = #{paidOverduePrincipalPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="paidOverdueInterestPenalty != null" >
+        paid_overdue_interest_penalty = #{paidOverdueInterestPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="paidOverdueServiceChargePenalty != null" >
+        paid_overdue_service_charge_penalty = #{paidOverdueServiceChargePenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="paidOtherPenalty != null" >
+        paid_other_penalty = #{paidOtherPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="paidCharge != null" >
+        paid_charge = #{paidCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="paidExpense != null" >
+        paid_expense = #{paidExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="paidOverduePrincipal != null" >
+        paid_overdue_principal = #{paidOverduePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="paidOverdueInterest != null" >
+        paid_overdue_interest = #{paidOverdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="paidOverdueServiceCharge != null" >
+        paid_overdue_service_charge = #{paidOverdueServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="paidOverdueExtensionCharge != null" >
+        paid_overdue_extension_charge = #{paidOverdueExtensionCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="paidOverdue != null" >
+        paid_overdue = #{paidOverdue,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustPrincipal != null" >
+        adjust_principal = #{adjustPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustInterest != null" >
+        adjust_interest = #{adjustInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustServiceCharge != null" >
+        adjust_service_charge = #{adjustServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustExtension != null" >
+        adjust_extension = #{adjustExtension,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustOverdueInterest != null" >
+        adjust_overdue_interest = #{adjustOverdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustOverdueServiceCharge != null" >
+        adjust_overdue_service_charge = #{adjustOverdueServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustPenalty != null" >
+        adjust_penalty = #{adjustPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustExpense != null" >
+        adjust_expense = #{adjustExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustAmount != null" >
+        adjust_amount = #{adjustAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.report.dao.po.ReportFactorFinanceDay" >
+    update report_factor_finance_day
+    set owner_id = #{ownerId,jdbcType=VARCHAR},
+      report_date = #{reportDate,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=VARCHAR},
+      business_product_id = #{businessProductId,jdbcType=VARCHAR},
+      finance_balance = #{financeBalance,jdbcType=DECIMAL},
+      finance_amount = #{financeAmount,jdbcType=DECIMAL},
+      account_principal = #{accountPrincipal,jdbcType=DECIMAL},
+      account_expense = #{accountExpense,jdbcType=DECIMAL},
+      account_overdue_principal = #{accountOverduePrincipal,jdbcType=DECIMAL},
+      account_overdue_interest = #{accountOverdueInterest,jdbcType=DECIMAL},
+      account_overdue_service_charge = #{accountOverdueServiceCharge,jdbcType=DECIMAL},
+      account_overdue_extension_charge = #{accountOverdueExtensionCharge,jdbcType=DECIMAL},
+      account_overdue = #{accountOverdue,jdbcType=DECIMAL},
+      account_interest = #{accountInterest,jdbcType=DECIMAL},
+      account_service_charge = #{accountServiceCharge,jdbcType=DECIMAL},
+      account_extension_charge = #{accountExtensionCharge,jdbcType=DECIMAL},
+      account_overdue_principal_penalty = #{accountOverduePrincipalPenalty,jdbcType=DECIMAL},
+      account_overdue_interest_penalty = #{accountOverdueInterestPenalty,jdbcType=DECIMAL},
+      account_overdue_service_charge_penalty = #{accountOverdueServiceChargePenalty,jdbcType=DECIMAL},
+      account_other_penalty = #{accountOtherPenalty,jdbcType=DECIMAL},
+      account_charge = #{accountCharge,jdbcType=DECIMAL},
+      paid_principal = #{paidPrincipal,jdbcType=DECIMAL},
+      paid_interest = #{paidInterest,jdbcType=DECIMAL},
+      paid_service_charge = #{paidServiceCharge,jdbcType=DECIMAL},
+      paid_extension_charge = #{paidExtensionCharge,jdbcType=DECIMAL},
+      paid_early_repayment_charge = #{paidEarlyRepaymentCharge,jdbcType=DECIMAL},
+      paid_overdue_principal_penalty = #{paidOverduePrincipalPenalty,jdbcType=DECIMAL},
+      paid_overdue_interest_penalty = #{paidOverdueInterestPenalty,jdbcType=DECIMAL},
+      paid_overdue_service_charge_penalty = #{paidOverdueServiceChargePenalty,jdbcType=DECIMAL},
+      paid_other_penalty = #{paidOtherPenalty,jdbcType=DECIMAL},
+      paid_charge = #{paidCharge,jdbcType=DECIMAL},
+      paid_expense = #{paidExpense,jdbcType=DECIMAL},
+      paid_overdue_principal = #{paidOverduePrincipal,jdbcType=DECIMAL},
+      paid_overdue_interest = #{paidOverdueInterest,jdbcType=DECIMAL},
+      paid_overdue_service_charge = #{paidOverdueServiceCharge,jdbcType=DECIMAL},
+      paid_overdue_extension_charge = #{paidOverdueExtensionCharge,jdbcType=DECIMAL},
+      paid_overdue = #{paidOverdue,jdbcType=DECIMAL},
+      adjust_principal = #{adjustPrincipal,jdbcType=DECIMAL},
+      adjust_interest = #{adjustInterest,jdbcType=DECIMAL},
+      adjust_service_charge = #{adjustServiceCharge,jdbcType=DECIMAL},
+      adjust_extension = #{adjustExtension,jdbcType=DECIMAL},
+      adjust_overdue_interest = #{adjustOverdueInterest,jdbcType=DECIMAL},
+      adjust_overdue_service_charge = #{adjustOverdueServiceCharge,jdbcType=DECIMAL},
+      adjust_penalty = #{adjustPenalty,jdbcType=DECIMAL},
+      adjust_expense = #{adjustExpense,jdbcType=DECIMAL},
+      adjust_amount = #{adjustAmount,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from report_factor_finance_day
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.report.dao.po.ReportFactorFinanceDayExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from report_factor_finance_day
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

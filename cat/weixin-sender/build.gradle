@@ -1,0 +1,16 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+rootProject.allprojects {
+    configurations {
+        all { resolutionStrategy.force 'org.apache.httpcomponents:httpcore:4.3.2' }
+        all { resolutionStrategy.force 'org.apache.httpcomponents:httpclient:4.3.4' }
+    }
+}
+
+dependencies {
+    compile project(':framework:framework-base')
+	compile libraries.netty_all
+}
+
+mainClassName = 'com.travelzen.cat.weixinsender.Main'

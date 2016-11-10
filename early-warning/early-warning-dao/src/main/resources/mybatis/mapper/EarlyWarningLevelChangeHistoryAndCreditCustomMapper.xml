@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cana.early.warning.dao.mapper.EarlyWarningLevelChangeHistoryAndCreditCustomMapper">
+    
+    <resultMap type="com.cana.vbam.common.early.warning.dto.EarlyWarningLevelChangeHistoryDTO" id="EarlyWarningLevelChangeHistoryDTOMap">
+    	<result column="finance_id" property="financeId" jdbcType="VARCHAR" />
+    	<result column="finance_company" property="financeCompany" jdbcType="VARCHAR" />
+    	<result column="out_customer_name" property="outCustomerName" jdbcType="VARCHAR" />
+    	<result column="level" property="level" jdbcType="VARCHAR" />
+    	<result column="in_time" property="inTime" jdbcType="TIMESTAMP" />
+    	<result column="out_time" property="outTime" jdbcType="TIMESTAMP" />
+ 	</resultMap>
+    
+    <select id="queryEarlyWarningLevelChangeHistory" parameterType="com.cana.vbam.common.early.warning.dto.EarlyWarningLevelChangeHistoryRequest" resultMap="EarlyWarningLevelChangeHistoryDTOMap">
+		select l.finance_id, l.finance_company, r.out_customer_name, l.level, l.in_time, l.out_time from vbam.early_warning_level_change_history as l
+		left join vbam.credit_limit as r on l.finance_id = r.member_id and l.out_customer_id = r.out_customer_id and l.product_id = r.project_id
+		<include refid="Where_Clause"></include>
+		order by l.update_time desc, l.in_time desc
+		<if test="page >= 1" >
+       		limit ${(page -1) * pageSize} , #{pageSize}
+    	</if>
+  	</select>
+    
+	<select id="queryEarlyWarningLevelChangeHistoryCount" parameterType="com.cana.vbam.common.early.warning.dto.EarlyWarningLevelChangeHistoryRequest" resultType="java.lang.Integer">
+		select count(*) from vbam.early_warning_level_change_history as l
+		left join vbam.credit_limit as r on l.finance_id = r.member_id and l.out_customer_id = r.out_customer_id and l.product_id = r.project_id
+		<include refid="Where_Clause"></include>
+  	</select>
+    
+    <sql id="Where_Clause">
+		<where>
+			<if test="inTimeStart != null">
+				and l.in_time >= #{inTimeStart, jdbcType=TIMESTAMP}
+			</if>
+			<if test="inTimeEnd != null">
+				and l.in_time &lt;= #{inTimeEnd, jdbcType=TIMESTAMP}
+			</if>
+			<if test="outTimeStart != null">
+				and l.out_time >= #{outTimeStart, jdbcType=TIMESTAMP}
+			</if>
+			<if test="outTimeEnd != null">
+				and l.out_time &lt;= #{outTimeEnd , jdbcType=TIMESTAMP}
+			</if>
+			<if test="earlywarningLevel != null">
+				and l.level = #{earlywarningLevel, jdbcType=VARCHAR}
+			</if>
+				and r.credit_mode = 'SYNTHETICAL' 
+				and l.finance_company like #{companyName, jdbcType=VARCHAR}
+				and l.product_id = #{productId, jdbcType=VARCHAR}
+		</where>
+	</sql>
+    
+</mapper>

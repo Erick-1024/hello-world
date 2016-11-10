@@ -1,0 +1,39 @@
+apply from: 'framework.settings.gradle'
+include ':credit:credit-server'
+include ':credit:credit-openapi'
+include ':credit:credit-service'
+include ':credit:credit-dao'
+include ':credit:credit-limit-dao'
+include ':credit:credit-api'
+include ':credit:credit-generate-whites-job'
+include ':credit:credit-scheduler'
+
+include ':flight-finance:flight-finance-common'
+include ':flight-finance:flight-finance-service'
+include ':flight-finance:flight-finance-dataaccess-travelzen'
+include ':flight-finance:flight-finance-dao'
+
+include ':common:vbam-common'
+include ':common:common-dao'
+include ':common:vbam-common-service'
+include ':common:bankgate-api'
+include ':common:vbam-rabbitmq'
+
+include ':member:member-api'
+include ':member:member-dao'
+include ':member:member-authorization'
+
+include ':tops-common-mediaclient'
+
+include ':repayment:repayment-service'
+include ':repayment:repayment-dao'
+
+include ':account:account-api'
+include ':repayment:repayment-api'
+
+include ':message:message-client'
+
+include ':marketing:marketing-api'
+include ':asset:asset-api'
+
+include ':credit:credit-limit-service'

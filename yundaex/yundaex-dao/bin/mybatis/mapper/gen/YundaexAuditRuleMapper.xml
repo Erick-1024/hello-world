@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.yundaex.dao.mapper.gen.YundaexAuditRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.yundaex.dao.po.YundaexAuditRule" >
+    <id column="batch_no" property="batchNo" jdbcType="INTEGER" />
+    <result column="applyCustomer_address" property="applycustomerAddress" jdbcType="VARCHAR" />
+    <result column="cooperation_period" property="cooperationPeriod" jdbcType="INTEGER" />
+    <result column="receive_send_growth_rate" property="receiveSendGrowthRate" jdbcType="DECIMAL" />
+    <result column="negative_infomation_search" property="negativeInfomationSearch" jdbcType="BIT" />
+    <result column="is_court_execute_individual_info" property="isCourtExecuteIndividualInfo" jdbcType="BIT" />
+    <result column="station_address" property="stationAddress" jdbcType="BIT" />
+    <result column="deposit_amount" property="depositAmount" jdbcType="BIT" />
+    <result column="is_ranchise_contract" property="isRanchiseContract" jdbcType="BIT" />
+    <result column="is_qualified_inspection_record" property="isQualifiedInspectionRecord" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    batch_no, applyCustomer_address, cooperation_period, receive_send_growth_rate, negative_infomation_search, 
+    is_court_execute_individual_info, station_address, deposit_amount, is_ranchise_contract, 
+    is_qualified_inspection_record
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.yundaex.dao.po.YundaexAuditRuleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yundaex_audit_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yundaex_audit_rule
+    where batch_no = #{batchNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yundaex_audit_rule
+    where batch_no = #{batchNo,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.yundaex.dao.po.YundaexAuditRuleExample" >
+    delete from yundaex_audit_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.yundaex.dao.po.YundaexAuditRule" >
+    insert into yundaex_audit_rule (batch_no, applyCustomer_address, cooperation_period, 
+      receive_send_growth_rate, negative_infomation_search, 
+      is_court_execute_individual_info, station_address, deposit_amount, 
+      is_ranchise_contract, is_qualified_inspection_record
+      )
+    values (#{batchNo,jdbcType=INTEGER}, #{applycustomerAddress,jdbcType=VARCHAR}, #{cooperationPeriod,jdbcType=INTEGER}, 
+      #{receiveSendGrowthRate,jdbcType=DECIMAL}, #{negativeInfomationSearch,jdbcType=BIT}, 
+      #{isCourtExecuteIndividualInfo,jdbcType=BIT}, #{stationAddress,jdbcType=BIT}, #{depositAmount,jdbcType=BIT}, 
+      #{isRanchiseContract,jdbcType=BIT}, #{isQualifiedInspectionRecord,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.yundaex.dao.po.YundaexAuditRule" >
+    insert into yundaex_audit_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="batchNo != null" >
+        batch_no,
+      </if>
+      <if test="applycustomerAddress != null" >
+        applyCustomer_address,
+      </if>
+      <if test="cooperationPeriod != null" >
+        cooperation_period,
+      </if>
+      <if test="receiveSendGrowthRate != null" >
+        receive_send_growth_rate,
+      </if>
+      <if test="negativeInfomationSearch != null" >
+        negative_infomation_search,
+      </if>
+      <if test="isCourtExecuteIndividualInfo != null" >
+        is_court_execute_individual_info,
+      </if>
+      <if test="stationAddress != null" >
+        station_address,
+      </if>
+      <if test="depositAmount != null" >
+        deposit_amount,
+      </if>
+      <if test="isRanchiseContract != null" >
+        is_ranchise_contract,
+      </if>
+      <if test="isQualifiedInspectionRecord != null" >
+        is_qualified_inspection_record,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="batchNo != null" >
+        #{batchNo,jdbcType=INTEGER},
+      </if>
+      <if test="applycustomerAddress != null" >
+        #{applycustomerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cooperationPeriod != null" >
+        #{cooperationPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="receiveSendGrowthRate != null" >
+        #{receiveSendGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="negativeInfomationSearch != null" >
+        #{negativeInfomationSearch,jdbcType=BIT},
+      </if>
+      <if test="isCourtExecuteIndividualInfo != null" >
+        #{isCourtExecuteIndividualInfo,jdbcType=BIT},
+      </if>
+      <if test="stationAddress != null" >
+        #{stationAddress,jdbcType=BIT},
+      </if>
+      <if test="depositAmount != null" >
+        #{depositAmount,jdbcType=BIT},
+      </if>
+      <if test="isRanchiseContract != null" >
+        #{isRanchiseContract,jdbcType=BIT},
+      </if>
+      <if test="isQualifiedInspectionRecord != null" >
+        #{isQualifiedInspectionRecord,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.yundaex.dao.po.YundaexAuditRuleExample" resultType="java.lang.Integer" >
+    select count(*) from yundaex_audit_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update yundaex_audit_rule
+    <set >
+      <if test="record.batchNo != null" >
+        batch_no = #{record.batchNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.applycustomerAddress != null" >
+        applyCustomer_address = #{record.applycustomerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cooperationPeriod != null" >
+        cooperation_period = #{record.cooperationPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.receiveSendGrowthRate != null" >
+        receive_send_growth_rate = #{record.receiveSendGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.negativeInfomationSearch != null" >
+        negative_infomation_search = #{record.negativeInfomationSearch,jdbcType=BIT},
+      </if>
+      <if test="record.isCourtExecuteIndividualInfo != null" >
+        is_court_execute_individual_info = #{record.isCourtExecuteIndividualInfo,jdbcType=BIT},
+      </if>
+      <if test="record.stationAddress != null" >
+        station_address = #{record.stationAddress,jdbcType=BIT},
+      </if>
+      <if test="record.depositAmount != null" >
+        deposit_amount = #{record.depositAmount,jdbcType=BIT},
+      </if>
+      <if test="record.isRanchiseContract != null" >
+        is_ranchise_contract = #{record.isRanchiseContract,jdbcType=BIT},
+      </if>
+      <if test="record.isQualifiedInspectionRecord != null" >
+        is_qualified_inspection_record = #{record.isQualifiedInspectionRecord,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update yundaex_audit_rule
+    set batch_no = #{record.batchNo,jdbcType=INTEGER},
+      applyCustomer_address = #{record.applycustomerAddress,jdbcType=VARCHAR},
+      cooperation_period = #{record.cooperationPeriod,jdbcType=INTEGER},
+      receive_send_growth_rate = #{record.receiveSendGrowthRate,jdbcType=DECIMAL},
+      negative_infomation_search = #{record.negativeInfomationSearch,jdbcType=BIT},
+      is_court_execute_individual_info = #{record.isCourtExecuteIndividualInfo,jdbcType=BIT},
+      station_address = #{record.stationAddress,jdbcType=BIT},
+      deposit_amount = #{record.depositAmount,jdbcType=BIT},
+      is_ranchise_contract = #{record.isRanchiseContract,jdbcType=BIT},
+      is_qualified_inspection_record = #{record.isQualifiedInspectionRecord,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.yundaex.dao.po.YundaexAuditRule" >
+    update yundaex_audit_rule
+    <set >
+      <if test="applycustomerAddress != null" >
+        applyCustomer_address = #{applycustomerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cooperationPeriod != null" >
+        cooperation_period = #{cooperationPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="receiveSendGrowthRate != null" >
+        receive_send_growth_rate = #{receiveSendGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="negativeInfomationSearch != null" >
+        negative_infomation_search = #{negativeInfomationSearch,jdbcType=BIT},
+      </if>
+      <if test="isCourtExecuteIndividualInfo != null" >
+        is_court_execute_individual_info = #{isCourtExecuteIndividualInfo,jdbcType=BIT},
+      </if>
+      <if test="stationAddress != null" >
+        station_address = #{stationAddress,jdbcType=BIT},
+      </if>
+      <if test="depositAmount != null" >
+        deposit_amount = #{depositAmount,jdbcType=BIT},
+      </if>
+      <if test="isRanchiseContract != null" >
+        is_ranchise_contract = #{isRanchiseContract,jdbcType=BIT},
+      </if>
+      <if test="isQualifiedInspectionRecord != null" >
+        is_qualified_inspection_record = #{isQualifiedInspectionRecord,jdbcType=BIT},
+      </if>
+    </set>
+    where batch_no = #{batchNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.yundaex.dao.po.YundaexAuditRule" >
+    update yundaex_audit_rule
+    set applyCustomer_address = #{applycustomerAddress,jdbcType=VARCHAR},
+      cooperation_period = #{cooperationPeriod,jdbcType=INTEGER},
+      receive_send_growth_rate = #{receiveSendGrowthRate,jdbcType=DECIMAL},
+      negative_infomation_search = #{negativeInfomationSearch,jdbcType=BIT},
+      is_court_execute_individual_info = #{isCourtExecuteIndividualInfo,jdbcType=BIT},
+      station_address = #{stationAddress,jdbcType=BIT},
+      deposit_amount = #{depositAmount,jdbcType=BIT},
+      is_ranchise_contract = #{isRanchiseContract,jdbcType=BIT},
+      is_qualified_inspection_record = #{isQualifiedInspectionRecord,jdbcType=BIT}
+    where batch_no = #{batchNo,jdbcType=INTEGER}
+  </update>
+</mapper>

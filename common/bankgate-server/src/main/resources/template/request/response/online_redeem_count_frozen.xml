@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息varchar(254) -->
+	<rptFrzNo></rptFrzNo><!--仓单冻结业务流水号varchar(20) -->
+	<mctNo></mctNo><!--商户编号char(8) -->
+	<list name="resultRptList">
+		<row>
+			<stockNo></stockNo><!--仓单编号varchar(30) -->
+			<agtId></agtId><!--系统三方协议编号varchar(20) -->
+		</row>
+	</list>
+	<list name="resultAgtList">
+		<row>
+			<toRepayAmt></toRepayAmt><!--应还款总金额decimal(15,2) -->
+			<agtId></agtId><!--系统三方协议编号varchar(20) -->
+			<principal></principal><!--应还本金decimal(15,2) -->
+			<interest></interest><!--应还利息decimal(15,2) -->
+		</row>
+	</list>
+</stream>

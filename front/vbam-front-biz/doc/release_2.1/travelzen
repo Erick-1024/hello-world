@@ -1,0 +1,39 @@
+数据库修改
+
+update vbam.credit_white_customer_rule set enable=0;
+
+set @var_max_batch_no = (SELECT max(batch_no) FROM vbam.credit_white_customer_rule) + 1;
+
+insert into vbam.credit_white_customer_rule values (@var_max_batch_no,'ALL',null,1,'{"cooperationPeriod":20,"overdueRate":0.05,"overdueTimes":5}',now(),now());
+
+update vbam.credit_access_rule set cooperation_period_min=20,overdue_times_tz=5,overdue_days_tz=12,overdue_rate_cana=0.00000,overdue_times_cana=0,purchase_order_growth_rate=null where fit_object='WHITE_CUSTOMER';
+
+Drop index idx_credit_customer_apply_access_automatic_state on vbam.credit_customer_apply;
+Drop index idx_credit_customer_apply_update_time on vbam.credit_customer_apply;
+Drop index idx_credit_customer_apply_credit_limit_generate_state on vbam.credit_customer_apply;
+Drop index idx_credit_customer_apply_apply_date on vbam.credit_customer_apply;
+Drop index idx_credit_customer_apply_access_manual_state on vbam.credit_customer_apply;
+
+CREATE INDEX idx_credit_customer_apply_credit_limit_generate_state  ON vbam.credit_customer_apply (credit_limit_generate_state);
+CREATE INDEX idx_credit_customer_apply_access_automatic_state  ON vbam.credit_customer_apply (access_automatic_state);
+CREATE INDEX idx_credit_customer_apply_update_time  ON vbam.credit_customer_apply (update_time);
+CREATE INDEX idx_credit_customer_apply_apply_date  ON vbam.credit_customer_apply (apply_date);
+CREATE INDEX idx_credit_customer_apply_access_manual_state  ON vbam.credit_customer_apply (access_manual_state);
+CREATE INDEX idx_credit_customer_apply_in_whitelist  ON vbam.credit_customer_apply (in_whitelist);
+CREATE INDEX idx_credit_customer_apply_applicant_type  ON vbam.credit_customer_apply (applicant_type);
+
+ALTER TABLE `vbam`.`credit_customer_apply`
+CHANGE COLUMN `business_licence_media_id` `business_licence_media_id` VARCHAR(50) NOT NULL COMMENT '营业执照证件Id（个人用户为用户的手持身份证正面照）' ,
+CHANGE COLUMN `tax_registration_certificate_media_id` `tax_registration_certificate_media_id` VARCHAR(50) NOT NULL COMMENT '税务登记证件Id（个人用户为用户的手持身份证反面照）' ;
+
+
+
+配置文件修改
+
+global/properties/credit.properties
+
+# 最终额度的下限，以分为单位
+limit_range_lower=500000
+改为
+# 最终额度的下限，以分为单位
+limit_range_lower=1000000

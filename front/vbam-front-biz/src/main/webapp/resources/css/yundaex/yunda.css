@@ -1,0 +1,366 @@
+@charset "UTF-8";
+/*公共部分start*/
+.left-f{
+    float:left;
+}
+.war-out{
+    min-width:65px;
+    height:22px;
+    line-height: 22px;
+    text-align: center;
+    display: inline-block;
+    margin-right:10px;
+    overflow: hidden;
+    padding:0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background:#ddd;
+    color:#333;
+}
+.war-out:active{
+    padding-left:2px;
+}
+.war-on{
+    background:#0f8aba;
+    color:#fff;
+}
+.k-pager-wrap {
+    margin-bottom: 10px;
+}
+.bg-box{
+    padding:20px;
+}
+.pro-title{
+    width:100%;
+    height:45px;
+    line-height:45px;
+    background:#f1f1f1;
+    padding:0 10px;
+    margin-top:10px;
+}
+.pro-title-left{
+    float:left;
+}
+.pro-title-right{
+    float:right;
+    font-size:15px;
+    color:#14ade9;
+    cursor:pointer;
+}
+.tb-box{
+    padding:20px;
+}
+.check-table{
+    width:100%;
+    min-width: 1300px;
+}
+.check-table tr,.tab-msg tr,.out-table tr{
+    height:45px;
+}
+     /*表格标题*/
+.check-table th,.tab-msg th,.out-table th{
+    padding-right:15px;
+    text-align: right;
+    color:#999;
+}
+.input-radio{
+    -moz-appearance: radio;
+    -webkit-appearance: radio;
+    margin:-2px 4px 0 0;
+}
+.input-check{
+    -moz-appearance:checkbox;
+    -webkit-appearance: checkbox;
+    margin:-2px 4px 0 0;
+}
+.comRow-link{
+    color:#0F8ABA;
+}
+.comRow-link:focus,
+.comRow-link:hover{
+    text-decoration: none;
+}
+/*公共部分end*/
+/**/
+/*审核*/
+.sp-wid1{
+    display:inline-block;
+    width:140px;
+}
+.sp-wid2{
+    display:inline-block;
+    width:232px;
+}
+.td-mar{
+    margin:0 30px;
+}
+.rad-mar{
+    margin:0 10px;
+}
+.bor-de{
+    border-top:2px dashed #ccc;
+}
+.add-cont{
+    position:absolute;
+    top:20px;
+    right:0;
+}
+/*补充资料*/
+.bottom-btn{
+    padding:30px 0;
+}
+.b-btn-box{
+    width:300px;
+    margin:0 auto;
+}
+.txt-are{
+    width:70%;
+    height:100px;
+}
+      /*上传按钮*/
+.in-up-box{
+    position:relative;
+    height:30px;
+    width:75px;
+
+}
+.up-input{
+    position:absolute;
+    left:0;
+    width:75px;
+    height:30px;
+    overflow:hidden;
+    font-size:0;
+    cursor:pointer;
+    filter:alpha(opacity=0);
+    -moz-opacity:0;
+    opacity:0;
+    z-index:10;
+}
+.in-up-txt{
+    position:absolute;
+    left:0;
+    width:75px;
+    height:30px;
+    line-height:30px;
+    color:#0f8aba;
+    z-index:1;
+    text-align:center;
+}
+/*审核*/
+.bg-box-two{
+    width:900px;
+    margin:0 auto;
+    padding-top:15px;
+}
+.tab-msg{
+    width:900px;
+}
+/*详情*/
+.tooltip-box{
+    width:300px;
+    height:200px;
+}
+.wid-show{
+    display:inline-block;
+    width:35%;
+}
+.item-mild{
+    color:#59aad7;
+}
+/*额度列表*/
+.width120{
+    width:120px;
+}
+.look-box{
+    display:inline-block;
+    width:25%;
+    text-align:left;
+}
+.look{
+    color:#0f8aba;
+}
+.look:focus,
+.look:hover{
+    text-decoration:none;
+    color:#0f8aba;
+}
+.width60{
+    width:60%;
+    display:inline-block;
+}
+.sel-one{
+    width:100%;
+}
+.btn-bto-a{
+    display:inline-block;
+    width:180px;
+    height:35px;
+    line-height:35px;
+    font-size:14px;
+    background:#14ade9;
+    color:#fff;
+    text-align:center;
+    border-radius:5px;
+    margin-right:30px;
+}
+.btn-bto-a:focus,
+.btn-bto-a:hover{
+    background:#0f8aba;
+}
+.btn-out-box{
+    padding:20px;
+    position:relative;
+}
+.btn-box{
+    width:600px;
+    position:absolute;
+    left:50%;
+    margin-left:-100px;
+}
+/*合同签署*/
+.out-one{
+    width:900px;
+    height:auto;
+    min-height: 250px;
+    position:absolute;
+    left:50%;
+    margin-left:-450px;
+    top:20%;
+    border:1px solid #e0e0e0;
+}
+.out-one-header{
+    background: #f7f7f7 none repeat scroll 0 0;
+    font-weight: bold;
+    margin-bottom: 8px;
+    position: relative;
+    width: auto;
+    height:40px;
+    line-height:40px;
+    text-indent:10px;
+    font-size:14px;
+}
+.out-list-box{
+    min-height:110px;
+}
+.out-content{
+    padding:20px 20px 0 20px;
+    font-size:14px;
+    line-height:20px;
+
+}
+.out-foot{
+    padding:10px;
+}
+.out-pop{
+    position:relative;
+    height:45px;
+    line-height: 45px;
+}
+.pop-in-box{
+    width:300px;
+    position:absolute;
+    left:50%;
+    margin-left:-100px;
+}
+.popup-btn-two.gray{
+    background:#ccc;
+}
+.popup-btn-two.gray:focus,
+.popup-btn-two.gray:hover{
+    background:#ccc;
+}
+.popup-btn-two{
+    width:180px;
+    height:35px;
+    text-align: center;
+    line-height: 35px;
+    color:#fff;
+    display:block;
+    border-radius:3px;
+    text-decoration:none;
+    margin:0 auto;
+    background: #14ade9;
+    font-size:14px;
+}
+.popup-btn-two:focus,
+.popup-btn-two:hover{
+    background:#0f8aba;
+}
+
+
+
+
+/*弹窗*/
+.popup-out-ch{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10004;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    filter: alpha(opacity=50);
+    opacity: .5;
+}
+.popup-in-ch{
+    display: inline-block;
+    position: fixed;
+    z-index: 10004;
+    border-style: solid;
+    border-width: 0;
+    border-color: rgba(0, 0, 0, 0.2) !important;
+    box-shadow: none !important;
+    background: transparent url(../images/winbg.png) repeat 0 0 fixed !important;
+    padding:0 8px 8px 8px;
+    resize: none;
+    width:600px;
+    left:50%;
+    margin-left:-300px;
+    top:25%;
+}
+.popup-header{
+    background: #f7f7f7 none repeat scroll 0 0;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: bold;
+    margin-bottom: 8px;
+    position: relative;
+    top: 8px;
+    width: auto;
+    height:30px;
+    line-height:30px;
+    text-indent:10px;
+    font-size:14px;
+}
+.popup-list-box{
+    background-color: #fff;
+    color: #666;
+    font-size: 13px;
+    padding: 15px;
+}
+.popup-foot{
+    padding:20px 0 10px 0;
+}
+.popup-content{
+    padding:10px;
+    font-size:14px;
+    line-height:20px;
+}
+.popup-btn{
+    width:100px;
+    height:30px;
+    text-align: center;
+    line-height: 30px;
+    color:#fff;
+    display:block;
+    border-radius:3px;
+    text-decoration:none;
+    margin:0 auto;
+    background: #14ade9;
+    font-size:13px;
+}
+.popup-btn:focus,
+.popup-btn:hover{
+    background:#0f8aba;
+}

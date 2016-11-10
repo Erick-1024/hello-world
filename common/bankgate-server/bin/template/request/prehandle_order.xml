@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLGSVODR</action>
+	<userName></userName><!--登录名 varchar(30) -->
+	<version></version><!--接口版本号 varchar(20) -->
+	<ntfType></ntfType><!--通知类型 char(1) ，1：浏览器重定向；2：浏览器重定向，并由服务器点对点通讯 -->
+	<rspType></rspType><!--应答类型char(1)，可空 -->
+	<pcbUrl></pcbUrl><!--页面通知地址URL char(256) -->
+	<scbUrl></scbUrl><!--后台通知地址URL char(256)，可空 -->
+	<tranPeriod></tranPeriod><!--交易确认有效期(分钟) int(20) -->
+	<mctJnlNo></mctJnlNo><!--商户交易流水号 varchar(20) -->
+	<bsnNo></bsnNo><!--业务号char(2)，01：冻结；02：解冻支付；03：支付冻结；04：解冻；05：支付；12：招投标保证金 -->
+	<payerAccNo></payerAccNo><!--付方账号 char(19) -->
+	<payeeAccNo></payeeAccNo><!--收方账号 char(19)，可空 -->
+	<tranAmt></tranAmt><!--交易金额 decimal(15,2)，可空 -->
+	<cryCode></cryCode><!--币种代码 char(3)，CNY -->
+	<abstract></abstract><!--摘要 varchar(22)，可空 -->
+	<freezeNo></freezeNo><!--冻结编号 char(22)，可空 -->
+	<orderNo></orderNo><!--订单号 char(20) -->
+	<orderTime></orderTime><!--订单日期时间(YYYYMMDDhhmmss) char(14) -->
+	<mcdName></mcdName><!--商品名称 varchar(256) -->
+	<orderAmt></orderAmt><!--订单金额 decimal(15,2) -->
+	<mcdType></mcdType><!--商品类别，可空 -->
+	<ctrtNo></ctrtNo><!--合同号 varchar(20)，可空 -->
+	<Qtt></Qtt><!--交易数量 decimal(18,5)，可空 -->
+	<berFee></berFee><!--买方手续费decimal(15,2)，可空 -->
+	<serFee></serFee><!--卖方手续费 decimal(15,2)，可空 -->
+	<berName></berName><!--买方名称 varchar (256)，可空 -->
+	<serName></serName><!--卖方名称 varchar (256)，可空 -->
+	<price></price><!--成交单价 decimal(15,2)，可空 -->
+	<deposit></deposit><!--保证金 decimal(15,2)，可空 -->
+	<preAmt></preAmt><!--预付款decimal(15,2)，可空 -->
+	<fnlTranAmt></fnlTranAmt><!--最终交易金额 decimal(15,2)，可空 -->
+	<fnlQtt></fnlQtt><!--最终交易数量 decimal(18,5)，可空 -->
+	<fnlBerFee></fnlBerFee><!--最终买方手续费 decimal(15,2)，可空 -->
+	<fnlSerFee></fnlSerFee><!--最终卖方手续费 decimal(15,2)，可空 -->
+	<dlvOrderNo></dlvOrderNo><!--配送订单号 char(20)，可空 -->
+	<dlvOdrTime></dlvOdrTime><!--配送订单时间 char(14)，可空 -->
+	<dlvCtrtNo></dlvCtrtNo><!--配送合同号 varchar(20)，可空 -->
+	<dlverName></dlverName><!--承运方名称 varchar(256)，可空 -->
+	<dlvFee></dlvFee><!--运费 decimal(15,2)，可空 -->
+</stream>

@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.credit.dao.mapper.gen.AccessRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.credit.dao.po.AccessRule" >
+    <id column="batch_no" property="batchNo" jdbcType="INTEGER" />
+    <id column="fit_object" property="fitObject" jdbcType="VARCHAR" />
+    <result column="is_check_white_customer" property="isCheckWhiteCustomer" jdbcType="BIT" />
+    <result column="cooperation_period_min" property="cooperationPeriodMin" jdbcType="INTEGER" />
+    <result column="cooperation_period_max" property="cooperationPeriodMax" jdbcType="INTEGER" />
+    <result column="overdue_rate_tz" property="overdueRateTz" jdbcType="DECIMAL" />
+    <result column="overdue_times_tz" property="overdueTimesTz" jdbcType="INTEGER" />
+    <result column="overdue_days_tz" property="overdueDaysTz" jdbcType="INTEGER" />
+    <result column="overdue_rate_cana" property="overdueRateCana" jdbcType="DECIMAL" />
+    <result column="overdue_times_cana" property="overdueTimesCana" jdbcType="INTEGER" />
+    <result column="purchase_order_growth_rate" property="purchaseOrderGrowthRate" jdbcType="DECIMAL" />
+    <result column="court_execute_company_amount" property="courtExecuteCompanyAmount" jdbcType="DECIMAL" />
+    <result column="court_execute_company_times" property="courtExecuteCompanyTimes" jdbcType="INTEGER" />
+    <result column="court_execute_individual_amount" property="courtExecuteIndividualAmount" jdbcType="DECIMAL" />
+    <result column="court_execute_individual_times" property="courtExecuteIndividualTimes" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    batch_no, fit_object, is_check_white_customer, cooperation_period_min, cooperation_period_max, 
+    overdue_rate_tz, overdue_times_tz, overdue_days_tz, overdue_rate_cana, overdue_times_cana, 
+    purchase_order_growth_rate, court_execute_company_amount, court_execute_company_times, 
+    court_execute_individual_amount, court_execute_individual_times, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.credit.dao.po.AccessRuleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from credit_access_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.cana.credit.dao.po.AccessRuleKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from credit_access_rule
+    where batch_no = #{batchNo,jdbcType=INTEGER}
+      and fit_object = #{fitObject,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.cana.credit.dao.po.AccessRuleKey" >
+    delete from credit_access_rule
+    where batch_no = #{batchNo,jdbcType=INTEGER}
+      and fit_object = #{fitObject,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.credit.dao.po.AccessRuleExample" >
+    delete from credit_access_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.credit.dao.po.AccessRule" >
+    insert into credit_access_rule (batch_no, fit_object, is_check_white_customer, 
+      cooperation_period_min, cooperation_period_max, 
+      overdue_rate_tz, overdue_times_tz, overdue_days_tz, 
+      overdue_rate_cana, overdue_times_cana, purchase_order_growth_rate, 
+      court_execute_company_amount, court_execute_company_times, 
+      court_execute_individual_amount, court_execute_individual_times, 
+      create_time, update_time)
+    values (#{batchNo,jdbcType=INTEGER}, #{fitObject,jdbcType=VARCHAR}, #{isCheckWhiteCustomer,jdbcType=BIT}, 
+      #{cooperationPeriodMin,jdbcType=INTEGER}, #{cooperationPeriodMax,jdbcType=INTEGER}, 
+      #{overdueRateTz,jdbcType=DECIMAL}, #{overdueTimesTz,jdbcType=INTEGER}, #{overdueDaysTz,jdbcType=INTEGER}, 
+      #{overdueRateCana,jdbcType=DECIMAL}, #{overdueTimesCana,jdbcType=INTEGER}, #{purchaseOrderGrowthRate,jdbcType=DECIMAL}, 
+      #{courtExecuteCompanyAmount,jdbcType=DECIMAL}, #{courtExecuteCompanyTimes,jdbcType=INTEGER}, 
+      #{courtExecuteIndividualAmount,jdbcType=DECIMAL}, #{courtExecuteIndividualTimes,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.credit.dao.po.AccessRule" >
+    insert into credit_access_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="batchNo != null" >
+        batch_no,
+      </if>
+      <if test="fitObject != null" >
+        fit_object,
+      </if>
+      <if test="isCheckWhiteCustomer != null" >
+        is_check_white_customer,
+      </if>
+      <if test="cooperationPeriodMin != null" >
+        cooperation_period_min,
+      </if>
+      <if test="cooperationPeriodMax != null" >
+        cooperation_period_max,
+      </if>
+      <if test="overdueRateTz != null" >
+        overdue_rate_tz,
+      </if>
+      <if test="overdueTimesTz != null" >
+        overdue_times_tz,
+      </if>
+      <if test="overdueDaysTz != null" >
+        overdue_days_tz,
+      </if>
+      <if test="overdueRateCana != null" >
+        overdue_rate_cana,
+      </if>
+      <if test="overdueTimesCana != null" >
+        overdue_times_cana,
+      </if>
+      <if test="purchaseOrderGrowthRate != null" >
+        purchase_order_growth_rate,
+      </if>
+      <if test="courtExecuteCompanyAmount != null" >
+        court_execute_company_amount,
+      </if>
+      <if test="courtExecuteCompanyTimes != null" >
+        court_execute_company_times,
+      </if>
+      <if test="courtExecuteIndividualAmount != null" >
+        court_execute_individual_amount,
+      </if>
+      <if test="courtExecuteIndividualTimes != null" >
+        court_execute_individual_times,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="batchNo != null" >
+        #{batchNo,jdbcType=INTEGER},
+      </if>
+      <if test="fitObject != null" >
+        #{fitObject,jdbcType=VARCHAR},
+      </if>
+      <if test="isCheckWhiteCustomer != null" >
+        #{isCheckWhiteCustomer,jdbcType=BIT},
+      </if>
+      <if test="cooperationPeriodMin != null" >
+        #{cooperationPeriodMin,jdbcType=INTEGER},
+      </if>
+      <if test="cooperationPeriodMax != null" >
+        #{cooperationPeriodMax,jdbcType=INTEGER},
+      </if>
+      <if test="overdueRateTz != null" >
+        #{overdueRateTz,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueTimesTz != null" >
+        #{overdueTimesTz,jdbcType=INTEGER},
+      </if>
+      <if test="overdueDaysTz != null" >
+        #{overdueDaysTz,jdbcType=INTEGER},
+      </if>
+      <if test="overdueRateCana != null" >
+        #{overdueRateCana,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueTimesCana != null" >
+        #{overdueTimesCana,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseOrderGrowthRate != null" >
+        #{purchaseOrderGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="courtExecuteCompanyAmount != null" >
+        #{courtExecuteCompanyAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="courtExecuteCompanyTimes != null" >
+        #{courtExecuteCompanyTimes,jdbcType=INTEGER},
+      </if>
+      <if test="courtExecuteIndividualAmount != null" >
+        #{courtExecuteIndividualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="courtExecuteIndividualTimes != null" >
+        #{courtExecuteIndividualTimes,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.credit.dao.po.AccessRuleExample" resultType="java.lang.Integer" >
+    select count(*) from credit_access_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update credit_access_rule
+    <set >
+      <if test="record.batchNo != null" >
+        batch_no = #{record.batchNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.fitObject != null" >
+        fit_object = #{record.fitObject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isCheckWhiteCustomer != null" >
+        is_check_white_customer = #{record.isCheckWhiteCustomer,jdbcType=BIT},
+      </if>
+      <if test="record.cooperationPeriodMin != null" >
+        cooperation_period_min = #{record.cooperationPeriodMin,jdbcType=INTEGER},
+      </if>
+      <if test="record.cooperationPeriodMax != null" >
+        cooperation_period_max = #{record.cooperationPeriodMax,jdbcType=INTEGER},
+      </if>
+      <if test="record.overdueRateTz != null" >
+        overdue_rate_tz = #{record.overdueRateTz,jdbcType=DECIMAL},
+      </if>
+      <if test="record.overdueTimesTz != null" >
+        overdue_times_tz = #{record.overdueTimesTz,jdbcType=INTEGER},
+      </if>
+      <if test="record.overdueDaysTz != null" >
+        overdue_days_tz = #{record.overdueDaysTz,jdbcType=INTEGER},
+      </if>
+      <if test="record.overdueRateCana != null" >
+        overdue_rate_cana = #{record.overdueRateCana,jdbcType=DECIMAL},
+      </if>
+      <if test="record.overdueTimesCana != null" >
+        overdue_times_cana = #{record.overdueTimesCana,jdbcType=INTEGER},
+      </if>
+      <if test="record.purchaseOrderGrowthRate != null" >
+        purchase_order_growth_rate = #{record.purchaseOrderGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.courtExecuteCompanyAmount != null" >
+        court_execute_company_amount = #{record.courtExecuteCompanyAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.courtExecuteCompanyTimes != null" >
+        court_execute_company_times = #{record.courtExecuteCompanyTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.courtExecuteIndividualAmount != null" >
+        court_execute_individual_amount = #{record.courtExecuteIndividualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.courtExecuteIndividualTimes != null" >
+        court_execute_individual_times = #{record.courtExecuteIndividualTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update credit_access_rule
+    set batch_no = #{record.batchNo,jdbcType=INTEGER},
+      fit_object = #{record.fitObject,jdbcType=VARCHAR},
+      is_check_white_customer = #{record.isCheckWhiteCustomer,jdbcType=BIT},
+      cooperation_period_min = #{record.cooperationPeriodMin,jdbcType=INTEGER},
+      cooperation_period_max = #{record.cooperationPeriodMax,jdbcType=INTEGER},
+      overdue_rate_tz = #{record.overdueRateTz,jdbcType=DECIMAL},
+      overdue_times_tz = #{record.overdueTimesTz,jdbcType=INTEGER},
+      overdue_days_tz = #{record.overdueDaysTz,jdbcType=INTEGER},
+      overdue_rate_cana = #{record.overdueRateCana,jdbcType=DECIMAL},
+      overdue_times_cana = #{record.overdueTimesCana,jdbcType=INTEGER},
+      purchase_order_growth_rate = #{record.purchaseOrderGrowthRate,jdbcType=DECIMAL},
+      court_execute_company_amount = #{record.courtExecuteCompanyAmount,jdbcType=DECIMAL},
+      court_execute_company_times = #{record.courtExecuteCompanyTimes,jdbcType=INTEGER},
+      court_execute_individual_amount = #{record.courtExecuteIndividualAmount,jdbcType=DECIMAL},
+      court_execute_individual_times = #{record.courtExecuteIndividualTimes,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.credit.dao.po.AccessRule" >
+    update credit_access_rule
+    <set >
+      <if test="isCheckWhiteCustomer != null" >
+        is_check_white_customer = #{isCheckWhiteCustomer,jdbcType=BIT},
+      </if>
+      <if test="cooperationPeriodMin != null" >
+        cooperation_period_min = #{cooperationPeriodMin,jdbcType=INTEGER},
+      </if>
+      <if test="cooperationPeriodMax != null" >
+        cooperation_period_max = #{cooperationPeriodMax,jdbcType=INTEGER},
+      </if>
+      <if test="overdueRateTz != null" >
+        overdue_rate_tz = #{overdueRateTz,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueTimesTz != null" >
+        overdue_times_tz = #{overdueTimesTz,jdbcType=INTEGER},
+      </if>
+      <if test="overdueDaysTz != null" >
+        overdue_days_tz = #{overdueDaysTz,jdbcType=INTEGER},
+      </if>
+      <if test="overdueRateCana != null" >
+        overdue_rate_cana = #{overdueRateCana,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueTimesCana != null" >
+        overdue_times_cana = #{overdueTimesCana,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseOrderGrowthRate != null" >
+        purchase_order_growth_rate = #{purchaseOrderGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="courtExecuteCompanyAmount != null" >
+        court_execute_company_amount = #{courtExecuteCompanyAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="courtExecuteCompanyTimes != null" >
+        court_execute_company_times = #{courtExecuteCompanyTimes,jdbcType=INTEGER},
+      </if>
+      <if test="courtExecuteIndividualAmount != null" >
+        court_execute_individual_amount = #{courtExecuteIndividualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="courtExecuteIndividualTimes != null" >
+        court_execute_individual_times = #{courtExecuteIndividualTimes,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where batch_no = #{batchNo,jdbcType=INTEGER}
+      and fit_object = #{fitObject,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.credit.dao.po.AccessRule" >
+    update credit_access_rule
+    set is_check_white_customer = #{isCheckWhiteCustomer,jdbcType=BIT},
+      cooperation_period_min = #{cooperationPeriodMin,jdbcType=INTEGER},
+      cooperation_period_max = #{cooperationPeriodMax,jdbcType=INTEGER},
+      overdue_rate_tz = #{overdueRateTz,jdbcType=DECIMAL},
+      overdue_times_tz = #{overdueTimesTz,jdbcType=INTEGER},
+      overdue_days_tz = #{overdueDaysTz,jdbcType=INTEGER},
+      overdue_rate_cana = #{overdueRateCana,jdbcType=DECIMAL},
+      overdue_times_cana = #{overdueTimesCana,jdbcType=INTEGER},
+      purchase_order_growth_rate = #{purchaseOrderGrowthRate,jdbcType=DECIMAL},
+      court_execute_company_amount = #{courtExecuteCompanyAmount,jdbcType=DECIMAL},
+      court_execute_company_times = #{courtExecuteCompanyTimes,jdbcType=INTEGER},
+      court_execute_individual_amount = #{courtExecuteIndividualAmount,jdbcType=DECIMAL},
+      court_execute_individual_times = #{courtExecuteIndividualTimes,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where batch_no = #{batchNo,jdbcType=INTEGER}
+      and fit_object = #{fitObject,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from credit_access_rule
+      and fit_object = #{fitObject}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.credit.dao.po.AccessRuleExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from credit_access_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

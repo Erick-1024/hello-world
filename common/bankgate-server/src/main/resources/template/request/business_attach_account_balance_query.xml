@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLSBALQR</action>
+	<userName></userName><!--登录名 varchar(30) -->
+	<accountNo></accountNo><!--主体账号varchar(19) -->
+	<subAccNo></subAccNo><!--附属账号varchar(19) -->
+</stream>

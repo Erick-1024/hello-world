@@ -1,0 +1,177 @@
+@charset "utf-8";
+/* 登录样式-start */
+.login-wrapper{
+    width: 100%;
+    min-width:800px;
+    height:100%;
+    background-color: #1db2ec;
+    overflow: hidden;
+    position: fixed;
+}
+.login-area{
+    background: url("../images/loginArea.jpg") no-repeat;
+    width:696px;
+    max-width:696px;
+    margin:5% auto;
+    height: 716px;
+    position:relative;
+}
+.login-box{
+    width:500px;
+    position: absolute;
+    top: 58px;
+    left: 98px;
+}
+.login-header{
+    width:100%;
+    text-align: center;
+}
+.login-img{
+    width:96px;
+    height:96px;
+    background-color: #eee;
+    display:inline-block;
+    -webkit-border-radius: 48px;
+    -moz-border-radius: 48px;
+    border-radius: 48px;
+    vertical-align: middle;
+    margin: 70px auto 30px;
+}
+.login-header-title{
+    text-align: center;
+    font-size: 20px;
+    color:#12a1d9;
+    margin-bottom:30px;
+}
+.login-row{
+    width:100%;
+    text-align: center;
+    position: relative;
+    margin-bottom: 15px;
+}
+.login-row .errorBox{
+    border:1px solid #ff8080;
+    background: #fff2f2;
+    width:280px;
+    height: 38px;
+    line-height: 38px;
+    color:#444;
+    font-size: 14px;
+    padding:0 0 0 30px;
+    margin:0 auto;
+    text-align: left;
+}
+.errorBox .errorIcon{
+    background: url("../images/loginIcon.png") no-repeat 0 -72px;
+    width:16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    position:absolute;
+    left:118px;
+    top:12px;
+}
+.userName-field{
+    margin-bottom: 20px;
+}
+.userIcon, .delIcon, .pwdIcon{
+    background: url("../images/loginIcon.png") no-repeat 0 0;
+    width:14px;
+    height: 17px;
+    display: inline-block;
+    vertical-align: middle;
+    position:absolute;
+    left:118px;
+    top:12px;
+}
+.delIcon{
+    background-position:0 -41px;
+    width:11px;
+    height: 11px;
+    top:14px;
+    left:369px;
+}
+.login-row .userName, .pwd-field .userPwd, .login-row .authCode{
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border: 1px solid #76c4f7;
+    background: #e7f8fd;
+    height: 40px;
+    line-height: 40px;
+    width:280px;
+    font-size: 16px;
+    padding:0 0 0 30px;
+}
+.login-row .userName:focus, .pwd-field .userPwd:focus, .login-row .authCode:focus{
+    border: 1px solid #40aee8!important;
+    background: #fff;
+    box-shadow:1px 1px 1px 1px #bde5f8;
+    -webkit-box-shadow: 1px 1px 1px 1px #bde5f8;
+    -moz-box-shadow: 1px 1px 1px 1px #bde5f8;
+}
+.pwd-field .pwdIcon{
+    background-position: 0 -21px;
+    height: 16px;
+}
+.login-row .authCodeImg{
+    background: url("../images/authCode.jpg") no-repeat;
+    width:93px;
+    height: 38px;
+    display: inline-block;
+    vertical-align: middle;
+    position:absolute;
+    top:1px;
+    right: 112px;
+}
+.autoLogin {
+    width:280px;
+    position: relative;
+    text-align: left;
+    margin-bottom: 22px;
+    margin-left: 111px;
+}
+.autoLogin .checkedBox{
+    background: url("../images/loginIcon.png") 0 -56px;
+    display: inline-block;
+    width:14px;
+    height: 14px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.autoLogin .forgetPwd{
+    display: inline-block;
+    position: absolute;
+    right:0;
+    top: 3px;
+    font-size: 14px;
+    color:#11a5f3;
+}
+.autoLogin .forgetPwd:hover{
+    color:#0f8aba;
+    text-decoration: underline;
+}
+.autoLogin .noCheckedBox {
+    background-position: -19px -56px;
+}
+.autoLogin span {
+    font-size: 14px;
+    color:#11a5f3;
+    vertical-align: middle;
+}
+.login-row .login-btn{
+    background: #0f8aba;
+    display: inline-block;
+    height: 45px;
+    line-height: 45px;
+    width:280px;
+    color:#fff;
+    font-size: 18px;
+    border: none;
+    letter-spacing: 4px;
+    cursor: pointer;
+}
+.login-row .login-btn:hover{
+    background-color:#14ade9;
+}
+/* end */

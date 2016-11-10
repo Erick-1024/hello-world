@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context				http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/aop    				http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/mvc					http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<bean class="com.travelzen.framework.config.tops.TzPropertyPlaceholderConfigurer">
+		<!-- <property name="ignoreUnresolvablePlaceholders" value="true" /> -->
+		<property name="tzProperties">
+			<list>
+				<value>R:properties/mysql-jdbc.properties</value>
+				<value>G:properties/mysql-jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+	    <property name="dataSourceName" value="bankgate-dataSource" />
+	    <property name="driverClass" value="${jdbc.driver}" />
+	    <property name="jdbcUrl" value="${jdbc.url}" />
+	    <property name="user" value="${jdbc.username}" />
+	    <property name="password" value="${jdbc.password}" />
+	    <property name="initialPoolSize" value="${jdbc.initialPoolSize}" />
+	    <property name="minPoolSize" value="${jdbc.minPoolSize}" />
+	    <property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
+	    <property name="preferredTestQuery" value="SELECT NOW()" />
+	    <property name="checkoutTimeout" value="30000" />
+	    <property name="testConnectionOnCheckin" value="true" />
+	    <property name="testConnectionOnCheckout" value="true" />
+	    <property name="maxIdleTime" value="10" />
+    </bean>
+
+	 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" > 
+	 	<!-- 加入maybatis配置文件 -->
+	 	<property name="configLocation" value="classpath:mybatis/config/mybatis-configuration.xml"/>
+        <property name="mapperLocations"> <!--ibatis2中这个地方是confLocations，特别注意 -->
+        	<list>
+        		<value>classpath*:mybatis/mapper/*.xml</value>
+        		<value>classpath*:mybatis/mapper/**/*.xml</value>
+        	</list> 
+        </property>
+        <!-- <property name="typeAliasesPackage" value="com.travelzen.async.download.server.po" /> -->
+        <property name="dataSource" ref="dataSource" />
+     </bean>
+     
+     <bean class = "org.mybatis.spring.mapper.MapperScannerConfigurer" > 
+    	  <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+          <property name="basePackage" value="com.cana.bankgate.server.mapper"></property>
+     </bean>
+     
+     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	   	<property name="dataSource" ref="dataSource" />
+	   	<!--     事务超时时间  设置为（60*1=60） 1分钟 postgress 暂不支持-->
+		<!--     <property name="defaultTimeout" value="60"></property> -->
+    </bean>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>

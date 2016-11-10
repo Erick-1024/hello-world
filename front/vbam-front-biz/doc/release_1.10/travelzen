@@ -1,0 +1,115 @@
+
+### 上线应用
+
+vbam-front-biz,credit-openapi,credit-server,credit-scheduler,member-server,asset-server,early-warning-scheduler,early-warning-server
+
+
+
+### 配置文件修改
+
+1. 修改global/properties/credit.properties，增加以下内容
+
+# 真旅客户融资商企业角色ID
+tz_finance_company_role_id=201603312151530003
+# 真旅客户融资商个人角色ID
+tz_finance_individual_role_id=201603312151530004
+
+
+### 数据库修改
+
+-- 1. 申请表增加申请人类型字段
+ALTER TABLE `vbam`.`credit_customer_apply`
+ADD COLUMN `applicant_type` VARCHAR(16) NULL DEFAULT NULL COMMENT '申请人类型，详见ApplyApplicantType，当没有值时表示不确定' AFTER `downstream_repayment_account_period`;
+
+-- 2. 增加真旅个人融资商角色
+INSERT INTO `member_role` (`id`, `role_name`, `description`, `type`, `master_id`, `permissions`, `ord`, `createTime`, `updateTime`, `role_type`)
+VALUES ('201603312151530004', 'travelzen个人融资客户', NULL, 'LEVEL1', NULL, 'AM;AM_ACCOUNT_APPLY;AM_ACCOUNT;AM_ACCOUNT_DETAIL;AM_ACCOUNT_SUPERVISION_CREATE;AM_ACCOUNT_SUPERVISION_REMOVE;AM_ACCOUNT_WITHDRAW_FUND;AM_ACCOUNT_TRANSFER_FUND;AM_ACCOUNT_TRADE_RECORD_LIST;AM_ACCOUNT_AUDIT_CENTER_LIST;AM_ACCOUNT_SUPERVISION_APPLY_DETAIL;AM_ACCOUNT_SUPERVISION_APPLY_AUDIT;AM_ACCOUNT_TRADE_APPLY_DETAIL;AM_ACCOUNT_TRADE_APPLY_AUDIT;FM;FM_REPAYMENTINFO_MANAGE;FM_REPAYMENTINFO_MANAGE_PLANDETAIL;FM_REPAYMENTINFO_MANAGE_PLANDETAIL_INFO;FM_REPAYMENTINFO_MANAGE_REPAYMENTDETAILSHISTORY;FM_ACTIVE_REPAYMENT_PLAN;PM;PM_EMPLOYEE_ROLE;PM_EMPLOYEE_ROLE_ADD;PM_EMPLOYEE_ROLE_DETAIL;PM_EMPLOYEE_ROLE_UPDATE;PM_EMPLOYEE_LIST;PM_EMPLOYEE_ADD;PM_EMPLOYEE_LIST_DETAIL;PM_EMPLOYEE_LIST_UPDATE;PM_EMPLOYEE_LIST_DELETE;PM_EMPLOYEE_LIST_RESET_PASSWORD;PM_EMPLOYEE_LIST_RETRY_MAIL;PC;PC_COMPANY_INFO;PC_COMPANY_INFO_UPDATE;PC_CONTACTS_INFO;PC_CONTACTS_INFO_MODIFY;PC_ACCOUNT_INFO;PC_ACCOUNT_NUMBER_INFO_SET_PAYPWD;PC_ACCOUNT_NUMBER_INFO_UPDATE_PAYPWD;PC_CONTACTS;MA;MA_ACCOUNT_SUPERVISION_APPLY_DETAIL_SELF;MA_ACCOUNT_TRADE_APPLY_DETAIL_SELF;TZ;TZ_CREDIT_TRADE;TZ_LOAN_DETAILS;TZ_LOAN_DETAILS_DETAIL;TZ_REFUND_DETAILS;LL_CREDIT_CUSTOMER_LIMIT_LIST;SR;SR_REPAYMENT_DAILY_REPORT;SR_REPAYMENT_ANNUAL_REPORT;SR_REPAYMENT_COUNT_REPORT;SR_FUND_DAILY_REPORT;SR_FUND_YEAR_REPORT;SR_FUND_DAILY_COUNT_REPORT', NULL, '2016-04-01 11:24:44', '2016-05-05 20:15:31', 'FINACE');
+
+-- 3. 修改真旅企业客户融资商角色名称
+update member_role set role_name = 'travelzen企业融资客户' where id = '201603312151530003';
+
+
+
+-- 4. OP3 环境，需要重新开立保理回款账号，并设置在此
+INSERT INTO `asset_project` (`id`, `name`, `type`, `status`, `core_company_id`, `core_company_name`, `core_organization_code`, `core_business_licence_code`, `core_tax_registration_certificate_code`, `core_industry`, `core_economic_category`, `core_account_no`, `finance_applicant`, `single_loan_limit_lower`, `single_loan_limit_upper`, `interest_rate_unit`, `interest_rate_lower`, `interest_rate_upper`, `loan_period_unit`, `loan_period_lower`, `loan_period_upper`, `repayment_methods`, `early_repayment_charge_ratio`, `extension_days`, `extension_ratio_method`, `extension_ratio`, `penalty_rate_method`, `penalty_rate`, `deduction_time`, `deduction_rule`, `create_time`, `update_time`, `create_user_id`, `create_customer_id`)
+VALUES
+	('travelzen_finance', '信旅宝', 'platform', 'GOING', '201603280001', '上海长寿国际旅行社有限公司', '91310113630729373A', '91310113630729373A', '91310113630729373A', 'TRAVEL', 'PRIVATE', '3110210003631016378', '真旅采购商', 0, 10000000, 'DAY', 0.00050, 0.00050, 'MONTH', 1, 1, 'ORDER', 0.00000, 0, 'RATIO', 0.00000, 'RATIO', 0.50000, '16:00', 'PART', '2016-07-22 09:54:42', '2016-07-22 09:54:42', '201607050033', '201607050033');
+-- OP3 环境，需要重新开立保理回款账号，并设置在此
+INSERT INTO `asset_project_factor` (`id`, `project_id`, `company_id`, `company_name`, `organization_code`, `business_licence_code`, `tax_registration_certificate_code`, `account_no`, `status`, `create_time`, `update_time`)
+VALUES
+('160722095442317', 'travelzen_finance', 'cana-baoli', '上海凯拿资产管理有限公司', '111111', '111111', '123456', '3110210003631006466', 'NORMAL', '2016-07-22 09:54:42', '2016-07-22 09:54:42'),
+('160722095442316', 'travelzen_finance', '201607050033', '凯拿商业保理（深圳）有限公司', '11111', '11111', '11111', '3110210003631018723', 'NORMAL', '2016-07-22 09:54:42', '2016-07-22 09:54:42');
+
+
+-- 4. 生产环境，需要重新开立保理回款账号，并设置在此
+UPDATE `vbam`.`account` SET `is_transfer_in_account`='1' WHERE `account_no`='3110210010051296985';
+
+INSERT INTO `asset_project` (`id`, `name`, `type`, `status`, `core_company_id`, `core_company_name`, `core_organization_code`, `core_business_licence_code`, `core_tax_registration_certificate_code`, `core_industry`, `core_economic_category`, `core_account_no`, `finance_applicant`, `single_loan_limit_lower`, `single_loan_limit_upper`, `interest_rate_unit`, `interest_rate_lower`, `interest_rate_upper`, `loan_period_unit`, `loan_period_lower`, `loan_period_upper`, `repayment_methods`, `early_repayment_charge_ratio`, `extension_days`, `extension_ratio_method`, `extension_ratio`, `penalty_rate_method`, `penalty_rate`, `deduction_time`, `deduction_rule`, `create_time`, `update_time`, `create_user_id`, `create_customer_id`)
+VALUES
+	('travelzen_finance', '信旅宝', 'platform', 'GOING', '201603280001', '上海长寿国际旅行社有限公司', '91310113630729373A', '91310113630729373A', '91310113630729373A', 'TRAVEL', 'PRIVATE', '3110210010051241810', '真旅采购商', 0, 10000000, 'DAY', 0.00050, 0.00050, 'MONTH', 1, 1, 'ORDER', 0.00000, 0, 'RATIO', 0.00000, 'RATIO', 0.50000, '16:00', 'PART', '2016-07-22 09:54:42', '2016-07-22 09:54:42', '201607050033', '201607050033');
+-- 生产环境，需要重新开立保理回款账号，并设置在此
+INSERT INTO `asset_project_factor` (`id`, `project_id`, `company_id`, `company_name`, `organization_code`, `business_licence_code`, `tax_registration_certificate_code`, `account_no`, `status`, `create_time`, `update_time`)
+VALUES
+('160722095442317', 'travelzen_finance', 'cana-baoli', '上海凯拿资产管理有限公司', '111111', '111111', '123456', '3110210010051089159', 'NORMAL', '2016-07-22 09:54:42', '2016-07-22 09:54:42'),
+('160722095442316', 'travelzen_finance', '201607050033', '凯拿商业保理（深圳）有限公司', '11111', '11111', '11111', '3110210010051296985', 'NORMAL', '2016-07-22 09:54:42', '2016-07-22 09:54:42');
+
+
+-- 5. 废弃客户申请表中的真旅预审核相关字段
+
+ALTER TABLE `vbam`.`credit_customer_apply` 
+CHANGE COLUMN `company_nature` `company_nature` VARCHAR(12) NULL COMMENT '（废弃）企业性质（\"SOE\"：国有，\"COOPERATIVE\"：合作，\"JOINT\"：合资，\"SOLE\"：独资，\"COLLECTIVE\"：集体，\"PRIAVTE\"：私营，\"INDIVIDUAL\"：个体工商户，\"CUSTOMS\"：报关，\"OTHER\"：其他）' ,
+CHANGE COLUMN `is_listing` `is_listing` TINYINT(1) NULL COMMENT '（废弃）公司是否上市' ,
+CHANGE COLUMN `annual_sales` `annual_sales` DECIMAL(18,0) NULL DEFAULT NULL COMMENT '（废弃）年销售额，这里指去年的年销售额' ,
+CHANGE COLUMN `major_cooperative_products` `major_cooperative_products` VARCHAR(255) NULL COMMENT '（废弃）主要合作产品' ,
+CHANGE COLUMN `exist_peak_slack_period` `exist_peak_slack_period` TINYINT(1) NULL COMMENT '（废弃）是否存在淡旺季' ,
+CHANGE COLUMN `peak_period` `peak_period` VARCHAR(32) NULL DEFAULT NULL COMMENT '（废弃）旺季时间（如3,5，多段用\",\"分隔）' ,
+CHANGE COLUMN `slack_period` `slack_period` VARCHAR(32) NULL DEFAULT NULL COMMENT '（废弃）淡季时间（如3,5，多段用\",\"分隔）' ,
+CHANGE COLUMN `business_model` `business_model` VARCHAR(8) NULL COMMENT '（废弃）经营模式（\"SELF\"：自营，\"TITULAR\"：挂靠）' ,
+CHANGE COLUMN `subordinate_company_name` `subordinate_company_name` VARCHAR(250) NULL DEFAULT NULL COMMENT '（废弃）被挂靠企业名称(企业全称)' ,
+CHANGE COLUMN `qualifications` `qualifications` VARCHAR(14) NULL COMMENT '（废弃）资质信息（\"DOMESTIC\"：国内，\"INTERNATIONAL\"：国际，\"OTHER\"：其他）' ,
+CHANGE COLUMN `qualifications_remarks` `qualifications_remarks` VARCHAR(255) NULL DEFAULT NULL COMMENT '（废弃）资质信息备注（当资质为\"OTHER\"时必填）' ,
+CHANGE COLUMN `same_industry_place_on_local` `same_industry_place_on_local` VARCHAR(13) NULL COMMENT '（废弃）当地同业地位（\"TOP3\"：前三名，\"ABOVEAVERAGE\"：中等偏上，\"AVERAGE\"：中等，\"BELOWAVERAGE\"：中等偏下，\"WEAKNESS\"：较弱势）' ,
+CHANGE COLUMN `same_type_place` `same_type_place` VARCHAR(8) NULL COMMENT '（废弃）同类型采购商地位（\"MAJOR\"：主要代理人，\"GENERAL\"：一般代理人，\"ACTING\"：临时代理人）' ,
+CHANGE COLUMN `cooperation_degree` `cooperation_degree` INT(11) NULL COMMENT '（废弃）合作配合度（\"0\"：低，\"1\"：中，\"2\"：高）' ,
+CHANGE COLUMN `maybe_interrupt_purchase` `maybe_interrupt_purchase` VARCHAR(6) NULL COMMENT '（废弃）借款期内有无中断采购的可能（\"SURE\"：肯定有，\"MAYBE\"：可能有，\"NOT\"：无）' ,
+CHANGE COLUMN `maybe_increase_purchase` `maybe_increase_purchase` VARCHAR(6) NULL COMMENT '（废弃）借款期内有无增加采购的可能（\"SURE\"：肯定有，\"MAYBE\"：可能有，\"NOT\"：无）' ,
+CHANGE COLUMN `proposal_credit_limit` `proposal_credit_limit` DECIMAL(18,0) NULL COMMENT '（废弃）建议额度，精确到分' ,
+CHANGE COLUMN `proposal_audit_result` `proposal_audit_result` TINYINT(1) NULL COMMENT '（废弃）建议审核结果（\"true\"：通过，\"false\"：不通过）' ;
+
+
+ALTER TABLE `vbam`.`credit_customer_apply` 
+CHANGE COLUMN `organization_no` `organization_no` VARCHAR(50) NOT NULL COMMENT '组织机构证件号码（个人用户为该用户的身份证号码）' ,
+CHANGE COLUMN `organization_media_id` `organization_media_id` VARCHAR(50) NOT NULL COMMENT '组织机构证件Id（个人用户为用户的身份证正面照）' ,
+CHANGE COLUMN `business_licence_no` `business_licence_no` VARCHAR(50) NOT NULL COMMENT '营业执照证件号码（个人用户为该用户的身份证号码）' ,
+CHANGE COLUMN `business_licence_media_id` `business_licence_media_id` VARCHAR(50) NOT NULL COMMENT '营业执照证件Id（个人用户为用户的身份证反面照）' ,
+CHANGE COLUMN `tax_registration_certificate_no` `tax_registration_certificate_no` VARCHAR(50) NOT NULL COMMENT '税务登记证件号码（个人用户为该用户的身份证号码）' ,
+CHANGE COLUMN `tax_registration_certificate_media_id` `tax_registration_certificate_media_id` VARCHAR(50) NOT NULL COMMENT '税务登记证件Id（个人用户为用户的手持身份证照）' ,
+ADD COLUMN `real_control_person_id` VARCHAR(24) NULL COMMENT '实际控制人身份证号码' AFTER `tax_registration_certificate_media_id`,
+ADD COLUMN `real_control_person_id_front_media_id` VARCHAR(50) NULL COMMENT '实际控制人身份证正面照' AFTER `real_control_person_id`,
+ADD COLUMN `real_control_person_id_back_media_id` VARCHAR(50) NULL COMMENT '实际控制人身份证反面照' AFTER `real_control_person_id_front_media_id`,
+ADD COLUMN `real_control_person_id_handheld_media_id` VARCHAR(50) NULL COMMENT '实际控制人手持身份证照' AFTER `real_control_person_id_back_media_id`,
+ADD COLUMN `corporation` VARCHAR(250) NULL COMMENT '法人' AFTER `approver_id`,
+ADD COLUMN `audit_notify_url` VARCHAR(255) NULL COMMENT '审核结果URL' AFTER `corporation`,
+ADD COLUMN `limit_notify_url` VARCHAR(255) NULL COMMENT '额度生效通知' AFTER `audit_notify_url`;
+
+ALTER TABLE `vbam`.`member_user` 
+ADD COLUMN `legal_person` VARCHAR(250) NULL COMMENT '法人' AFTER `contact_identity_card_back_media_id`;
+
+ALTER TABLE `vbam`.`credit_customer_apply` 
+CHANGE COLUMN `real_control_person_id_handheld_media_id` `real_control_person_id_handheld_front_media_id` VARCHAR(50) NULL DEFAULT NULL COMMENT '实际控制人手持身份证正面照' AFTER `real_control_person_id`,
+CHANGE COLUMN `real_control_person_id_back_media_id` `legal_person_id` VARCHAR(24) NULL DEFAULT NULL COMMENT '法人身份证号码' AFTER `real_control_person_id_handheld_front_media_id`,
+CHANGE COLUMN `real_control_person_id_front_media_id` `legal_person_id_handheld_front_media_id` VARCHAR(50) NULL DEFAULT NULL COMMENT '法人手持身份证正面照' ,
+CHANGE COLUMN `corporation` `legal_person` VARCHAR(250) NULL DEFAULT NULL COMMENT '法人' ,
+CHANGE COLUMN `attachment` `attachment` TEXT NULL DEFAULT NULL COMMENT '（作废）附件（json串，有type(trust　增信资料; sale 销售资料,supply 补充资料)，文件名，后缀，mediaId）（非白名单客户）' ;
+
+
+6. 设置法人姓名
+select legal_person,company_name from member_user where company_name in ('绍兴天悦航空票务有限公司', '上海渭国文化传播有限公司', '上海不夜城国际旅行社有限公司', '深圳市国森航空服务有限公司', '上海宝途旅游咨询有限公司', '上海集势旅游咨询有限公司', '上海走起商务服务有限公司', '上海艺灿票务代理有限公司');
+update member_user set legal_person = '傅建刚' where company_name = '绍兴天悦航空票务有限公司';
+update member_user set legal_person = '武卫国' where company_name = '上海渭国文化传播有限公司';
+update member_user set legal_person = '施纪军' where company_name = '上海不夜城国际旅行社有限公司';
+update member_user set legal_person = '延陵卫霞' where company_name = '深圳市国森航空服务有限公司';
+update member_user set legal_person = '郭飞' where company_name = '上海宝途旅游咨询有限公司';
+update member_user set legal_person = '占琎琨' where company_name = '上海集势旅游咨询有限公司';
+update member_user set legal_person = '朱学忠' where company_name = '上海走起商务服务有限公司';
+update member_user set legal_person = '李花' where company_name = '上海艺灿票务代理有限公司';

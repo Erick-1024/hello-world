@@ -1,0 +1,10 @@
+
+dependencies {
+	compile project(':marketing:marketing-api')
+	compile project(':member:member-api')
+	compile project(':asset:asset-api')
+	compile project(':vj:vj-api')
+	compile project(':crawler:crawler-shixincourt-api')
+	compile project(':framework:framework-dubbo-support')
+	compile libraries.quartz
+}

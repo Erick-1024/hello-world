@@ -1,0 +1,91 @@
+### SM2-P1:
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p1 16 2000 15 5000 1
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p1 16 2000 15 5000 8
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p1 16 2000 15 5000 2
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p1 16 2000 15 5000 4
+### SM2-P7Attach:
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p7attach 16 2000 15 5000 1
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p7attach 16 2000 15 5000 8
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p7attach 16 2000 15 5000 2
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p7attach 16 2000 15 5000 4
+### SM2-P7Detach:
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p7detach 16 2000 15 5000 1
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p7detach 16 2000 15 5000 8
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p7detach 16 2000 15 5000 2
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p7detach 16 2000 15 5000 4
+### RSA1024-P1:
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p1 16 2000 15 5000 1
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p1 16 2000 15 5000 8
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p1 16 2000 15 5000 2
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p1 16 2000 15 5000 4
+### RSA1024-P7Attach:
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p7attach 16 2000 15 5000 1
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p7attach 16 2000 15 5000 8
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p7attach 16 2000 15 5000 2
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p7attach 16 2000 15 5000 4
+### RSA1024-P7Detach:
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p7detach 16 2000 15 5000 1
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p7detach 16 2000 15 5000 8
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p7detach 16 2000 15 5000 2
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p7detach 16 2000 15 5000 4
+### RSA2048-P1:
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p1 16 2000 15 5000 1
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p1 16 2000 15 5000 8
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p1 16 2000 15 5000 2
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p1 16 2000 15 5000 4
+### RSA2048-P7Attach:
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p7attach 16 2000 15 5000 1
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p7attach 16 2000 15 5000 8
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p7attach 16 2000 15 5000 2
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p7attach 16 2000 15 5000 4
+### RSA2048-P7Detach:
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p7detach 16 2000 15 5000 1
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p7detach 16 2000 15 5000 8
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p7detach 16 2000 15 5000 2
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p7detach 16 2000 15 5000 4
+
+### SM2-P1:
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p1 16 2000 15 5000 1 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p1 16 2000 15 5000 8 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p1 16 2000 15 5000 2 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p1 16 2000 15 5000 4 -jni
+### SM2-P7Attach:
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p7attach 16 2000 15 5000 1 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p7attach 16 2000 15 5000 8 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p7attach 16 2000 15 5000 2 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p7attach 16 2000 15 5000 4 -jni
+### SM2-P7Detach:
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p7detach 16 2000 15 5000 1 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p7detach 16 2000 15 5000 8 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p7detach 16 2000 15 5000 2 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance sm2 p7detach 16 2000 15 5000 4 -jni
+### RSA1024-P1:
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p1 16 2000 15 5000 1 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p1 16 2000 15 5000 8 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p1 16 2000 15 5000 2 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p1 16 2000 15 5000 4 -jni
+### RSA1024-P7Attach:
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p7attach 16 2000 15 5000 1 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p7attach 16 2000 15 5000 8 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p7attach 16 2000 15 5000 2 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p7attach 16 2000 15 5000 4 -jni
+### RSA1024-P7Detach:
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p7detach 16 2000 15 5000 1 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p7detach 16 2000 15 5000 8 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p7detach 16 2000 15 5000 2 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa1024 p7detach 16 2000 15 5000 4 -jni
+### RSA2048-P1:
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p1 16 2000 15 5000 1 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p1 16 2000 15 5000 8 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p1 16 2000 15 5000 2 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p1 16 2000 15 5000 4 -jni
+### RSA2048-P7Attach:
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p7attach 16 2000 15 5000 1 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p7attach 16 2000 15 5000 8 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p7attach 16 2000 15 5000 2 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p7attach 16 2000 15 5000 4 -jni
+### RSA2048-P7Detach:
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p7detach 16 2000 15 5000 1 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p7detach 16 2000 15 5000 8 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p7detach 16 2000 15 5000 2 -jni
+command=16:-Xms32m -Xmx128m test.cfca.sadk.perfermance.TestPerfermance rsa2048 p7detach 16 2000 15 5000 4 -jni

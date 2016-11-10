@@ -1,0 +1,6 @@
+dependencies {
+	compile project(':common:vbam-common')
+	compile project(':yundaex:yundaex-common')
+	compile project(':framework:framework-dao-base')
+	compile project(':framework:framework-base')
+}

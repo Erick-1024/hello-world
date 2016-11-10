@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.asset.dao.mapper.gen.ProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.asset.dao.po.Project" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="core_company_id" property="coreCompanyId" jdbcType="VARCHAR" />
+    <result column="core_company_name" property="coreCompanyName" jdbcType="VARCHAR" />
+    <result column="core_organization_code" property="coreOrganizationCode" jdbcType="VARCHAR" />
+    <result column="core_business_licence_code" property="coreBusinessLicenceCode" jdbcType="VARCHAR" />
+    <result column="core_tax_registration_certificate_code" property="coreTaxRegistrationCertificateCode" jdbcType="VARCHAR" />
+    <result column="core_industry" property="coreIndustry" jdbcType="VARCHAR" />
+    <result column="core_economic_category" property="coreEconomicCategory" jdbcType="VARCHAR" />
+    <result column="core_account_no" property="coreAccountNo" jdbcType="VARCHAR" />
+    <result column="finance_applicant" property="financeApplicant" jdbcType="VARCHAR" />
+    <result column="single_loan_limit_lower" property="singleLoanLimitLower" jdbcType="DECIMAL" />
+    <result column="single_loan_limit_upper" property="singleLoanLimitUpper" jdbcType="DECIMAL" />
+    <result column="interest_rate_unit" property="interestRateUnit" jdbcType="VARCHAR" />
+    <result column="interest_rate_lower" property="interestRateLower" jdbcType="DECIMAL" />
+    <result column="interest_rate_upper" property="interestRateUpper" jdbcType="DECIMAL" />
+    <result column="loan_period_unit" property="loanPeriodUnit" jdbcType="VARCHAR" />
+    <result column="loan_period_lower" property="loanPeriodLower" jdbcType="INTEGER" />
+    <result column="loan_period_upper" property="loanPeriodUpper" jdbcType="INTEGER" />
+    <result column="repayment_methods" property="repaymentMethods" jdbcType="VARCHAR" />
+    <result column="early_repayment_charge_ratio" property="earlyRepaymentChargeRatio" jdbcType="DECIMAL" />
+    <result column="extension_days" property="extensionDays" jdbcType="INTEGER" />
+    <result column="extension_ratio_method" property="extensionRatioMethod" jdbcType="VARCHAR" />
+    <result column="extension_ratio" property="extensionRatio" jdbcType="DECIMAL" />
+    <result column="use_holiday_policy" property="useHolidayPolicy" jdbcType="BIT" />
+    <result column="penalty_rate_method" property="penaltyRateMethod" jdbcType="VARCHAR" />
+    <result column="penalty_rate" property="penaltyRate" jdbcType="DECIMAL" />
+    <result column="deduction_time" property="deductionTime" jdbcType="VARCHAR" />
+    <result column="deduction_rule" property="deductionRule" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="create_customer_id" property="createCustomerId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, type, status, core_company_id, core_company_name, core_organization_code, 
+    core_business_licence_code, core_tax_registration_certificate_code, core_industry, 
+    core_economic_category, core_account_no, finance_applicant, single_loan_limit_lower, 
+    single_loan_limit_upper, interest_rate_unit, interest_rate_lower, interest_rate_upper, 
+    loan_period_unit, loan_period_lower, loan_period_upper, repayment_methods, early_repayment_charge_ratio, 
+    extension_days, extension_ratio_method, extension_ratio, use_holiday_policy, penalty_rate_method, 
+    penalty_rate, deduction_time, deduction_rule, create_time, update_time, create_user_id, 
+    create_customer_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.asset.dao.po.ProjectExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from asset_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset_project
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from asset_project
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.asset.dao.po.ProjectExample" >
+    delete from asset_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.asset.dao.po.Project" >
+    insert into asset_project (id, name, type, 
+      status, core_company_id, core_company_name, 
+      core_organization_code, core_business_licence_code, 
+      core_tax_registration_certificate_code, core_industry, 
+      core_economic_category, core_account_no, finance_applicant, 
+      single_loan_limit_lower, single_loan_limit_upper, 
+      interest_rate_unit, interest_rate_lower, interest_rate_upper, 
+      loan_period_unit, loan_period_lower, loan_period_upper, 
+      repayment_methods, early_repayment_charge_ratio, 
+      extension_days, extension_ratio_method, extension_ratio, 
+      use_holiday_policy, penalty_rate_method, penalty_rate, 
+      deduction_time, deduction_rule, create_time, 
+      update_time, create_user_id, create_customer_id
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{coreCompanyId,jdbcType=VARCHAR}, #{coreCompanyName,jdbcType=VARCHAR}, 
+      #{coreOrganizationCode,jdbcType=VARCHAR}, #{coreBusinessLicenceCode,jdbcType=VARCHAR}, 
+      #{coreTaxRegistrationCertificateCode,jdbcType=VARCHAR}, #{coreIndustry,jdbcType=VARCHAR}, 
+      #{coreEconomicCategory,jdbcType=VARCHAR}, #{coreAccountNo,jdbcType=VARCHAR}, #{financeApplicant,jdbcType=VARCHAR}, 
+      #{singleLoanLimitLower,jdbcType=DECIMAL}, #{singleLoanLimitUpper,jdbcType=DECIMAL}, 
+      #{interestRateUnit,jdbcType=VARCHAR}, #{interestRateLower,jdbcType=DECIMAL}, #{interestRateUpper,jdbcType=DECIMAL}, 
+      #{loanPeriodUnit,jdbcType=VARCHAR}, #{loanPeriodLower,jdbcType=INTEGER}, #{loanPeriodUpper,jdbcType=INTEGER}, 
+      #{repaymentMethods,jdbcType=VARCHAR}, #{earlyRepaymentChargeRatio,jdbcType=DECIMAL}, 
+      #{extensionDays,jdbcType=INTEGER}, #{extensionRatioMethod,jdbcType=VARCHAR}, #{extensionRatio,jdbcType=DECIMAL}, 
+      #{useHolidayPolicy,jdbcType=BIT}, #{penaltyRateMethod,jdbcType=VARCHAR}, #{penaltyRate,jdbcType=DECIMAL}, 
+      #{deductionTime,jdbcType=VARCHAR}, #{deductionRule,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, #{createCustomerId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.asset.dao.po.Project" >
+    insert into asset_project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="coreCompanyId != null" >
+        core_company_id,
+      </if>
+      <if test="coreCompanyName != null" >
+        core_company_name,
+      </if>
+      <if test="coreOrganizationCode != null" >
+        core_organization_code,
+      </if>
+      <if test="coreBusinessLicenceCode != null" >
+        core_business_licence_code,
+      </if>
+      <if test="coreTaxRegistrationCertificateCode != null" >
+        core_tax_registration_certificate_code,
+      </if>
+      <if test="coreIndustry != null" >
+        core_industry,
+      </if>
+      <if test="coreEconomicCategory != null" >
+        core_economic_category,
+      </if>
+      <if test="coreAccountNo != null" >
+        core_account_no,
+      </if>
+      <if test="financeApplicant != null" >
+        finance_applicant,
+      </if>
+      <if test="singleLoanLimitLower != null" >
+        single_loan_limit_lower,
+      </if>
+      <if test="singleLoanLimitUpper != null" >
+        single_loan_limit_upper,
+      </if>
+      <if test="interestRateUnit != null" >
+        interest_rate_unit,
+      </if>
+      <if test="interestRateLower != null" >
+        interest_rate_lower,
+      </if>
+      <if test="interestRateUpper != null" >
+        interest_rate_upper,
+      </if>
+      <if test="loanPeriodUnit != null" >
+        loan_period_unit,
+      </if>
+      <if test="loanPeriodLower != null" >
+        loan_period_lower,
+      </if>
+      <if test="loanPeriodUpper != null" >
+        loan_period_upper,
+      </if>
+      <if test="repaymentMethods != null" >
+        repayment_methods,
+      </if>
+      <if test="earlyRepaymentChargeRatio != null" >
+        early_repayment_charge_ratio,
+      </if>
+      <if test="extensionDays != null" >
+        extension_days,
+      </if>
+      <if test="extensionRatioMethod != null" >
+        extension_ratio_method,
+      </if>
+      <if test="extensionRatio != null" >
+        extension_ratio,
+      </if>
+      <if test="useHolidayPolicy != null" >
+        use_holiday_policy,
+      </if>
+      <if test="penaltyRateMethod != null" >
+        penalty_rate_method,
+      </if>
+      <if test="penaltyRate != null" >
+        penalty_rate,
+      </if>
+      <if test="deductionTime != null" >
+        deduction_time,
+      </if>
+      <if test="deductionRule != null" >
+        deduction_rule,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createCustomerId != null" >
+        create_customer_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="coreCompanyId != null" >
+        #{coreCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="coreCompanyName != null" >
+        #{coreCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="coreOrganizationCode != null" >
+        #{coreOrganizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="coreBusinessLicenceCode != null" >
+        #{coreBusinessLicenceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="coreTaxRegistrationCertificateCode != null" >
+        #{coreTaxRegistrationCertificateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="coreIndustry != null" >
+        #{coreIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="coreEconomicCategory != null" >
+        #{coreEconomicCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="coreAccountNo != null" >
+        #{coreAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="financeApplicant != null" >
+        #{financeApplicant,jdbcType=VARCHAR},
+      </if>
+      <if test="singleLoanLimitLower != null" >
+        #{singleLoanLimitLower,jdbcType=DECIMAL},
+      </if>
+      <if test="singleLoanLimitUpper != null" >
+        #{singleLoanLimitUpper,jdbcType=DECIMAL},
+      </if>
+      <if test="interestRateUnit != null" >
+        #{interestRateUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="interestRateLower != null" >
+        #{interestRateLower,jdbcType=DECIMAL},
+      </if>
+      <if test="interestRateUpper != null" >
+        #{interestRateUpper,jdbcType=DECIMAL},
+      </if>
+      <if test="loanPeriodUnit != null" >
+        #{loanPeriodUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="loanPeriodLower != null" >
+        #{loanPeriodLower,jdbcType=INTEGER},
+      </if>
+      <if test="loanPeriodUpper != null" >
+        #{loanPeriodUpper,jdbcType=INTEGER},
+      </if>
+      <if test="repaymentMethods != null" >
+        #{repaymentMethods,jdbcType=VARCHAR},
+      </if>
+      <if test="earlyRepaymentChargeRatio != null" >
+        #{earlyRepaymentChargeRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="extensionDays != null" >
+        #{extensionDays,jdbcType=INTEGER},
+      </if>
+      <if test="extensionRatioMethod != null" >
+        #{extensionRatioMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="extensionRatio != null" >
+        #{extensionRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="useHolidayPolicy != null" >
+        #{useHolidayPolicy,jdbcType=BIT},
+      </if>
+      <if test="penaltyRateMethod != null" >
+        #{penaltyRateMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="penaltyRate != null" >
+        #{penaltyRate,jdbcType=DECIMAL},
+      </if>
+      <if test="deductionTime != null" >
+        #{deductionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deductionRule != null" >
+        #{deductionRule,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createCustomerId != null" >
+        #{createCustomerId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.asset.dao.po.ProjectExample" resultType="java.lang.Integer" >
+    select count(*) from asset_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update asset_project
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coreCompanyId != null" >
+        core_company_id = #{record.coreCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coreCompanyName != null" >
+        core_company_name = #{record.coreCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coreOrganizationCode != null" >
+        core_organization_code = #{record.coreOrganizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coreBusinessLicenceCode != null" >
+        core_business_licence_code = #{record.coreBusinessLicenceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coreTaxRegistrationCertificateCode != null" >
+        core_tax_registration_certificate_code = #{record.coreTaxRegistrationCertificateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coreIndustry != null" >
+        core_industry = #{record.coreIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coreEconomicCategory != null" >
+        core_economic_category = #{record.coreEconomicCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coreAccountNo != null" >
+        core_account_no = #{record.coreAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financeApplicant != null" >
+        finance_applicant = #{record.financeApplicant,jdbcType=VARCHAR},
+      </if>
+      <if test="record.singleLoanLimitLower != null" >
+        single_loan_limit_lower = #{record.singleLoanLimitLower,jdbcType=DECIMAL},
+      </if>
+      <if test="record.singleLoanLimitUpper != null" >
+        single_loan_limit_upper = #{record.singleLoanLimitUpper,jdbcType=DECIMAL},
+      </if>
+      <if test="record.interestRateUnit != null" >
+        interest_rate_unit = #{record.interestRateUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.interestRateLower != null" >
+        interest_rate_lower = #{record.interestRateLower,jdbcType=DECIMAL},
+      </if>
+      <if test="record.interestRateUpper != null" >
+        interest_rate_upper = #{record.interestRateUpper,jdbcType=DECIMAL},
+      </if>
+      <if test="record.loanPeriodUnit != null" >
+        loan_period_unit = #{record.loanPeriodUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanPeriodLower != null" >
+        loan_period_lower = #{record.loanPeriodLower,jdbcType=INTEGER},
+      </if>
+      <if test="record.loanPeriodUpper != null" >
+        loan_period_upper = #{record.loanPeriodUpper,jdbcType=INTEGER},
+      </if>
+      <if test="record.repaymentMethods != null" >
+        repayment_methods = #{record.repaymentMethods,jdbcType=VARCHAR},
+      </if>
+      <if test="record.earlyRepaymentChargeRatio != null" >
+        early_repayment_charge_ratio = #{record.earlyRepaymentChargeRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="record.extensionDays != null" >
+        extension_days = #{record.extensionDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.extensionRatioMethod != null" >
+        extension_ratio_method = #{record.extensionRatioMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extensionRatio != null" >
+        extension_ratio = #{record.extensionRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="record.useHolidayPolicy != null" >
+        use_holiday_policy = #{record.useHolidayPolicy,jdbcType=BIT},
+      </if>
+      <if test="record.penaltyRateMethod != null" >
+        penalty_rate_method = #{record.penaltyRateMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.penaltyRate != null" >
+        penalty_rate = #{record.penaltyRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.deductionTime != null" >
+        deduction_time = #{record.deductionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deductionRule != null" >
+        deduction_rule = #{record.deductionRule,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUserId != null" >
+        create_user_id = #{record.createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createCustomerId != null" >
+        create_customer_id = #{record.createCustomerId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update asset_project
+    set id = #{record.id,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      core_company_id = #{record.coreCompanyId,jdbcType=VARCHAR},
+      core_company_name = #{record.coreCompanyName,jdbcType=VARCHAR},
+      core_organization_code = #{record.coreOrganizationCode,jdbcType=VARCHAR},
+      core_business_licence_code = #{record.coreBusinessLicenceCode,jdbcType=VARCHAR},
+      core_tax_registration_certificate_code = #{record.coreTaxRegistrationCertificateCode,jdbcType=VARCHAR},
+      core_industry = #{record.coreIndustry,jdbcType=VARCHAR},
+      core_economic_category = #{record.coreEconomicCategory,jdbcType=VARCHAR},
+      core_account_no = #{record.coreAccountNo,jdbcType=VARCHAR},
+      finance_applicant = #{record.financeApplicant,jdbcType=VARCHAR},
+      single_loan_limit_lower = #{record.singleLoanLimitLower,jdbcType=DECIMAL},
+      single_loan_limit_upper = #{record.singleLoanLimitUpper,jdbcType=DECIMAL},
+      interest_rate_unit = #{record.interestRateUnit,jdbcType=VARCHAR},
+      interest_rate_lower = #{record.interestRateLower,jdbcType=DECIMAL},
+      interest_rate_upper = #{record.interestRateUpper,jdbcType=DECIMAL},
+      loan_period_unit = #{record.loanPeriodUnit,jdbcType=VARCHAR},
+      loan_period_lower = #{record.loanPeriodLower,jdbcType=INTEGER},
+      loan_period_upper = #{record.loanPeriodUpper,jdbcType=INTEGER},
+      repayment_methods = #{record.repaymentMethods,jdbcType=VARCHAR},
+      early_repayment_charge_ratio = #{record.earlyRepaymentChargeRatio,jdbcType=DECIMAL},
+      extension_days = #{record.extensionDays,jdbcType=INTEGER},
+      extension_ratio_method = #{record.extensionRatioMethod,jdbcType=VARCHAR},
+      extension_ratio = #{record.extensionRatio,jdbcType=DECIMAL},
+      use_holiday_policy = #{record.useHolidayPolicy,jdbcType=BIT},
+      penalty_rate_method = #{record.penaltyRateMethod,jdbcType=VARCHAR},
+      penalty_rate = #{record.penaltyRate,jdbcType=DECIMAL},
+      deduction_time = #{record.deductionTime,jdbcType=VARCHAR},
+      deduction_rule = #{record.deductionRule,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      create_user_id = #{record.createUserId,jdbcType=VARCHAR},
+      create_customer_id = #{record.createCustomerId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.asset.dao.po.Project" >
+    update asset_project
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="coreCompanyId != null" >
+        core_company_id = #{coreCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="coreCompanyName != null" >
+        core_company_name = #{coreCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="coreOrganizationCode != null" >
+        core_organization_code = #{coreOrganizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="coreBusinessLicenceCode != null" >
+        core_business_licence_code = #{coreBusinessLicenceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="coreTaxRegistrationCertificateCode != null" >
+        core_tax_registration_certificate_code = #{coreTaxRegistrationCertificateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="coreIndustry != null" >
+        core_industry = #{coreIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="coreEconomicCategory != null" >
+        core_economic_category = #{coreEconomicCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="coreAccountNo != null" >
+        core_account_no = #{coreAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="financeApplicant != null" >
+        finance_applicant = #{financeApplicant,jdbcType=VARCHAR},
+      </if>
+      <if test="singleLoanLimitLower != null" >
+        single_loan_limit_lower = #{singleLoanLimitLower,jdbcType=DECIMAL},
+      </if>
+      <if test="singleLoanLimitUpper != null" >
+        single_loan_limit_upper = #{singleLoanLimitUpper,jdbcType=DECIMAL},
+      </if>
+      <if test="interestRateUnit != null" >
+        interest_rate_unit = #{interestRateUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="interestRateLower != null" >
+        interest_rate_lower = #{interestRateLower,jdbcType=DECIMAL},
+      </if>
+      <if test="interestRateUpper != null" >
+        interest_rate_upper = #{interestRateUpper,jdbcType=DECIMAL},
+      </if>
+      <if test="loanPeriodUnit != null" >
+        loan_period_unit = #{loanPeriodUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="loanPeriodLower != null" >
+        loan_period_lower = #{loanPeriodLower,jdbcType=INTEGER},
+      </if>
+      <if test="loanPeriodUpper != null" >
+        loan_period_upper = #{loanPeriodUpper,jdbcType=INTEGER},
+      </if>
+      <if test="repaymentMethods != null" >
+        repayment_methods = #{repaymentMethods,jdbcType=VARCHAR},
+      </if>
+      <if test="earlyRepaymentChargeRatio != null" >
+        early_repayment_charge_ratio = #{earlyRepaymentChargeRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="extensionDays != null" >
+        extension_days = #{extensionDays,jdbcType=INTEGER},
+      </if>
+      <if test="extensionRatioMethod != null" >
+        extension_ratio_method = #{extensionRatioMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="extensionRatio != null" >
+        extension_ratio = #{extensionRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="useHolidayPolicy != null" >
+        use_holiday_policy = #{useHolidayPolicy,jdbcType=BIT},
+      </if>
+      <if test="penaltyRateMethod != null" >
+        penalty_rate_method = #{penaltyRateMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="penaltyRate != null" >
+        penalty_rate = #{penaltyRate,jdbcType=DECIMAL},
+      </if>
+      <if test="deductionTime != null" >
+        deduction_time = #{deductionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deductionRule != null" >
+        deduction_rule = #{deductionRule,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createCustomerId != null" >
+        create_customer_id = #{createCustomerId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.asset.dao.po.Project" >
+    update asset_project
+    set name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      core_company_id = #{coreCompanyId,jdbcType=VARCHAR},
+      core_company_name = #{coreCompanyName,jdbcType=VARCHAR},
+      core_organization_code = #{coreOrganizationCode,jdbcType=VARCHAR},
+      core_business_licence_code = #{coreBusinessLicenceCode,jdbcType=VARCHAR},
+      core_tax_registration_certificate_code = #{coreTaxRegistrationCertificateCode,jdbcType=VARCHAR},
+      core_industry = #{coreIndustry,jdbcType=VARCHAR},
+      core_economic_category = #{coreEconomicCategory,jdbcType=VARCHAR},
+      core_account_no = #{coreAccountNo,jdbcType=VARCHAR},
+      finance_applicant = #{financeApplicant,jdbcType=VARCHAR},
+      single_loan_limit_lower = #{singleLoanLimitLower,jdbcType=DECIMAL},
+      single_loan_limit_upper = #{singleLoanLimitUpper,jdbcType=DECIMAL},
+      interest_rate_unit = #{interestRateUnit,jdbcType=VARCHAR},
+      interest_rate_lower = #{interestRateLower,jdbcType=DECIMAL},
+      interest_rate_upper = #{interestRateUpper,jdbcType=DECIMAL},
+      loan_period_unit = #{loanPeriodUnit,jdbcType=VARCHAR},
+      loan_period_lower = #{loanPeriodLower,jdbcType=INTEGER},
+      loan_period_upper = #{loanPeriodUpper,jdbcType=INTEGER},
+      repayment_methods = #{repaymentMethods,jdbcType=VARCHAR},
+      early_repayment_charge_ratio = #{earlyRepaymentChargeRatio,jdbcType=DECIMAL},
+      extension_days = #{extensionDays,jdbcType=INTEGER},
+      extension_ratio_method = #{extensionRatioMethod,jdbcType=VARCHAR},
+      extension_ratio = #{extensionRatio,jdbcType=DECIMAL},
+      use_holiday_policy = #{useHolidayPolicy,jdbcType=BIT},
+      penalty_rate_method = #{penaltyRateMethod,jdbcType=VARCHAR},
+      penalty_rate = #{penaltyRate,jdbcType=DECIMAL},
+      deduction_time = #{deductionTime,jdbcType=VARCHAR},
+      deduction_rule = #{deductionRule,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_customer_id = #{createCustomerId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset_project
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.asset.dao.po.ProjectExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from asset_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

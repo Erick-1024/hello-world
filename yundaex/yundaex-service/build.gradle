@@ -1,0 +1,16 @@
+dependencies {
+	compile project(':yundaex:yundaex-dao')
+	compile project(':credit:credit-limit-dao')
+	compile project(':credit:credit-service')
+	compile project(':tops-common-mediaclient')
+	compile project(':framework:framework-retry')
+	compile project(':repayment:repayment-service')
+	compile project(':marketing:marketing-api')
+	compile project(':asset:asset-api')
+	compile project(':repayment:repayment-api')
+	compile project(':yundaex:yundaex-common')
+	compile project(':message:message-client')
+	compile project(':yundaex:yundaex-response')
+	compile project(':report:report-api')
+	compile project(':early-warning:early-warning-api')
+}

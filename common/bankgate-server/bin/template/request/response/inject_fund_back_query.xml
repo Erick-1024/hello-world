@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息 varchar(254) -->
+	<list name="userDataList">
+		<row>
+			<payAccNo></payAccNo><!--付款账号 varchar(19) -->
+			<payAccNm></payAccNm><!--付款账户名称 varchar(60) -->
+			<orderNo></orderNo><!--原订单号 varchar(20) -->
+			<tranDate></tranDate><!--交易日期 char(8) -->
+			<tranTime></tranTime><!--交易时间 char(6) -->
+			<seqNo></seqNo><!--充退流水号（序号）char(20) -->
+			<tranAmt></tranAmt><!--充值退回金额 decimal(15, 2) -->
+			<recvAccNo></recvAccNo><!--收款账号 char(19) -->
+			<recvAccNm></recvAccNm><!--收款账户名称 char(60) -->
+			<freezeFlg></freezeFlg><!--冻结标志 char(1) Y：已冻结 N：未冻结 -->
+			<memo></memo><!--摘要 varchar(22) -->
+			<stt></stt><!--状态标志 char(2) 00：处理中 01：成功 02：失败 -->
+			<status></status><!--状态代码 char(7) -->
+			<statusText></statusText><!--状态信息varchar(254) -->
+		</row>
+</stream>

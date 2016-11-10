@@ -1,0 +1,24 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.0.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'spring-boot'
+
+
+dependencies {
+	compile libraries.dubbo2
+	compile libraries.zkclient
+	compile 'org.hibernate:hibernate-validator:5.2.4.Final'
+	compile project(':test:test-springboot-api')
+	compile ('org.springframework.boot:spring-boot-starter')
+	compile ('org.springframework.boot:spring-boot-starter-actuator')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}

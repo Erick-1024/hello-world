@@ -1,0 +1,2071 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<permissions platform="BIZ" version="10229">
+	<module name="国内机票" key="DF">
+		<module name="平台建单" key="DF_PLAT">
+			<button name="白屏预订" key="DF_PLAT_KEY1">
+				<perm name="白屏预订" key="DF_PLAT_WSORDER" url="/flightWhiteSearch/whiteScreenToOrder" />
+				<perm name="查询预订" key="DF_PLAT_WSORDER_QUERYBOOK" url="/flightWhiteSearch/getAllResult" />
+			</button>
+			<button name="PNR导入" key="DF_PLAT_KEY2">
+				<perm name="黑屏预订" key="DF_PLAT_BSORDER" url="/domesticFlight/platformCreateOrder/preOrder/blackScreenToOrder" />
+				<perm name="PNR导入" key="DF_PLAT_BSORDER_IMPORTPNR" url="/domesticFlight/platformCreateOrder/preOrder/pnrImport" />
+				<perm name="PNR验证" key="DF_PLAT_BSORDER_VALIDATORMESSAGE" url="/domesticFlight/platformCreateOrder/preOrder/validatorMessage" />
+			</button>
+			<button name="创建订单" key="DF_PLAT_KEY3">
+				<perm name="创建订单" key="DF_PLAT_BSORDER_CREATEORDER" url="/domesticFlight/platformCreateOrder/order/createOrder" />
+				<perm name="保存订单" key="DF_PLAT_BSORDER_SAVEORDER" url="/domesticFlight/platformCreateOrder/order/updateOrder" />
+				<perm name="修改订单" key="DF_PLAT_BSORDER_EDITORDER" url="/domesticFlight/platformCreateOrder/order/modifyOrder" />
+			</button>
+			<button name="价格申请" key="DF_PLAT_BSORDER_PRICEAPPLY" url="/order/flight/domestic/priceApply" />
+			<button name="申请出票" key="DF_PLAT_BSORDER_TICKETAPPLY" url="/order/flight/domestic/applyIssueTicket" />
+			<button name="兴业出票" key="DF_PLAT_BSORDER_XINGYETICKETAPPLY" url="/order/flight/domestic/applyXingyeIssueTicket" />
+			<button name="取消订单" key="DF_PLAT_BSORDER_CANCELORDER" url="/order/flight/domestic/cancelOrder" />
+			<button name="订单补录" key="DF_PLAT_BSORDER_ORDERRECORD" url="/orderRecord/domesticFlight/creatOrder"></button>
+			<button name="订单导入" key="DF_PLAT_ORDERIMPORT">
+                <perm name="订单导入" key="DF_PLAT_ORDERIMPORT_PAGE" url="/orderImport/domestic/importOrder"></perm>
+                <perm name="查看详情" key="DF_PLAT_ORDERIMPORT_VIEW" url="/orderImport/domestic/importOrderItemDetail"></perm>
+                <perm name="全部审核通过" key="DF_PLAT_ORDERIMPORT_REVIEWALL" url="/orderImport/domestic/orderItem/reviewAll"></perm>
+                <perm name="批量审核" key="DF_PLAT_ORDERIMPORT_REVIEWBATCH" url="/orderImport/domestic/orderItem/batchReview"></perm>
+                <perm name="删除订单条目" key="DF_PLAT_ORDERIMPORT_DELETEITEM" url="/orderImport/domestic/orderItem/delete"></perm>
+                <perm name="删除订单" key="DF_PLAT_ORDERIMPORT_DELETE" url="/orderImport/domestic/order/delete"></perm>
+                <perm name="订单创建" key="DF_PLAT_ORDERIMPORT_CREATEORDER" url="/orderImport/domestic/create"></perm>
+                <perm name="上传" key="DF_PLAT_ORDERIMPORT_UPLOAD" url="/orderImport/domestic/upload"></perm>
+            </button>
+            <button name="显示供应商报价" key="DF_VIEW_SUPPER_DETAIL_PRICE"/>
+		</module>
+		<module name="订单管理" key="DF_ORDER" url="">
+			<module name="订单查询" key="DF_ORDER_QRY" url="/order/flight/domestic/flightSearch">
+				<!-- <button name="查询" key="DF_ORDER_QRY_QUERY" url=""/> -->
+				<button name="新建改签" key="DF_ORDER_QRY_KEY1">
+					<perm name="新建改签" key="DF_ORDER_QRY_NEWCHANGING" url="/order/flight/domestic/createEndorse" />
+					<perm name="提交改签申请" key="DF_ORDER_APPLYENDORSEREVIEW" url="/order/flight/domestic/applyEndorseReview" />
+					<perm name="提交改签处理" key="DF_ORDER_CHANGINGAUDIT_SUBMITCHANGING" url="/order/flight/domestic/applyProcess" />
+
+				</button>
+				<button name="新建退废" key="DF_ORDER_QRY_KEY2">
+					<perm name="新建退废" key="DF_ORDER_QRY_CANCEL" url="/order/flight/domestic/createRefundOrder" />
+					<perm name="提交退废" key="DF_ORDER_RTNTIKT_SUBMITAPPLY" url="/order/flight/domestic/createRefundOrder/reqReview" />
+				</button>
+				<button name="导出" key="DF_ORDER_QRY_EXPORT" url="/order/flight/domestic/exportFlightOrderExcel" />
+				<button name="订单授信" key="DOMESTIC_ORDER_CREDIT" />
+				<button name="追加备注" key="DF_ORDER_QRY_APPENDREMARK" url="" ></button>
+
+			</module>
+			<module name="供应商订单查询" key="DF_PROVIDER_ORDER_MONITOR" url="/order/flight/domestic/providerFlightSearch">
+				<button name="导出" key="DF_PROVIDER_ORDER_EXPORT" url="/order/flight/domestic/newExportFlightOrderExcel" />
+				<button name="拒单确认" key="DF_PROVIDER_ORDER_REJECT_CONFIRM" url="/order/flight/domestic/rejectIssue" />
+				<button name="平台介入" key="DF_PROVIDER_ORDER_PLATFORM_INVOLVED" url="/order/flight/domestic/platforminvolved" />
+			</module>
+			<module name="客票明细查询" key="DF_ORDER_TIKTDETAIL" url="/order/flight/domestic/ticketDetailsSearch">
+				<!-- <button name="查询" key="DF_ORDER_TIKTDETAIL_QUERY" url=""/> -->
+				<button name="导出" key="DF_ORDER_TIKTDETAIL_EXPORT" url="/order/flight/domestic/exportFailExcel" />
+				<button name="修改票面" key="DF_ORDER_TIKTDETAIL_UPDATE" url="/order/flight/domestic/modifyOrder" />
+				<button name="调账" key="DF_ORDER_TIKTDETAIL_ADJUSTVALUE" url="/order/flight/domestic/createAdjustment" />
+				<button name="调采购" key="DF_ORDER_TIKTDETAIL_ADJUSTPURCHASER" url="/order/flight/domestic/creAdjustment" />
+				<button name="调供应" key="DF_ORDER_TIKTDETAIL_ADJUSTPROVIDER" url="" />
+				<button name="更新客票状态" key="DF_ORDER_TIKTDETAIL_UPDATETICKETSTATE" url="/order/flight/domestic/updateEticketState" />
+			</module>
+			<module name="审核管理" key="DF_ORDER_AUDIT" url="/order/flight/domestic/searchProcessReviewOrder">
+				<!-- <button name="查询" key="DF_ORDER_AUDIT_QUERY" url=""/> -->
+				<button name="审核处理" key="DF_ORDER_AUDIT_KEY1">
+					<perm name="受理" key="DF_ORDER_AUDIT_ACCEPT" url="/order/flight/domestic/processNpReview" />
+					<perm name="取消受理" key="DF_ORDER_AUDIT_CANCELAUDIT" url="/order/flight/domestic/review/cancelProcess" />
+					<perm name="保存" key="DF_ORDER_AUDIT_SAVE" url="/order/flight/domestic/review/save" />
+					<perm name="修改" key="DF_ORDER_AUDIT_EDIT" url="/order/flight/domestic/review/modify" />
+					<perm name="审核退回" key="DF_ORDER_AUDIT_RETURN" url="/order/flight/domestic/review/fail" />
+					<perm name="审核通过" key="DF_ORDER_AUDITPASS" url="/order/flight/domestic/review/pass" />
+				</button>
+				<button name="导出" key="DF_ORDER_AUDIT_EXPORT" url="" />
+			</module>
+			<module name="出票管理" key="DF_ORDER_ISSUE" url="/order/flight/domestic/searchProcessIssueOrder">
+				<!-- <button name="查询" key="DF_ORDER_ISSUE_QUERY" url=""/> -->
+				<button name="出票" key="DF_ORDER_ISSUE_KEY1">
+					<perm name="受理" key="DF_ORDER_ISSUE_ACCEPT" url="/order/flight/domestic/processIssue" />
+					<perm name="取消受理" key="DF_ORDER_ISSUE_CANCELACCEPT" url="/order/flight/domestic/cancelProcessIssue" />
+					<perm name="提取票号" key="DF_ORDER_ISSUE_EXTRACTNO" url="/order/flight/domestic/NP/extractTicketNo" />
+					<perm name="拒绝出票" key="DF_ORDER_ISSUE_REJECT" url="/order/flight/domestic/rejectIssuetochangeprovider" />
+					<perm name="完成出票" key="DF_ORDER_ISSUE_FINISH" url="/order/flight/domestic/completeIssue" />
+				</button>
+				<button name="导出" key="DF_ORDER_ISSUE_EXPORT" url="" />
+				<button name="自动出票" key="DF_ORDER_ISSUE_AUTO_ISSUE" url="/order/flight/domestic/autoIssue" />
+			</module>
+			<module name="改签审核" key="DF_ORDER_CHANGINGAUDIT" url="/order/flight/domestic/searchEndorseReviewOrder">
+				<!-- <button name="查询" key="DF_ORDER_CHANGINGAUDIT_QUERY" url=""/> -->
+				<button name="改签审核" key="DF_ORDER_CHANGINGAUDIT_KEY1">
+					<perm name="受理" key="DF_ORDER_CHANGINGAUDIT_ACCEPT" url="/order/flight/domestic/reviewEndorse" />
+					<perm name="取消受理" key="DF_ORDER_CHANGINGAUDIT_CANCELACCEPT" url="/order/flight/domestic/cancelProcessReview" />
+					<perm name="修改" key="DF_ORDER_CHANGINGAUDIT_EDIT" url="/order/flight/domestic/modify" />
+					<perm name="保存" key="DF_ORDER_CHANGINGAUDIT_SAVE" url="/order/flight/domestic/saveReviewEndorseOrder" />
+					<perm name="退回" key="DF_ORDER_CHANGINGAUDIT_RETURN" url="/order/flight/domestic/failReview" />
+					<perm name="审核通过" key="DF_ORDER_CHANGINGAUDIT_AUDITPASS" url="/order/flight/domestic/passReview" />
+					<perm name="取消审核通过" key="DF_ORDER_CHANGINGAUDIT_AUDITCANCELPASS" url="/order/flight/domestic/cancelPassReview" />
+				</button>
+				<button name="导出" key="DF_ORDER_CHANGINGAUDIT_EXPORT" url="" />
+			</module>
+			<module name="改签处理" key="DF_ORDER_CHANGINGHANDLE" url="/order/flight/domestic/searchEndorseProcessOrder">
+				<button name="改签处理" key="DF_ORDER_CHANGINGHANDLE_KEY1">
+					<perm name="受理" key="DF_ORDER_CHANGINGHANDLE_ACCEPT" url="/order/flight/domestic/processEndorse" />
+					<perm name="取消受理" key="DF_ORDER_CHANGINGHANDLE_CANCELACCEPT" url="/order/flight/domestic/cancelprocessEndorse" />
+					<perm name="修改" key="DF_ORDER_CHANGINGHANDLE_EDIT" url="/order/flight/domestic/processModify" />
+					<perm name="提取票号" key="DF_ORDER_CHANGINGHANDLE_EXTRACTNO" url="/order/flight/domestic/endorse/extractTicketNo" />
+					<perm name="拒绝改签" key="DF_ORDER_CHANGINGHANDLE_REJECT" url="/order/flight/domestic/returnEndorseOrder" />
+					<perm name="完成改签" key="DF_ORDER_CHANGINGHANDLE_FINISH" url="/order/flight/domestic/completeEndorse" />
+				</button>
+				<button name="兴业改签处理" key="DF_ORDER_CHANGINGAUDIT_SUBMITXINGYECHANGING" url="/order/flight/domestic/applyXingyeProcess" />
+				<button name="导出" key="DF_ORDER_CHANGINGHANDLE_EXPORT" url="" />
+			</module>
+			<module name="退票管理" key="DF_ORDER_RTNTIKT" url="/order/flight/domestic/TP/jumpToSearchPage">
+				<!-- <button name="查询" key="DF_ORDER_RTNTIKT_QUERY" url=""/> -->
+				<button name="退票审核" key="DF_ORDER_RTNTIKT_KEY1">
+					<perm name="受理" key="DF_ORDER_RTNTIKT_CONFIRM_ACCEPT" url="/order/flight/domestic/TP/review/process" />
+					<perm name="取消受理" key="DF_ORDER_RTNTIKT_CONFIRM_CANCELACCEPT" url="/order/flight/domestic/TP/review/cancelProcess" />
+					<perm name="修改" key="DF_ORDER_RTNTIKT_CONFIRM_EDIT" url="/order/flight/domestic/TP/review/modify" />
+					<perm name="保存" key="DF_ORDER_RTNTIKT_CONFIRM_SAVE" url="/order/flight/domestic/TP/review/save" />
+					<perm name="退回" key="DF_ORDER_RTNTIKT_CONFIRM_RETURN" url="/order/flight/domestic/TP/review/fail" />
+					<perm name="退票确认" key="DF_ORDER_RTNTIKT_CONFIRM" url="/order/flight/domestic/TP/review/pass" />
+					<perm name="取消退票确认" key="DF_ORDER_RTNTIKT_CANCELCONFIRM" url="/order/flight/domestic/TP/process/cancelReviewPass" />
+				</button>
+				<button name="退票处理" key="DF_ORDER_RTNTIKT_KEY2">
+					<perm name="受理" key="DF_ORDER_RTNTIKT_FINISHED_ACCEPT" url="/order/flight/domestic/TP/process/process" />
+					<perm name="取消受理" key="DF_ORDER_RTNTIKT_FINISHED_CANCELACCEPT" url="/order/flight/domestic/TP/process/cancelProcess" />
+					<perm name="修改" key="DF_ORDER_RTNTIKT_FINISHED_EDIT" url="/order/flight/domestic/TP/process/modify" />
+					<perm name="保存" key="DF_ORDER_RTNTIKT_FINISHED_SAVE" url="/order/flight/domestic/TP/process/save" />
+					<perm name="退回" key="DF_ORDER_RTNTIKT_FINISHED_RETURN" url="/order/flight/domestic/TP/process/returnOrder" />
+					<perm name="退票完成" key="DF_ORDER_RTNTIKT_FINISHED" url="/order/flight/domestic/TP/process/complete" />
+					<perm name="平台退票" key="DF_ORDER_RTNTIKT_PLATFORM" url="/order/flight/domestic/TP/process/applyPlatformRefund" />
+				</button>
+				<button name="取消订单" key="DF_ORDER_RTNTIKT_CANCEL" url="/order/flight/domestic/TP/cancelRefundOrder" />
+				<button name="导出" key="DF_ORDER_RTNTIKT_EXPORT" url="" />
+			</module>
+			<module name="废票管理" key="DF_ORDER_TIKTINVALIDATE" url="/order/flight/domestic/FP/jumpToSearchPage">
+				<button name="废票审核" key="DF_ORDER_TIKTINVALIDATE_KEY1">
+					<perm name="受理" key="DF_ORDER_TIKTINVALIDATE_CONFIRM_ACCEPT" url="/order/flight/domestic/FP/review/process" />
+					<perm name="取消受理" key="DF_ORDER_TIKTINVALIDATE_CONFIRM_CANCELACCEPT" url="/order/flight/domestic/FP/review/cancelProcess" />
+					<perm name="修改" key="DF_ORDER_TIKTINVALIDATE_CONFIRM_EDIT" url="/order/flight/domestic/FP/review/modify" />
+					<perm name="保存" key="DF_ORDER_TIKTINVALIDATE_CONFIRM_SAVE" url="/order/flight/domestic/FP/review/save" />
+					<perm name="退回" key="DF_ORDER_TIKTINVALIDATE_CONFIRM_RETURN" url="/order/flight/domestic/FP/review/fail" />
+					<perm name="废票确认" key="DF_ORDER_TIKTINVALIDATE_CONFIRM" url="/order/flight/domestic/FP/review/pass" />
+					<perm name="取消废票确认" key="DF_ORDER_TIKTINVALIDATE_CONFIRM_CANCEL" url="/order/flight/domestic/FP/process/cancelReviewPass" />
+				</button>
+				<button name="废票处理" key="DF_ORDER_TIKTINVALIDATE_KEY2">
+					<perm name="受理" key="DF_ORDER_TIKTINVALIDATE_FINISHED_ACCEPT" url="/order/flight/domestic/FP/process/process" />
+					<perm name="取消受理" key="DF_ORDER_TIKTINVALIDATE_FINISHED_CANCELACCEPT" url="/order/flight/domestic/FP/process/cancelProcess" />
+					<perm name="修改" key="DF_ORDER_TIKTINVALIDATE_FINISHED_EDIT" url="/order/flight/domestic/FP/process/modify" />
+					<perm name="保存" key="DF_ORDER_TIKTINVALIDATE_FINISHED_SAVE" url="/order/flight/domestic/FP/process/save" />
+					<perm name="退回" key="DF_ORDER_TIKTINVALIDATE_FINISHED_RETURN" url="/order/flight/domestic/FP/process/returnOrder" />
+					<perm name="废票完成" key="DF_ORDER_TIKTINVALIDATE_FINISHED" url="/order/flight/domestic/FP/process/complete" />
+				</button>
+				<button name="取消订单" key="DF_ORDER_TIKTINVALIDATE_CANCEL" url="/order/flight/domestic/FP/cancelRefundOrder" />
+				<button name="导出" key="DF_ORDER_TIKTINVALIDATE_EXPORT" url="" />
+			</module>
+			<module name="暂不能出票" key="DF_ORDER_TIKTIT_BLOCKED" url="/order/flight/domestic/jumpToTempRejectIssue">
+				<button name="继续出票" key="DF_ORDER_TIKTIT_BLOCKED_CONTINUEISSUE" url="/order/flight/domestic/processContinueIssue" />
+			</module>
+			<module name="询价单" key="DF_ORDER_TIKTIT_ENQUIRY_DOMESTIC" url="/order/flight/enquiry/domestic">
+				<button name="受理" key="DF_ORDER_TIKTIT_ENQUIRY_DOMESTIC_PROCESS" url="/order/flight/enquiry/domestic/process"/>
+			</module>
+			<module name="制单" key="DF_CREATE_ORDER_MESSAGE_QRY" url="/order/flight/domestic/createOrderMessageSearch">
+				<button name="受理" key="DF_CREATE_ORDER_MESSAGE_PROCESS" url="/order/flight/domestic/createOrderMessage/process"/>
+				<button name="处理完成" key="DF_CREATE_ORDER_MESSAGE_COMPLETE" url="/order/flight/domestic/createOrderMessage/complete"/>
+				<button name="导出" key="DF_CREATE_ORDER_MESSAGE_EXPORT" url="/order/flight/domestic/ExportCreateOrderMessageExcel"/>
+			</module>
+		</module>
+		<module name="政策维护" key="DF_POLICY">
+			<module name="协议管理" key="DF_POLICY_AGREEMENT" url="/pricing/internalContract/queryIntContract">
+				<!-- <button name="查看" key="DF_POLICY_AGREEMENT_QUERY" url="/pricing/internalContract/findIntContract"/> -->
+				<button name="添加/保存" key="DF_POLICY_AGREEMENT_ADD" url="/pricing/internalContract/saveIntContract" />
+				<button name="修改" key="DF_POLICY_AGREEMENT_KEY1">
+					<perm name="修改" key="DF_POLICY_AGREEMENT_MODIFY" url="/pricing/internalContract/changeIntContract" />
+					<!--perm name="修改保存" key="DF_POLICY_AGREEMENT_MODIFY_SAVE" url=""/ -->
+				</button>
+				<button name="挂起" key="DF_POLICY_AGREEMENT_KEY2">
+					<perm name="挂起/解挂" key="DF_POLICY_AGREEMENT_LOCK" url="/pricing/internalContract/enableIntContract" />
+					<!--perm name="解挂" key="DF_POLICY_AGREEMENT_UNLOCK" url=""/ -->
+				</button>
+				<button name="作废" key="DF_POLICY_AGREEMENT_REMOVE" url="/pricing/internalContract/removeIntContract" />
+			</module>
+			<module name="政策管理" key="DF_POLICY_MANAGER" url="/pricing/internalTemplate/queryIntTemplate">
+				<!-- <button name="查询" key="DF_POLICY_QUERY" url="/pricing/internalTemplate/queryIntTemplate"/> -->
+				<button name="修改" key="DF_POLICY_UPDATE" url="/pricing/internalTemplate/gotoModifyTemplate" />
+				<button name="复制" key="DF_POLICY_COPY" url="/pricing/internalTemplate/gotoCopyTemplate" />
+				<button name="导入" key="DF_POLICY_IMPORT" url="/pricing/xlsAction/internalTemplateXlsUpload " />
+				<button name="导出" key="DF_POLICY_EXPORT" url="/pricing/xlsAction/internalTemplateXlsDownload " />
+				<button name="添加" key="DF_POLICY_ADD" url="/pricing/internalTemplate/gotoAddTemplate" />
+				<button name="发布" key="DF_POLICY_PUBLISH" url="/pricing/internalTemplate/publishIntTemplete" />
+				<button name="挂起" key="DF_POLICY_MANAGER_KEY1">
+					<perm name="挂起" key="DF_POLICY_LOCK" url="/pricing/internalTemplate/suspendIntTemplate" />
+					<perm name="解挂" key="DF_POLICY_UNLOCK" url="" /><!-- url和挂起相同 -->
+				</button>
+				<button name="作废" key="DF_POLICY_REMOVE" url="/pricing/internalTemplate/removeSelectIntTemplate" />
+				<button name="批量修改返点" key="DF_POLICY_MANAGER_KEY2">
+					<perm name="修改返点" key="DF_POLICY_BATCHUPDATE_RETURNPOINT" url="/pricing/internalTemplate/modifyExpectedReturn" />
+				</button>
+			</module>
+			<module name="标签管理" key="DF_POLICY_TAG" url="/pricing/internalTag/manageTag">
+				<!-- <button name="查询" key="DF_POLICY_TAG_QUERY" url=""/> -->
+				<button name="添加" key="DF_POLICY_TAG_ADD" url="/pricing/internalTag/addTag" />
+				<button name="修改" key="DF_POLICY_TAG_UPDATE" url="/pricing/internalTag/saveTag" />
+				<button name="复制" key="DF_POLICY_TAG_COPY" url="/pricing/internalTag/copyAndAdd" />
+				<button name="删除" key="DF_POLICY_TAG_DELETE" url="/pricing/internalTag/delete" />
+				<!--button name="关联政策" key="DF_POLICY_TAG_ASSO_POLICY" url="/pricing/internalTag/gotoSetTemplate" / -->
+			</module>
+			<module name="后返管理" key="DF_POLICY_PAYAFTER" url="/pricing/internalPostManage/queryIntPostManage">
+				<!-- <button name="查询" key="DF_POLICY_PAYAFTER_QUERY" url=""/> -->
+				<button name="添加" key="DF_POLICY_PAYAFTER_ADD" url="/pricing/internalPostManage/saveIntPostManage" />
+				<button name="发布" key="DF_POLICY_PAYAFTER_PUBLISH" url="/pricing/internalPostManage/publishPostManage" />
+				<button name="挂起" key="DF_POLICY_PAYAFTER_LOCK" url="/pricing/internalPostManage/pendingPostManage" />
+				<button name="修改返点" key="DF_POLICY_PAYAFTER_MODIFYPOST" url="/pricing/internalPostManage/modifyExpectedReturn" />
+				<button name="修改" key="DF_POLICY_PAYAFTER_UPDATE" url="/pricing/internalPostManage/changeIntPostManage" />
+				<button name="复制" key="DF_POLICY_PAYAFTER_COPY" url="/pricing/internalPostManage/gotoCopyIntPostManage" />
+				<button name="导入" key="DF_POLICY_PAYAFTER_IMPORT" url="" />
+				<button name="导出" key="DF_POLICY_PAYAFTER_EXPORT" url="" />
+				<button name="作废" key="DF_POLICY_PAYAFTER_REMOVE" url="/pricing/internalPostManage/invalidPostManage" />
+			</module>
+			<module name="退改签规则管理" key="DF_POLICY_BACKRULE" url="/pricing/internalEndorseRule/openPageOfQuery">
+				<!-- <button name="查询" key="DF_POLICY_BACKRULE_QUERY" url=""/> -->
+				<button name="添加" key="DF_POLICY_BACKRULE_ADD" url="/pricing/internalEndorseRule/openPageOfAdd" />
+				<button name="挂起" key="DF_POLICY_BACKRULE_KEY1">
+					<perm name="挂起" key="DF_POLICY_BACKRULE_LOCK" url="/pricing/internalEndorseRule/suspendRules" />
+					<perm name="解挂" key="DF_POLICY_BACKRULE_UNLOCK" url="/pricing/internalEndorseRule/noSuspendRules" />
+				</button>
+				<button name="修改" key="DF_POLICY_BACKRULE_U从PDATE" url="/pricing/internalEndorseRule/openPageOfEdit" />
+				<button name="复制" key="DF_POLICY_BACKRULE_COPY" url="/pricing/internalEndorseRule/copyNewRule" />
+				<button name="导入" key="DF_POLICY_BACKRULE_IMPORT" url="" />
+				<button name="导出" key="DF_POLICY_BACKRULE_EXPORT" url="" />
+				<button name="作废" key="DF_POLICY_BACKRULE_REMOVE" url="/pricing/internalEndorseRule/cancelRules" />
+			</module>
+		</module>
+		<module name="售价维护" key="DF_SALE">
+			<module name="销售规则管理" key="DF_SALE_RULE" url="/pricing/internalFlightMarket/queryInternalFlightSaleRule">
+				<!-- <button name="查询" key="DF_SALE_RULE_QUERY" url="/pricing/internalFlightMarket/queryInternalFlightSaleRule"/> -->
+				<!--button name="浏览" key="DF_SALE_RULE_VIEW" url="/pricing/internalFlightMarket/gotoViewInternalFlightSaleRule" / -->
+				<button name="添加销售规则" key="DF_SALE_RULE_ADD" url="/pricing/internalFlightMarket/gotoAddInternalFlightSaleRule" />
+				<button name="修改" key="DF_SALE_RULE_UPDATE" url="/pricing/domesticSecondEditionSalerule/gotoModifyDomesticSecondEditionSaleRule" />
+				<button name="复制" key="DF_SALE_RULE_COPY" url="/pricing/domesticSecondEditionSalerule/gotoCopyDomesticSecondEditionSaleRule" />
+				<button name="挂起" key="DF_SALE_RULE_PENDING" url="/pricing/domesticSecondEditionSalerule/gotoSuspendDomesticSecondEditionSaleRule" />
+				<button name="发布" key="DF_SALE_RULE_UNPENDING" url="/pricing/domesticSecondEditionSalerule/gotoUnSuspendDomesticSecondEditionSaleRule" />
+				<button name="作废" key="DF_SALE_RULE_REMOVE" url="/pricing/domesticSecondEditionSalerule/gotoDeleteDomesticSecondEditionSaleRule" />
+				<button name="导入" key="DF_SALE_RULE_IMPORT" url="" />
+				<button name="导出" key="DF_SALE_RULE_EXPORT" url="" />
+			</module>
+			<module name="协调售价规则" key="DF_COORDINATION_SALE_RULE" url="/pricing/internalFlightMarket/queryInternalCoordinationFlightSaleRule" >
+				<button name="添加销售规则" key="DF_COORDINATION_SALE_RULE_ADD" url="/pricing/internalFlightMarket/gotoAddInternalCoordinationFlightSaleRule" />
+				<button name="修改" key="DF_COORDINATION_SALE_RULE_UPDATE" url="/pricing/internalFlightMarket/gotoModifyInternalCoordinationFlightSaleRule" />
+				<button name="复制" key="DF_COORDINATION_SALE_RULE_COPY" url="/pricing/internalFlightMarket/gotoCopyInternalCoordinationFlightSaleRule" />
+				<button name="挂起" key="DF_COORDINATION_SALE_RULE_PENDING" url="/pricing/internalFlightMarket/pendingIntCoordinationFlightMarket" />
+				<button name="发布" key="DF_COORDINATION_SALE_RULE_UNPENDING" url="/pricing/internalFlightMarket/unpendingIntCoordinationFlightMarket" />
+				<button name="作废" key="DF_COORDINATION_SALE_RULE_REMOVE" url="/pricing/internalFlightMarket/invalidIntCoordinationFlightMarket" />
+				<button name="导入" key="DF_COORDINATION_SALE_RULE_IMPORT" url="" />
+				<button name="导出" key="DF_COORDINATION_SALE_RULE_EXPORT" url="" />
+			</module>
+			<module name="分销扣点查看" key="DF_DISTRIBUTOR_RULE" url="/pricing/internalFlightMarket/queryDomesticDistributorPolicy">
+			</module>
+			<module name="销售政策查看" key="DF_SALEPOLICY_CHECK" url="/pricing/internalFlightMarket/queryInternalBasicPolicy">
+			</module>
+		</module>
+		<module name="运价维护" key="DF_FARE">
+			<module name="策略管理" key="DF_FARE_RULE" url="/fare/domesticFare/domesticFarePage">
+				<button name="添加策略" key="DF_FARE_STRATEGY_ADD" url="/fare/domesticFare/insertDataCenterStrategy" />
+                <button name="爬取" key="DF_FARE_STRATEGY_CRAWL" url="/fare/domesticFare/crawl" />
+				<button name="删除" key="DF_FARE_STRATEGY_DELETE" url="/fare/domesticFare/deleteStrategy" />
+				<button name="修改" key="DF_FARE_STRATEGY_MODIFY" url="/fare/domesticFare/modifyStrategy" />
+				<button name="查询" key="DF_FARE_STRATEGY_QUERY" url="/fare/domesticFare/queryDataCenterStrategy" />
+                <button name="导入" key="DF_FARE_STRATEGY_IMPORT" url="/fare/domesticFare/importStrategy" />
+			</module>
+            <module name="运价数据管理" key="DF_FARE_MSG" url="/fare/domesticFareMsg/domesticFareMsg">
+                <button name="查询" key="DF_FARE_MSG_SEARCH" url="/fare/domesticFareMsg/search" />
+            </module>
+		</module>
+		<module name="自动出票" key="DF_AUTO">
+			<module name="B2B自动出票规则" key="DF_B2B_AUTO_ISSU" url="/order/flight/domestic/autoissuticket/b2b/autoIssuRule/getAllRules">
+				<button name="查询" key="DF_B2B_AUTO_ISSU_SEARCH" url="/order/flight/domestic/autoissuticket/b2b/autoIssuRule/searchRules"/>
+				<button name="新增" key="DF_B2B_AUTO_ISSU_ADD" url="/order/flight/domestic/autoissuticket/b2b/autoIssuRule/addRule"/>
+				<button name="修改" key="DF_B2B_AUTO_ISSU_MODIFY" url="/order/flight/domestic/autoissuticket/b2b/autoIssuRule/modifyRule"/>
+				<button name="启用/禁用" key="DF_B2B_AUTO_ISSU_LOCK" url="/order/flight/domestic/autoissuticket/b2b/autoIssuRule/updateState"/>
+				<button name="批量启用/禁用" key="DF_B2B_AUTO_ISSU_LOCK_BATCH" url="/order/flight/domestic/autoissuticket/b2b/autoIssuRule/batchUpdateState"/>
+				<button name="删除" key="DF_B2B_AUTO_ISSU_DELETE" url="/order/flight/domestic/autoissuticket/b2b/autoIssuRule/deleteRule"/>
+				<button name="批量删除" key="DF_B2B_AUTO_ISSU_DELETE_BATCH" url="/order/flight/domestic/autoissuticket/b2b/autoIssuRule/batchDeleteRule"/>
+			</module>
+			<module name="BSP自动出票规则" key="DF_BSP_AUTO_ISSU" url="/order/flight/domestic/autoissuticket/b2b/autoIssuRule/getBSPRules">
+				<!-- <button name="查看供应规则" key="DF_BSP_AUTO_ISSU_SEARCH_PROVIDER" url="/order/flight/domestic/autoissuticket/b2b/autoIssuRule/searchBSPRules"/> -->
+			</module>
+		</module>
+		<module name="超级工具" key="DF_SUPPER" url="/order/flight/supper/domestic/index">
+			<button name="修改订单状态" key="DF_SUPPER_MODIFY_ORDER_STATUS" url="/order/flight/supper/domestic/modifyFlightOrderStatus"/>
+			<button name="修改客票" key="DF_SUPPER_MODIFY_ETICKET" url="/order/flight/supper/modifyEticket/domestic/getPage"/>
+			<button name="强制分润" key="DF_SUPPER_FORCE_SHARE_PROFIT" url="/order/flight/supper/domestic/forceShareProfit/showPage"/>
+			<button name="自动外采" key="DF_SUPPER_CHECKPRICE" url="/crawler/checkpricetool/domestic/index"/>
+		</module>
+		<module name="平台建单(新)" key="DF_PLAT_NEW" url="/domesticFlight/platformCreateOrder/qunar/preOrder/blackScreenToOrder">
+
+		</module>
+		<module name="下载中心" key="DF_ASYNC_DOWNLOAD_CENTER" url="/domesticFlight/download/view"></module>
+	</module>
+	<module name="国际机票" key="IF">
+		<module name="平台建单" key="IF_PLAT">
+			<button name="白屏预订" key="IF_PLAT_KEY1">
+				<perm name="白屏预订" key="IF_PLAT_WSORDER" url="/flighti18n2order/search" />
+				<perm name="查询预订" key="IF_PLAT_WSORDER_QUERYBOOK" url="" /><!-- 只要能进白屏预定页面，就可以查询预订 -->
+			</button>
+			<button name="PNR导入" key="IF_PLAT_KEY2">
+				<perm name="黑屏预订" key="IF_PLAT_BSORDER" url="/internationalFlight/platformCreateOrder/preOrder/blackScreenToOrder" />
+				<perm name="PNR导入" key="IF_PLAT_BSORDER_IMPORTPNR" url="/internationalFlight/platformCreateOrder/preOrder/pnrImport" />
+				<perm name="PNR验证" key="IF_PLAT_BSORDER_VALIDATORMESSAGE" url="/internationalFlight/platformCreateOrder/preOrder/validatorMessage" />
+			</button>
+			<button name="创建订单" key="IF_PLAT_KEY3">
+				<perm name="创建订单" key="IF_PLAT_BSORDER_CREATEORDER" url="/internationalFlight/platformCreateOrder/order/createOrder" />
+				<perm name="保存订单" key="IF_PLAT_BSORDER_SAVEORDER" url="/internationalFlight/platformCreateOrder/order/updateOrder" />
+				<perm name="修改订单" key="IF_PLAT_BSORDER_EDITORDER" url="/internationalFlight/platformCreateOrder/order/modifyOrder" />
+			</button>
+			<button name="申请出票" key="IF_PLAT_BSORDER_TICKETAPPLY" url="/order/flight/international/applyIssueTicket" />
+			<button name="取消订单" key="IF_PLAT_BSORDER_CANCELORDER" url="/order/flight/international/cancelOrder" />
+			<button name="订单补录" key="IF_PLAT_BSORDER_ORDERRECORD" url="/orderRecord/internationalFlight/creatOrder"></button>
+			<button name="订单导入" key="IF_PLAT_ORDERIMPORT">
+                <perm name="订单导入" key="IF_PLAT_ORDERIMPORT_PAGE" url="/orderImport/international/importOrder"></perm>
+                <perm name="查看详情" key="IF_PLAT_ORDERIMPORT_VIEW" url="/orderImport/international/importOrderItemDetail"></perm>
+                <perm name="全部审核通过" key="IF_PLAT_ORDERIMPORT_REVIEWALL" url="/orderImport/international/orderItem/reviewAll"></perm>
+                <perm name="批量审核" key="IF_PLAT_ORDERIMPORT_REVIEWBATCH" url="/orderImport/international/orderItem/batchReview"></perm>
+                <perm name="删除订单条目" key="IF_PLAT_ORDERIMPORT_DELETEITEM" url="/orderImport/international/orderItem/delete"></perm>
+                <perm name="删除订单" key="IF_PLAT_ORDERIMPORT_DELETE" url="/orderImport/international/order/delete"></perm>
+                <perm name="订单创建" key="IF_PLAT_ORDERIMPORT_CREATEORDER" url="/orderImport/international/create"></perm>
+                <perm name="上传" key="IF_PLAT_ORDERIMPORT_UPLOAD" url="/orderImport/international/upload"></perm>
+            </button>
+		</module>
+		<module name="订单管理" key="IF_ORDER">
+			<module name="订单查询" key="IF_ORDER_QRY" url="/order/flight/international/flightSearch">
+				<!-- <button name="查询" key="IF_ORDER_QRY_QUERY" url=""/> -->
+				<button name="新建改签" key="IF_ORDER_QRY_KEY1">
+					<perm name="新建改签" key="IF_ORDER_QRY_NEWCHANGING" url="/order/flight/international/createEndorse" />
+					<perm name="提交改签申请" key="IF_ORDER_APPLYENDORSEREVIEW" url="/order/flight/international/applyEndorseReview" />
+					<perm name="提交改签处理" key="IF_ORDER_CHANFING_SUBMITHANDLE" url="/order/flight/international/applyProcess" />
+				</button>
+				<button name="新建退废" key="IF_ORDER_QRY_KEY2">
+					<perm name="新建退废" key="IF_ORDER_QRY_CANCEL" url="/order/flight/international/createRefundOrder" />
+					<perm name="提交退废" key="IF_ORDER_RTNTIKT_SUBMITAPPLY" url="/order/flight/international/createRefundOrder/reqReview" />
+				</button>
+				<button name="导出" key="IF_ORDER_QRY_EXPORT" url="/order/flight/International/exportFlightOrderExcel" />
+				<button name="订单授信" key="INTERNATIONAL_ORDER_CREDIT" />
+				<button name="已解决" key="IF_ORDER_TIKTIT_BLOCKED_CONTINUEISSUE" url="/order/flight/international/processContinueIssue" />
+				<button name="追加备注" key="IF_ORDER_QRY_APPENDREMARK" url="" ></button>
+			</module>
+			<module name="供应商订单查询" key="IF_PROVIDER_ORDER_MONITOR" url="/order/flight/international/providerFlightSearch">
+				<button name="导出" key="IF_PROVIDER_ORDER_EXPORT" url="/order/flight/international/newExportFlightOrderExcel" />
+				<button name="拒单确认" key="IF_PROVIDER_ORDER_REJECT_CONFIRM" url="/order/flight/international/rejectIssue" />
+				<button name="平台介入" key="IF_PROVIDER_ORDER_PLATFORM_INVOLVED" url="/order/flight/international/platforminvolved" />
+			</module>
+			<module name="客票明细查询" key="IF_ORDER_TIKTDETAIL" url="/order/flight/international/ticketDetailsSearch">
+				<button name="导出" key="IF_ORDER_TIKTDETAIL_EXPORT" url="/order/flight/international/exportFailExcel" />
+				<button name="修改票面" key="IF_ORDER_TIKTDETAIL_UPDATE" url="/order/flight/international/modifyOrder" />
+				<button name="调账" key="IF_ORDER_TIKTDETAIL_ADJUSTVALUE" url="/order/flight/international/createAdjustment" />
+				<button name="调采购" key="IF_ORDER_TIKTDETAIL_ADJUSTPURCHASER" url="/order/flight/international/creAdjustment" />
+				<button name="调供应" key="IF_ORDER_TIKTDETAIL_ADJUSTPROVIDER" url="" />
+			</module>
+			<module name="审核管理" key="IF_ORDER_AUDIT" url="/order/flight/international/searchProcessReviewOrder">
+				<!-- <button name="查询" key="IF_ORDER_AUDIT_QUERY" url=""/> -->
+				<button name="优先处理" key="IF_ORDER_AUDIT_PRIORHANDLE" url="/order/flight/international/npReviewOrder/highestPriority" />
+				<button name="审核处理" key="IF_ORDER_AUDIT_KEY1">
+					<perm name="受理" key="IF_ORDER_AUDIT_ACCEPT" url="/order/flight/international/processNpReview" />
+					<perm name="取消受理" key="IF_ORDER_AUDIT_CANCELAUDIT" url="/order/flight/international/review/cancelProcess" />
+					<perm name="保存" key="IF_ORDER_AUDIT_SAVE" url="/order/flight/international/review/save" />
+					<perm name="修改" key="IF_ORDER_AUDIT_EDIT" url="/order/flight/international/review/modify" />
+					<perm name="退回" key="IF_ORDER_AUDIT_RETURN" url="/order/flight/international/review/fail" />
+					<perm name="暂不能出票" key="IF_ORDER_ISSUE_SUSPEND" url="/order/flight/international/tempRejectIssue" />
+					<perm name="审核通过" key="IF_ORDER_AUDIT_PASS" url="/order/flight/international/review/pass" />
+					<perm name="挂起" key="IF_ORDER_AUDIT_LOCK" url="/order/flight/international/npReviewOrder/suspendOrder" />
+					<perm name="解挂" key="IF_ORDER_AUDIT_UNLOCK" url="/order/flight/international/npReviewOrder/resumeOrder" />
+				</button>
+				<button name="导出" key="IF_ORDER_AUDIT_EXPORT" url="" />
+			</module>
+			<module name="团队审核管理" key="IF_GROUP_ORDER_AUDIT" url="/order/flight/international/searchProcessReviewGroupOrder">
+				<!-- <button name="查询" key="IF_ORDER_AUDIT_QUERY" url=""/> -->
+				<button name="优先处理" key="IF_GROUP_ORDER_AUDIT_PRIORHANDLE" url="" />
+				<button name="审核处理" key="IF_GROUP_ORDER_AUDIT_KEY1">
+					<perm name="受理" key="IF_GROUP_ORDER_AUDIT_ACCEPT" url="" />
+					<perm name="取消受理" key="IF_GROUP_ORDER_AUDIT_CANCELAUDIT" url="" />
+					<perm name="保存" key="IF_GROUP_ORDER_AUDIT_SAVE" url="" />
+					<perm name="修改" key="IF_GROUP_ORDER_AUDIT_EDIT" url="" />
+					<perm name="退回" key="IF_GROUP_ORDER_AUDIT_RETURN" url="" />
+					<perm name="暂不能出票" key="IF_GROUP_ORDER_AUDIT_SUSPEND" url="" />
+					<perm name="审核通过" key="IF_GROUP_ORDER_AUDIT_PASS" url="" />
+					<perm name="挂起" key="IF_GROUP_ORDER_AUDIT_LOCK" url="" />
+					<perm name="解挂" key="IF_GROUP_ORDER_AUDIT_UNLOCK" url="" />
+				</button>
+				<button name="导出" key="IF_GROUP_ORDER_AUDIT_EXPORT" url="" />
+			</module>
+			<module name="出票管理" key="IF_ORDER_ISSUE" url="/order/flight/international/searchProcessIssueOrder">
+				<button name="优先处理" key="IF_ORDER_ISSUE_PRIORHANDLE" url="/order/flight/international/npIssueOrder/highestPriority" />
+				<button name="出票" key="IF_ORDER_ISSUE_KEY1">
+					<perm name="受理" key="IF_ORDER_ISSUE_ACCEPT" url="/order/flight/international/processIssue" />
+					<perm name="取消受理" key="IF_ORDER_ISSUE_CANCELACCEPT" url="/order/flight/international/cancelProcessIssue" />
+					<!-- <perm name="PNR授权" key="IF_ORDER_ISSUE_AUTHORIZEPNR" url="" /> -->
+					<perm name="提取票号" key="IF_ORDER_ISSUE_EXTRACTNO" url="/order/flight/international/NP/extractTicketNo" />
+					<perm name="拒绝出票" key="IF_ORDER_ISSUE_REJECT" url="/order/flight/international/rejectIssuetochangeprovider" />
+					<!-- <perm name="暂不能出票" key="IF_ORDER_ISSUE_SUSPEND" url="" /> -->
+					<perm name="完成出票" key="IF_ORDER_ISSUE_FINISH" url="/order/flight/international/completeIssue" />
+					<perm name="挂起" key="IF_ORDER_ISSUE_LOCK" url="/order/flight/international/npIssueOrder/suspendOrder" />
+					<perm name="解挂" key="IF_ORDER_ISSUE_UNLOCK" url="/order/flight/international/npIssueOrder/resumeOrder" />
+				</button>
+
+				<button name="导出" key="IF_ORDER_ISSUE_EXPORT" url="" />
+			</module>
+			<module name="改签审核管理" key="IF_ORDER_CHANGING" url="/order/flight/international/searchEndorseReviewOrder">
+				<button name="导出" key="IF_ORDER_CHANGING_EXPORT" url="" />
+				<button name="优先处理" key="IF_ORDER_CHANFING_PRIORHANDLE" url="/order/flight/international/endorseReviewOrder/highestPriority" />
+				<button name="改签审核" key="IF_ORDER_CHANGING_KEY1">
+					<perm name="受理" key="IF_ORDER_CHANGING_AUDITACCEPT" url="/order/flight/international/reviewEndorse" />
+					<perm name="取消受理" key="IF_ORDER_CHANGING_AUDITCANCELACCEPT" url="/order/flight/international/cancelProcessReview" />
+					<perm name="修改" key="IF_ORDER_CHANGING_AUDITEDIT" url="/order/flight/international/modify" />
+					<perm name="保存" key="IF_ORDER_CHANGING_AUDITSAVE" url="/order/flight/international/saveReviewEndorseOrder" />
+					<perm name="退回" key="IF_ORDER_CHANGING_AUDITRETURN" url="/order/flight/international/failReview" />
+					<perm name="审核通过" key="IF_ORDER_CHANGING_AUDITPASS" url="/order/flight/international/passReview" />
+					<perm name="取消审核通过" key="IF_ORDER_CHANGING_AUDITCANCELPASS" url="/order/flight/international/cancelPassReview" />
+					<perm name="挂起" key="IF_ORDER_CHANGING_AUDITLOCK" url="/order/flight/international/endorseReviewOrder/suspendOrder" />
+					<perm name="解挂" key="IF_ORDER_CHANGING_AUDITUNLOCK" url="/order/flight/international/endorseReviewOrder/resumeOrder" />
+				</button>
+			</module>
+			<module name="改签出票管理" key="IF_ORDER_CHANGING_ISSUE" url="/order/flight/international/searchEndorseProcessOrder">
+				<button name="优先处理" key="IF_ORDER_CHANFING_ISSUE_PRIORHANDLE" url="/order/flight/international/endorseIssueOrder/highestPriority" />
+				<button name="改签处理" key="IF_ORDER_CHANGING_KEY2">
+					<perm name="受理" key="IF_ORDER_CHANGING_HANDLEACCEPT" url="/order/flight/international/processEndorse" />
+					<perm name="取消受理" key="IF_ORDER_CHANGING_HANDLECANCELACCEPT" url="/order/flight/international/cancelprocessEndorse" />
+					<perm name="修改" key="IF_ORDER_CHANGING_HANDLEEDIT" url="/order/flight/international/processModify" />
+					<perm name="提取票号" key="IF_ORDER_CHANGING_HANDLEEXTRACTNO" url="/order/flight/international/endorse/extractTicketNo" />
+					<perm name="拒绝改签" key="IF_ORDER_CHANGING_REJECT" url="/order/flight/international/returnEndorseOrder" />
+					<perm name="完成改签" key="IF_ORDER_CHANGING_FINISH" url="/order/flight/international/completeEndorse" />
+					<perm name="挂起" key="IF_ORDER_CHANGING_LOCK" url="/order/flight/international/endorseIssueOrder/suspendOrder" />
+					<perm name="解挂" key="IF_ORDER_CHANGING_UNLOCK" url="/order/flight/international/endorseIssueOrder/resumeOrder" />
+				</button>
+			</module>
+			<module name="退票管理" key="IF_ORDER_RTNTIKT" url="/order/flight/international/TP/jumpToSearchPage">
+				<!-- <button name="查询" key="IF_ORDER_RTNTIKT_QUERY" url=""/> -->
+				<button name="导出" key="IF_ORDER_RTNTIKT_EXPORT" url="" />
+				<button name="优先处理" key="IF_ORDER_RTNTIKT_PRIORHANDLE" url="/order/flight/international/tpOrder/highestPriority" />
+				<button name="取消订单" key="IF_ORDER_RTNTIKT_CANCELAPPLY" url="/order/flight/international/TP/cancelRefundOrder" />
+				<button name="退票处理" key="IF_ORDER_RTNTIKT_KEY1">
+					<perm name="受理" key="IF_ORDER_RTNTIKT_HANDLEACCEPT_AUDIT" url="/order/flight/international/TP/review/process" />
+					<perm name="取消受理" key="IF_ORDER_RTNTIKT_HANDLECANCELACCEPT_AUDIT" url="/order/flight/international/TP/review/cancelProcess" />
+					<perm name="修改" key="IF_ORDER_RTNTIKT_HANDLEEDIT_AUDIT" url="/order/flight/international/TP/review/modify" />
+					<perm name="保存" key="IF_ORDER_RTNTIKT_HANDLESAVE_AUDIT" url="/order/flight/international/TP/review/save" />
+					<perm name="退回" key="IF_ORDER_RTNTIKT_HANDLERETURN_AUDIT" url="/order/flight/international/TP/review/fail" />
+					<perm name="挂起" key="IF_ORDER_RTNTIKT_AUDITLOCK_AUDIT" url="/order/flight/international/tpOrder/suspendOrder" />
+					<perm name="解挂" key="IF_ORDER_RTNTIKT_AUDITUNLOCK_AUDIT" url="/order/flight/international/tpOrder/resumeOrder" />
+					<!-- <perm name="提交平台退票" key="IF_ORDER_RTNTIKT_HANDLESUBMITPLATFORM" url="" /> -->
+					<perm name="退票确认" key="IF_ORDER_RTNTIKT_HANDLECONFIRM_AUDIT" url="/order/flight/international/TP/review/pass" />
+					<perm name="取消退票确认" key="IF_ORDER_RTNTIKT_HANDLECANCELCONFIRM_AUDIT" url="/order/flight/international/TP/process/cancelReviewPass" />
+					<perm name="完成退票" key="IF_ORDER_RTNTIKT_HANDLEFINISHED" url="/order/flight/international/TP/process/complete" />
+				</button>
+			</module>
+			<module name="废票管理" key="IF_ORDER_TIKTINVALIDATE" url="/order/flight/international/FP/jumpToSearchPage">
+				<!-- <button name="查询" key="IF_ORDER_TIKTINVALIDATE_QUERY" url=""/> -->
+				<button name="导出" key="IF_ORDER_TIKTINVALIDATE_EXPORT" url="" />
+				<button name="取消订单" key="IF_ORDER_TIKTINVALIDATE_CANCELAPPLY" url="/order/flight/international/FP/cancelRefundOrder" />
+				<button name="废票处理" key="IF_ORDER_TIKTINVALIDATE_KEY1">
+					<perm name="受理" key="IF_ORDER_TIKTINVALIDATE_HANDLEACCEPT_AUDIT" url="/order/flight/international/FP/review/process" />
+					<perm name="取消受理" key="IF_ORDER_TIKTINVALIDATE_HANDLECANCELACCEPT_AUDIT" url="/order/flight/international/FP/review/cancelProcess" />
+					<perm name="修改" key="IF_ORDER_TIKTINVALIDATE_HANDLEEDIT_AUDIT" url="/order/flight/international/FP/review/modify" />
+					<perm name="保存" key="IF_ORDER_TIKTINVALIDATE_HANDLESAVE_AUDIT" url="/order/flight/international/FP/review/save" />
+					<perm name="退回" key="IF_ORDER_TIKTINVALIDATE_HANDLERETURN_AUDIT" url="/order/flight/international/FP/review/fail" />
+					<!-- <perm name="提交平台废票" key="IF_ORDER_TIKTINVALIDATE_HANDLESUBMIFPLATFORM" url="" /> -->
+					<perm name="废票确认" key="IF_ORDER_TIKTINVALIDATE_HANDLECONFIRM_AUDIT" url="/order/flight/international/FP/review/pass" />
+					<perm name="取消废票确认" key="IF_ORDER_TIKTINVALIDATE_HANDLECANCELCONFIRM_AUDIT" url="/order/flight/international/FP/process/cancelReviewPass" />
+					<perm name="完成废票" key="IF_ORDER_TIKTINVALIDATE_HANDLEFINISHED" url="/order/flight/international/FP/process/complete" />
+				</button>
+			</module>
+			<module name="询价单" key="DF_ORDER_TIKTIT_ENQUIRY_INTERNATIONAL" url="/order/flight/enquiry/international">
+				<button name="受理" key="DF_ORDER_TIKTIT_ENQUIRY_INTERNATIONAL_PROCESS" url="/order/flight/enquiry/international/process"/>
+			</module>
+			<module name="电商订单跟踪" key="IF_CREATE_ORDER_MESSAGE_QRY" url="/order/flight/international/createOrderMessageSearch">
+				<!--
+				<button name="受理" key="IF_CREATE_ORDER_MESSAGE_PROCESS" url="/order/flight/international/createOrderMessage/process"/>
+				<button name="处理完成" key="IF_CREATE_ORDER_MESSAGE_COMPLETE" url="/order/flight/international/createOrderMessage/complete"/>
+				<button name="导出" key="IF_CREATE_ORDER_MESSAGE_EXPORT" url="/order/flight/international/ExportCreateOrderMessageExcel"/>
+				 -->
+			</module>
+		</module>
+		<module name="政策维护" key="IF_POLICY">
+			<module name="协议管理" key="IF_POLICY_AGREEMENT" url="/pricing/internatDocument/queryInternatDocument">
+				<!-- <button name="查询" key="IF_POLICY_AGREEMENT_QUERY" url=""/> -->
+				<button name="添加" key="IF_POLICY_AGREEMENT_KEY1">
+					<perm name="添加" key="IF_POLICY_AGREEMENT_ADD" url="/pricing/internatDocument/gotoAddInternatDocument" />
+					<perm name="添加保存/修改保存" key="IF_POLICY_AGREEMENT_ADD_SAVE" url="/pricing/internatDocument/saveInternatDocument" />
+				</button>
+				<button name="修改" key="IF_POLICY_AGREEMENT_KEY2">
+					<perm name="修改" key="IF_POLICY_AGREEMENT_EDIT" url="/pricing/internatDocument/changeInternatDocument" />
+					<!--perm name="修改保存" key="IF_POLICY_AGREEMENT_MODIFY_SAVE" url=""/ -->
+				</button>
+				<button name="挂起" key="IF_POLICY_AGREEMENT_KEY3">
+					<perm name="挂起/解挂" key="IF_POLICY_AGREEMENT_LOCK" url="/pricing/internatDocument/enableInternatDocument" />
+					<!--perm name="解挂" key="IF_POLICY_AGREEMENT_UNLOCK" url=""/ -->
+				</button>
+				<button name="作废" key="IF_POLICY_AGREEMENT_REMOVE" url="/pricing/internatDocument/removeInternatDocument" />
+			</module>
+			<module name="政策查看" key="IF_POLICY_MANAGER" url="/pricing/internatTemplate/queryInternatTemplate">
+				<!-- <button name="查询" key="IF_POLICY_MANAGER_QUERY" url=""/> -->
+				<button name="修改" key="IF_POLICY_MANAGER_UPDATE" url="/pricing/internatTemplate/gotoModifyInternatTemplate" />
+				<button name="复制" key="IF_POLICY_MANAGER_COPY" url="/pricing/internatTemplate/gotoCopyInternatTemplate" />
+				<button name="导入" key="IF_POLICY_MANAGER_IMPORT" url="/pricing/xlsAction/internatTemplateXlsUpload" />
+				<button name="导出" key="IF_POLICY_MANAGER_EXPORT" url="/pricing/xlsAction/internatTemplateXlsDownload" />
+				<button name="添加" key="IF_POLICY_MANAGER_ADD" url="/pricing/internatTemplate/gotoAddInternatTemplate" />
+				<button name="发布" key="IF_POLICY_MANAGER_PUBLISH" url="/pricing/internatTemplate/publishInternatTemplate" />
+				<button name="挂起" key="IF_POLICY_MANAGER_KEY1">
+					<perm name="挂起/解挂" key="IF_POLICY_MANAGER_LOCK" url="/pricing/internatTemplate/pendingInternatTemplate" />
+					<!--perm name="解挂" key="IF_POLICY_MANAGER_UNLOCK" url=""/ -->
+				</button>
+				<button name="作废" key="IF_POLICY_MANAGER_REMOVE" url="/pricing/internatTemplate/invalidInternatTemplate" />
+				<button name="批量修改代理费" key="IF_POLICY_MANAGER_KEY2">
+					<perm name="修改代理费" key="IF_POLICY_MANAGER_BATCHUPDATE_PROXYPOINT" url="/pricing/internatTemplate/modifyAgencyFee" />
+					<perm name="修改附加费" key="IF_POLICY_MANAGER_BATCHUPDATE_ADDITIONALPOINT" url="/pricing/internatTemplate/modifySurcharge" />
+					<!--perm name="保存" key="IF_POLICY_MANAGER_BATCHUPDATE_SAVE" url="" / -->
+				</button>
+			</module>
+			<module name="标签管理" key="IF_POLICY_TAG" url="/pricing/internatTag/manageTag">
+				<!-- <button name="查询" key="IF_POLICY_TAG_QUERY" url=""/> -->
+				<button name="添加" key="IF_POLICY_TAG_ADD" url="/pricing/internatTag/addTag" />
+				<button name="修改" key="IF_POLICY_TAG_UPDATE" url="/pricing/internatTag/saveTag" />
+				<button name="复制" key="IF_POLICY_TAG_COPY" url="/pricing/internatTag/copyAndAdd" />
+				<button name="删除" key="IF_POLICY_TAG_DELETE" url="/pricing/internatTag/delete" />
+				<!--button name="关联政策" key="IF_POLICY_TAG_ASSO_POLICY" url="/pricing/internatTag/gotoSetTemplate" / -->
+			</module>
+		</module>
+		<module name="售价维护" key="IF_SALE">
+			<module name="销售规则管理" key="IF_SALE_RULE" url="/pricing/internatFlightMarket/queryInternatFlightSaleRule">
+				<!-- <button name="查询" key="IF_SALE_RULE_QUERY" url=""/> -->
+				<!-- <button name="浏览" key="IF_SALE_RULE_VIEW" url="/pricing/internatFlightMarket/previewInternatFlightSaleRule" / -->
+				<button name="添加" key="IF_SALE_RULE_ADD" url="/pricing/internatFlightMarket/gotoAddInternatFlightSaleRule" />
+				<button name="修改" key="IF_SALE_RULE_UPDATE" url="/pricing/internatFlightMarket/gotoModifyInternatFlightSaleRule" />
+				<button name="复制" key="IF_SALE_RULE_COPY" url="/pricing/internatFlightMarket/gotoCopyInternatFlightSaleRule" />
+				<button name="挂起" key="IF_SALE_RULE_PEDING" url="/pricing/internatFlightMarket/pendingInternatFlightMarket" />
+				<button name="发布" key="IF_SALE_RULE_UNPENDING" url="/pricing/internatFlightMarket/unpendingInternatFlightMarket" />
+				<!-- <button name="挂起" key="IF_SALE_RULE_KEY1"> <perm name="挂起/解挂" key="IF_SALE_RULE_LOCK" url="/pricing/internatFlightMarket/pendingInternatFlightMarket"/>
+					</button> -->
+				<button name="作废" key="IF_SALE_RULE_REMOVE" url="/pricing/internatFlightMarket/removeInternatFlightSaleRule" />
+				<button name="导入" key="IF_SALE_RULE_IMPORT" url="" />
+				<button name="导出" key="IF_SALE_RULE_EXPORT" url="" />
+				<button name="全推携程政策" key="IF_SYNC_CTRIP_POLICY" url="/pricing/internatFlightMarket/syncCtripPolicy" />
+				<button name="删除携程政策" key="IF_DEL_CTRIP_POLICY" url="/pricing/internatFlightMarket/delCtripPolicy" />
+			</module>
+			
+			<module name="销售规则管理(私有)" key="IF_PRIVATE_SALE_RULE" url="/pricing/internatPaperfareSalerule/queryInternatPaperfareSalerule">
+				<button name="查看" key="IF_PRIVATE_SALE_RULE_CHECK" url="/pricing/internatPaperfareSalerule/gotoCheckInternatPaperfareSalerule" />
+				<button name="添加" key="IF_PRIVATE_SALE_RULE_ADD" url="/pricing/internatPaperfareSalerule/gotoAddInternatPaperfareSalerule" />
+				<button name="修改" key="IF_PRIVATE_SALE_RULE_UPDATE" url="/pricing/internatPaperfareSalerule/gotoModifyInternatPaperfareSalerule" />
+				<button name="复制" key="IF_PRIVATE_SALE_RULE_COPY" url="/pricing/internatPaperfareSalerule/gotoCopyInternatPaperfareSalerule" />
+				<button name="挂起" key="IF_PRIVATE_SALE_RULE_PEDING" url="/pricing/internatPaperfareSalerule/pendingSalerule" />
+				<button name="发布" key="IF_PRIVATE_SALE_RULE_UNPEDING" url="/pricing/internatPaperfareSalerule/unpendingSalerule" />
+				<button name="作废" key="IF_PRIVATE_SALE_RULE_REMOVE" url="/pricing/internatPaperfareSalerule/deleteSalerule" />
+			</module>
+			
+			<module name="分销扣点查看" key="IF_DISTRIBUTOR_RULE" url="/pricing/internatFlightMarket/queryInternatDistributorPolicy">
+			</module>
+			<module name="销售政策查看" key="IF_SALEPOLICY_CHECK" url="/pricing/internatFlightMarket/queryInternatBasicPolicy">
+			</module>
+		</module>
+        <module name="运价维护" key="IF_PAPERFARE">
+            <module name="私有运价查看" key="IF_PAPERFARE_QUERY" url="/paperfare/internatPaperfare/queryInternatPaperfare">
+                <button name="查看" key="IF_PAPERFARE_VIEW" url="/paperfare/internatPaperfare/viewInternatPaperfare"/>
+                <button name="添加" key="IF_PAPERFARE_ADD" url="/paperfare/internatPaperfare/addInternatPaperfare"/>
+                <button name="修改" key="IF_PAPERFARE_CHG" url="/paperfare/internatPaperfare/modifyInternatPaperfare"/>
+                <button name="作废" key="IF_PAPERFARE_DEL" url="/paperfare/internatPaperfare/deleteInternatPaperfare"/>
+                <button name="挂起" key="IF_PAPERFARE_Han" url="/paperfare/internatPaperfare/hangupInternatPaperfare"/>
+            </module>
+        </module>
+        <module name="自营航司" key="IF_SELFFLIGHT">
+            <module name="航班信息" key="IF_SELFFLIGHT_FLIGHTINFO_QUERY" url="selfFlight/flightInfo/query">
+                <button name="添加" key="IF_SELFFLIGHT_FLIGHTINFO_ADD" url="selfFlight/flightInfo/add"/>
+                <button name="查看" key="IF_SELFFLIGHT_FLIGHTINFO_VIEW" url="selfFlight/flightInfo/view"/>
+                <button name="修改" key="IF_SELFFLIGHT_FLIGHTINFO_CHG" url="selfFlight/flightInfo/modify"/>
+                <button name="删除" key="IF_SELFFLIGHT_FLIGHTINFO_DEL" url="selfFlight/flightInfo/delete"/>
+            </module>
+            <module name="价格策略" key="IF_SELFFLIGHT_PRICINGPOLICY_QUERY" url="selfFlight/pricingPolicy/query">
+                <button name="添加" key="IF_SELFFLIGHT_PRICINGPOLICY_ADD" url="selfFlight/pricingPolicy/add"/>
+                <button name="查看" key="IF_SELFFLIGHT_PRICINGPOLICY_VIEW" url="selfFlight/pricingPolicy/view"/>
+                <button name="修改" key="IF_SELFFLIGHT_PRICINGPOLICY_CHG" url="selfFlight/pricingPolicy/modify"/>
+                <button name="删除" key="IF_SELFFLIGHT_PRICINGPOLICY_DEL" url="selfFlight/pricingPolicy/delete"/>
+            </module>
+        </module>
+		<module name="自动化设置" key="IF_AUTO">
+			<module name="自动审核设置" key="IF_AUTO_REVIEW" url="/order/flight/international/autoReviewRule/flightSearch">
+				<button name="新增" key="IF_AUTO_REVIEW_ADD" url="/order/flight/international/autoReviewRule/addRule"/>
+<!-- 				<button name="修改" key="IF_AUTO_REVIEW_MODIFY" url="/order/flight/international/autoReviewRule/modifyRule"/>
+				<button name="启用/禁用" key="IF_AUTO_REVIEW_LOCK" url="/order/flight/international/autoReviewRule/updateState"/>
+				<button name="删除" key="IF_AUTO_REVIEW_DELETE" url="/order/flight/international/autoReviewRule/deleteRule"/> -->
+			</module>
+			<module name="BSP自动出票规则" key="IF_BSP_AUTO_ISSU" url="/order/flight/international/autoissuticket/b2b/autoIssuRule/getBSPRules">
+			</module>
+		</module>
+		<module name="超级工具" key="IF_SUPPER" url="/order/flight/supper/international/index">
+			<button name="修改订单状态" key="IF_SUPPER_MODIFY_ORDER_STATUS" url="/order/flight/supper/international/modifyFlightOrderStatus"/>
+			<button name="修改客票" key="IF_SUPPER_MODIFY_ETICKET" url="/order/flight/supper/modifyEticket/international/getPage"/>
+			<button name="强制分润" key="IF_SUPPER_FORCE_SHARE_PROFIT" url="/order/flight/supper/international/forceShareProfit/showPage"/>
+		</module>
+		<module name="下载中心" key="IF_ASYNC_DOWNLOAD_CENTER" url="/internationalFlight/download/center"></module>
+	</module>
+	<module name="酒店" key="HOTEL">
+		<module name="查询预订" key="HOTEL_BOOKING_MENU">
+			<module name="预付查询" key="HOTEL_BOOKING" url="/hotel/operator/booking/search">
+				<button name="预订" key="HOTEL_BOOKING_ORDERVIEW" url="/order/hotel/orderView" />
+			</module>
+			<module name="现付查询" key="HOTEL_BOOKING_SELFPAY" url="/hotel/operator/selfpay/selfPaySearch">
+				<button name="预订" key="HOTEL_BOOKING_SELFPAY_ORDERVIEW" url="/order/hotel/selfpay/orderView" />
+			</module>
+			<module name="比价查询" key="HOTEL_BOOKING_PRICE_COMPARE" url="/hotel/operator/priceCompare/search">
+			</module>
+		</module>
+		<module name="订单管理" key="HOTEL_ORDER">
+			<module name="订单查询" key="HOTEL_ORDER_SEARCH" url="/order/hotel/hotelSearch">
+				<button name="订单受理" key="HOTEL_ORDER_SEARCH_KEY1">
+					<perm name="取消受理" key="HOTEL_ORDER_UNFLOW" url="/order/hotel/flowstate/unflow" />
+					<perm name="受理" key="HOTEL_ORDER_FLOW" url="/order/hotel/flowstate/flow" />
+				</button>
+				<button name="线下酒店建单" key="HOTEL_ORDER_OFFLINEORDERVIEW" url="/order/hotel/offline/orderView" />
+				<button name="创建变更单" key="HOTEL_ORDER_ENDORSE_CREATEORDER">
+					<perm name="创建变更单" key="HOTEL_ORDER_ENDORSE_ORDER_VIEW" url="/order/hotel/endorse/orderView" />
+					<perm name="创建变更单" key="HOTEL_ORDER_ENDORSE_ORDER_CREATE" url="/order/hotel/endorse/createOrder" />
+				</button>
+				<button name="创建退订单" key="HOTEL_ORDER_REFUND_CREATEOORDER">
+					<perm name="创建退订单" key="HOTEL_ORDER_REFUND_ORDER_VIEW" url="/order/hotel/refund/orderView" />
+					<perm name="创建退订单" key="HOTEL_ORDER_REFUND_ORDER_CREATE" url="/order/hotel/refund/createOrder" />
+				</button>
+				<button name="确认成本" key="HOTEL_ORDER_COMMON_CONFIRMCOST" url="/order/hotel/confirmCost" />
+				<button name="修改价格" key="HOTEL_ORDER_COMMON_MODIFYPRICE" url="/order/hotel/modifyPrice" />
+				<button name="发送文件" key="HOTEL_ORDER_COMMON_FILESENDER" url="/order/hotel/fileSender" />
+				<button name="修改结算提醒" key="HOTEL_ORDER_COMMON_MODIFYSETTLEPERIOD" url="/order/hotel/settlePeriod" />
+				<button name="导出Excel" key="HOTEL_ORDER_COMMON_EXPORTEXCEL" url="/order/hotel/export"></button>
+				<button name="强制取消受理" key="HOTEL_ORDER_COMMON_FORCE_UNFLOW" url=""></button>
+				<button name="订单授信" key="HOTEL_ORDER_CREDIT"></button>
+				<button name="未完成订单" key="HOTEL_UNFINISHED_ORDER" url="/order/hotel/unfinishedOrderList"></button>
+				<button name="未受理订单" key="HOTEL_UNACCEPTED_ORDER" url="/order/hotel/unacceptedOrderList"></button>
+				<button name="GTA订单查询" key="HOTEL_GTA_ORDER_SEARCH" url="/order/hotel/gta/GTAHotelOrderSearch"></button>
+			</module>
+			<module name="现付订单查询" key="SELFPAY_HOTEL_ORDER_SEARCH" url="/order/hotel/selfpay/hotelOrderSearch">
+			</module>
+			<module name="预订单" key="HOTEL_ORDER_NORMAL">
+				<button name="修改预订" key="HOTEL_ORDER_NORMAL_KEY1">
+					<perm name="修改预订" key="HOTEL_ORDER_UPDATEHOTELORDER" url="/order/hotel/updateOrder" />
+					<perm name="修改预订" key="HOTEL_ORDER_OFFLINE_UPDATEHOTELORDER" url="/order/hotel/offline/updateOrder" />
+				</button>
+				<button name="取消预订" key="HOTEL_ORDER_NORMAL_KEY2">
+					<perm name="取消预订" key="HOTEL_ORDER_CANCELORDER" url="/order/hotel/cancelOrder" />
+					<perm name="取消预订" key="HOTEL_ORDER_OFFLINE_CANCELORDER" url="/order/hotel/offline/cancelOrder" />
+				</button>
+				<button name="确认预订" key="HOTEL_ORDER_NORMAL_KEY3">
+					<perm name="确认预订" key="HOTEL_ORDER_CONFIRMORDER" url="/order/hotel/confirmOrder" />
+					<perm name="确认预订" key="HOTEL_ORDER_OFFLINE_CONFIRMORDER" url="/order/hotel/offline/confirmOrder" />
+				</button>
+			</module>
+
+			<module name="变更单" key="HOTEL_ORDER_ENDORSE">
+				<button name="修改变更" key="HOTEL_ORDER_ENDORSE_KEY1">
+					<perm name="修改变更" key="HOTEL_ORDER_ENDORSE_UPDATEHOTELORDER" url="/order/hotel/endorse/updateOrder" />
+					<perm name="修改变更" key="HOTEL_ORDER_OFFLINE_ENDORSE_UPDATEHOTELORDER" url="/order/hotel/offline/endorse/updateOrder" />
+				</button>
+				<button name="取消变更" key="HOTEL_ORDER_ENDORSE_KEY2">
+					<perm name="取消变更" key="HOTEL_ORDER_ENDORSE_CANCELORDER" url="/order/hotel/endorse/cancelOrder" />
+					<perm name="取消变更" key="HOTEL_ORDER_OFFLINE_ENDORSE_CANCELORDER" url="/order/hotel/offline/endorse/cancelOrder" />
+				</button>
+				<button name="确认变更" key="HOTEL_ORDER_ENDORSE_KEY3">
+					<perm name="确认变更" key="HOTEL_ORDER_ENDORSE_CONFIRMORDER" url="/order/hotel/endorse/confirmOrder" />
+					<perm name="确认变更" key="HOTEL_ORDER_OFFLINE_ENDORSE_CONFIRMORDER" url="/order/hotel/offline/endorse/confirmOrder" />
+				</button>
+			</module>
+
+			<module name="退订单" key="HOTEL_ORDER_REFUND">
+				<button name="取消退订" key="HOTEL_ORDER_REFUND_KEY1">
+					<perm name="取消退订" key="HOTEL_ORDER_REFUND_CANCELORDER" url="/order/hotel/refund/cancelOrder" />
+					<perm name="取消退订" key="HOTEL_ORDER_OFFLINE_REFUND_CANCELORDER" url="/order/hotel/offline/refund/cancelOrder" />
+				</button>
+				<button name="确认退订" key="HOTEL_ORDER_REFUND_KEY2">
+					<perm name="确认退订" key="HOTEL_ORDER_REFUND_CONFIRMORDER" url="/order/hotel/refund/confirmOrder" />
+					<perm name="确认退订" key="HOTEL_ORDER_OFFLINE_REFUND_CONFIRMORDER" url="/order/hotel/offline/refund/confirmOrder" />
+				</button>
+			</module>
+
+			<module name="调账单" key="HOTEL_ORDER_ADJUSTMENT">
+				<button name="创建调账单" key="HOTEL_ORDER_ADJUSTMENT_CREATEORDER">
+					<perm name="创建调账单" key="HOTEL_ORDER_ADJUSTMENT_ORDER_VIEW" url="/order/hotel/adjustment/orderView" />
+					<perm name="创建调账单" key="HOTEL_ORDER_ADJUSTMENT_ORDER_CREATE" url="/order/hotel/adjustment/createOrder" />
+				</button>
+				<button name="修改调账" key="HOTEL_ORDER_ADJUSTMENT_UPDATEHOTELORDER" url="/order/hotel/adjustment/updateOrder" />
+				<button name="取消调账" key="HOTEL_ORDER_ADJUSTMENT_CANCELORDER" url="/order/hotel/adjustment/cancelOrder" />
+				<button name="确认调账" key="HOTEL_ORDER_ADJUSTMENT_CONFIRMORDER" url="/order/hotel/adjustment/confirmOrder" />
+			</module>
+		</module>
+		<module name="酒店维护" key="HOTEL_MAINTAIN" url="/hotel/operator/maintain/search">
+			<module name="酒店维护" key="HOTEL_MAINTAIN_SEARCH">
+				<button name="添加酒店" key="HOTEL_MAINTAIN_SEARCH_ADD" url="/hotel/operator/add/gotoAdd" />
+				<button name="通过驳回" key="HOTEL_MAINTAIN_SEARCH_KEY1">
+					<perm name="通过" key="HOTEL_MAINTAIN_AUDIT_ACCEPT" url="/hotel/operator/audit/accept" />
+					<perm name="驳回" key="HOTEL_MAINTAIN_AUDIT_REJECT" url="/hotel/operator/audit/reject" />
+				</button>
+				<button name="提交审核" key="HOTEL_MAINTAIN_AUDIT_SUBMIT" url="/hotel/operator/audit/submit" />
+				<button name="酒店解挂" key="HOTEL_MAINTAIN_SEARCH_UNPENDING" url="/hotel/operator/add/hotelHangUp" />
+			</module>
+			<module name="酒店信息" key="HOTEL_MAINTAIN_ADD" url="/hotel/operator/add">
+				<button name="编辑签约信息" key="HOTEL_MAINTAIN_ADD_EDITSIGNINFO" url="/hotel/operator/add/editSignInfo" />
+				<button name="编辑酒店信息" key="HOTEL_MAINTAIN_ADD_KEY1">
+					<perm name="基本信息" key="HOTEL_MAINTAIN_ADD_BASEINFO" url="/hotel/operator/add/baseInfo" />
+					<perm name="酒店照片" key="HOTEL_MAINTAIN_ADD_PHOTO" url="/hotel/operator/add/photo" />
+					<perm name="酒店规定" key="HOTEL_MAINTAIN_ADD_TERM" url="/hotel/operator/add/term" />
+					<perm name="服务费用" key="HOTEL_MAINTAIN_ADD_SERVICE" url="/hotel/operator/add/service" />
+					<perm name="服务设施" key="HOTEL_MAINTAIN_ADD_FACILITY" url="/hotel/operator/add/facility" />
+					<perm name="备注" key="HOTEL_MAINTAIN_ADD_REMARK" url="/hotel/operator/add/remark" />
+				</button>
+			</module>
+			<module name="供应商信息" key="HOTEL_MAINTAIN_CONTRACT" url="/hotel/operator/contract/getContract">
+				<button name="编辑供应商信息" key="HOTEL_MAINTAIN_CONTRACT_KEY1">
+					<perm name="合同信息" key="HOTEL_MAINTAIN_CONTRACT_MODIFYCONTRACT" url="/hotel/operator/contract/modifyContract" />
+					<perm name="编辑联系人" key="HOTEL_MAINTAIN_ADD_ADDSUPPLIERCONTRACT" url="/hotel/operator/contract/addSupplierContact" />
+					<perm name="删除联系人" key="HOTEL_MAINTAIN_ADD_DELETESUPPLIERCONTRACT" url="/hotel/operator/contract/deleteSupplierContact" />
+				</button>
+			</module>
+			<module name="酒店房型" key="HOTEL_MAINTAIN_ROOMCAT" url="/hotel/operator/roomCat/getRoomCat">
+				<button name="修改排序" key="HOTEL_MAINTAIN_ROOMCAT_MODIFYROOMCATORDER" url="/hotel/operator/roomCat/modifyRoomCatOrder" />
+				<button name="添加" key="HOTEL_MAINTAIN_ROOMCAT_ADDROOMCAT" url="/hotel/operator/roomCat/addRoomCat" />
+				<button name="编辑" key="HOTEL_MAINTAIN_ROOMCAT_MODIFYROOMCAT" url="/hotel/operator/roomCat/modifyRoomCat" />
+				<button name="删除" key="HOTEL_MAINTAIN_ROOMCAT_DELETEROOMCAT" url="/hotel/operator/roomCat/deleteRoomCat" />
+			</module>
+			<module name="价格计划" key="HOTEL_MAINTAIN_BOOKINGCLASS" url="/hotel/operator/bookingClass/list">
+				<button name="浏览" key="HOTEL_MAINTAIN_BOOKINGCLASS_GOTORATEDETAIL" url="/hotel/operator/bookingClass/gotoRateDetail" />
+				<button name="编辑" key="HOTEL_MAINTAIN_BOOKINGCLASS_KEY1">
+					<perm name="编辑" key="HOTEL_MAINTAIN_BOOKINGCLASS_EDIT" url="/hotel/operator/bookingClass/edit" />
+					<perm name="复制粘贴" key="HOTEL_MAINTAIN_BOOKINGCLASS_PASTE" url="/hotel/operator/roomCat/paste" />
+				</button>
+				<button name="删除" key="HOTEL_MAINTAIN_BOOKINGCLASS_DELETEBOOKINGCLASS" url="/hotel/operator/roomCat/deleteBookingClass" />
+			</module>
+			<module name="库存与房态" key="HOTEL_MAINTAIN_ROOMALLOT" url="/hotel/operator/roomAllot/gotoRoomAllot">
+				<button name="编辑合同库存" key="HOTEL_MAINTAIN_ROOMALLOT_ADDALLOT" url="/hotel/operator/roomAllot/addAllot" />
+				<button name="修改每日库存" key="HOTEL_MAINTAIN_ROOMALLOT_EDITDAILYALLOT" url="/hotel/operator/roomAllot/editDailyAllot" />
+				<button name="修改时段库存" key="HOTEL_MAINTAIN_ROOMALLOT_BATCHEDIT" url="/hotel/operator/roomAllot/batchEdit" />
+			</module>
+			<module name="每日价格" key="HOTEL_MAINTAIN_DAILYRATE" url="/hotel/operator/roomDailyRate/getRoomDaliyRate">
+				<button name="修改每日价格" key="HOTEL_MAINTAIN_DAILYRATE_MODIFYDAILYRATE" url="/hotel/operator/roomDailyRate/modifyDaliyRate" />
+				<button name="修改时段价格" key="HOTEL_MAINTAIN_MODIFYRATEPLAN" url="/hotel/operator/roomDailyRate/modifyRatePlan" />
+			</module>
+		</module>
+		<module name="售价维护" key="HOTEL_SALEPOLICY" url="/hotel/operator/salesPolicy/search/goSearch">
+			<button name="添加售价规则" key="HOTEL_SALEPOLICY_GOTOADD" url="/hotel/operator/salesPolicy/gotoAdd" />
+			<button name="修改" key="HOTEL_SALEPOLICY_GOTOUPDATE" url="/hotel/operator/salesPolicy/gotoUpdate" />
+			<button name="复制" key="HOTEL_SALEPOLICY_GOTOUPDATECOPY" url="/hotel/operator/salesPolicy/gotoUpdateCopy" />
+			<button name="挂起" key="HOTEL_SALEPOLICY_KEY1">
+				<perm name="挂起" key="HOTEL_SALEPOLICY_UPDATESTATUS" url="/hotel/operator/salesPolicy/status/updateStatus" />
+				<perm name="解挂" key="HOTEL_SALEPOLICY_UNPENDING" url="/hotel/operator/salesPolicy/status/unPending" />
+			</button>
+			<button name="作废" key="HOTEL_SALEPOLICY_INVALID" url="/hotel/operator/salesPolicy/status/invalid" />
+		</module>
+		<module name="酒店报表" key="HOTEL_REPORT" url="/hotel/operator/report/search">
+		</module>
+		<module name="产品维护" key="HOTEL_PRODUCT_MAINTAIN">
+			<module name="GTA维护" key="HOTEL_GTA_MAINTAIN" url="/hotel/operator/product/gta/gotoSetting">
+				<button name="汇率维护修改" key="HOTEL_CURRENCY_MAINTAIN_UPDATE" url=""/>
+			</module>
+			<module name="艺龙维护" key="HOTEL_ELONG_MAINTAIN" url="/hotel/operator/product/elong/brokerageDetail">
+				<button name="现付酒店返佣修改" key="HOTEL_SPOTPAYMENT_RETURNCOMMISSION_UPDATE" url="" />
+			</module>
+			<module name="直连维护" key="HOTEL_ICE_MAINTAIN" url="/hotel/operator/product/ice/supplier/search">
+			     <button name="直连供应商添加" key="HOTEL_ICE_ADD" url="/hotel/operator/product/ice/add" />
+			</module>
+			<module name="酒店基础数据" key="SETTING_BD_HOTEL" url="/systemManage/hotelManagePage">
+				<module name="服务费用" key="SETTING_BD_HOTEL_SERVICEFEE" url="/addedService/searchHotel"></module>
+				<module name="服务设施" key="SETTING_BD_HOTEL_SERVICEEQUIPMENT" url="/facility/search"></module>
+				<module name="房间设施" key="SETTING_BD_HOTEL_ROOMEQUIPMENT" url="/amenity/search"></module>
+				<module name="酒店类型" key="SETTING_BD_HOTEL_ROOMTYPE" url="/category/search"></module>
+				<module name="连锁品牌" key="SETTING_BD_HOTEL_CHAINBRAND" url="/chainBrand/search"></module>
+				<module name="大区或城市" key="SETTING_BD_HOTEL_CITY" url="/address/search">
+					<button name="城市添加/修改" key="SETTING_BD_HOTEL_CITY_ADD" url="/address/showCity"></button>
+					<button name="行政区添加或修改" key="SETTING_BD_HOTEL_DISTRICT_ADD" url="/address/showDistrict"></button>
+					<button name="商业区添加或修改" key="SETTING_BD_HOTEL_COMMERCIAL_ADD" url="/address/showCommercial"></button>
+				</module>
+				<module name="线下酒店信息" key="SETTING_BD_HOTEL_OFFLINECITY" url="/offlineHotel/search">
+					<button name="新增或编辑" key="SETTING_BD_HOTEL_OFFLINECITY_ADD" url="/offlineHotel/get"></button>
+					<button name="审核" key="SETTING_BD_HOTEL_OFFLINECITY_AUDIT" url="/offlineHotel/review"></button>
+					<button name="删除" key="SETTING_BD_HOTEL_OFFLINECITY_DELETE" url="/offlineHotel/delete"></button>
+				</module>
+				<module name="线下供应商信息" key="SETTING_BD_HOTEL_OFFLINEPROVIDER" url="/offlineSupplier/search">
+					<button name="新增或编辑" key="SETTING_BD_HOTEL_OFFLINEPROVIDER_ADD" url="/offlineSupplier/show"></button>
+					<button name="审核" key="SETTING_BD_HOTEL_OFFLINEPROVIDER_AUDIT" url="/offlineSupplier/review"></button>
+					<button name="删除" key="SETTING_BD_HOTEL_OFFLINEPROVIDER_DELETE" url="/offlineSupplier/delete"></button>
+				</module>
+			</module>
+		</module>
+	</module>
+
+	<module name="自由行" key="FIT">
+		<module name="产品维护" key="FIT_PRODUCT_LIST" url="/fit/product/offline/list">
+			<button name="添加机加酒" key="FIT_PRODUCT_FREELINE_ADD" url="/fit/product/offline/basicInfo/add/freeLine" />
+			<button name="添加周边游" key="FIT_PRODUCT_RIMLINE_ADD" url="/fit/product/offline/basicInfo/add/rimLine" />
+			<button name="编辑" key="FIT_PRODUCT_LIST_EDIT" url="/fit/product/offline/basicInfo/edit/" />
+			<button name="下线" key="FIT_PRODUCT_LIST_OFFLINE" url="/fit/product/offline/downline/" />
+			<button name="上线" key="FIT_PRODUCT_LIST_ONLINE" url="/fit/product/offline/online/" />
+			<button name="发布" key="FIT_PRODUCT_LIST_RELEASE" url="/fit/product/offline/release/" />
+			<button name="删除" key="FIT_PRODUCT_LIST_DELETE" url="/fit/product/offline/delete/" />
+		</module>
+		<module name="资源管理" key="FIT_PRODUCT_RESOURCES_LIST" url="/fit/offline/resources/hotel/list"></module>
+		<module name="订单管理" key="FIT_ORDER_LIST" url="/fit/order/offline/list">
+			<button name="受理" key="FIT_ORDER_LIST_ACCEPTORDER" url="/fit/offline/order/detail/accept/" />
+			<button name="强制受理" key="FIT_ORDER_LIST_FORACCEPTORDER" url="/fit/offline/order/detail/forceAccept/" />
+		</module>
+		<module name="门票订单管理" key="FIT_TICKETORDER_LIST" url="/fit/offline/ticketOrder/list"></module>
+
+	</module>
+
+	<module name="旅游" key="TRAVEL">
+		<module name="查询预定" key="TRAVEL_QUERY_RESERVATION" url="/journey/operator/queryreservation/main">
+			<button name="线路查询及报名" key="TQR_SIGIN_UP" url="" />
+			<button name="完全数据权限" key="TQR_ADMIN_DATA_ACCESS" url="" />
+		</module>
+		<module name="报名信息" key="TRAVEL_REGISTRATION_INFORMATION" url="/journey/operator/register/main">
+			<button name="查看自己报名信息" key="TRI_SELF_CURRENT_GROUP_VISITORS_LIST" url="" />
+			<button name="查看代理报名信息" key="TRI_AGENCY_CURRENT_GROUP_VISITORS_LIST" url="" />
+			<button name="查看全部报名信息" key="TRI_ALL_GROUP_VISITORS_LIST" url="" />
+			<button name="查看团名单，导出" key="TRI_OUTPUT_VISITORS_LIST" url="" />
+			<button name="修改报名信息" key="TRI_EDIT_VISITOR_INFO" url="" />
+			<button name="取消报名" key="TRI_CANCLE_SIGIN_UP" url="" />
+			<button name="完全数据权限" key="TRI_ADMIN_DATA_ACCESS" url="" />
+		</module>
+		<module name="线路维护" key="TRAVEL_ROUTE_MAINTAINING" url="/journey/operator/travelroute/main">
+			<button name="新增线路" key="TRM_ADD_TRAVEL_ROUT" url="" />
+			<button name="线路编辑" key="TRM_EDIT_TRAVEL_ROUT" url="" />
+			<button name="线路复制新建" key="TRM_COPY_AND_CREATE_TRAVEL_ROUT" url="" />
+			<button name="完全数据权限" key="TRM_ADMIN_DATA_ACCESS" url="" />
+		</module>
+	</module>
+
+	<module name="旅游" key="JN">
+		<module name="查询预订" key="JN_ORDER_INQUIRY" url="/journey/inquiry/main">
+			<button name="查询" key="JN_ORDER_INQUERY_SEARCH" url="/journey/inquiry/inquiry" />
+			<button name="预订" key="JN_ORDER_INQUERY_CREATE" url="/journey/order/gotoCreate" />
+		</module>
+		<module name="订单管理" key="JN_ORDER_MANAGER" url="/journey/order/main">
+			<button name="查询" key="JN_ORDER_SEARCH" url="/journey/order/queryOrder" />
+			<button name="订单授信" key="JN_ORDER_CREDIT" />
+			<button name="受理" key="JN_ORDER_ACCEPT" url="/journey/order/accept" />
+			<button name="退团审核通过" key="JN_ORDER_SIGNBACK_PASS" url="/journey/order/signBackAuditPass" />
+			<button name="退团退回" key="JN_ORDER_SIGNBACK_REJECT" url="/journey/order/signBackAuditReject" />
+			<button name="退款审核通过" key="JN_ORDER_REFUND_PASS" url="/journey/orderPay/refundAuditPass" />
+			<button name="退款退回" key="JN_ORDER_REFUND_REJECT" url="/journey/orderPay/refundAuditReject" />
+			<button name="支付" key="JN_ORDER_PAY" url="/journey/order/pay" />
+		</module>
+		<module name="报名信息" key="JN_SIGN_UP" url="/journey/signUp/main">
+			<button name="查询" key="JN_SIGN_UP_SEARCH" url="/journey/signUp/query" />
+			<button name="查看" key="JN_VIEW_VISITOR_LIST" url="/journey/signUp/visitors" />
+			<button name="团名单" key="JN_GROUP_EXPORT" url="/journey/operator/travelgroup/tourVisitorList" />
+			<button name="部分报名查看（销售）" key="JN_SL_SIGNUP_LIST" url="" />
+			<button name="部分报名查看（客服）" key="JN_CS_SIGNUP_LIST" url="" />
+			<button name="全部报名查看" key="JN_ALL_SIGNUP_LIST" url="" />
+
+			<button name="游客列表部分（销售）" key="JN_SL_VISITOR_LIST" url="" />
+			<button name="游客列表部分（客服）" key="JN_CS_VISITOR_LIST" url="" />
+			<button name="游客列表全部" key="JN_ALL_VISITOR_LIST" url="" />
+		</module>
+		<module name="线路维护" key="JN_TRAVEL_ROUTE" url="/journey/operator/travelroute/mainPage">
+			<button name="查询" key="JN_TRAVEL_ROUTE_SEARCH" url="/journey/operator/travelroute/queryTravelRoute" />
+			<button name="编辑" key="JN_TRAVEL_ROUTE_EDIT" url="/journey/operator/travelroute/openEditPage"/>
+			<button name="复制新建" key="JN_TRAVEL_ROUTE_COPYANDCREATE" url="/journey/operator/travelroute/openCopyAndCreatePage" />
+			<button name="删除" key="JN_TRAVEL_ROUTE_DELETE" url="/journey/operator/travelroute/delRoute" />
+			<button name="新增产品线路" key="JN_TRAVEL_ROUTE_GOTOCREATE" url="/journey/operator/travelroute/openAddPage" />
+		</module>
+		<!-- <module name="线路维护(新)" key="JN_TRAVEL_ROUTE_NEW" url="/journey/operator/travelrouteNew/mainPage">
+			<button name="查询" key="JN_TRAVEL_ROUTE_SEARCH_NEW" url="/journey/operator/travelrouteNew/queryTravelRoute" />
+			<button name="编辑" key="JN_TRAVEL_ROUTE_EDIT_NEW" url="/journey/operator/travelrouteNew/openEditPage"/>
+			<button name="复制新建" key="JN_TRAVEL_ROUTE_COPYANDCREATE_NEW" url="/journey/operator/travelrouteNew/openCopyAndCreatePage" />
+			<button name="删除" key="JN_TRAVEL_ROUTE_DELETE_NEW" url="/journey/operator/travelrouteNew/delRoute" />
+			<button name="新增产品线路" key="JN_TRAVEL_ROUTE_GOTOCREATE_NEW" url="/journey/operator/travelrouteNew/openAddPage" />
+		</module> -->
+		<module name="售价维护" key="JN_SALEPRICE" url="/journey/salePrice/main">
+			<button name="查询" key="JN_SALEPRICE_SEARCH" url="/journey/salePrice/querySalePrice" />
+			<button name="新增售价" key="JN_SALEPRICE_CREATE" url="/journey/salePrice/gotoAddSalePrice" />
+			<button name="修改" key="JN_SALEPRICE_MODIFY" url="/journey/salePrice/gotoModifySalePrice" />
+			<button name="删除" key="JN_SALEPRICE_DELETE" url="/journey/salePrice/deleteOne" />
+		</module>
+
+		<!-- 以下权限是最新版的旅游 -->
+		<module name="订单查询" key="JN_THIRD_ORDER_INQUIRY" url="/jn/op/order/main">
+			<button name="订单处理" key="JN_THIRD_OPERATOR_ORDER" url="/jn/third/operator/order" />
+		</module>
+		<module name="团管理" key="JN_THIRD_GROUP_INQUIRY" url="/jn/op/group/main">
+			<button name="团详情导出" key="JN_THIRD_GROUP_DETAIL_EXPORT" url="/jn/third/group/detail/export" />
+			<button name="下载和发送通知书" key="JN_THIRD_GROUP_NOTICEBOOK_OPERATOR" url="/jn/third/group/noticebook/operator" />
+			<button name="团售卖管理" key="JN_THIRD_GROUP_SALE_OPERATOR" url="/jn/third/group/sale/operator" />
+		</module>
+		<module name="线路管理" key="JN_THIRD_ROUTE_INQUIRY" url="/jn/op/route/auditProcessing">
+			<button name="审核线路" key="JN_THIRD_AUDIT_ROUTE" url="/jn/third/audit/route" />
+			<button name="线路售卖管理" key="JN_THIRD_ROUTE_SALE_OPERATOR" url="/jn/third/route/sale/operator" />
+			<button name="线路编辑" key="JN_THIRD_ROUTE_EDIT" url="/jn/third/route/edit" />
+		</module>
+	</module>
+	<module name="邮轮" key="CRUISE">
+		<module name="基础模块维护" key="CRUISE_BASEDATA_MANAGE" url="/basedata/main">
+		    <module name="邮轮公司" key="CRUISE_COMPANY" url="/basedata/cruiseCompany/list">
+		        <button name="详情" key="CRUISE_COMPANY_DETAIL" url="/basedata/cruiseCompany/show"/>
+		        <button name="编辑/新增" key="CRUISE_COMPANY_ADD_EDIT">
+		           	<perm name="新增/编辑" key="CRUISE_COMPANY_ADD" url="/basedata/cruiseCompany/edit" />
+		            <perm name="保存" key="CRUISE_COMPANY_SAVE" url="/basedata/cruiseCompany/save" />
+		        </button>
+		    </module>
+		    <module name="邮轮船只" key="CRUISE_SHIP" url="/basedata/ship/list">
+		        <button name="编辑/新增" key="CRUISE_SHIP_ADD_EDIT">
+		            <perm name="基本信息新增" key="CRUISE_SHIP_ADD" url="/basedata/ship/add"/>
+		            <perm name="基本信息编辑" key="CRUISE_SHIP_EDIT" url="/basedata/ship/editInfo" />
+		            <perm name="基本信息保存" key="CRUISE_SHIP_SAVE" url="/basedata/ship/saveInfo" />
+		            <perm name="甲板新增" key="CRUISE_DECK_ADD" url="/basedata/ship/saveDeck"/>
+		            <perm name="甲板编辑" key="CRUISE_DECK_EDIT" url="/basedata/ship/deckItem"/>
+		            <perm name="餐娱新增" key="CRUISE_CATER_ADD" url="/basedata/ship/saveCatering"/>
+		            <perm name="餐娱编辑" key="CRUISE_CATER_EDIT" url="/basedata/ship/cateringItem"/>
+		        </button>
+		        <button name="房型新增" key="CRUISE_CABIN_ADD" url="/basedata/ship/saveCabin"/>
+		        <button name="房型编辑" key="CRUISE_CABIN_EDIT" url="/basedata/ship/cabinItem"/>
+		        <button name="上传房间Excel" key="CRUISE_DOORPLATE_UPLOAD" url="/basedata/ship/uploadDoorplateExcel"/>
+		    </module>
+		    <module name="地区" key="CRUISE_REGION" url="/basedata/cruiseRegion/toListRegion">
+		        <button name="详情" key="CRUISE_REGION_DETAIL" url="/basedata/cruiseRegion/regionDetail"/>
+		        <button name="编辑/新增" key="CRUISE_REGION_ADD_EDIT">
+		            <perm name="新增" key="CRUISE_REGION_ADD" url="/basedata/cruiseRegion/addRegion"/>
+		            <perm name="编辑" key="CRUISE_REGION_EDIT" url="/basedata/cruiseRegion/editRegion"/>
+		            <perm name="保存" key="CRUISE_REGION_SAVE" url="/basedata/cruiseRegion/saveRegion"/>
+		        </button>
+		    </module>
+		    <module name="港口" key="CRUISE_PORT" url="/basedata/cruisePort/list">
+		        <button name="详情" key="CRUISE_POERT_DETAIL" url="/basedata/cruisePort/show"/>
+		        <button name="编辑/新增" key="CRUISE_PORT_ADD_EDIT">
+		            <perm name="新增/编辑" key="CRUISE_PORT_ADD" url="/basedata/cruisePort/edit"/>
+		            <perm name="保存" key="CRUISE_PORT_SAVE" url="/basedata/cruisePort/save"/>
+		        </button>
+		    </module>
+		    <module name="规则" key="CRUISE_RULE" url="/basedata/cruiseRule/toListRule">
+		        <button name="详情" key="CRUISE_RULE_DETAIL" url="/basedata/cruiseRule/ruleDetail"/>
+		        <button name="编辑/新增" key="CRUISE_RULE_ADD_EDIT">
+		            <perm name="新增" key="CRUISE_RULE_ADD" url="/basedata/cruiseRule/saveRule"/>
+		            <perm name="编辑" key="CRUISE_RULE_EDIT" url="/basedata/cruiseRule/editRule"/>
+		            <perm name="更新" key="CRUISE_RULE_UPDATE" url="/basedata/cruiseRule/updateRule"/>
+		        </button>
+		    </module>
+		    <module name="签证" key="CRUISE_VISA" url="/basedata/cruiseVisa/toListVisa">
+		        <button name="详情" key="CRUISE_VISA_DETAIL" url="/basedata/cruiseVisa/visaDetail"/>
+		        <button name="编辑/新增" key="CRUISE_VISA_ADD_EDIT">
+		            <perm name="新增" key="CRUISE_VISA_ADD" url="/basedata/cruiseVisa/addVisa "/>
+		            <perm name="保存" key="CRUISE_VISA_SAVE" url="/basedata/cruiseVisa/saveVisa"/>
+		            <perm name="编辑" key="CRUISE_VISA_EDIT" url="/basedata/cruiseVisa/editVisa"/>
+		            <perm name="更新" key="CRUISE_VISA_UPDATE" url="/basedata/cruiseVisa/updateVisa"/>
+		        </button>
+		    </module>
+		    <module name="标签" key="CRUISE_TAG" URL="/basedata/cruiseTag/list">
+		        <button name="删除/新增" key="CRUISE_TAG_ADD_EDIT">
+		            <perm name="添加" key="CRUISE_TAG_ADD" url="/basedata/cruiseTag/save" />
+		            <perm name="删除" key="CRUISE_TAG_DEL" url="/basedata/cruiseTag/del"/>
+		        </button>
+		    </module>
+		</module>
+
+		<module name="航线审核" key="CRUISE_LINE_MANAGER" url="/lineManager/cruiseLine/listAll">
+		     <button name="待审核" key="CRUISE_LINE_MANAGER_UNCHECK_LIST" url="/lineManager/cruiseLine/listUnCheck"/>
+		     <button name="受理" key="CRUISE_LINE_MANAGER_CHECK">
+		         <perm name="基本信息受理" key="CRUISE_LINE_MANAGER_CHECK_INFO" url="/lineManager/cruiseLine/checkInfo"/>
+		         <perm name="行程安排受理" key="CRUISE_LINE_MANAGER_CHECK_PLAN" url="/lineManager/cruiseLine/checkPlan"/>
+		         <perm name="信息描述受理" key="CRUISE_LINE_MANAGER_CHECK_DESC" url="/lineManager/cruiseLine/checkDesc"/>
+		         <perm name="团期报价受理" key="CRUISE_LINE_MANAGER_CHECK_GROUP" url="/groupManager/cruiseGroup/tolistPrice"/>
+		         <perm name="审核结果" key="CRUISE_LINE_MANAGER_CHECK_RESULT" url="/lineManager/cruiseLine/checkCruiseLine"/>
+		         <perm name="航线基本信息更新" key="CRUISE_LINE_MANAGER_CHECK_INFO_UPDATE" url="/lineManager/cruiseLine/updateBaseInfo"/>
+		         <perm name="航线描述信息更新" key="CRUISE_LINE_MANAGER_CHECK_DESC_UPDATE" url="/lineManager/cruiseLine/updateBaseDesc"/>
+		         <perm name="团详情" key="CRUISE_LINE_MANAGER_CHECK_GROUP_DETAIL" url="/groupManager/cruiseGroup/groupDetail"/>
+		         <perm name="售价维护" key="CRUISE_LINE_MANAGER_CHECK_GROUP_PRICE" url="/groupManager/cruiseGroup/createOrUpdatePrice"/>
+		     </button>
+		     <button name="日志" key="CRUISE_LINE_MANAGER_OP_LOG" url="/lineManager/cruiseLine/queryOperLog"/>
+		     <button name="查看退回原因" key="CRUISE_LINE_MANAGER_REJECT_REASON" url="/lineManager/cruiseLine/queryRejectMessage"/>
+	    </module>
+        <module name="航线售卖管理" key="CRUISE_LINE_MARKET_MANAGER" url="/lineMarketingManager/listAll">
+         	<button name="上线/下线" key="CRUISE_LINE_MARKET_MANAGER_ON_OFF" url="/lineMarketingManager/operUpdateSellStatus"/>
+         	<button name="编辑" key="CRUISE_LINE_MARKET_MANAGER_EDIT">
+         	    <perm name="基本信息" key="CRUISE_LINE_MARKET_MANAGER_EDIT_INFO" url="/lineMarketingManager/checkInfo"/>
+         	    <perm name="行程安排" key="CRUISE_LINE_MARKET_MANAGER_EDIT_PLAN" url="/lineMarketingManager/checkPlan"/>
+         	    <perm name="描述信息" key="CRUISE_LINE_MARKET_MANAGER_EDIT_DESC" url="/lineMarketingManager/checkDesc"/>
+         	    <perm name="团期报价" key="CRUISE_LINE_MARKET_MANAGER_EDIT_GROUP" url="/groupManager/cruiseGroup/tolistSellPrice"/>
+         	    <perm name="团期报价详情" key="CRUISE_LINE_MARKET_MANAGER_EDIT_GROUP_DETAIL" url="/groupManager/cruiseGroup/groupSellDetail"/>
+         	    <perm name="售价维护" key="CRUISE_LINE_MARKET_MANAGER_EDIT_PRICE" url="/groupManager/cruiseGroup/updatePrice"/>
+         	    <perm name="基本信息更新" key="CRUISE_LINE_MARKET_MANAGER_EDIT_INFO_UPDATE" url="/lineMarketingManager/updateBaseInfo"/>
+         	    <perm name="描述更新" key="CRUISE_LINE_MARKET_MANAGER_EDIT_DESC_UPDATE" url="/lineMarketingManager/updateBaseDesc"></perm>
+         	</button>
+        </module>
+		<module name="团管理" key="CRUISE_GROUP_MANAGER" url="/groupManager/cruiseGroup/toGroupList">
+			<button name="停售/开售" key="CRUISE_GROUP_MANAGER_ON_OFF" url="/groupManager/cruiseGroup/updateStates"/>
+			<button name="下载出团通知" key="CRUISE_GROUP_MANAGER_GROUP_DOWNLOAD">
+				<perm name="列表下载出团通知" key="CRUISE_GROUP_LIST_MANAGER_GROUP_DOWNLOAD" url="/groupManager/cruiseGroup/downloadNotice"></perm>
+				<perm name="下载出团通知" key="CRUISE_GROUP_MANAGER_GROUP_DOWNLOAD_ORDER" url="/groupManager/cruiseGroup/downloadNoticeForOrder"></perm>
+			</button>
+           <button name="编辑/新增" key="CRUISE_SALE_RULE_EDIT_AND_ADD">
+               <perm name="新增" key="CRUISE_SALE_RULE_ADD" url="/cruiseSaleRule/addRule"/>
+               <perm name="修改" key="CRUISE_SALE_RULE_MODIFY" url="/cruiseSaleRule/modifyRule"/>
+           </button>
+		</module>
+       <module name="订单管理" key="CRUISE_ORDER_MANAGER" url="/cruiseOrder/listAll" >
+           <!-- <button name="订单详情" key="CRUISE_ORDER_MANAGER_ORDER_DETAIL" url="/cruiseOrder/orderDetail"/> -->
+           <button name="调价" key="CRUISE_ORDER_ADJUST_PRICE">
+               <perm name="调价" key="CRUISE_ORDER_ADJUST_PRICE_ACTION" url="/cruiseOrder/adjustPrice"/>
+               <perm name="列表调价" key="CRUISE_ORDER_LIST_ADJUST_PRICE_ACTION" url="/cruiseOrder/listAdjust"/>
+<!--                <perm name="调价" key="CRUISE_ORDER_ADJUST_PRICE_ACTION" url="/cruiseOrder/adjustPrice"/>
+ -->              <!--  <perm name="订单详情" key="CRUISE_ORDER_ADJUST_PRICE_ORDER_DETAIL"url="/cruiseOrder/orderDetail"/> -->
+           </button>
+           <button name="退团审核" key="CRUISE_ORDER_MANAGER_GROUP_QUIT" url="/cruiseOrder/checkQuitPeople">
+               <!-- <perm name="订单详情" key="CRUISE_ORDER_MANAGER_GROUP_ORDER" url="/cruiseOrder/orderDetail"/> -->
+              <!--  <perm name="审核退团" key="CRUISE_ORDER_MANAGER_GROUP_QUIT_CHECK" url="/cruiseOrder/checkQuitPeople"/> -->
+           </button>
+           <button name="变更审核" key="CRUISE_ORDER_ALTER_CHECK">
+               <perm name="变更审核通过" key="CRUISE_ORDER_ALTER_CHECK_PASS" url="/cruiseOrder/checkOrderAlterPass"/>
+               <perm name="变更审核拒绝" key="CRUISE_ORDER_ALTER_CHECK_REJECT" url="/cruiseOrder/checkOrderAlterReject"/>
+           </button>
+           <button name="订单详情" key="CRUISE_ORDER_DETAIL" url="/cruiseOrder/orderDetail">
+               <!-- <perm name="订单详情" key="CRUISE_ORDER_MANAGER_GROUP_ORDER" url="/cruiseOrder/orderDetail"/> -->
+              <!--  <perm name="审核退团" key="CRUISE_ORDER_MANAGER_GROUP_QUIT_CHECK" url="/cruiseOrder/checkQuitPeople"/> -->
+           </button>
+      </module>
+
+       <module name="售价规则" key="CRUISE_SALE_RULE" url="/cruiseSaleRule/listAll" >
+           <button name="挂起" key="CRUISE_SALE_RULE_DISABLE" url="/cruiseSaleRule/disable">
+           </button>
+           <button name="解挂" key="CRUISE_SALE_RULE_ENABLE" url="/cruiseSaleRule/enable">
+           </button>
+      </module>
+
+	</module>
+	<module name="阿里旅行" key="ALITRIP">
+		<module name="预约单管理" key="ALITRIP_BOOKING_ORDER_MANAGE" url="/alijn/orderList/index">
+			<button name="客服" key="ALITRIP_BOOKING_ORDER_MANAGE_CUSTOMER_SERVICE" url="" />
+			<button name="机票" key="ALITRIP_BOOKING_ORDER_MANAGE_MAIN_FLIGHT" url="" />
+			<button name="酒店" key="ALITRIP_BOOKING_ORDER_MANAGE_MAIN_HOTEL" url="" />
+			<button name="游轮" key="ALITRIP_BOOKING_ORDER_MANAGE_MAIN_CRUISE" url="" />
+			<button name="出行信息" key="ALITRIP_BOOKING_ORDER_MANAGE_TRAVEL_INFO" url="" />
+			<!-- 增值产品 -->
+			<button name="签证" key="ALITRIP_BOOKING_ORDER_MANAGE_VISA" url="" />
+			<button name="保险" key="ALITRIP_BOOKING_ORDER_MANAGE_INSURANCE" url="" />
+			<button name="增值酒店"  key="ALITRIP_BOOKING_ORDER_MANAGE_HOTEL" url="" />
+			<button name="增值游轮"  key="ALITRIP_BOOKING_ORDER_MANAGE_CRUISE" url="" />
+			<button name="其他" key="ALITRIP_BOOKING_ORDER_MANAGE_OTHERS" url="" />
+		</module>
+		<module name="产品维护" key="ALITRIP_PACKAGES_MANAGE" url="/alijn/item/index">
+		    <button name="商品同步" key="ALITRIP_PACKAGES_MANAGE_COMMODITY_SYNCHRONIZATION" url="/alijn/item/sendSyncSignal"/>
+		    <button name="套餐绑定/解绑" key="ALITRIP_PACKAGES_MANAGE_PACKAGE_BINDING_UNBUNDLING">
+               <perm name="绑定套餐" key="ALITRIP_PACKAGES_MANAGE_BINDING_PACKAGE" url="/alijn/item/bindPkg"/>
+               <perm name="解绑" key="ALITRIP_PACKAGES_MANAGE_UNBUNDLING" url="/alijn/item/unBindPkg"/>
+            </button>
+			<button name="新增套餐" key="ALITRIP_PACKAGES_MANAGE_ADD" url="/alijn/packages/add" />
+			<button name="编辑套餐" key="ALITRIP_PACKAGES_MANAGE_MODIFY" url="/alijn/packages/gotoModify" />
+			<button name="删除套餐" key="ALITRIP_PACKAGES_MANAGE_DELETE" url="/alijn/packages/delete" />
+		    <button name="关联单品" key="ALITRIP_PACKAGES_MANAGE_ASSOCIATION_PRODUCT" url="/alijn/packages/releate" />
+		    <button name="新增单品" key="ALITRIP_PACKAGES_MANAGE_ADD_PRODUCT" url="/alijn/singleitem/add" />
+		    <button name="编辑单品" key="ALITRIP_PACKAGES_MANAGE_EDIT_PRODUCT" url="/alijn/singleitem/gotoModify" />
+		    <button name="删除单品" key="ALITRIP_PACKAGES_MANAGE_DELETE_PRODUCT" url="/alijn/singleitem/delete" />
+		    <button name="库存管理" key="ALITRIP_PACKAGES_MANAGE_STOCK" url="/alijn/stock/index" />
+		</module>
+		<module name="用户管理" key="ALITRIP_USER_MANAGE" url="/alijn/user/index">
+		    <button name="添加淘宝用户" key="ALITRIP_USER_MANAGE_ADD" url="" />
+		    <button name="编辑" key="ALITRIP_USER_MANAGE_MODIFY" url="" />
+		    <button name="删除" key="ALITRIP_USER_MANAGE_DELETE" url="" />
+		</module>
+		<module name="天猫订单管理" key="ALITRIP_EXTERNAL_ORDER_MANAGE" url="/alijn/tbOrder/index">
+		   <button name="订单同步" key="ALITRIP_EXTERNAL_ORDER_MANAGE_SYNCHRONIZATION" url="/alijn/trade/sendSyncSignal" />
+		   <!--
+		   <button name="淘宝订单导入" key="ALITRIP_EXTERNAL_ORDER_MANAGE_BATCH_IMPORT" url="" />
+		   <button name="添加淘宝订单" key="ALITRIP_EXTERNAL_ORDER_MANAGE_ADD" url="" />
+		   <button name="编辑" key="ALITRIP_EXTERNAL_ORDER_MANAGE_MODIFY" url="" />
+		   -->
+		   <button name="删除" key="ALITRIP_EXTERNAL_ORDER_MANAGE_DELETE" url="" />
+		   <button name="激活" key="ALITRIP_EXTERNAL_ORDER_MANAGE_ACTIVE" url="" />
+		   <button name="撤销" key="ALITRIP_EXTERNAL_ORDER_MANAGE_CANCEL" url="" />
+		   <button name="批量激活淘码" key="ALITRIP_EXTERNAL_ORDER_MANAGE_BATCH_ACTIVE" url="" />
+		</module>
+
+	</module>
+
+	<module name="签证" key="VISA">
+		<module name="订单管理" key="VISA_ORDER" url="/visa/order/gotoSearch">
+			<button name="新建订单" key="VISA_CREATE_ORDER" url="/visa/order/gotoInquiry" />
+			<button name="查询" key="VISA_SEARCH_ORDER" url="/visa/order/search" />
+			<button name="受理" key="VISA_ACCEPT_ORDER" url="/visa/order/accept" />
+			<button name="详情" key="VISA_DETAIL_ORDER" url="/visa/order/viewDetail" />
+			<button name="签证订单搜索列表（经理）" key="VISA_ORDER_ALL_SEARCH_LIST" />
+			<button name="签证订单搜索列表（客服）" key="VISA_ORDER_SL_SEARCH_LIST" />
+			<button name="订单授信" key="VISA_ORDER_CREDIT" />
+			<button name="支付" key="VISA_PAY_ORDER" url="/visa/order/pay" />
+		</module>
+		<module name="签证管理" key="VISA_ITEM" url="/visa/item/gotoSearch">
+			<button name="查询" key="VISA_SEARCH_ITEM" url="/visa/item/search" />
+			<button name="受理" key="VISA_ACCEPT_ITEM" url="/visa/item/accept" />
+			<button name="详情" key="VISA_DETAIL_ITEM" url="/visa/item/viewDetail" />
+		</module>
+		<module name="产品管理" key="VISA_PRODUCT" url="/visa/product/gotoSearch">
+			<button name="新增产品" key="VISA_PRODUCT_CREATE" url="/visa/product/gotoCreate" />
+			<button name="修改" key="VISA_PRODUCT_MODIFY" url="/visa/product/gotoModify" />
+			<button name="删除" key="VISA_PRODUCT_DELETE" url="/visa/product/delete" />
+		</module>
+		<module name="售价维护" key="VISA_SALEPRICE" url="/visa/salePrice/gotoSearch">
+			<button name="新增售价" key="VISA_SALEPRICE_CREATE" url="/visa/salePrice/gotoCreate" />
+			<button name="修改" key="VISA_SALEPRICE_MODIFY" url="/visa/salePrice/gotoModify" />
+			<button name="删除" key="VISA_SALEPRICE_DELETE" url="/visa/salePrice/delete" />
+		</module>
+	</module>
+
+    <module name="签证(新)" key="NEW_VISA">
+		<module name="签证产品管理" key="NEW_VISA_ITEM_MANAGE">
+		    <module name="待审核" key="NEW_VISA_ITEM_MANAGE_AUDIT_PROCESSING"  url="/jvisa/operator/product/index">
+		        <button name="受理" key="NEW_VISA_ITEM_MANAGE_ACCEPT">
+			      <perm name="退回" key="NEW_VISA_ITEM_MANAGE_ACCEPT_REJECT" url="/jvisa/operator/product/auditReject"></perm>
+			      <perm name="通过并上线" key="NEW_VISA_ITEM_MANAGE_ACCEPT_PASS" url="/jvisa/operator/product/auditPass"></perm>
+			    </button>
+		    </module>
+		    <module name="签证维护" key="NEW_VISA_ITEM_MANAGE_MAINTAIN" url="/jvisa/operator/product/gotoVisaMaintain">
+				<button name="上线" key="NEW_VISA_ITEM_MANAGE_ONLINE" url="/jvisa/operator/product/visaProductOnline" />
+				<button name="下线" key="NEW_VISA_ITEM_MANAGE_OFFLINE" url="/jvisa/operator/product/visaProductOffline" />
+				<button name="编辑产品" key="NEW_VISA_ITEM_MANAGE_EDIT">
+				   <perm name="提交" key="NEW_VISA_ITEM_MANAGE_EDIT_SUBMIT" url="/jvisa/operator/product/editPoolProduct"></perm>
+				</button>
+		    </module>
+		    <module name="售价规则维护" key="NEW_VISA_ITEM_MANAGE_SALE_RULE" url="/jvisa/operator/product/gotoSaleRule">
+				<button name="添加规则" key="NEW_VISA_ITEM_RULE_ADD" url="/jvisa/operator/salepolicy/gotoAdd"/>
+				<button name="修改默认规则" key="NEW_VISA_ITEM_RULE_DEFALUT_MODIFY" url="/jvisa/operator/salepolicy/default/set"/>
+				<button name="挂起" key="NEW_VISA_ITEM_MANAGE_RULE_HANDUP" url="/jvisa/operator/salepolicy/process/handup" />
+				<button name="解挂" key="NEW_VISA_ITEM_MANAGE_RULE_RELIEVEHANDUP" url="/jvisa/operator/salepolicy/process/relieveHandUp" />
+				<button name="作废" key="NEW_VISA_ITEM_MANAGE_RULE_OBSOLETE" url="/jvisa/operator/salepolicy/process/obsolete" />
+				<button name="编辑规则" key="NEW_VISA_ITEM_MANAGE_RULE_EDIT">
+				   <perm name="保存" key="NEW_VISA_ITEM_MANAGE_RULE_EDIT_SAVE" url="/jvisa/operator/salepolicy/modifyPolicy"></perm>
+				   <perm name="取消" key="NEW_VISA_ITEM_MANAGE_RULE_EDIT_CANCEL"></perm>
+				</button>
+		    </module>
+		</module>
+		<module name="订单管理" key="NEW_VISA_ORDER_MANAGE" url="/jvisa/operator/orderlist">
+			<module name="操作" key="NEW_VISA_ORDER_OPERATION" url="/jvisa/operator/order/gotoOrderDetail">
+			   <button name="修改" key="NEW_VISA_ORDER_MODIFY">
+				   <perm name="保存" key="NEW_VISA_ORDER_MODIFY_SAVE" url="/jvisa/operator/order/modifyVisaOrder"></perm>
+				   <perm name="取消" key="NEW_VISA_ORDER_MODIFY_CANCEL"></perm>
+			   </button>
+			</module>
+		</module>
+	</module>
+
+	<module name="保险" key="INSURANCE">
+		<module name="产品管理" key="INSURANCE_PRODUCT" url="/additional/insurance/product/productSearch">
+			<button name="新增产品" key="INSURANCE_PRODUCT_CREATE" url="/additional/insurance/product/gotoAddProduct"></button>
+			<button name="修改" key="INSURANCE_PRODUCT_MODIFY" url="/additional/insurance/product/gotoModifyProduct"></button>
+			<button name="删除" key="INSURANCE_PRODUCT_REMOVE" url="/additional/insurance/product/deleteProduct"></button>
+		</module>
+		<module name="售价维护" key="INSURANCE_SALE" url="/additional/insurance/salePrice/salePriceSearch">
+			<button name="新增售价" key="INSURANCE_SALE_CREATE" url="/additional/insurance/salePrice/gotoAddSalePrice"></button>
+			<button name="修改" key="INSURANCE_SALE_MODIFY" url="/additional/insurance/salePrice/modifyView"></button>
+			<button name="挂起/解挂" key="INSURANCE_SALE_LOCK" url="/additional/insurance/salePrice/updatePublishInfo"></button>
+		</module>
+		<module name="订单管理" key="INSURANCE_ORDER">
+			<module name="订单查询" key="INSURANCE_ORDER_QUERY" url="/additional/insurance/order/orderSearch">
+				<button name="新建订单" key="INSURANCE_ORDER_QUERY_CREATE" url="/additional/insurance/order/createOrderView"></button>
+				<button name="受理" key="INSURANCE_ORDER_QUERY_ACCEPT" url="/additional/insurance/order/accept"></button>
+				<button name="追加备注" key="INSURANCE_ORDER_ADDITIONAL_REMARKS" url="/additional/insurance/order/additionalRemarks"></button>
+			</module>
+			<module name="保单查询" key="INSURANCE_ORDER_ISRORDER_QUERY" url="/additional/insurance/policy/policySearch">
+				<button name="修改信息" key="INSURANCE_ORDER_ISRORDER_QUERY_MODIFY" url="/additional/insurance/policy/update"></button>
+				<button name="投保" key="INSURANCE_ORDER_ISRORDER_QUERY_APPLY" url="/additional/insurance/policy/insure"></button>
+				<button name="退保" key="INSURANCE_ORDER_ISRORDER_QUERY_REFUND" url="/additional/insurance/policy/abortPolicy"></button>
+				<button name="日志" key="INSURANCE_ORDER_ISRORDER_QUERY_LOG" url="/additional/insurance/policy/moreOrderLogs"></button>
+			</module>
+		</module>
+	</module>
+
+	<module name="短信" key="SMS">
+		<module name="客户查询" key="SMS_CUSTOMER" url="/sms/customer"></module>
+		<module name="订单查询" key="SMS_ORDER" url="/sms/order"></module>
+		<module name="产品管理" key="SMS_PRODUCT" url="/sms/product">
+			<button name="新增产品" key="SMS_PRODUCT_CREATE" url="/sms/product/add"></button>
+			<button name="修改" key="SMS_PRODUCT_MODIFY" url="/sms/product/modify"></button>
+			<button name="挂起" key="SMS_PRODUCT_REMOVE_KEY1">
+				<perm name="挂起" key="SMS_PRODUCT_REMOVE_SUSPEND" url="/sms/product/suspend"></perm>
+				<perm name="解挂" key="SMS_PRODUCT_REMOVE_UNLOCK" url="/sms/product/unlock"></perm>
+			</button>
+		</module>
+		<module name="发送记录" key="SMS_HISTORY" url="/sms/history"></module>
+	</module>
+
+	<module name="营销" key="MARKETING" >
+		<module name="代金券" key="MARKETING_COUPON" >
+			<module name="送券活动管理" key="COUPON_MANAGEMENT" url="/coupon/manage/center">
+				<button name="系统送券" key="SYS_GIVING" url="/marketing/couponCampaignManagement/addSysGivingCoupon"></button>
+				<button name="购买送券" key="CONSUME_GIVING" url="/marketing/couponCampaignManagement/addCousumeGivingCoupon"></button>
+				<button name="编辑" key="COUPON_EDIT" url="/marketing/couponCampaignManagement/editCouponCampaign"></button>
+				<button name="删除" key="COUPON_DELETE" url="/marketing/couponCampaignManagement/delect"></button>
+				<button name="券发放情况" key="COUPON_CONDITION_MANAGE" url="/marketing/couponCampaignManagement/gotoShowCouponUsedCondition"></button>
+				<button name="挂起或启动" key="UNLOCK_OR_SUSPEND" url="/marketing/couponCampaignManagement/suspendOrUnlock"></button>
+				<button name="审核" key="CampaignAudit" url="/coupon/manage/gotoShowCampaignAudit"></button>
+			</module>
+			<module name="券发放情况" key="COUPON_CONDITION" url="/coupon/distribute/center">
+				<button name="使用明细" key="COUPON_USE_DETAIL" url="/coupon/distribute/useDetailCenter"></button>
+			</module>
+		</module>
+		<module name="积分" key="MARKETING_POINT">
+			<module name="积分规则设置" key="POINT_RULE_SETTING" url="/marketing/pointRule/center">
+				<button name="签到送积分设置" key="SIGNGETPOINT_SET" url="/marketing/pointRule/updateSignInPointRule"></button>
+				<button name="注册送积分设置" key="REGISTERGETPOINT_SET" url="/marketing/pointRule/updateRegisterPointRule"></button>
+				<button name="国际机票设置" key="TZ_INTERNATIONAL_FLIGHT_SET" url="/marketing/pointRule/update/MPOR20150511151126000006"></button>
+				<button name="国内机票设置" key="TZ_DOMESTIC_FLIGHT_SET" url="/marketing/pointRule/update/MPOR20150511151310000008"></button>
+				<button name="酒店设置" key="TZ_HOTEL_SET" url="/marketing/pointRule/update/MPOR20150511151342000009"></button>
+				<button name="保险设置" key="TZ_INSURANCE_SET" url="/marketing/pointRule/update/MPOR20150511151413000010"></button>
+				<button name="旅游设置" key="TZ_JOURNEY_SET" url="/marketing/pointRule/update/MPOR20150511151449000011"></button>
+				<button name="自由行设置" key="TZ_FIT_SET" url="/marketing/pointRule/update/MPOR20150511151517000012"></button>
+				<button name="游轮设置" key="TZ_CRUISE_SET" url="/marketing/pointRule/update/MPOR20150511151540000013"></button>
+				<button name="签证设置" key="TZ_NEW_VISA_SET" url="/marketing/pointRule/update/MPOR20150511151606000014"></button>
+			</module>
+		</module>
+	</module>
+
+    <module name="通用订单" key="GENERAL_ORDER">
+        <module name="订单管理" key="GO_ORDER_MANAGEMENT" url="/generalorder/ordermanage/home">
+            <button name="新建订单" key="GO_ORDER_MANAGEMENT_CREATE_ORDER_CREATE" url="/generalorder/ordermanage/createorder/create"></button>
+            <button name="退款" key="GO_ORDER_MANAGEMENT_CREATE_REFUND" url="/generalorder/ordermanage/createRefund"></button>
+            <button name="提交订单" key="GO_ORDER_MANAGEMENT_CREATE_ORDER_SUBMIT" url="/generalorder/ordermanage/createorder/submit"></button>
+            <button name="支付订单" key="GO_ORDER_MANAGEMENT_CREATE_ORDER_PAY" url="/generalorder/ordermanage/createorder/pay"></button>
+            <button name="追加备注" key="GO_ORDER_MANAGEMENT_APPEND_MEMO" url="/generalorder/ordermanage/vieworder/appendMemo"></button>
+            <button name="查询订单" key="GO_ORDER_MANAGEMENT_QUERY_ORDER" url="/generalorder/ordermanage/queryorder"></button>
+            <button name="导出订单" key="GO_ORDER_MANAGEMENT_EXPORT_ORDER_EXCEL" url="/generalorder/ordermanage/exportorder/excel"></button>
+            <button name="取消订单" key="GO_ORDER_MANAGEMENT_CANCEL_ORDER" url="/generalorder/ordermanage/cancelorder"></button>
+        </module>
+        <module name="产品管理" key="GO_PRODUCT_MANAGEMENT" url="/generalorder/productmanage/home">
+            <button name="新增产品" key="GO_PRODUCT_MANAGEMENT_PRODUCT_ADD" url="/generalorder/productmanage/product/add"></button>
+            <button name="编辑产品" key="GO_PRODUCT_MANAGEMENT_PRODUCT_EDIT" url="/generalorder/productmanage/product/edit"></button>
+            <button name="删除产品" key="GO_PRODUCT_MANAGEMENT_PRODUCT_DELETE" url="/generalorder/productmanage/product/delete"></button>
+            <button name="查询产品" key="GO_PRODUCT_MANAGEMENT_PRODUCT_QUERY" url="/generalorder/productmanage/product/query"></button>
+            <button name="新增业务" key="GO_PRODUCT_MANAGEMENT_BUSINESS_ADD" url="/generalorder/productmanage/business/add"></button>
+            <button name="编辑业务" key="GO_PRODUCT_MANAGEMENT_BUSINESS_EDIT" url="/generalorder/productmanage/business/edit"></button>
+        </module>
+    </module>
+
+	<module name="票证中心" key="TIKT">
+		<module name="行程单" key="TIKT_ITNY" url="/billManage/travelManagePage">
+			<module name="入库管理" key="TIKT_ITNY_STORAGE" url="/travelWareHouseIn/getAllResults">
+				<button name="导出" key="TIKT_ITNY_STORAGE_EXPORT" url="/travelWareHouseIn/exportFailExcel" />
+				<button name="添加入库" key="TIKT_ITNY_STORAGE_ADD" url="/travelWareHouseIn/setAdd" />
+				<button name="修改OFFICE" key="TIKT_ITNY_STORAGE_UPDATEOFFICE" url="/travelWareHouseIn/setModifyOffice" />
+				<button name="取消入库" key="TIKT_ITNY_STORAGE_CANCEL" url="/travelWareHouseIn/setCancelIn" />
+			</module>
+			<module name="申请/确认" key="TIKT_ITNY_APPLY" url="/travelApplyConfirm/getAllResults">
+				<button name="导出" key="TIKT_ITNY_APPLY_EXPORT" url="/travelApplyConfirm/exportFailExcel" />
+				<button name="行程单申请" key="TIKT_ITNY_APPLY_ADD" url="/travelApplyConfirm/setApply" />
+				<button name="申请取消" key="TIKT_ITNY_APPLY_CALCEL" url="/travelApplyConfirm/setCancel" />
+				<button name="确认分发" key="TIKT_ITNY_APPLY_DISTRIBUTECONFIRM" url="/travelApplyConfirm/setConfirmDistribute" />
+			</module>
+			<module name="行程单分发" key="TIKT_ITNY_DISTRIBUTE" url="/travelTicketDistribute/getAllResults">
+				<button name="导出" key="TIKT_ITNY_DISTRIBUTE_EXPORT" url="/travelTicketDistribute/exportFailExcel" />
+				<button name="分发" key="TIKT_ITNY_DISTRIBUTE_DISTRIBUTE" url="/travelTicketDistribute/setDistribute" />
+				<button name="退回" key="TIKT_ITNY_DISTRIBUTE_RTN" url="/travelTicketDistribute/setReturn" />
+			</module>
+			<module name="作废管理" key="TIKT_ITNY_INVALIDATE" url="/travelInvalid/getAllResults">
+				<button name="导出" key="TIKT_ITNY_INVALIDATE_EXPORT" url="/travelInvalid/exportFailExcel" />
+				<button name="回收" key="TIKT_ITNY_INVALIDATE_RECYCLE" url="/travelInvalid/setReturn" />
+			</module>
+			<module name="明细管理" key="TIKT_ITNY_DETAIL" url="/travelTicketDetail/getAllResults">
+				<button name="导出" key="TIKT_ITNY_DETAIL_EXPORT" url="/travelTicketDetail/exportFailExcel" />
+				<button name="设为已使用" key="TIKT_ITNY_DETAIL_SETUSED" url="/travelTicketDetail/setHasUsed" />
+				<button name="恢复未使用" key="TIKT_ITNY_DETAIL_RENEW" url="/travelTicketDetail/setNotUse" />
+				<button name="作废" key="TIKT_ITNY_DETAIL_INVALIDATE" url="/travelTicketDetail/setDelete" />
+				<button name="取消作废" key="TIKT_ITNY_DETAIL_INVALIDCANCEL" url="/travelTicketDetail/setCancelInvalid" />
+			</module>
+			<module name="统计管理" key="TIKT_ITNY_STATICS" url="/travelStatisticConfirm/getAllResults">
+				<button name="导出" key="TIKT_ITNY_STATICS_EXPORT" url="/travelStatisticConfirm/exportFailExcel" />
+			</module>
+			<module name="库存管理" key="TIKT_ITNY_STOCK" url="/travelWareHouseStore/getAllResults">
+				<button name="导出" key="TIKT_ITNY_STOCK_EXPORT" url="/travelWareHouseStore/exportFailExcel" />
+			</module>
+			<!-- <module name="抽调/确认" key="TIKT_ITNY_TRANSFER" url=""> <button name="导出" key="TIKT_ITNY_TRANSFER_EXPORT" url="" />
+				<button name="抽调申请" key="TIKT_ITNY_TRANSFER_APPLY" url="" /> <button name="抽调确认" key="TIKT_ITNY_TRANSFER_CONFIRM" url=""
+				/> <button name="退回申请" key="TIKT_ITNY_TRANSFER_RTNAPPLY" url="" /> <button name="确认完成" key="TIKT_ITNY_TRANSFER_CONFIRMDONE"
+				url="" /> <button name="取消申请" key="TIKT_ITNY_TRANSFER_CANCELAPPLY" url="" /> <button name="取消抽调" key="TIKT_ITNY_TRANSFER_CANCELTRANS"
+				url="" /> </module> -->
+		</module>
+		<module name="票证中心" key="TIKT_BILLCENTER" url="">
+			<module name="明细管理" key="TIKT_BILLCENTER_DETAIL" url="/billManage/billCenter/billManagePage">
+				<button name="导出" key="TIKT_BILLCENTER_DETAIL_INVALIDCANCEL" url="/billCenter/detailManage/excelExport" />
+			</module>
+			<module name="入库管理" key="TIKT_BILLCENTER_STORAGE" url="/billCenter/storageManage/gotoSearchStorage">
+				<button name="导出" key="TIKT_BILLCENTER_STORAGE_EXPORT" url="/billCenter/storageManage/excelExport" />
+				<button name="新增入库" key="TIKT_BILLCENTER_STORAGE_ADD" url="/billCenter/storageManage/addStorage" />
+				<button name="修改入库" key="TIKT_BILLCENTER_STORAGE_MODIFY" url="/billCenter/storageManage/modifyStorage" />
+				<button name="取消入库" key="TIKT_BILLCENTER_STORAGE_CANCEL" url="/billCenter/storageManage/wareHouseCancel" />
+			</module>
+		</module>
+
+		<module name="发票管理" key="TIKT_INVOICE" url="/billManage/invoiceManagePage">
+			<module name="采购商开票申请" key="TIKT_INVOICE_PURCHASER_APPLY" url="/invoiceApply/jumpToInvoiceApplyPage">
+				<button name="申请开票" key="TIKT_INVOICE_PURCHASER_APPLY_THREE" url="/invoiceApply/apply"></button>
+				<button name="导出Excel" key="TIKT_INVOICE_PURCHASER_APPLY_DOWNLOAD" url="/invoiceApply/download" />
+			</module>
+			<module name="采购商开票审核" key="TIKT_INVOICE_PURCHASER_CHECK" url="/invoiceCheck/jumpToInvoiceCheckPage">
+				<button name="开票" key="TIKT_INVOICE_PURCHASER_CHECK_APPROVE" url="/invoiceCheck/approve" />
+			</module>
+			<module name="供应商发票管理" key="TIKT_INVOICE_PROVIDER_MANAGE" url="/invoiceReceive/jumpToInvoiceReceivePage">
+				<button name="确认" key="TIKT_INVOICE_PROVIDER_MANAGE_RECEIVE" url="/invoiceReceive/receive"></button>
+			</module>
+		</module>
+
+	</module>
+	<module name="财务管理" key="FINANCE" url="">
+		<module name="资金明细" key="FINANCE_CAPITAL" url="">
+			<module name="账户明细" key="FINANCE_CAPITAL_ACCOUNT" url="/finance/account/query">
+				<button name="查询" key="FINANCE_CAPITAL_SEARCH" url="/finance/account/query/search"></button>
+				<button name="限制查询" key="FINANCE_CAPITAL_SEARCH_FILTER" url="/finance/account/query/search/filter"></button>
+				<button name="冻结" key="FINANCE_CAPITAL_FREEZE" url="/finance/account/query/freezeAccount"></button>
+				<button name="解冻" key="FINANCE_CAPITAL_UNFREEZE" url="/finance/account/query/unfreezeAccount"></button>
+				<button name="历史详情" key="FINANCE_CAPITAL_HISTORYDETAILS" url="/finance/account/query/queryHistoryDetails"></button>
+				<button name="导出" key="FINANCE__CAPITAL_EXPORT" url="/finance/account/query/exportExcel"></button>
+			</module>
+			<module name="收支明细" key="FINANCE_CAPITAL_HISTORY" url="/finance/account/history">
+				<button name="查询" key="FINANCE_CAPITAL_HISTORY_SEARCH" url="/finance/account/history/search"></button>
+				<button name="限制查询" key="FINANCE_CAPITAL_HISTORY_FILTER" url="/finance/account/history/search/filter"></button>
+				<button name="导出" key="FINANCE_CAPITAL_HISTORY_EXPORT" url="/finance/account/history/exportExcel"></button>
+			</module>
+			<module name="交易明细" key="FINANCE_CAPITAL_TRADE" url="/finance/account/trade">
+				<button name="查询" key="FINANCE_CAPITAL_TRADE_SEARCH" url="/finance/account/trade/search"></button>
+				<button name="限制查询" key="FINANCE_CAPITAL_TRADE_SEARCH_FILTER" url="/finance/account/trade/search/filter"></button>
+				<button name="导出" key="FINANCE_CAPITAL_TRADE_EXPORT" url="/finance/account/trade/exportExcel"></button>
+				<button name="更新网支支付状态" key="FINANCE_CAPITAL_TRADE_UPDATE_NETPAY_STATUS" url="/finance/account/trade/updateNetpayState"></button>
+			</module>
+		<module name="让利账户总览" key="FINANCE_CAPITAL_NONEDETAILS" url="/finance/account/noneDetails">
+				<button name="导出Excel" key="FINANCE_CAPITAL_NONEDETAILS_EXPORTEXCEL" url="/finance/account/noneDetails/exportExcel"></button>
+				<button name="查询" key="FINANCE_CAPITAL_NONEDETAILS_QUERY" url="/finance/account/noneDetails/query"></button>
+		</module>
+		<module name="让利明细查询" key="FINANCE_CAPITAL_ACCOUNTSUMMARY" url="/finance/account/accountSummary">
+				<button name="导出Excel" key="FINANCE_CAPITAL_ACCOUNTSUMMARY_EXPORTEXCEL" url="/finance/account/accountSummary/exportExcel"></button>
+				<button name="查询" key="FINANCE_CAPITAL_ACCOUNTSUMMARY_QUERY" url="/finance/account/accountSummary/query"></button>
+			</module>
+			<module name="日账单下载" key="FINANCE_CAPITAL_DOWNLOADDAY" url="/finance/account/downloadDay">
+				<button name="批量下载" key="FINANCE_CAPITAL_DOWNLOADDAY_EXPORTEXCELZIP" url="/finance/account/downloadDay/exportExcelzip"></button>
+				<button name="查询" key="FINANCE_CAPITAL_DOWNLOADDAY_QUERY" url="/finance/account/downloadDay/query"></button>
+			</module>
+
+
+		</module>
+		<module name="充值管理" key="FINANCE_RECHARGE" url="">
+			<module name="充值明细" key="FINANCE_RECHARGE_DETAIL" url="/finance/account/recharge">
+				<button name="查询" key="FINANCE_RECHARGE_DETAIL_SEARCH" url="/finance/account/recharge/search"></button>
+				<button name="限制查询" key="FINANCE_RECHARGE_DETAIL_SEARCH_FILTER" url="/finance/account/recharge/search/filter"></button>
+				<button name="新增充值" key="FINANCE_RECHARGE_DETAIL_ADDRECHARGE" url="/finance/account/recharge/add"></button>
+				<button name="新增扣款" key="FINANCE_RECHARGE_DETAIL_ADDDEDUCT" url="/finance/account/recharge/deduct"></button>
+				<button name="导出" key="FINANCE_RECHARGE_DETAIL_EXPORT" url="/finance/account/recharge/exportExcel"></button>
+			</module>
+			<module name="充值审核" key="FINANCE_RECHARGE_BILL" url="/finance/account/rechargebill">
+				<button name="审核处理" key="FINANCE_RECHARGE_BILL_VERIFY" url="/finance/account/rechargebill/verify"></button>
+				<button name="导出" key="FINANCE_RECHARGE_BILL_EXPORT" url="/finance/account/rechargebill/exportExcel"></button>
+			</module>
+			<module name="支票审核" key="FINANCE_RECHARGE_CHEQUE" url="/finance/account/cheque">
+				<button name="审核处理" key="FINANCE_RECHARGE_CHEQUE_VERIFY" url="/finance/account/cheque/verify"></button>
+				<button name="导出" key="FINANCE_RECHARGE_CHEQUE_EXPORT" url="/finance/account/cheque/exportExcel"></button>
+			</module>
+			<module name="供应商充值" key="FINANCE_CAPITAL_PROVIDER_ACCOUNT_RECHARGE" url="/finance/account/supplier">
+				<button name="新增充值" key="FINANCE_CAPITAL_PROVIDER_ACCOUNT_ADDRECHARGE" url="/finance/account/supplier/add"></button>
+				<button name="导出" key="FINANCE_CAPITAL_PROVIDER_ACCOUNT_RECHARGE_EXPORT" url="/finance/account/supplier/exportExcel"></button>
+			</module>
+		</module>
+		<module name="授信管理" key="FINANCE_CREDIT" url="">
+			<module name="业务审核" key="FINANCE_CREDIT_OPERATION" url="/finance/account/credit">
+				<button name="新增协议授信" key="FINANCE_CREDIT_OPERATION_ADDCREDIT" url="/finance/account/credit/add"></button>
+				<button name="新增临时授信" key="FINANCE_CREDIT_OPERATION_ADDTEMPCREDIT" url="/finance/account/credit/addTempCredit"></button>
+				<button name="修改协议授信" key="FINANCE_CREDIT_OPERATION_MODIFYCREDIT" url="/finance/account/credit/addAdjustCredit"></button>
+				<button name="审核处理" key="FINANCE_CREDIT_OPERATION_VERIFY" url="/finance/account/credit/verify"></button>
+				<button name="导出" key="FINANCE_CREDIT_OPERATION_EXPORT" url="/finance/account/credit/exportExcel"></button>
+			</module>
+			<module name="财务审核" key="FINANCE_CREDIT_FINANCE" url="/finance/account/creditfinance">
+				<button name="审核处理" key="FINANCE_CREDIT_FINANCE_VERIFY" url="/finance/account/creditfinance/verify"></button>
+				<button name="导出" key="FINANCE_CREDIT_FINANCE_EXPORT" url="/finance/account/creditfinance/exportExcel"></button>
+			</module>
+			<module name="额度预警" key="FINANCE_CREDIT_SHORT" url="/finance/account/creditshort">
+				<button name="导出" key="FINANCE_CREDIT_SHORT_EXPORT" url="/finance/account/creditshort/exportExcel"></button>
+			</module>
+			<module name="账期预警" key="FINANCE_CREDIT_WARNING" url="/finance/account/creditwarning">
+				<button name="延长还款日" key="FINANCE_CREDIT_WARNING_LEADERDENY" url="/finance/account/creditwarning/delay"></button>
+				<button name="延长审核处理" key="FINANCE_CREDIT_WARNING_VERIFY" url="/finance/account/creditwarning/verify"></button>
+				<button name="导出" key="FINANCE_CREDIT_WARNING_EXPORT" url="/finance/account/creditwarning/exportExcel"></button>
+			</module>
+			<module name="账期延长审核" key="FINANCE_CREDIT_PROLONG" url="/finance/account/creditprolong">
+				<button name="延长审核处理" key="FINANCE_CREDIT_PROLONG_VERIFY" url="/finance/account/creditprolong/verify"></button>
+				<button name="导出" key="FINANCE_CREDIT_PROLONG_EXPORT" url="/finance/account/creditprolong/exportExcel"></button>
+			</module>
+			<module name="账期管理" key="FINANCE_CREDIT_FREEZE" url="/finance/account/creditmanage">
+				<button name="新增账期" key="FINANCE_CREDIT_FREEZE_ADDFREEZE" url="/finance/account/creditmanage/add"></button>
+				<button name="删除" key="FINANCE_CREDIT_FREEZE_DELETE" url="/finance/account/creditmanage/delete"></button>
+				<button name="挂起" key="FINANCE_CREDIT_FREEZE_PAY" url="/finance/account/creditmanage/pay"></button>
+				<button name="解挂" key="FINANCE_CREDIT_FREEZE_UNFREEZE" url="/finance/account/creditmanage/unfreeze"></button>
+			</module>
+		</module>
+		<module name="收银管理" key="FINANCE_CHECKOUT" url="">
+			<module name="收银处理" key="FINANCE_CHECKOUT_MANAGE" url="/finance/checkout/manage">
+				<button name="查询" key="FINANCE_CHECKOUT_MANAGE_SEARCH" url="/finance/checkout/manage_all" />
+				<button name="旅游查询" key="FINANCE_CHECKOUT_MANAGE_SEARCH_TRAVEL" url="/finance/checkout/manage_travel" />
+				<button name="签证查询" key="FINANCE_CHECKOUT_MANAGE_SEARCH_VISA" url="/finance/checkout/manage_visa" />
+				<button name="限制查询" key="FINANCE_CHECKOUT_MANAGE_SEARCH_FILTER" url="/finance/checkout/manage/search/filter" />
+				<button name="收银" key="FINANCE_CHECKOUT_MANAGE_KEY1">
+					<perm name="按单收银" key="FINANCE_CHECKOUT_MANAGE_BILLCASHIER" url="/finance/checkout/manage/checkoutByOrder" />
+					<perm name="按单收银批量" key="FINANCE_CHECKOUT_MANAGE_BILLCASHIER_BATCH" url="/finance/checkout/manage/checkoutByOrderBatch" />
+				</button>
+				<button name="充值收银" key="FINANCE_CHECKOUT_MANAGE_RECHARGE" url="/finance/checkout/manage/checkoutByRecharge" />
+				<button name="导出" key="FINANCE_CHECKOUT_MANAGE_EXPORT" url="/finance/checkout/manage/exportExcel" />
+				<button name="预收银" key="FINANCE_CHECKOUT_PRE_CHECKOUT" url="/finance/checkout/manage/preCheckout" />
+				<button name="预收银完成" key="FINANCE_CHECKOUT_PRE_CHECKOUT_DONE" url="/finance/checkout/manage/completePreCheckout" />
+				<button name="预收银失败" key="FINANCE_CHECKOUT_PRE_CHECKOUT_FAIL" url="/finance/checkout/manage/failPreCheckout" />
+				<button name="预收银坏账销帐" key="FINANCE_CHECKOUT_PRE_CHECKOUT_FAIL_RECOVER" url="/finance/checkout/manage/recoverFailedPreCheckout" />
+				<button name="预收银延期申请" key="FINANCE_CHECKOUT_PRE_CHECKOUT_DEFER" url="/finance/precheckout/applyExtend" />
+			</module>
+			<module name="收银复核" key="FINANCE_CHECKOUT_HISTORY" url="/finance/checkout/history">
+				<button name="收银复核" key="FINANCE_CHECKOUT_HISTORY_CASHIERREVIEW" url="/finance/checkout/history/review" />
+				<button name="取消复核" key="FINANCE_CHECKOUT_HISTORY_CANCELCASHIER" url="/finance/checkout/history/cancel" />
+				<button name="导出" key="FINANCE_CHECKOUT_HISTORY_EXPORT" url="/finance/checkout/history/exportExcel" />
+			</module>
+			<module name="收银员汇总" key="FINANCE_CHECKOUT_CASHIERHISTORY" url="/finance/checkout/cashierHistory">
+				<button name="导出" key="FINANCE_CHECKOUT_CASHIERHISTORY_EXPORT" url="/finance/checkout/cashierHistory/exportExcel" />
+			</module>
+			<module name="预收银延期审核" key="FINANCE_CHECKOUT_PRECHECKOUT" url="/finance/precheckout">
+				<button name="预收银延期业务审核" key="FINANCE_CHECKOUT_PRECHECKOUT_PRE_CHECKOUT_EXT_LEADER" url="/finance/precheckout/leaderVerifyExtend" />
+				<button name="预收银延期财务审核" key="FINANCE_CHECKOUT_PRECHECKOUT_PRE_CHECKOUT_EXT_FINANCE" url="/finance/precheckout/financeVerifyExtend" />
+			</module>
+			<module name="酒店订单销帐" key="FINANCE_CHECKOUT_HOTEL_CASH" url="/finance/hotel/cashReconciliation">
+			</module>
+			<module name="兴业银行退款管理" key="FINANCE_CHECKOUT_CIBPAY_REFUND" url="/finance/cibpay/refund">
+			</module>
+		</module>
+		<module name="对账管理" key="FINANCE_CHECKACCOUNT" url="">
+			<module name="导入配置设置" key="FINANCE_CHECKACCOUNT_IMPORT" url="/stl/impcfg/search">
+				<button name="新增配置" key="FINANCE_CHECKACCOUNT_IMPORT_ADD" url="/stl/impcfg/saveCfg" />
+			</module>
+			<module name="出票供应商审核" key="FINANCE_CHECKACCOUNT_AUDITPISSUEROVIDER" url="/stl/ticketIssu/provider/search">
+				<button name="匹配失败列表" key="FINANCE_CHECKACCOUNT_AUDITPISSUEROVIDER_MATCHFAIL" url="/stl/ticketIssu/provider/matchFail" />
+				<button name="导入匹配" key="FINANCE_CHECKACCOUNT_AUDITPISSUEROVIDER_IMPORT" url="/stl/impmatch/ticketIssu/provider/search" />
+				<button name="导出" key="FINANCE_CHECKACCOUNT_AUDITPISSUEROVIDER_EXPORT" url="/stl/ticketIssu/provider/exportExcel" />
+			</module>
+			<module name="出票采购商审核" key="FINANCE_CHECKACCOUNT_AUDITPISSUEURCHASER" url="/stl/ticketIssu/purchaser/search">
+				<button name="自动匹配" key="FINANCE_CHECKACCOUNT_AUDITPISSUEURCHASER_AUTOMATCH" url="/stl/ticketIssu/purchaser/autoMatch" />
+				<button name="导出" key="FINANCE_CHECKACCOUNT_AUDITPISSUEURCHASER_EXPORT" url="/stl/ticketIssu/purchaser/exportExcel" />
+			</module>
+			<module name="退票供应商审核" key="FINANCE_CHECKACCOUNT_AUDITREFUNDPROVIDER" url="/stl/ticketRefund/provider/search">
+				<button name="匹配失败列表" key="FINANCE_CHECKACCOUNT_AUDITREFUNDPROVIDER_MATCHFAIL" url="/stl/ticketRefund/provider/matchFail" />
+				<button name="导入匹配" key="FINANCE_CHECKACCOUNT_AUDITREFUNDPROVIDER_IMPORT" url="/stl/impmatch/ticketRefund/provider/search" />
+				<button name="导出" key="FINANCE_CHECKACCOUNT_AUDITREFUNDPROVIDER_EXPORT" url="/stl/ticketRefund/provider/exportExcel" />
+			</module>
+			<module name="退票采购商审核" key="FINANCE_CHECKACCOUNT_AUDITREFUNDPURCHASER" url="/stl/ticketRefund/purchaser/search">
+				<button name="自动匹配" key="FINANCE_CHECKACCOUNT_AUDITREFUNDPURCHASER_AUTOMATCH" url="/stl/ticketRefund/purchaser/autoMatch" />
+				<button name="导出" key="FINANCE_CHECKACCOUNT_AUDITREFUNDPURCHASER_EXPORT" url="/stl/ticketRefund/purchaser/exportExcel" />
+				<button name="审核" key="FINANCE_CHECKACCOUNT_AUDITREFUNDPURCHASER_VERIFY" url="/stl/ticketRefund/purchaser/auditTicket" />
+			</module>
+			<module name="签证结算审核" key="FINANCE_CHECKACCOUNT_AUDITRE_VISA" url="/stl/visa/audit/gotoSearch">
+				<button name="审核" key="FINANCE_CHECKACCOUNT_AUDITRE_VISA_AUDIT" url="/visa/audit/gotoAudit" />
+				<button name="撤销审核" key="FINANCE_CHECKACCOUNT_AUDITRE_VISA_REVOCATION" url="/visa/audit/gotoRevocation" />
+				<button name="提交付款" key="FINANCE_CHECKACCOUNT_AUDITRE_VISA_APPLAY" url="/visa/audit/gotoSubmitPayApply" />
+				<button name="导出" key="FINANCE_CHECKACCOUNT_AUDITRE_VISA_EXPORT" url="/visa/audit/exportExcel" />
+			</module>
+
+			<module name="酒店现付审核收佣" key="FINANCE_CHECKACCOUNT_COMMISSION_AUDIT" url="/stl/spotPayHotel/commission/audit/search">
+				<button name="匹配失败列表" key="FINANCE_CHECKACCOUNT_COMMISSION_AUDIT_SEARCHMATCHFAILRESULT" url="/stl/spotPayHotel/commission/audit/searchMatchFailResult"/>
+				<button name="导入匹配" key="FINANCE_CHECKACCOUNT_COMMISSION_AUDIT_IMPORTSEARCHRESULT" url="/stl/spotPayHotel/commission/audit/importSearchResult"/>
+				<button name="查询" key="FINANCE_CHECKACCOUNT_COMMISSION_AUDIT_QUERY" url="/stl/spotPayHotel/commission/audit/query"/>
+				<button name="审核/保存/撤销" key="FINANCE_CHECKACCOUNT_COMMISSION_AUDIT_APPLYFORAUDIT" url="/stl/spotPayHotel/commission/audit/applyForAudit"/>
+				<button name="申请收佣" key="FINANCE_CHECKACCOUNT_COMMISSION_AUDIT_APPLYRECEIVE" url="/stl/spotPayHotel/commission/audit/applyReceive"/>
+				<button name="导出Excel" key="FINANCE_CHECKACCOUNT_COMMISSION_AUDIT_EXPORTEXCEL" url="/stl/spotPayHotel/commission/audit/exportExcel"/>
+			</module>
+
+			<module name="酒店现付收佣确认" key="FINANCE_CHECKACCOUNT_COMMISSION_CONFIRM" url="/stl/spotPayHotel/commission/confirm/search">
+				<button name="查询" key="FINANCE_CHECKACCOUNT_COMMISSION_CONFIRM_QUERY" url="/stl/spotPayHotel/commission/confirm/query"/>
+				<button name="导出Excel" key="FINANCE_CHECKACCOUNT_COMMISSION_CONFIRM_EXPORTEXCEL" url="/stl/spotPayHotel/commission/confirm/exportExcel"/>
+				<button name="确认/撤销" key="FINANCE_CHECKACCOUNT_COMMISSION_CONFIRM_OK" url="/stl/spotPayHotel/commission/confirm/ok"/>
+			</module>
+			<module name="酒店预付结算" key="FINANCE_PREPAY_AUDIT" url="/stl/prePayHotel/audit/search">
+				<button name="匹配失败列表" key="FINANCE_PREPAY_AUDIT_SEARCHMATCHFAILRESULT" url="/stl/prePayHotel/process/searchMatchFail"/>
+				<button name="导入匹配" key="FINANCE_PREPAY_AUDIT_IMPORTSEARCHRESULT" url="/stl/prePayHotel/importMatch/searchResult"/>
+				<button name="查询" key="FINANCE_PREPAY_AUDIT_QUERY" url="/stl/prePayHotel/audit/query"/>
+				<button name="审核/处理/撤销" key="FINANCE_PREPAY_AUDIT_APPLYFORAUDIT" url="/stl/prePayHotel/audit/applyforAudit"/>
+				<button name="导出Excel" key="FINANCE_PREPAY_AUDIT_EXPORTEXCEL" url="/stl/prePayHotel/audit/exportExcel"/>
+			</module>
+		</module>
+		<module  name="对账核销" key="FINANCE_NETPAY_VERIFICATION" url="">
+			<module name="导入匹配" key="FINANCE_NETPAY_CHECKACCOUNT" url="/finance/bill/file">
+				<button name="上传" key="FINANCE_NETPAY_CHECKACCOUNT_UPLOAD_FILE" url="/finance/bill/file/upload" />
+				<button name="下载" key="FINANCE_NETPAY_CHECKACCOUNT_DOWNLOAD_FILE" url="/finance/bill/file/download" />
+				<button name="对账" key="FINANCE_NETPAY_CHECKACCOUNT_CHECK_BILL_FILE" url="/finance/bill/file/checkBillFile" />
+			</module>
+			<module name="匹配失败" key="FINANCE_NETPAY_UNMATCHED" url="/finance/bill/billRecordUnmatched">
+				<button name="导出Excel" key="FINANCE_NETPAY_UNMATCHED_EXPORT" url="/finance/bill/billRecordUnmatched/exportExcel" />
+				<button name="补账" key="FINANCE_NETPAY_UNMATCHED_ADDACCOUNT" url="/finance/bill/billRecordUnmatched/addAccount" />
+				<button name="退银行" key="FINANCE_NETPAY_UNMATCHED_RETURN" url="/finance/bill/billRecordUnmatched/return" />
+			</module>
+			<module name="匹配结果" key="FINANCE_NETPAY_MATCHED" url="/finance/bill/billTradeMatched">
+				<button name="导出Excel" key="FINANCE_NETPAY_MATCHED_EXPORT" url="/finance/bill/billTradeMatched/exportExcel" />
+			</module>
+            <module name="外部平台匹配结果" key="FINANCE_NETPAYBACK_CHECK" url="/finance/bill/netpaybackCheck">
+                <button name="导出Excel" key="FINANCE_NETPAYBACK_CHECK_EXPORT" url="/finance/bill/netpaybackCheck/exportExcel" />
+            </module>
+            <module name="外部平台失败列表" key="FINANCE_NETPAYBACK_CHECK_FAILED" url="/finance/bill/netpaybackCheckFailed">
+                <button name="导出Excel" key="FINANCE_NETPAYBACK_CHECK_FAILED_EXPORT" url="/finance/bill/netpaybackCheckFailed/exportExcel" />
+            </module>
+			<module name="供应商结算明细" key="FINANCE_NETPAY_SHARE_PROFIT" url="/finance/bill/orderShareProfit">
+				<button name="导出Excel" key="FINANCE_NETPAY_SHARE_PROFIT_EXPORT" url="/finance/bill/orderShareProfit/exportExcel" />
+				<button name="重发" key="FINANCE_NETPAY_SHARE_PROFIT_DEAL_EXCEPTION" url="/finance/bill/orderShareProfit/dealException" />
+			</module>
+			<module name="采购商分润明细" key="FINANCE_PURCHASER_NETPAY_SHARE_PROFIT" url="/finance/bill/purchaserOrderShareProfit">
+				<button name="重发" key="FINANCE_PURCHASER_NETPAY_SHARE_PROFIT_DEAL_EXCEPTION" url="/finance/bill/purchaserOrderShareProfit/dealException" />
+				<button name="导出Excel" key="FINANCE_PURCHASER_NETPAY_SHARE_PROFIT_EXPORT" url="/finance/bill/purchaserOrderShareProfit/exportExcel" />
+				<button name="查询" key="FINANCE_PURCHASER_NETPAY_SHARE_PROFIT_SEARCH" url="/finance/bill/purchaserOrderShareProfit/loadData" />
+				<button name="结算订单号" key="FINANCE_PURCHASER_NETPAY_SHARE_PROFIT_ORDER_ID" url="/finance/bill/purchaserOrderShareProfit/spread" />
+				<button name="交易订单号" key="FINANCE_PURCHASER_NETPAY_SHARE_PROFIT_TRADE_ORDER_ID" url="/finance/bill/purchaserOrderShareProfit/orderId" />
+			</module>
+			<module name="核销文件查询" key="FINANCE_VERIFICATION_FILE" url="/finance/verification/file">
+				<button name="上传" key="FINANCE_VERIFICATION_FILE_UPLOAD" url="/finance/verification/file/upload" />
+				<button name="下载" key="FINANCE_VERIFICATION_FILE_DOWNLOAD" url="/finance/verification/file/downloadExcelVerificationFile" />
+				<button name="核销" key="FINANCE_VERIFICATION_FILE_VERIFY" url="/finance/verification/file/verify" />
+			</module>
+			<module name="核销成功查询" key="FINANCE_VERIFICATION_SUCCESS" url="/finance/verification/success">
+				<button name="导出Excel" key="FINANCE_VERIFICATION_SUCCESS_EXPORT" url="/finance/verification/success/exportExcel" />
+			</module>
+			<module name="核销异常查询" key="FINANCE_VERIFICATION_FAIL" url="/finance/verification/fail">
+				<button name="导出Excel" key="FINANCE_VERIFICATION_FAIL_EXPORT" url="/finance/verification/fail/exportExcel" />
+			</module>
+            <module name="德付通X值对帐" key="FINANCE_DOVEPAY_CHECK" url="/finance/dovepay/check">
+                <button name="导出Excel" key="FINANCE_DOVEPAY_CHECK_EXPORT" url="/finance/dovepay/check/exportExcel" />
+                <button name="处理" key="FINANCE_DOVEPAY_CHECK_VERIFY" url="/finance/dovepay/check/verify" />
+			</module>
+
+			<module name="分润异常统计表" key="FINANCE_VERIFICATION_TRANSACTIONCHECK" url="/finance/verification/transactionCheck">
+			   <button name="查询" key="FINANCE_VERIFICATION_TRANSACTIONCHECK_LOADDATA" url="/finance/verification/transactionCheck/loadData" />
+			   <button name="导出Excel" key="FINANCE_VERIFICATION_TRANSACTIONCHECK_EXPORT" url="/finance/verification/transactionCheck/exportExcel" />
+			   <button name="重发" key="FINANCE_VERIFICATION_TRANSACTIONCHECK_SETTLEMENT" url="/finance/verification/transactionCheck/settlementException" />
+			</module>
+		</module>
+		<module name="费率管理" key="FINANCE_FEE_CHARGE">
+			<module name="平台费配置" key="FINANCE_FEE_CHARGE_PLATFORM_CHARGE" url="/finance/platform/charge">
+				<button name="新增平台费模板" key="FINANCE_FEE_CHARGE_PLATFORM_CHARGE_ADD" url="/finance/platform/charge/add"></button>
+				<button name="导出Excel" key="FINANCE_FEE_CHARGE_PLATFORM_CHARGE_EXPORT" url="/finance/platform/charge/exportExcel"></button>
+				<button name="删除手续费规则" key="FINANCE_FEE_CHARGE_PLATFORM_CHARGE_DELETE" url="/finance/platform/charge/deleteByChargeSchemaId"></button>
+			</module>
+			<module name="供应商平台费规则查询" key="FINANCE_FEE_CHARGE_PROVIDER_PLATFORM" url="/finance/provider/platform">
+				<button name="导出Excel" key="FINANCE_FEE_CHARGE_PROVIDER_PLATFORM_EXPORT" url="/finance/provider/platform/exportExcel"></button>
+			</module>
+		</module>
+		<module name="支付管理" key="FINANCE_PAY">
+			<module name="机票付款申请" key="FINANCE_PAY_TICKETPAYAPPLY" url="/payManager/flight/search">
+				<button name="新增付款申请" key="FINANCE_PAY_TICKETPAYAPPLY_ADD" url="/payManager/flight/addPayApply" />
+				<button name="审核" key="FINANCE_PAY_TICKETPAYAPPLY_VERIFY" url="/payManager/flight/auditSuccess" />
+				<button name="取消审核" key="FINANCE_PAY_TICKETPAYAPPLY_CANCELVERIFY" url="/payManager/flight/auditCancel" />
+				<button name="完成" key="FINANCE_PAY_TICKETPAYAPPLY_FINISH" url="/payManager/flight/complete" />
+				<button name="导出" key="FINANCE_PAY_TICKETPAYAPPLY_EXPORT" url="/payManager/flight/exportExcel" />
+			</module>
+			<module name="酒店出帐申请" key="FINANCE_PAY_HOTELOUTACCOUNTAPPLY" url="/hotelOutAccountApply/jumpToHotelOutAccountApply">
+				<button name="挂账" key="FINANCE_PAY_HOTELOUTACCOUNTAPPLY_SINGLEHANG" url="/hotelOutAccountApply/hang" />
+				<button name="取消挂账" key="FINANCE_PAY_HOTELOUTACCOUNTAPPLY_CANCELSINGLEHANG" url="/hotelOutAccountApply/hangCancel" />
+				<button name="审核" key="FINANCE_PAY_HOTELOUTACCOUNTAPPLY_VERIFY" url="/hotelOutAccountApply/check" />
+				<button name="取消审核" key="FINANCE_PAY_HOTELOUTACCOUNTAPPLY_CANCELVERIFY" url="/hotelOutAccountApply/cancelCheck" />
+				<button name="导出" key="FINANCE_PAY_HOTELOUTACCOUNTAPPLY_EXPORT" url="/hotelOutAccountApply/exportExcel" />
+			</module>
+			<module name="酒店出账" key="FINANCE_PAY_HOTELOUTACCOUNT" url="/hotelOutAccount/jumpToHotelOutAccount">
+				<button name="出账" key="FINANCE_PAY_HOTELOUTACCOUNT_OUTACCOUNT" url="/hotelOutAccount/outAccount" />
+				<button name="导出" key="FINANCE_PAY_HOTELOUTACCOUNT_EXPORT" url="/hotelOutAccount/exportExcel" />
+			</module>
+			<module name="签证付款申请" key="FINANCE_PAY_VISAPAYAPPLY" url="/payManager/visa/apply/gotoSearch">
+				<button name="查看" key="FINANCE_PAY_VISAPAYAPPLY_VIEW" url="/visa/apply/viewPayApply/view" />
+				<button name="付款" key="FINANCE_PAY_VISAPAYAPPLY_APPLY" url="/visa/apply/viewPayApply/apply" />
+				<button name="导出" key="FINANCE_PAY_VISAPAYAPPLY_EXPORTEXCEL" url="/visa/apply/exportExcel" />
+			</module>
+			<module name="旅游付款申请" key="FINANCE_PAY_JOURNEYAPPLY" url="/payManager/journey/jumpToPayApply">
+				<button name="提交付款申请" key="FINANCE_PAY_JOURNEYAPPLY_COMMIT" url="/payManager/journey/applyPay" />
+				<button name="导出" key="FINANCE_PAY_JOURNEYAPPLY_EXPORTEXCEL" url="/payManager/journey/exportExcel" />
+				<button name="旅游" key="FINANCE_APPLY_JOURNEY" url="/finance/apply/journey" />
+				<button name="邮轮" key="FINANCE_APPLY_OILSHIP" url="/finance/apply/oilship" />
+			</module>
+			<module name="旅游付款" key="FINANCE_PAY_JOURNEY" url="/payManager/journey/jumpToPay">
+				<button name="审核" key="FINANCE_PAY_JOURNEY_CHECK" url="/payManager/journey/check" />
+				<button name="取消审核" key="FINANCE_PAY_JOURNEY_CANCELCHECK" url="/payManager/journey/cancelReview" />
+				<button name="付款" key="FINANCE_PAY_JOURNEY_PAY" url="/payManager/journey/pay" />
+				<button name="详情" key="FINANCE_PAY_JOURNEY_DETAIL" url="/payManager/journey/detailExportExcel" />
+				<button name="导出" key="FINANCE_PAY_JOURNEY_EXPORTEXCEL" url="/payManager/journey/payExportExcel" />
+				<button name="旅游" key="FINANCE_JOURNEY_PAY" url="/finance/pay/journey" />
+				<button name="邮轮" key="FINANCE_OILSHIP_PAY" url="/finance/pay/oilship" />
+			</module>
+		</module>
+		<module name="账户管理" key="FINANCE_ACCOUNT" url="">
+			<module name="账户类型" key="FINANCE_ACCOUNT_TYPE" url="/finance/account/type">
+				<button name="修改" key="FINANCE_ACCOUNT_TYPE_MODIFY" url="/finance/account/type/update"></button>
+				<button name="导出" key="FINANCE_ACCOUNT_TYPE_EXPORT" url="/finance/account/type/exportExcel"></button>
+			</module>
+			<module name="权限管理" key="FINANCE_ACCOUNT_PERMISSION" url="/finance/account/permission">
+				<button name="修改" key="FINANCE_ACCOUNT_PERMISSION_MODIFY" url="/finance/account/permission/update"></button>
+				<button name="导出" key="FINANCE_ACCOUNT_PERMISSION_EXPORT" url="/finance/account/permission/exportExcel"></button>
+			</module>
+			<module name="提现审核" key="FINANCE_ACCOUNT_WITHDRAW" url="/finance/account/withdraw">
+				<button name="查询" key="FINANCE_ACCOUNT_WITHDRAW_QUERY" url="/finance/account/withdraw_all"></button>
+				<button name="限制查询" key="FINANCE_ACCOUNT_WITHDRAW_QUERY_FILTER" url="/finance/account/withdraw/search/filter"></button>
+				<button name="旅游查询" key="FINANCE_ACCOUNT_WITHDRAW_QUERY_TRAVEL" url="/finance/account/withdraw_travel"></button>
+				<button name="签证查询" key="FINANCE_ACCOUNT_WITHDRAW_QUERY_VISA" url="/finance/account/withdraw_visa"></button>
+				<button name="新增提现" key="FINANCE_ACCOUNT_WITHDRAW_ADDWITHDRAW" url="/finance/account/withdraw/add"></button>
+				<button name="审核处理" key="FINANCE_ACCOUNT_WITHDRAW_VERIFY" url="/finance/account/withdraw/verify"></button>
+				<button name="导出" key="FINANCE_ACCOUNT_WITHDRAW_EXPORT" url="/finance/account/withdraw/exportExcel"></button>
+			</module>
+			<module name="押金管理" key="FINANCE_ACCOUNT_DEPOSIT" url="/finance/account/deposit">
+				<button name="新增押金" key="FINANCE_ACCOUNT_DEPOSIT_ADDDEPOSIT" url="/finance/account/deposit/add"></button>
+				<button name="退押金" key="FINANCE_ACCOUNT_DEPOSIT_RETURNEPOSIT" url="/finance/account/deposit/return"></button>
+				<button name="导出" key="FINANCE_ACCOUNT_DEPOSIT_EXPORT" url="/finance/account/deposit/exportExcel"></button>
+			</module>
+			<module name="冻结管理" key="FINANCE_ACCOUNT_FREEZE" url="/finance/account/freeze">
+				<button name="新增冻结" key="FINANCE_ACCOUNT_FREEZE_ADDFREEZE" url="/finance/account/freeze/add"></button>
+				<button name="支出" key="FINANCE_ACCOUNT_FREEZE_PAY" url="/finance/account/freeze/pay"></button>
+				<button name="解冻" key="FINANCE_ACCOUNT_FREEZE_UNFREEZE" url="/finance/account/freeze/unfreeze"></button>
+				<button name="导出" key="FINANCE_ACCOUNT_FREEZE_EXPORT" url="/finance/account/freeze/exportExcel"></button>
+			</module>
+		</module>
+
+		<module name="数据报表" key="FINANCE_REPORT"  >
+			<module name="财务报表" key="FINANCE_REPORT_REPORT" url="">
+				<button name="酒店客户收款报表" key="FINANCE_REPORT_REPOR_HOTEL_CUSTOMER_GATHERING" url="/report/hotel/goCustomerGathering"></button>
+				<button name="酒店订单留帐报表" key="FINANCE_REPORT_REPOR_HOTEL_ACCOUNT_LEAVE" url="/report/hotel/gotoAccountLeave"></button>
+				<button name="酒店供应商付款报表" key="FINANCE_REPORT_REPOR_HOTEL_SUPPLIER_PAY" url="/report/hotel/goSupplierSearch"></button>
+				<button name="机酒收入成本报表" key="FINANCE_REPORT_REPOR_HOTEL_COST" url="/report/hotel/goFlightAndHotel"></button>
+			</module>
+		</module>
+
+		<module name="结算报表" key="FINANCE_SETTLEMENT_REPORT" url="">
+			<module name="银行支付交易结算报表" key="FINANCE_EXTERNAL_BANK_REPORT" url="/finance/settlementReport/externalBank">
+				<button name="银行支付交易结算范围查询" key="FINANCE_EXTERNAL_BANK_REPORT_SCOPE_SEARCH" url="/finance/settlementReport/loadScope"></button>
+				<button name="银行支付交易结算范围导出" key="FINANCE_EXTERNAL_BANK_REPORT_SCOPE_EXPORT" url="/finance/settlementReport/exportExcelScope"></button>
+				<button name="银行支付交易结算按周期查询" key="FINANCE_EXTERNAL_BANK_REPORT_DAY_SEARCH" url="/finance/settlementReport/loadDay"></button>
+				<button name="银行支付交易结算按订单查询" key="FINANCE_EXTERNAL_BANK_REPORT_DETAIl_EXPORT" url="/finance/settlementReport/externalBankDetail"></button>
+			</module>
+			<module name="外部平台支付交易结算报表" key="FINANCE_EXTERNAL_PLATFORM_REPOR" url="/finance/settlementReport/externalPlatform">
+				<button name="外部平台支付交易结算按订单查询" key="FINANCE_EXTERNAL_PLATFORM_REPOR_DETAIl_EXPORT" url="/finance/settlementReport/externalPlatformDetail"></button>
+			</module>
+		</module>
+
+		<module name="积分代金券" key="FINANCE_REWARD_COUPON"  >
+			<module name="积分账户明细" key="FINANCE_REWARD_DETAIL" url="/finance/account/pointDetail">
+				<button name="冻结" key="FINANCE_REWARD_DETAIL_FREEZE" url="/finance/account/pointDetail/freeze"></button>
+				<button name="解冻" key="FINANCE_REWARD_DETAIL_UNFREEZE" url="/finance/account/pointDetail/unfreeze"></button>
+			</module>
+			<module name="代金券账户明细" key="FINANCE_COUPON_DETAIL" url="/finance/account/couponDetail">
+				<button name="冻结" key="FINANCE_COUPON_DETAIL_FREEZE" url="/finance/account/couponDetail/freeze"></button>
+				<button name="解冻" key="FINANCE_COUPON_DETAIL_UNFREEZE" url="/finance/account/couponDetail/unfreeze"></button>
+			</module>
+			<module name="积分收支明细" key="FINANCE_REWARD_INOUT_DETAIL" url="/finance/account/point">
+			</module>
+			<module name="代金券收支明细" key="FINANCE_COUPON_INOUT_DETAIL" url="/finance/account/coupon">
+			</module>
+		</module>
+
+		<module name="双11活动" key="DOUBLE_ELEVEN_PROMOTION"  >
+			<module name="电子卡收支明细" key="FINANCE_ECARD_DETAIL" url="/finance/account/ecard"></module>
+			<module name="电子卡订单处理" key="FINANCE_ECARD_DEAL" url="/finance/account/ecardRecharge">
+				<button name="退款" key="FINANCE_ECARD_RETURN" url="/finance/account/ecardRecharge/return"></button>
+			</module>
+		</module>
+	</module>
+
+	<module name="数据报表" key="DATAREPORT" url="">
+		<module name="数据报表" key="DATAREPORT_REPORT">
+			<module name="机票数据报表" key="DATAREPORT_REPORT_FLIGHT" url="">
+				<module name="采购商汇总" key="DATAREPORT_REPORT_FLIGHT_PURCHASER" url="/report/flight/goPurchaserSummary">
+					<button name="导出Excel" key="DATAREPORT_REPORT_FLIGHT_PURCHASER_EXCEL" url="/report/flight/exportFlightPurchaserSummaryReport"></button>
+				</module>
+				<module name="供应商汇总" key="DATAREPORT_REPORT_FLIGHT_PROVIDER" url="/report/flight/goDataReport">
+					<button name="导出Excel" key="DATAREPORT_REPORT_FLIGHT_PROVIDER_EXCEL" url="/report/flight/exportFlightSupplierSummaryReport"></button>
+				</module>
+				<module name="员工出票汇总" key="DATAREPORT_REPORT_FLIGHT_EMPLOYEEISSUESUMMARY" url="/report/flight/goEmployeeIssueSummary">
+					<button name="导出Excel" key="DATAREPORT_REPORT_FLIGHT_EMPLOYEEISSUESUMMARY_EXCEL" url="/report/flight/exportEmployeeIssueSummaryReport"></button>
+				</module>
+				<module name="员工退废票汇总" key="DATAREPORT_REPORT_FLIGHT_EMPLOYEEREFUND" url="/report/flight/goEmployeeRefundSummary">
+					<button name="导出Excel" key="DATAREPORT_REPORT_FLIGHT_EMPLOYEEREFUND_EXCEL" url="/report/flight/exportEmployeeRefundSummaryReport"></button>
+				</module>
+			</module>
+			<module name="酒店业务报表" key="DATAREPORT_REPORT_HOTEL">
+				<module name="供应商汇总" key="DATAREPORT_REPORT_HOTEL_PROVIDER" url="/report/hotelBusiness/goSupplierSummary">
+					<button name="导出Excel" key="DATAREPORT_REPORT_HOTEL_PROVIDER_EXPORT" url="/report/hotelBusiness/exportHotelSupplierSummaryReport"></button>
+					<button name="导出明细到Excel" key="DATAREPORT_REPORT_HOTEL_PROVIDER_DETAIL_EXPORT" url="/report/hotelBusiness/exportHotelSupplierDetailSummary"></button>
+				</module>
+				<module name="采购商汇总" key="DATAREPORT_REPORT_HOTEL_PURCHASER" url="/report/hotelBusiness/goPurchaserSummary">
+					<button name="导出Excel" key="DATAREPORT_REPORT_HOTEL_PURCHASER_EXPORT" url="/report/hotelBusiness/exportHotelPurchaserSummaryReport"></button>
+					<button name="导出明细到Excel" key="DATAREPORT_REPORT_HOTEL_PURCHASER_DETAIL_EXPORT" url="/report/hotelBusiness/exportHotelPurchaserDetailSummary"></button>
+				</module>
+				<module name="预留房汇总" key="DATAREPORT_REPORT_HOTEL_ROOMRESERVE" url="/report/hotelBusiness/goRoomReserveSummary">
+					<button name="导出Excel" key="DATAREPORT_REPORT_HOTEL_ROOMRESERVE_EXPORT" url="/report/hotelBusiness/exportHotelRoomReserveSummaryReport"></button>
+				</module>
+				<module name="订单效率汇总" key="DATAREPORT_REPORT_HOTEL_ORDEREFFICI" url="/report/hotelBusiness/goHotelOrderEfficiSummary">
+					<button name="导出Excel" key="DATAREPORT_REPORT_HOTEL_ORDEREFFICI_EXPORT" url="/report/hotelBusiness/exportHotelOrderEfficiSummaryReport"></button>
+					<button name="导出明细到Excel" key="DATAREPORT_REPORT_HOTEL_ORDEREFFICI_DETAIL_EXPORT" url="/report/hotelBusiness/exportHotelOrderEfficiDetailSummary"></button>
+				</module>
+				<module name="酒店业务绩效" key="DATAREPORT_REPORT_HOTEL_PERFORMANCE" url="/report/hotelBusiness/goHotelPerformanceSummary">
+					<button name="导出Excel" key="DATAREPORT_REPORT_HOTEL_PERFORMANCE_EXPORT" url="/report/hotelBusiness/exportHotelPerformanceSummary"></button>
+					<button name="导出明细到Excel" key="DATAREPORT_REPORT_HOTEL_PERFORMANCE_DETAIL_EXPORT" url="/report/hotelBusiness/exportHotelPerformanceDetailSummary"></button>
+				</module>
+			</module>
+			<module name="综合业务报表" key="DATAREPORT_REPORT_SYNTHESIS">
+				<module name="销售员绩效汇总" key="DATAREPORT_REPORT_SYNTHESIS_PERFORMANCE" url="/report/synthesis/goSalemanPerformance">
+					<button name="机票" key="DATAREPORT_REPORT_SYNTHESIS_PERFORMANCE_FLIGHT" url="/report/synthesis/flightSale"></button>
+					<button name="酒店" key="DATAREPORT_REPORT_SYNTHESIS_PERFORMANCE_HOTEL" url="/report/synthesis/hotelSale"></button>
+					<button name="旅游" key="DATAREPORT_REPORT_SYNTHESIS_PERFORMANCE_JOURNEY" url="/report/synthesis/journeySale"></button>
+					<button name="邮轮" key="DATAREPORT_REPORT_SYNTHESIS_PERFORMANCE_CRUISE" url="/report/synthesis/cruiseSale"></button>
+				</module>
+			</module>
+		</module>
+	</module>
+
+	<module name="客户管理" key="CUSTOMER">
+		<module name="采购商" key="CUSTOMER_PURCHASER">
+			<module name="采购商中心" key="CUSTOMER_PURCHASER_CENTER" url="/member/purchaser/center">
+				<button name="新增采购商" key="CUSTOMER_PURCHASER_CENTER_ADD" url="/member/purchaser/purchaserCreator" />
+				<button name="资料修改" key="CUSTOMER_PURCHASER_CENTER_KEY1">
+					<perm name="资料修改" key="CUSTOMER_PURCHASER_CENTER_MODIFY" url="/member/purchaser/gotoEditPurchaser" />
+					<!-- <perm name="取消" key="CUSTOMER_PURCHASER_CENTER_MODIFY_MODIFY" url="/member/divert/purchaser/center"/> -->
+					<perm name="保存" key="CUSTOMER_PURCHASER_CENTER_MODIFY_SAVE" url="/member/purchaser/savaPurchaserWithoutAudit"></perm>
+				</button>
+				<button name="挂起" key="CUSTOMER_PURCHASER_CENTER_KEY2">
+					<perm name="单个挂起" key="CUSTOMER_PURCHASER_CENTER_ONLYHANDS" url="/member/purchaser/suspend"></perm>
+					<perm name="批量挂起" key="CUSTOMER_PURCHASER_CENTER_PHANDS" url="/member/purchaser/suspendBatch"></perm>
+				</button>
+				<button name="解挂" key="CUSTOMER_PURCHASER_CENTER_KEY3">
+					<perm name="单个解挂" key="CUSTOMER_PURCHASER_CENTER_ONLYOPEAN" url="/member/purchaser/unlock"></perm>
+					<perm name="批量解挂" key="CUSTOMER_PURCHASER_CENTER_PONLY" url="/member/purchaser/unlockBatch"></perm>
+				</button>
+				<button name="信任/安全/风险" key="CUSTOMER_PURCHASER_CENTER_SETPROPERTY" url="/member/purchaser/setProperty"></button>
+				<button name="退回审核" key="CUSTOMER_PURCHASER_CENTER_RA" url="/member/purchaser/rejectPurchaserApply" />
+				<button name="分配" key="CUSTOMER_PURCHASER_CENTER_ALLOCATE" url="/member/purchaser/allocateSalesMan" />
+				<button name="分区" key="CUSTOMER_PURCHASER_CENTER_ALLOCATE_REGION" url="/member/purchaser/allocateRegion" />
+				<button name="导出" key="CUSTOMER_PURCHASER_CENTER_EXPORT" url="/member/purchaser/export" />
+				<button name="一键切换TDX接口" key="CUSTOMER_PURCHASER_CENTER_CHANGETOTDX" url="/member/purchaser/changeToTdx"></button>
+				<button name="一键切换qunar接口" key="CUSTOMER_PURCHASER_CENTER_CHANGETOQUNAR" url="/member/purchaser/changeToQunar"></button>
+			</module>
+			<module name="资质审核" key="CUSTOMER_QUALIFICATION_AUDIT" url="/member/divert/purchaser/auditor">
+				<button name="审核通过" key="CUSTOMER_QUALIFICATION_AUDIT_PASS" url="/member/purchaser/auditPurchaserPassed"></button>
+				<button name="审核退回" key="CUSTOMER_QUALIFICATION_AUDIT_REJECT" url="/member/purchaser/purchaserAuditRefused"></button>
+				<!-- <button name="资料修改" key="CUSTOMER_QUALIFICATION_AUDIT_MODIFY" url="/member/purchaser/savaPurchaserWithoutAudit"></button> -->
+			</module>
+			<module name="下级账户" key="CUSTOMER_DISTRIBUTOR" url="/member/distributor/center">
+			</module>
+		</module>
+		<module name="供应商" key="CUSTOMER_PROVIDER">
+			<module name="供应商中心" key="CUSTOMER_PROVIDER_CENTER" url="/member/divert/provider/center">
+				<button name="新增供应商" key="CUSTOMER_PROVIDER_CENTER_ADD" url="/member/provider/providerCreator" />
+				<button name="资料修改" key="CUSTOMER_PROVIDER_CENTER_KEY1">
+					<perm name="资料修改" key="CUSTOMER_PROVIDER_CENTER_MODIFY" url="/member/provider/gotoEditProvider"></perm>
+					<!-- <perm name="取消" key="CUSTOMER_PROVIDER_CENTER_MODIFY_CANCEL" url="/member/divert/provider/center"/> -->
+					<perm name="保存" key="CUSTOMER_PROVIDER_CENTER_MODIFY_SAVE" url="/member/provider/editProvider"></perm>
+				</button>
+				<button name="挂起" key="CUSTOMER_PROVIDER_CENTER_KEY2">
+					<perm name="单个挂起" key="CUSTOMER_PROVIDER_CENTER_ONLYHANDS" url="/member/provider/suspend"></perm>
+					<perm name="批量挂起" key="CUSTOMER_PROVIDER_CENTER_PHANDS" url="/member/provider/suspendBatch"></perm>
+				</button>
+				<button name="解挂" key="CUSTOMER_PROVIDER_CENTER_KEY3">
+					<perm name="单个解挂" key="CUSTOMER_PROVIDER_CENTER_ONLYOPEAN" url="/member/provider/unlock"></perm>
+					<perm name="批量解挂" key="CUSTOMER_PROVIDER_CENTER_POPEN" url="/member/provider/unlockBatch"></perm>
+				</button>
+				<button name="退回审核" key="CUSTOMER_PROVIDER_CENTER_RA" url="/member/provider/rejectApply" />
+			</module>
+			<module name="申请审核" key="CUSTOMER_PROVIDER_APPLY" url="/member/divert/provider/auditor">
+				<button name="审核通过" key="CUSTOMER_PROVIDER_APPLY_PASS" url=""></button> <!-- 通过KEY来隐藏按钮，URL跟下面两个一样 -->
+				<button name="审核退回" key="CUSTOMER_PROVIDER_APPLY_REFUND" url=""></button>
+				<button name="资料修改" key="CUSTOMER_PROVIDER_APPLY_EDIT" url=""></button>
+			</module>
+			<module name="信用额度预警" key="CUSTOMER_PROVIDER_CREDITWARNING" url="/creditController/provider/credit">
+			</module>
+			<module name="代扣账号审核" key="CUSTOMER_PROVIDER_ACCOUNTAUDIT" url="/member/divert/provider/accountAudit">
+				<button name="通过" key="CUSTOMER_PROVIDER_ACCOUNTAUDIT_AUDITPASS" url="/member/accountAuditInfo/auditPass"></button>
+				<button name="拒绝" key="CUSTOMER_PROVIDER_ACCOUNTAUDIT_AUDITREFUSE" url="/member/accountAuditInfo/auditRefuse"></button>
+			</module>
+		</module>
+		<module name="大客户" key="CUSTOMER_BIGCUSTOMER" url="">
+			<module name="大客户中心" key="CUSTOMER_BIGCUSTOMER_CENTER" url="/member/divert/bigCustomer/center">
+				<button name="新增大客户" key="CUSTOMER_BIGCUSTOMER_CENTER_ADD" url="/member/bigCustomer/bigCustomerCreator"></button>
+				<button name="资料修改" key="CUSTOMER_BIGCUSTOMER_CENTER_MODIFY" url="/member/bigCustomer/gotoEditBigCustomer"></button>
+				<button name="挂起" key="CUSTOMER_BIGCUSTOMER_CENTER_SUSPEND" url="/member/bigCustomer/suspend"></button>
+				<button name="解挂" key="CUSTOMER_BIGCUSTOMER_CENTER_ACTIVE" url="/member/bigCustomer/active"></button>
+			</module>
+		</module>
+		<module name="客户组" key="CUSTOMER_CUSTOMERGROUP">
+			<module name="维护客户组" key="CUSTOMER_CUSTOMERGROUP_MAINTAIN">
+				<button name="国内机票" key="CUSTOMER_CUSTOMERGROUP_DOMESTIC" url="/member/customerGroup/domesticFlight"></button>
+				<button name="国际机票" key="CUSTOMER_CUSTOMERGROUP_INTERNATIONAL" url="/member/customerGroup/internationalFlight"></button>
+				<button name="酒店" key="CUSTOMER_CUSTOMERGROUP_HOTEL" url="/member/customerGroup/hotel"></button>
+				<button name="保险" key="CUSTOMER_CUSTOMERGROUP_INSURANCE" url="/member/customerGroup/insurance"></button>
+				<button name="签证" key="CUSTOMER_CUSTOMERGROUP_VISA" url="/member/customerGroup/visa"></button>
+				<button name="旅游" key="CUSTOMER_CUSTOMERGROUP_JOURNEY" url="/member/customerGroup/journey"></button>
+				<button name="当地游" key="CUSTOMER_CUSTOMERGROUP_LOCALTRAVEL" url="/member/customerGroup/localTravel"></button>
+				<button name="邮轮" key="CUSTOMER_CUSTOMERGROUP_CRUISE" url="/member/customerGroup/cruise"></button>
+			</module>
+			<module name="分配客户组" key="CUSTOMER_ASSIGN_GROUP">
+				<button name="国内机票" key="CUSTOMER_ASSIGN_GROUP_DOMESTIC" url="/member/customerGroup/domesticFlightCustomerGroupAllocator"></button>
+				<button name="国际机票" key="CUSTOMER_ASSIGN_GROUP_INTERNATIONAL" url="/member/customerGroup/internationalFlightCustomerGroupAllocator"></button>
+				<button name="酒店" key="CUSTOMER_ASSIGN_GROUP_HOTEL" url="/member/customerGroup/hotelCustomerGroupAllocator"></button>
+				<button name="保险" key="CUSTOMER_ASSIGN_GROUP_INSURANCE" url="/member/customerGroup/insuranceCustomerGroupAllocator"></button>
+				<button name="签证" key="CUSTOMER_ASSIGN_GROUP_VISA" url="/member/customerGroup/visaCustomerGroupAllocator"></button>
+				<button name="旅游" key="CUSTOMER_ASSIGN_GROUP_JOURNEY" url="/member/customerGroup/journeyCustomerGroupAllocator"></button>
+				<button name="当地游" key="CUSTOMER_ASSIGN_GROUP_LOCALTRAVEL" url="/member/customerGroup/localTravelCustomerGroupAllocator"></button>
+				<button name="邮轮" key="CUSTOMER_ASSIGN_GROUP_CRUISE" url="/member/customerGroup/cruiseCustomerGroupAllocator"></button>
+			</module>
+		</module>
+		<module name="常旅客管理" key="CUSTOMER_TRAVELLER" url="/member/divert/distributer/center">
+			<module name="常旅客管理" key="CUSTOMER_TRAVELLER_TRAVELLER" url="/member/divert/traveller/travellerList">
+				<button name="新增" key="CUSTOMER_TRAVELLER_TRAVELLER_ADD" url="/traveller/add"></button>
+				<button name="修改" key="CUSTOMER_TRAVELLER_TRAVELLER_EDIT" url="/traveller/edit"></button>
+				<button name="删除" key="CUSTOMER_TRAVELLER_TRAVELLER_KEY1">
+					<perm name="单个删除" key="CUSTOMER_TRAVELLER_TRAVELLER_DELETESINGLE" url="/traveller/delete"></perm>
+					<perm name="批量删除" key="CUSTOMER_TRAVELLER_TRAVELLER_DELETEBATCH" url="/traveller/deleteBatch"></perm>
+				</button>
+				<button name="导出" key="CUSTOMER_TRAVELLER_TRAVELLER_EXPORT" url="/traveller/export"></button>
+			</module>
+		</module>
+		<module name="协调客户组" key="CUSTOMER_COORDINATEGROUP">
+			<module name="维护客户组" key="CUSTOMER_COORDINATEGROUP_MAINTAIN">
+				<button name="国内机票" key="CUSTOMER_COORDINATEGROUP_DOMESTIC" url="/member/coordinateGroup/domesticFlight"></button>
+			</module>
+			<module name="分配客户组" key="CUSTOMER_ASSIGN_COORDINATEGROUP">
+				<button name="国内机票" key="CUSTOMER_ASSIGN_COORDINATEGROUP_DOMESTIC" url="/member/coordinateGroup/domesticFlightCustomerGroupAllocator"></button>
+			</module>
+		</module>
+	</module>
+	<module name="系统设置" key="SETTING">
+		<module name="信息发布" key="SETTING_PUBLIC" url="">
+			<module name="公告" key="SETTING_PUBLIC_ANNOUNCEMENT" url="/advertise/Announcement/gotoSearchAnnouncement">
+				<button name="添加公告" key="SETTING_PUBLIC_ANNOUNCEMENT_ADD" url="/advertise/Announcement/addAnnouncement"></button>
+				<button name="修改" key="SETTING_PUBLIC_ANNOUNCEMENT_MODIFY" url="/advertise/Announcement/modifyAnnouncement"></button>
+				<button name="挂起" key="SETTING_PUBLIC_ANNOUNCEMENT_KEY1">
+					<perm name="挂起" key="SETTING_PUBLIC_ANNOUNCEMENT_SUSPEND" url="/advertise/Announcement/pendingAnnouncement"></perm>
+					<perm name="解挂" key="SETTING_PUBLIC_ANNOUNCEMENT_UNLOCK" url="/advertise/Announcement/disPendingAnnouncement"></perm>
+				</button>
+			</module>
+			<module name="采购商运营位" key="SETTING_PUBLIC_PURCHASER" url="/advertise/Advertisement/gotoSearchAdvertisement">
+				<module name="图片广告" key="SETTING_PUBLIC_PURCHASER_AD" url=""></module>
+				<module name="酒店资源" key="SETTING_PUBLIC_PURCHASER_HOTEL_RESOURCE" url=""></module>
+				<module name="旅游资源" key="SETTING_PUBLIC_PURCHASER_JOURNEY_RESOURCE" url=""></module>
+				<module name="签证资源" key="SETTING_PUBLIC_PURCHASER_VISA_RESOURCE" url=""></module>
+			</module>
+			<module name="APP运营位" key="SETTING_PUBLIC_APP" url="/advertise/appAdvertisement/gotoSearchAdvertisement">
+				<module name="图片广告" key="SETTING_PUBLIC_APP_AD" url=""></module>
+			</module>
+		</module>
+		<module name="公司信息" key="SETTING_COMPANY" url="">
+			<module name="基本信息" key="SETTING_COMPANY_BASIC" url="/setting/companyInfo/basicInfo/view">
+				<!-- <button name="添加联系人" key="SETTING_COMPANY_BASIC_CONTACT_ADD" url=""></button> -->
+				<button name="修改" key="SETTING_COMPANY_BASIC_MODIFY" url="/setting/companyInfo/basicInfo/save"></button>
+				<!-- <button name="删除" key="SETTING_COMPANY_BASIC_DELETE" url=""></button> -->
+			</module>
+			<module name="账户信息" key="SETTING_COMPANY_ACCOUNT" url="/order/flight/domestic/autoissuticket/bsp/getMyBspAccount">
+			</module>
+			<!-- <module name="账户信息" name="SETTING_COMPANY_ACCOUNT" url=""> <button name="添加账户" key="SETTING_COMPANY_ACCOUNT_ADD"
+				url=""></button> <button name="修改" key="SETTING_COMPANY_ACCOUNT_MODIFY" url=""></button> <button name="删除" key="SETTING_COMPANY_ACCOUNT_DELETE"
+				url=""></button> </module> -->
+			<module name="OFFICE设置" key="SETTING_COMPANY_OFFICE" url="/setting/officeNo/view">
+				<button name="添加OFFICE" key="SETTING_COMPANY_OFFICE_ADD" url="/setting/officeNo/addOfficeNo"></button>
+				<button name="修改" key="SETTING_COMPANY_OFFICE_MODIFY" url="/setting/officeNo/editOfficeNo"></button>
+				<button name="删除" key="SETTING_COMPANY_OFFICE_DELETE" url="/setting/officeNo/deleteOne"></button>
+			</module>
+			<module name="国内办公时间" key="SETTING_DOMESTIC_WORK_TIME" url="/setting/workTime/domestic/view">
+				<button name="保存国内办公时间" key="SETTING_SAVE_DOMESTIC_WORK_TIME" url="/setting/workTime/domestic/save"></button>
+			</module>
+			<module name="国际办公时间" key="SETTING_INTERNATIONNAL_WORK_TIME" url="/setting/workTime/international/view">
+				<button name="保存国际办公时间" key="SETTING_SAVE_INTERNATIONNAL_WORK_TIME" url="/setting/workTime/international/save"></button>
+			</module>
+		</module>
+		<module name="组织架构" key="SETTING_ORGANIZATION" url="/member/divert/operator/organization">
+			<button name="添加部门" key="SETTING_ORGANIZATION_DEPT_ADD" url="/member/operator/addDepart"></button>
+			<button name="添加员工" key="SETTING_ORGANIZATION_EMPLOYEE_ADD" url="/member/operator/addEmployee"></button>
+			<button name="编辑部门" key="SETTING_ORGANIZATION_DEPT_EDIT" url="/member/operator/editDepart"></button>
+			<button name="删除部门" key="SETTING_ORGANIZATION_DEPT_DELETE" url="/member/operator/deleteDepart"></button>
+			<button name="编辑员工" key="SETTING_ORGANIZATION_EMPLOYEE_EDIT" url="/member/operator/editEmployee"></button>
+			<button name="调动员工" key="SETTING_ORGANIZATION_KEY1">
+				<perm name="批量调用员工" key="SETTING_ORGANIZATION_EMPLOYEE_TRANSFER_BATCH" url="/member/operator/moveEmployeeBatch"></perm>
+			</button>
+			<button name="挂起员工" key="SETTING_ORGANIZATION_KEY2">
+				<perm name="挂起" key="SETTING_ORGANIZATION_EMPLOYEE_SUSPEND" url="/member/operator/suspend"></perm>
+				<perm name="解挂" key="SETTING_ORGANIZATION_EMPLOYEE_UNLOCK" url="/member/operator/unlock"></perm>
+			</button>
+			<button name="注销员工" key="SETTING_ORGANIZATION_EMPLOYEE_INVALIDATE" url="/member/operator/delete"></button>
+		</module>
+		<module name="角色维护" key="SETTING_ROLE" url="/member/divert/role/roleCenter">
+			<button name="添加角色" key="SETTING_ROLE_KEY1">
+				<perm name="添加角色" key="SETTING_ROLE_ADD_GOTO" url="/member/role/gotoAddRole" />
+				<perm name="保存" key="SETTING_ROLE_ADD_SAVE" url="/member/role/addRole" />
+			</button>
+			<button name="复制" key="SETTING_ROLE_KEY2">
+				<perm name="复制" key="SETTING_ROLE_DUPLICATE_GOTO" url="/member/role/gotoCopyRole"></perm>
+				<perm name="保存" key="SETTING_ROLE_DUPLICATE_SAVE" url="/member/role/copyRole"></perm>
+			</button>
+			<button name="编辑" key="SETTING_ROLE_KEY3">
+				<perm name="编辑" key="SETTING_ROLE_EDIT_GOTO" url="/member/role/gotoEditRole"></perm>
+				<perm name="保存" key="SETTING_ROLE_EDIT_SAVE" url="/member/role/editRole"></perm>
+			</button>
+			<button name="删除" key="SETTING_ROLE_DELETE" url="/member/role/delete"></button>
+		</module>
+		<module name="基础数据" key="SETTING_BD" url="">
+			<module name="机票" key="SETTING_BD_DF" url="/systemManage/systemManagePage">
+				<module name="城市代码" key="SETTING_BD_DF_CITYCODE" url="/flightCityCode/getAllCityCode">
+					<!-- <button name="查询" key="SETTING_BD_DF_CITYCODE_QUERY" url="/flightCityCode/searchCityCode"/> -->
+					<button name="添加" key="SETTING_BD_DF_CITYCODE_ADD" url="/flightCityCode/addAirCityCode" />
+					<button name="修改" key="SETTING_BD_DF_CITYCODE_UPDATE" url="/flightCityCode/modifyAirCityCode" />
+					<button name="删除" key="SETTING_BD_DF_CITYCODE_DELETE" url="/flightCityCode/deleteCityCode" />
+					<button name="导出" key="SETTING_BD_DF_CITYCODE_EXPORT" url="/flightCityCode/download" />
+				</module>
+				<module name="机场代码" key="SETTING_BD_DF_AIRPORT" url="/flightPort/getAllAirPort">
+					<!-- <button name="查询" key="SETTING_BD_DF_AIRPORT_QUERY" url="/flightPort/searchAirPort"/> -->
+					<button name="添加" key="SETTING_BD_DF_AIRPORT_ADD" url="/flightPort/addAirPort" />
+					<button name="修改" key="SETTING_BD_DF_AIRPORT_UPDATE" url="/flightPort/modifyAirPort" />
+					<button name="删除" key="SETTING_BD_DF_AIRPORT_DELETE" url="/flightPort/deleteAirPort" />
+					<button name="导出" key="SETTING_BD_DF_AIRPORT_EXPORT" url="/flightPort/download" />
+				</module>
+				<module name="机型代码" key="SETTING_BD_DF_AIRCRAFT" url="/flightCraft/getAllAirCraft">
+					<!-- <button name="查询" key="SETTING_BD_DF_AIRCRAFT_QUERY" url="/flightCraft/searchAirCraft"/> -->
+					<button name="添加" key="SETTING_BD_DF_AIRCRAFT_ADD" url="/flightCraft/addAirCraft" />
+					<button name="修改" key="SETTING_BD_DF_AIRCRAFT_UPDATE" url="/flightCraft/modifyAirCraft" />
+					<button name="删除" key="SETTING_BD_DF_AIRCRAFT_DELETE" url="/flightCraft/deleteAirCraft" />
+					<button name="导出" key="SETTING_BD_DF_AIRCRAFT_EXPORT" url="/flightCraft/download" />
+				</module>
+				<module name="航站楼" key="SETTING_BD_DF_TERMINAL" url="/flightPortTerminal/getAllAirPortTerminal">
+					<!-- <button name="查询" key="SETTING_BD_DF_TERMINAL_QUERY" url="/flightPortTerminal/searchAirPortTerminal"/> -->
+					<button name="添加" key="SETTING_BD_DF_TERMINAL_ADD" url="/flightPortTerminal/addAirPortTerminal" />
+					<button name="修改" key="SETTING_BD_DF_TERMINAL_UPDATE" url="/flightPortTerminal/modifyAirPortTerminal" />
+					<button name="删除" key="SETTING_BD_DF_TERMINAL_DELETE" url="/flightPortTerminal/deleteAirPortTerminal" />
+					<button name="导出" key="SETTING_BD_DF_TERMINAL_EXPORT" url="/flightPortTerminal/download" />
+				</module>
+				<module name="航空公司" key="SETTING_BD_DF_AIRLINE" url="/flightLine/getAllAirLine">
+					<!-- <button name="查询" key="SETTING_BD_DF_AIRLINE_QUERY" url="/flightLine/searchAirLine"/> -->
+					<button name="添加" key="SETTING_BD_DF_AIRLINE_ADD" url="/flightLine/addAirLine" />
+					<button name="修改" key="SETTING_BD_DF_AIRLINE_UPDATE" url="/flightLine/modifyAirLine" />
+					<button name="删除" key="SETTING_BD_DF_AIRLINE_DELETE" url="/flightLine/deleteAirLine" />
+					<button name="导出" key="SETTING_BD_DF_AIRLINE_EXPORT" url="/flightLine/download" />
+				</module>
+				<module name="舱位代码" key="SETTING_BD_DF_AIRCABIN" url="/flightCabin/getAllAirCabin">
+					<!-- <button name="查询" key="SETTING_BD_DF_AIRCABIN_QUERY" url="/flightCabin/searchAirCabin"/> -->
+					<button name="添加" key="SETTING_BD_DF_AIRCABIN_ADD" url="/flightCabin/addAirCabin" />
+					<button name="修改" key="SETTING_BD_DF_AIRCABIN_UPDATE" url="/flightCabin/modifyAirCabin" />
+					<button name="删除" key="SETTING_BD_DF_AIRCABIN_DELETE" url="/flightCabin/deleteAirCabin" />
+					<button name="导出" key="SETTING_BD_DF_AIRCABIN_EXPORT" url="/flightCabin/download" />
+				</module>
+				<module name="舱位折扣" key="SETTING_BD_DF_CABINDISCOUNT" url="/flightDiscount/getAllAirDiscount">
+					<!-- <button name="查询" key="SETTING_BD_DF_CABINDISCOUNT_QUERY" url="/flightDiscount/searchAirDiscount"/> -->
+					<button name="添加" key="SETTING_BD_DF_CABINDISCOUNT_ADD" url="/flightDiscount/addAirDiscount" />
+					<button name="修改" key="SETTING_BD_DF_CABINDISCOUNT_UPDATE" url="/flightDiscount/modifyAirDiscount" />
+					<button name="删除" key="SETTING_BD_DF_CABINDISCOUNT_DELETE" url="/flightDiscount/deleteAirDiscount" />
+					<button name="导出" key="SETTING_BD_DF_CABINDISCOUNT_EXPORT" url="/flightDiscount/download" />
+				</module>
+				<module name="公布运价" key="SETTING_BD_DF_PUBLICPRICE" url="/flightPublishPrice/getAllAirPublishPrice">
+					<!-- <button name="查询" key="SETTING_BD_DF_PUBLICPRICE_QUERY" url="/flightPublicPrice/searchAirPublicPrice"/> -->
+					<button name="添加" key="SETTING_BD_DF_PUBLICPRICE_ADD" url="/flightPublishPrice/addAirPublicPrice" />
+					<button name="修改" key="SETTING_BD_DF_PUBLICPRICE_UPDATE" url="/flightPublishPrice/modifyAirPublicPrice" />
+					<button name="删除" key="SETTING_BD_DF_PUBLICPRICE_DELETE" url="/flightPublishPrice/deleteAirPublicPrice" />
+				</module>
+				<module name="里程数" key="SETTING_BD_DF_MILEAGE" url="/flightPortDistance/getAllAirPortDistance">
+					<!-- <button name="查询" key="SETTING_BD_DF_MILEAGE_QUERY" url="/flightPortDistance/searchAirPortDistance"/> -->
+					<button name="添加" key="SETTING_BD_DF_MILEAGE_ADD" url="/flightPortDistance/addAirPortDistance" />
+					<button name="修改" key="SETTING_BD_DF_MILEAGE_UPDATE" url="/flightPortDistance/modifyAirPortDistance" />
+					<button name="删除" key="SETTING_BD_DF_MILEAGE_DELETE" url="/flightPortDistance/deleteAirPortDistance" />
+				</module>
+				<module name="燃油加价" key="SETTING_BD_DF_FUELTAX" url="/fuelTax/getAllFuelTax">
+					<!-- <button name="查询" key="SETTING_BD_DF_FUELTAX_QUERY" url="/fueltax/searchFuelTax"/> -->
+					<button name="添加" key="SETTING_BD_DF_FUELTAX_ADD" url="/fuelTax/addFuelTax" />
+					<button name="修改" key="SETTING_BD_DF_FUELTAX_UPDATE" url="/fuelTax/modifyFuelTax" />
+					<button name="删除" key="SETTING_BD_DF_FUELTAX_DELETE" url="/fuelTax/deleteFuelTax" />
+				</module>
+				<module name="政策国际机场" key="PRICING_INTERNAT_AIRPORT" url="/internatAirport/getAllAirPort">
+					<button name="添加" key="PRICING_INTERNAT_AIRPORT_ADD" url="/internatAirport/addInternatSubmitAirPort" />
+					<button name="修改" key="PRICING_INTERNAT_AIRPORT_UPDATE" url="/internatAirport/updateInternatSubmitAirPort" />
+					<button name="删除" key="PRICING_INTERNAT_AIRPORT_DELETE" url="/internatAirport/deleteInternatAirPort" />
+					<button name="查看" key="PRICING_INTERNAT_AIRPORT_LOOK" url="/internatAirport/gotoCheckInternatAirport" />
+				</module>
+			</module>
+
+			<module name="公共" key="SETTING_BD_COMMON" url="/systemManage/publicManagePage">
+				<module name="节假日" key="SETTING_BD_COMMON_FESTIVAL">
+					<button name="修改" key="SETTING_BD_COMMON_FESTIVAL_MODIFY" url="/publicVocation/update"></button>
+					<button name="导出" key="SETTING_BD_COMMON_FESTIVAL_EXPORT" url="/publicVocation/download" />
+					<button name="导入" key="SETTING_BD_COMMON_FESTIVAL_IMPORT" url="/publicVocation/upload" />
+				</module>
+			</module>
+		</module>
+		<module name="消息模板" key="SETTING_MSG" url="/messaging/center">
+			<button name="新增消息模板" key="SETTING_MSG_ADDTEMPLATE" url="/messaging/addMessageTemplate"></button>
+			<button name="修改" key="SETTING_MSG_KEY1">
+				<perm name="修改" key="SETTING_MSG_UPDATETEMPLATE" url="/messaging/modifyMessageTemplate"></perm>
+				<perm name="添加" key="SETTING_MSG_ADDMAILTEMPLATE" url="/messaging/updateMailTemplate"></perm>
+				<perm name="添加" key="SETTING_MSG_ADDFAXUPDATETEMPLATE" url="/messaging/updateFaxTemplate"></perm>
+				<perm name="删除" key="SETTING_MSG_DELMAILUPDATETEMPLATE" url="/messaging/deteteMailTemplate"></perm>
+				<perm name="删除" key="SETTING_MSG_DELFAXUPDATETEMPLATE" url="/messaging/deteteFaxTemplate"></perm>
+			</button>
+		</module>
+		<module name="短信工具" key="SETTING_SMS" url="">
+			<module name="发送短信" key="SETTING_SMS_SEND" url="/smsSend/send"/>
+			<module name="发送记录" key="SETTING_SMS_HISTORY" url="/smsSend/history"/>
+			<module name="短信模板" key="SETTING_SMS_TEMPLATE" url="/smsSend/template">
+				<button name="新增业务类型" key="SETTING_SMS_TEMPLATE_ADD_BUSINESSTYPE" url="/smsSend/template/type/add"></button>
+                <button name="删除业务类型" key="SETTING_SMS_TEMPLATE_DELETE_BUSINESSTYPE" url="/smsSend/template/type/delete"></button>
+                <button name="新增模版" key="SETTING_SMS_TEMPLATE_ADD_TEMPLATE" url="/smsSend/template/add"></button>
+				<button name="删除模版" key="SETTING_SMS_TEMPLATE_DELETE_TEMPLATE" url="/smsSend/template/delete"></button>
+				<button name="编辑模版" key="SETTING_SMS_TEMPLATE_EDIT_TEMPLATE" url="/smsSend/template/edit"></button>
+			</module>
+            <module name="营销短信" key="SETTING_SMS_BATCH_SEND" url="/sms/batch/batchSend" />
+            <module name="营销短信记录" key="SETTING_SMS_BATCH_SEND_LIST" url="/sms/batch/batchSendList">
+                <button name="通过" key="SETTING_SMS_BATCH_SEND_PASS" url="/sms/batch/pass"></button>
+                <button name="修改" key="SETTING_SMS_BATCH_SEND_MODIFY" url="/sms/batch/modify"></button>
+                <button name="退回" key="SETTING_SMS_BATCH_SEND_RETURN_BACK" url="/sms/batch/return_back"></button>
+                <button name="查看详情" key="SETTING_SMS_BATCH_SEND_VIEW_DETAIL" url="/sms/batch/view_detail"></button>
+            </module>
+		</module>
+        <module name="PID管理" key="SETTING_PID">
+            <module name="实时监控" key="SETTING_PID_MONITOR">
+                <button name="用户状态" key="SETTING_PID_MONITOR_USERSTATUS">
+                    <perm name="页面" key="SETTING_PID_MONITOR_USERSTATUS_PAGE" url="/monitor/userStatus"/>
+                    <perm name="搜索" key="SETTING_PID_MONITOR_USERSTATUS_SEARCH" url="/monitor/userStatus/search"/>
+                </button>
+                <button name="PID状态" key="SETTING_PID_MONITOR_PIDSTATUS" url="">
+                    <perm name="页面" key="SETTING_PID_MONITOR_PIDSTATUS_PAGE" url="/monitor/pidStatus"/>
+                    <perm name="搜索" key="SETTING_PID_MONITOR_PIDSTATUS_SEARCH" url="/monitor/pidStatus/search"/>
+                </button>
+                <button name="用户指令" key="SETTING_PID_MONITOR_USERINSTRUCTION" url="/monitor/userInstructions"> </button>
+                <button name="PID指令" key="SETTING_PID_PIDINSTRUCTION" url="/monitor/pidInstructions"> </button>
+            </module>
+            <module name="PID帐号管理" key="SETTING_PID_PIDACCOUNT" url="/pidAccount/list">
+                <button name="新增" key="SETTING_PID_PIDACCOUNT_ADD">
+                    <perm name="页面" key="SETTING_PID_PIDACCOUNT_ADD_PAGE" url="/pidAccount/creater"/>
+                    <perm name="提交" key="SETTING_PID_PIDACCOUNT_ADD_SUBMIT" url="/pidAccount/createNew"/>
+                </button>
+                <button name="修改" key="SETTING_PID_PIDACCOUNT_MODIFY">
+                    <perm name="页面" key="SETTING_PID_PIDACCOUNT_MODIFY_PAGE" url="/pidAccount/editer"/>
+                    <perm name="提交" key="SETTING_PID_PIDACCOUNT_MODIFY_SUBMIT" url="/pidAccount/edit"/>
+                </button>
+                <button name="删除" key="SETTING_PID_PIDACCOUNT_DELETE" url="/pidAccount/delete"></button>
+                <button name="激活/禁用" key="SETTING_PID_PIDACCOUNT_SETACTIVITY">
+                    <perm name="激活" key="SETTING_PID_PIDACCOUNT_SETACTIVITY_ACTIVE" url="/pidAccount/active"/>
+                    <perm name="禁用" key="SETTING_PID_PIDACCOUNT_SETACTIVITY_DEACTIVE" url="/pidAccount/deactive"/>
+                </button>
+            </module>
+            <module name="用户帐号管理" key="SETTING_PID_USER" url="/user/list">
+                <button name="新增" key="SETTING_PID_USER_ADD">
+                    <perm name="页面" key="SETTING_PID_USER_ADD_PAGE" url="/user/creater"/>
+                    <perm name="提交" key="SETTING_PID_USER_ADD_SUBMIT" url="/user/createNew"/>
+                </button>
+                <button name="修改" key="SETTING_PID_USER_MODIFY">
+                    <perm name="页面" key="SETTING_PID_USER_MODIFY_PAGE" url="/user/editer"/>
+                    <perm name="提交" key="SETTING_PID_USER_MODIFY_SUBMIT" url="/user/edit"/>
+                </button>
+                <button name="删除" key="SETTING_PID_USER_DELETE" url="/user/delete"></button>
+                <button name="激活/禁用" key="SETTING_PID_USER_SETACTIVITY">
+                    <perm name="激活" key="SETTING_PID_USER_SETACTIVITY_ACTIVE" url="/user/active"/>
+                    <perm name="禁用" key="SETTING_PID_USER_SETACTIVITY_DEACTIVE" url="/user/deactive"/>
+                </button>
+            </module>
+            <module name="分组管理" key="SETTING_PID_GROUP" url="/group/list">
+                <button name="新增" key="SETTING_PID_GROUP_ADD" url="/group/create"/>
+                <button name="修改" key="SETTING_PID_GROUP_MODIFY" url="/group/edit"/>
+                <button name="删除" key="SETTING_PID_GROUP_DELETE" url="/group/delete"/>
+                <button name="激活/禁用" key="SETTING_PID_GROUP_SETACTIVITY">
+                    <perm name="激活" key="SETTING_PID_GROUP_SETACTIVITY_ACTIVE" url="/group/active"/>
+                    <perm name="禁用" key="SETTING_PID_GROUP_SETACTIVITY_DEACTIVE" url="/group/deactive"/>
+                </button>
+            </module>
+            <module name="角色管理" key="SETTING_PID_ROLE" url="/role/list">
+                <button name="新增" key="SETTING_PID_ROLE_ADD" url="/role/create"/>
+                <button name="修改" key="SETTING_PID_ROLE_EDIT" url="/role/edit"/>
+                <button name="删除" key="SETTING_PID_ROLE_DELETE" url="/role/delete"/>
+            </module>
+            <module name="指令管理" key="SETTING_PID_INSTRUCTION" url="/instruction/list">
+                <button name="新增" key="SETTING_PID_INSTRUCTION_ADD" url="/instruction/create"/>
+                <button name="修改" key="SETTING_PID_INSTRUCTION_EDIT" url="/instruction/edit"/>
+                <button name="删除" key="SETTING_PID_INSTRUCTION_DELETE" url="/instruction/delete"/>
+            </module>
+        </module>
+        <module name="运价监控" key="FAREMONITOR">
+        </module>
+        
+	</module>
+
+</permissions>

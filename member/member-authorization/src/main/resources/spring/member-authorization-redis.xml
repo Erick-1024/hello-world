@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:sc="http://www.springframework.org/schema/security"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/aop					http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/tx						http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+		http://www.springframework.org/schema/context				http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/security				http://www.springframework.org/schema/security/spring-security-3.1.xsd
+		http://www.springframework.org/schema/task					http://www.springframework.org/schema/task/spring-task-3.1.xsd">
+
+	<bean
+		class="com.travelzen.framework.config.tops.TzPropertyPlaceholderConfigurer">
+		<property name="tzProperties">
+			<list>
+				<value>R:properties/member-redis.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxActive" value="${redis.pool.maxActive}" />
+		<property name="maxIdle" value="${redis.pool.maxIdle}" />
+		<property name="maxWait" value="${redis.pool.maxWait}" />
+		<property name="testOnBorrow" value="${redis.pool.testOnBorrow}" />
+	</bean>
+
+	<bean id="jedisConnFactory"	class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+		p:hostName="${redis.host}"
+		p:port="${redis.port}"
+		p:database="${redis.database}"
+		p:password=""
+		p:timeout="${redis.timeout}"
+		p:poolConfig-ref="jedisPoolConfig"
+		p:use-pool="true" />
+
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
+		p:connection-factory-ref="jedisConnFactory" />
+
+</beans>

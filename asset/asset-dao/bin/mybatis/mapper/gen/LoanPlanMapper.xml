@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.asset.dao.mapper.gen.LoanPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.asset.dao.po.LoanPlan" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="loan_info_id" property="loanInfoId" jdbcType="VARCHAR" />
+    <result column="repayment_period" property="repaymentPeriod" jdbcType="INTEGER" />
+    <result column="finance_balance" property="financeBalance" jdbcType="DECIMAL" />
+    <result column="value_date" property="valueDate" jdbcType="VARCHAR" />
+    <result column="settle_interest_date" property="settleInterestDate" jdbcType="VARCHAR" />
+    <result column="repayment_date" property="repaymentDate" jdbcType="VARCHAR" />
+    <result column="account_principal" property="accountPrincipal" jdbcType="DECIMAL" />
+    <result column="account_interest" property="accountInterest" jdbcType="DECIMAL" />
+    <result column="account_overdue" property="accountOverdue" jdbcType="DECIMAL" />
+    <result column="settle_status" property="settleStatus" jdbcType="VARCHAR" />
+    <result column="last_paid_date" property="lastPaidDate" jdbcType="VARCHAR" />
+    <result column="paid_principal" property="paidPrincipal" jdbcType="DECIMAL" />
+    <result column="paid_interest" property="paidInterest" jdbcType="DECIMAL" />
+    <result column="paid_overdue" property="paidOverdue" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="upate_time" property="upateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, loan_info_id, repayment_period, finance_balance, value_date, settle_interest_date, 
+    repayment_date, account_principal, account_interest, account_overdue, settle_status, 
+    last_paid_date, paid_principal, paid_interest, paid_overdue, create_time, upate_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.asset.dao.po.LoanPlanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from asset_loan_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset_loan_plan
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from asset_loan_plan
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.asset.dao.po.LoanPlanExample" >
+    delete from asset_loan_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.asset.dao.po.LoanPlan" >
+    insert into asset_loan_plan (id, loan_info_id, repayment_period, 
+      finance_balance, value_date, settle_interest_date, 
+      repayment_date, account_principal, account_interest, 
+      account_overdue, settle_status, last_paid_date, 
+      paid_principal, paid_interest, paid_overdue, 
+      create_time, upate_time)
+    values (#{id,jdbcType=VARCHAR}, #{loanInfoId,jdbcType=VARCHAR}, #{repaymentPeriod,jdbcType=INTEGER}, 
+      #{financeBalance,jdbcType=DECIMAL}, #{valueDate,jdbcType=VARCHAR}, #{settleInterestDate,jdbcType=VARCHAR}, 
+      #{repaymentDate,jdbcType=VARCHAR}, #{accountPrincipal,jdbcType=DECIMAL}, #{accountInterest,jdbcType=DECIMAL}, 
+      #{accountOverdue,jdbcType=DECIMAL}, #{settleStatus,jdbcType=VARCHAR}, #{lastPaidDate,jdbcType=VARCHAR}, 
+      #{paidPrincipal,jdbcType=DECIMAL}, #{paidInterest,jdbcType=DECIMAL}, #{paidOverdue,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{upateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.asset.dao.po.LoanPlan" >
+    insert into asset_loan_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="loanInfoId != null" >
+        loan_info_id,
+      </if>
+      <if test="repaymentPeriod != null" >
+        repayment_period,
+      </if>
+      <if test="financeBalance != null" >
+        finance_balance,
+      </if>
+      <if test="valueDate != null" >
+        value_date,
+      </if>
+      <if test="settleInterestDate != null" >
+        settle_interest_date,
+      </if>
+      <if test="repaymentDate != null" >
+        repayment_date,
+      </if>
+      <if test="accountPrincipal != null" >
+        account_principal,
+      </if>
+      <if test="accountInterest != null" >
+        account_interest,
+      </if>
+      <if test="accountOverdue != null" >
+        account_overdue,
+      </if>
+      <if test="settleStatus != null" >
+        settle_status,
+      </if>
+      <if test="lastPaidDate != null" >
+        last_paid_date,
+      </if>
+      <if test="paidPrincipal != null" >
+        paid_principal,
+      </if>
+      <if test="paidInterest != null" >
+        paid_interest,
+      </if>
+      <if test="paidOverdue != null" >
+        paid_overdue,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="upateTime != null" >
+        upate_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="loanInfoId != null" >
+        #{loanInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentPeriod != null" >
+        #{repaymentPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="financeBalance != null" >
+        #{financeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="valueDate != null" >
+        #{valueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="settleInterestDate != null" >
+        #{settleInterestDate,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentDate != null" >
+        #{repaymentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="accountPrincipal != null" >
+        #{accountPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="accountInterest != null" >
+        #{accountInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="accountOverdue != null" >
+        #{accountOverdue,jdbcType=DECIMAL},
+      </if>
+      <if test="settleStatus != null" >
+        #{settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lastPaidDate != null" >
+        #{lastPaidDate,jdbcType=VARCHAR},
+      </if>
+      <if test="paidPrincipal != null" >
+        #{paidPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="paidInterest != null" >
+        #{paidInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="paidOverdue != null" >
+        #{paidOverdue,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upateTime != null" >
+        #{upateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.asset.dao.po.LoanPlanExample" resultType="java.lang.Integer" >
+    select count(*) from asset_loan_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update asset_loan_plan
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanInfoId != null" >
+        loan_info_id = #{record.loanInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repaymentPeriod != null" >
+        repayment_period = #{record.repaymentPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.financeBalance != null" >
+        finance_balance = #{record.financeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.valueDate != null" >
+        value_date = #{record.valueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settleInterestDate != null" >
+        settle_interest_date = #{record.settleInterestDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repaymentDate != null" >
+        repayment_date = #{record.repaymentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountPrincipal != null" >
+        account_principal = #{record.accountPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountInterest != null" >
+        account_interest = #{record.accountInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountOverdue != null" >
+        account_overdue = #{record.accountOverdue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.settleStatus != null" >
+        settle_status = #{record.settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastPaidDate != null" >
+        last_paid_date = #{record.lastPaidDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paidPrincipal != null" >
+        paid_principal = #{record.paidPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paidInterest != null" >
+        paid_interest = #{record.paidInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paidOverdue != null" >
+        paid_overdue = #{record.paidOverdue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.upateTime != null" >
+        upate_time = #{record.upateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update asset_loan_plan
+    set id = #{record.id,jdbcType=VARCHAR},
+      loan_info_id = #{record.loanInfoId,jdbcType=VARCHAR},
+      repayment_period = #{record.repaymentPeriod,jdbcType=INTEGER},
+      finance_balance = #{record.financeBalance,jdbcType=DECIMAL},
+      value_date = #{record.valueDate,jdbcType=VARCHAR},
+      settle_interest_date = #{record.settleInterestDate,jdbcType=VARCHAR},
+      repayment_date = #{record.repaymentDate,jdbcType=VARCHAR},
+      account_principal = #{record.accountPrincipal,jdbcType=DECIMAL},
+      account_interest = #{record.accountInterest,jdbcType=DECIMAL},
+      account_overdue = #{record.accountOverdue,jdbcType=DECIMAL},
+      settle_status = #{record.settleStatus,jdbcType=VARCHAR},
+      last_paid_date = #{record.lastPaidDate,jdbcType=VARCHAR},
+      paid_principal = #{record.paidPrincipal,jdbcType=DECIMAL},
+      paid_interest = #{record.paidInterest,jdbcType=DECIMAL},
+      paid_overdue = #{record.paidOverdue,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      upate_time = #{record.upateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.asset.dao.po.LoanPlan" >
+    update asset_loan_plan
+    <set >
+      <if test="loanInfoId != null" >
+        loan_info_id = #{loanInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentPeriod != null" >
+        repayment_period = #{repaymentPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="financeBalance != null" >
+        finance_balance = #{financeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="valueDate != null" >
+        value_date = #{valueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="settleInterestDate != null" >
+        settle_interest_date = #{settleInterestDate,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentDate != null" >
+        repayment_date = #{repaymentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="accountPrincipal != null" >
+        account_principal = #{accountPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="accountInterest != null" >
+        account_interest = #{accountInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="accountOverdue != null" >
+        account_overdue = #{accountOverdue,jdbcType=DECIMAL},
+      </if>
+      <if test="settleStatus != null" >
+        settle_status = #{settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lastPaidDate != null" >
+        last_paid_date = #{lastPaidDate,jdbcType=VARCHAR},
+      </if>
+      <if test="paidPrincipal != null" >
+        paid_principal = #{paidPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="paidInterest != null" >
+        paid_interest = #{paidInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="paidOverdue != null" >
+        paid_overdue = #{paidOverdue,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upateTime != null" >
+        upate_time = #{upateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.asset.dao.po.LoanPlan" >
+    update asset_loan_plan
+    set loan_info_id = #{loanInfoId,jdbcType=VARCHAR},
+      repayment_period = #{repaymentPeriod,jdbcType=INTEGER},
+      finance_balance = #{financeBalance,jdbcType=DECIMAL},
+      value_date = #{valueDate,jdbcType=VARCHAR},
+      settle_interest_date = #{settleInterestDate,jdbcType=VARCHAR},
+      repayment_date = #{repaymentDate,jdbcType=VARCHAR},
+      account_principal = #{accountPrincipal,jdbcType=DECIMAL},
+      account_interest = #{accountInterest,jdbcType=DECIMAL},
+      account_overdue = #{accountOverdue,jdbcType=DECIMAL},
+      settle_status = #{settleStatus,jdbcType=VARCHAR},
+      last_paid_date = #{lastPaidDate,jdbcType=VARCHAR},
+      paid_principal = #{paidPrincipal,jdbcType=DECIMAL},
+      paid_interest = #{paidInterest,jdbcType=DECIMAL},
+      paid_overdue = #{paidOverdue,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      upate_time = #{upateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset_loan_plan
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.asset.dao.po.LoanPlanExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from asset_loan_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

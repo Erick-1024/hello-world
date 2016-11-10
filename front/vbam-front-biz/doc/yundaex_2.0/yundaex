@@ -1,0 +1,7 @@
+#新增的索引
+
+ALTER TABLE `vbam`.`yundaex_customer_apply` 
+ADD INDEX `idx_yundaex_customer_apply_audit_time` (`audit_time` ASC);
+
+ALTER TABLE `vbam`.`yundaex_customer_apply` 
+ADD INDEX `idx_yundaex_customer_apply_apply_type` (`apply_type` ASC);

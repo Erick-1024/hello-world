@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cana.repayment.dao.mapper.IRepaymentPlanHolidayMapper">
+
+	<select id="getAllEffectedLoanInfoIds" resultType="string" >
+   		select distinct plan.loan_info_id
+   		from repayment_plan plan
+   		left join repayment_loan_info loan on loan.id = plan.loan_info_id
+   		where loan.business_product_id in (
+   				<foreach item="useHolidayPolicyProjectId" collection="useHolidayPolicyProjectIds" separator=",">
+					#{useHolidayPolicyProjectId}
+				</foreach>
+   			)
+   			and plan.repayment_date in (
+   				<foreach item="effectDate" collection="effectDates" separator=",">
+   					#{effectDate}
+   				</foreach>
+   			)
+	</select>
+	
+</mapper>

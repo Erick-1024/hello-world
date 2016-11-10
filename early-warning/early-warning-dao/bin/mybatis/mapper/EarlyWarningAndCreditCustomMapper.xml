@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cana.early.warning.dao.mapper.EarlyWarningAndCreditCustomMapper">
+    
+    <resultMap type="com.cana.vbam.common.early.warning.dto.EarlyWarningCustomerResponse" id="EarlyWarningCustomerResponseMap">
+ 	    <result column="finance_id" property="memberId" jdbcType="VARCHAR" />
+    	<result column="finance_company" property="companyName" jdbcType="VARCHAR" />
+    	<result column="out_customer_id" property="outCustomerId" jdbcType="VARCHAR" />
+    	<result column="out_customer_name" property="outCustomerName" jdbcType="VARCHAR" />
+    	<result column="level" property="earlywarningLevel" jdbcType="VARCHAR" />
+    	<result column="total_limit" property="limit" jdbcType="DECIMAL" />
+    	<result column="residual_limit" property="residualLimit" jdbcType="DECIMAL" />
+    	<result column="action" property="action" jdbcType="VARCHAR" />
+ 	</resultMap>
+ 	
+ 	<resultMap type="com.cana.vbam.common.early.warning.dto.EarlyWarningCustomerInformationResponse" id="EarlyWarningCustomerInformationResponseMap">
+		<result column="product_id" property="productId" jdbcType="VARCHAR" />
+ 	    <result column="finance_id" property="financeId" jdbcType="VARCHAR" />
+    	<result column="finance_company" property="financeCompany" jdbcType="VARCHAR" />
+    	<result column="out_customer_id" property="outCustomerId" jdbcType="VARCHAR" />
+    	<result column="out_customer_name" property="outCustomerName" jdbcType="VARCHAR" />
+    	<result column="level" property="level" jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+ 	</resultMap>
+    
+    <resultMap type="com.cana.vbam.common.early.warning.dto.EarlyWaringEventTypeListResponse" id="EarlyWaringEventTypeListResponseMap">
+ 	    <result column="finance_id" property="memberId" jdbcType="VARCHAR" />
+    	<result column="finance_company" property="companyName" jdbcType="VARCHAR" />
+    	<result column="out_customer_id" property="outCustomerId" jdbcType="VARCHAR" />
+    	<result column="out_customer_name" property="outCustomerName" jdbcType="VARCHAR" />
+		<result column="product_id" property="productId" jdbcType="VARCHAR" />
+    	<result column="level" property="earlywaringLevel" jdbcType="VARCHAR" />
+ 	</resultMap>
+    
+	<select id="queryEarlyWarningCustomer" parameterType="com.cana.vbam.common.early.warning.dto.EarlyWarningCommonRequest" resultMap="EarlyWarningCustomerResponseMap">
+		select l.finance_id, l.finance_company, r.out_customer_id, r.out_customer_name, l.level, r.total_limit, (r.total_limit - r.used_limit) residual_limit, l.action from vbam.early_warning_customer as l
+		left join vbam.credit_limit as r on l.finance_id = r.member_id and l.out_customer_id = r.out_customer_id and l.product_id = r.project_id
+		<include refid="Where_Clause"></include>
+		order by l.update_time desc
+		<if test="page >= 1" >
+       		limit ${(page -1) * pageSize} , #{pageSize}
+    	</if>
+  	</select>
+    
+	<select id="queryEarlyWarningCustomerCount" parameterType="com.cana.vbam.common.early.warning.dto.EarlyWarningCommonRequest" resultType="java.lang.Integer">
+		select count(*) from vbam.early_warning_customer as l
+		left join vbam.credit_limit as r on l.finance_id = r.member_id and l.out_customer_id = r.out_customer_id and l.product_id = r.project_id
+		<include refid="Where_Clause"></include>
+  	</select>
+  	
+  	<select id="queryEarlyWarningCustomerInformation" parameterType="com.cana.vbam.common.early.warning.dto.EarlyWarningCommonRequest" resultMap="EarlyWarningCustomerInformationResponseMap">
+		select l.product_id, l.finance_id, l.finance_company, r.out_customer_id, r.out_customer_name, l.level, l.update_time from vbam.early_warning_customer as l
+		left join vbam.credit_limit as r on l.finance_id = r.member_id and l.out_customer_id = r.out_customer_id and l.product_id = r.project_id
+		<include refid="Where_Clause"></include>
+		order by l.update_time desc
+		<if test="page >= 1" >
+       		limit ${(page -1) * pageSize} , #{pageSize}
+    	</if>
+  	</select>
+    
+	<select id="queryEarlyWarningCustomerInformationCount" parameterType="com.cana.vbam.common.early.warning.dto.EarlyWarningCommonRequest" resultType="java.lang.Integer">
+		select count(*) from vbam.early_warning_customer as l
+		left join vbam.credit_limit as r on l.finance_id = r.member_id and l.out_customer_id = r.out_customer_id and l.product_id = r.project_id
+		<include refid="Where_Clause"></include>
+  	</select>
+  	
+  	<select id="queryEarlyWarningTypeList" parameterType="com.cana.vbam.common.early.warning.dto.EarlyWarningCommonRequest" resultMap="EarlyWaringEventTypeListResponseMap">
+		select l.finance_id, l.finance_company, r.out_customer_id, r.out_customer_name, l.product_id, l.level from vbam.early_warning_customer as l
+		left join vbam.credit_limit as r on l.finance_id = r.member_id and l.out_customer_id = r.out_customer_id and l.product_id = r.project_id
+		<include refid="Where_Clause_4_TypeList"></include>
+  	</select>
+  	
+    
+    <sql id="Where_Clause">
+		<where>
+			<if test="earlyWarningLevel != null">
+				and l.level = #{earlyWarningLevel, jdbcType=VARCHAR}
+			</if>
+				and r.credit_mode = 'SYNTHETICAL' 
+				and l.finance_company like #{companyName, jdbcType=VARCHAR}
+				and l.product_id = #{productId, jdbcType=VARCHAR}
+		</where>
+	</sql>
+	
+	<sql id="Where_Clause_4_TypeList">
+		<where>
+			<choose>
+					<when test="memberId != null and outCustomerId != null">
+						and l.finance_id = #{memberId, jdbcType=VARCHAR} and l.out_customer_id = #{outCustomerId, jdbcType=VARCHAR}
+					</when>
+					<otherwise>
+						and l.finance_company = #{companyName, jdbcType=VARCHAR} and r.out_customer_name = #{outCustomerName, jdbcType=VARCHAR}
+					</otherwise>
+			</choose>
+			and r.credit_mode = 'SYNTHETICAL' 
+			and l.product_id = #{productId, jdbcType=VARCHAR}
+		</where>
+	</sql>
+    
+</mapper>

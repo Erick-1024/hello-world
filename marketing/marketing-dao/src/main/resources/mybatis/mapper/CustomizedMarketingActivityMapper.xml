@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cana.marketing.dao.mapper.IMarketingActivityMapper">
+
+	
+	<select id="queryMarketingActivityList" resultMap="com.cana.marketing.dao.mapper.gen.MarketingActivityMapper.BaseResultMap" parameterType="com.cana.vbam.common.marketing.activity.dto.QueryMarketingActivityCriteria" >
+	
+   		select * from marketing_activity
+   		
+		<where>
+			<trim prefixOverrides="and" >
+				<if test="type!=null and type!='' ">     
+            		and type = #{type}      
+        		</if>
+        		<if test="productId!=null and productId!='' ">     
+            		and product_id = #{productId}      
+        		</if>
+        		<if test="curDate!=null ">     
+            		<![CDATA[ and (start_date is null or start_date <= #{curDate}) and (end_date is null or end_date >= #{curDate})  ]]>
+        		</if>
+        		and used=1
+        	</trim>
+		</where>
+	
+	</select>
+	
+</mapper>

@@ -1,0 +1,9 @@
+apply plugin:'application'
+dependencies {
+	compile project(':common:common-dao')
+	compile project(':flight-finance:flight-finance-dao')
+	compile project(':framework:framework-base')
+	
+}
+mainClassName='com.cana.flight.finance.restore.job.main.Main'
+applicationDefaultJvmArgs = ["-server", "-Xms512m", "-Xmx1024m", "-XX:MaxPermSize=512m"]

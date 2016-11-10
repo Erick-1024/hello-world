@@ -1,0 +1,18 @@
+apply plugin: "java"
+
+dependencies {
+	compile project(':member:member-api')
+	compile project(':framework:framework-base')
+	compile project(':framework:framework-logger')
+	compile project(':framework:framework-config')
+	compile project(':common:vbam-common')
+
+	compile libraries.spring_security_config
+	compile libraries.spring_security_web
+    compile libraries.spring_security_core
+    compile libraries.mysql_connector
+    compile libraries.jedis
+    compile libraries.spring_data_redis
+    compile libraries.kaptcha
+    
+}

@@ -1,0 +1,83 @@
+
+----增加数据库用户名----
+
+grant all privileges on vbam.* to marketing_server@'192.168.0.0/255.255.0.0' identified by 'Abc12345';
+grant all privileges on vbam.* to marketing_server@'localhost' identified by 'Abc12345';
+grant all privileges on vbam.* to marketing_server@'127.0.0.1' identified by 'Abc12345';
+
+————数据库表结构修改————
+
+1）修改credit_customer_apply表增加三证号码SQL
+
+ALTER TABLE `vbam`.`credit_customer_apply` 
+ADD COLUMN `organization_no` VARCHAR(50) NOT NULL COMMENT '组织机构证件号码' AFTER `qualifications_remarks`,
+ADD COLUMN `business_licence_no` VARCHAR(50) NOT NULL COMMENT '营业执照证件号码' AFTER `organization_media_id`,
+ADD COLUMN `tax_registration_certificate_no` VARCHAR(50) NOT NULL COMMENT '税务登记证件号码' AFTER `business_licence_media_id`;
+
+2）新建asset_contract表和删除member_contract表和credit_supervision_account表SQL
+
+CREATE TABLE `vbam`.`asset_contract` (
+  `id` VARCHAR(32) NOT NULL COMMENT '主键',
+  `product_id` VARCHAR(32) NOT NULL COMMENT '产品ID',
+  `member_id` VARCHAR(32) NOT NULL COMMENT '用户ID',
+  `factor_id` VARCHAR(32) NOT NULL COMMENT '保理商ID',
+  `media_id` VARCHAR(45) NOT NULL COMMENT '媒体服务器文件ID',
+  `file_name` VARCHAR(255) NULL COMMENT '文件名（不带后缀）',
+  `file_suffix` VARCHAR(10) NULL COMMENT '文件后缀',
+  `account_no` VARCHAR(19) NOT NULL COMMENT '监管账号',
+  `account_supervision_id` VARCHAR(32) NOT NULL COMMENT '监管关系ID',
+  `asset_transferee_ratio` VARCHAR(10) NOT NULL COMMENT '资产受让比例',
+  `transfer_price` DECIMAL(18,0) NOT NULL COMMENT '转让价款',
+  `expected_profit_rate` VARCHAR(32) NOT NULL COMMENT '预期收益率',
+  `effective_date` VARCHAR(10) NOT NULL COMMENT '合同生效日',
+  `due_date` VARCHAR(10) NOT NULL COMMENT '合同到期日',
+  `create_time` TIMESTAMP NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`));
+
+drop table vbam.member_contract;
+
+drop table vbam.credit_supervision_account;
+
+3) 向common_properties表中增加两条记录
+
+INSERT INTO `vbam`.`common_properties` (`name`, `value`, `create_time`, `update_time`) VALUES ('last_alterable_last_record_id', 'TKT20160418144755283168', '2016-04-21 11:15:32', '2016-04-21 11:15:32');
+INSERT INTO `vbam`.`common_properties` (`name`, `value`, `create_time`, `update_time`) VALUES ('alterable_last_record_id', 'TKT20160418144755283168', '2016-04-21 11:15:32', '2016-04-21 11:15:32');
+
+4) 在放款信息，还款计划，费用表中增加核心企业信息
+
+alter table `vbam`.`repayment_loan_info` add column `core_company_id` varchar(32) DEFAULT NULL COMMENT '核心企业id' after `finance_company`; 
+alter table `vbam`.`repayment_loan_info` add column `core_company_name` varchar(255) DEFAULT NULL COMMENT '核心企业名称' after `core_company_id`; 
+
+
+alter table `vbam`.`repayment_plan` add column `core_company_id` varchar(32) DEFAULT NULL COMMENT '核心企业id' after `finance_company`; 
+alter table `vbam`.`repayment_plan` add column `core_company_name` varchar(255) DEFAULT NULL COMMENT '核心企业名称' after `core_company_id`; 
+
+alter table `vbam`.`repayment_expense` add column `core_company_id` varchar(32) DEFAULT NULL COMMENT '核心企业id' after `finance_company`; 
+alter table `vbam`.`repayment_expense` add column `core_company_name` varchar(255) DEFAULT NULL COMMENT '核心企业名称' after `core_company_id`;
+
+5) 创建促销活动表
+
+CREATE TABLE `marketing_activity` (
+  `id` varchar(32) NOT NULL,
+  `type` varchar(50) NOT NULL COMMENT '活动类型。如：借款利率打折',
+  `product_id` varchar(32) DEFAULT NULL COMMENT '该活动适用的产品编号，为空代表适用于所有产品',
+  `factor_id` varchar(32) DEFAULT NULL COMMENT '该活动适用的保理商，为空代表适用于所有保理商',
+  `finance_id` varchar(32) DEFAULT NULL COMMENT '该活动适用的融资客户，为空代表适用于所有融资客户',
+  `start_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '活动开始日期',
+  `end_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '活动结束日期',
+  `detail` varchar(2000) DEFAULT NULL COMMENT '活动详情',
+  `used` bit(1) DEFAULT b'0' COMMENT '是否还在使用',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `marketing_activity_type_product` (`type`,`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+6) 修改产品表，增加coreCompanyId/coreCompanyName字段：
+
+ update repayment_product
+ set detail = '{"accountNo":"3110210010051082423","accountName":"真旅网计算机软件开发（上海）有限公司","loanPeriodUnit":"MONTH","loanPeriod":1,"interestRateUnit":"DAY","interestRate":0.0005,"finaceRoleId":"201603312151530003","factorId":"cana-baoli","factorName":"上海凯拿资产管理有限公司","factorAccountNo":"3110210010051089159","institutionName":"真旅网","coreCompanyId":"201603280001","coreCompanyName":"真旅网计算机软件开发（上海）有限公司"}'
+ where id = 'travelzen_finance';
+ 
+ 
+ 

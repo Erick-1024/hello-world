@@ -1,0 +1,5 @@
+apply from : 'common.settings.gradle'
+include 'setting:setting-server'
+include 'setting:setting-service'
+include 'setting:setting-dao'
+include 'setting:setting-api'

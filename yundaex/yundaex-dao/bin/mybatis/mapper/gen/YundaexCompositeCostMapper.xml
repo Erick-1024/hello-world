@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.yundaex.dao.mapper.gen.YundaexCompositeCostMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.yundaex.dao.po.YundaexCompositeCost" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="city_level" property="cityLevel" jdbcType="VARCHAR" />
+    <result column="station_city" property="stationCity" jdbcType="VARCHAR" />
+    <result column="rental_cost" property="rentalCost" jdbcType="DECIMAL" />
+    <result column="transport_cost" property="transportCost" jdbcType="DECIMAL" />
+    <result column="defect_cost" property="defectCost" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, city_level, station_city, rental_cost, transport_cost, defect_cost
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.yundaex.dao.po.YundaexCompositeCostExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yundaex_composite_cost
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yundaex_composite_cost
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yundaex_composite_cost
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.yundaex.dao.po.YundaexCompositeCostExample" >
+    delete from yundaex_composite_cost
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.yundaex.dao.po.YundaexCompositeCost" >
+    insert into yundaex_composite_cost (id, city_level, station_city, 
+      rental_cost, transport_cost, defect_cost
+      )
+    values (#{id,jdbcType=INTEGER}, #{cityLevel,jdbcType=VARCHAR}, #{stationCity,jdbcType=VARCHAR}, 
+      #{rentalCost,jdbcType=DECIMAL}, #{transportCost,jdbcType=DECIMAL}, #{defectCost,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.yundaex.dao.po.YundaexCompositeCost" >
+    insert into yundaex_composite_cost
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cityLevel != null" >
+        city_level,
+      </if>
+      <if test="stationCity != null" >
+        station_city,
+      </if>
+      <if test="rentalCost != null" >
+        rental_cost,
+      </if>
+      <if test="transportCost != null" >
+        transport_cost,
+      </if>
+      <if test="defectCost != null" >
+        defect_cost,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cityLevel != null" >
+        #{cityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="stationCity != null" >
+        #{stationCity,jdbcType=VARCHAR},
+      </if>
+      <if test="rentalCost != null" >
+        #{rentalCost,jdbcType=DECIMAL},
+      </if>
+      <if test="transportCost != null" >
+        #{transportCost,jdbcType=DECIMAL},
+      </if>
+      <if test="defectCost != null" >
+        #{defectCost,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.yundaex.dao.po.YundaexCompositeCostExample" resultType="java.lang.Integer" >
+    select count(*) from yundaex_composite_cost
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update yundaex_composite_cost
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.cityLevel != null" >
+        city_level = #{record.cityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stationCity != null" >
+        station_city = #{record.stationCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rentalCost != null" >
+        rental_cost = #{record.rentalCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.transportCost != null" >
+        transport_cost = #{record.transportCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.defectCost != null" >
+        defect_cost = #{record.defectCost,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update yundaex_composite_cost
+    set id = #{record.id,jdbcType=INTEGER},
+      city_level = #{record.cityLevel,jdbcType=VARCHAR},
+      station_city = #{record.stationCity,jdbcType=VARCHAR},
+      rental_cost = #{record.rentalCost,jdbcType=DECIMAL},
+      transport_cost = #{record.transportCost,jdbcType=DECIMAL},
+      defect_cost = #{record.defectCost,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.yundaex.dao.po.YundaexCompositeCost" >
+    update yundaex_composite_cost
+    <set >
+      <if test="cityLevel != null" >
+        city_level = #{cityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="stationCity != null" >
+        station_city = #{stationCity,jdbcType=VARCHAR},
+      </if>
+      <if test="rentalCost != null" >
+        rental_cost = #{rentalCost,jdbcType=DECIMAL},
+      </if>
+      <if test="transportCost != null" >
+        transport_cost = #{transportCost,jdbcType=DECIMAL},
+      </if>
+      <if test="defectCost != null" >
+        defect_cost = #{defectCost,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.yundaex.dao.po.YundaexCompositeCost" >
+    update yundaex_composite_cost
+    set city_level = #{cityLevel,jdbcType=VARCHAR},
+      station_city = #{stationCity,jdbcType=VARCHAR},
+      rental_cost = #{rentalCost,jdbcType=DECIMAL},
+      transport_cost = #{transportCost,jdbcType=DECIMAL},
+      defect_cost = #{defectCost,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

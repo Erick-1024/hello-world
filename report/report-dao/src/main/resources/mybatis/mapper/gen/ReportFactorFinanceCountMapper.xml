@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.report.dao.mapper.gen.ReportFactorFinanceCountMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.report.dao.po.ReportFactorFinanceCount" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="owner_id" property="ownerId" jdbcType="VARCHAR" />
+    <result column="report_date" property="reportDate" jdbcType="VARCHAR" />
+    <result column="user_type" property="userType" jdbcType="VARCHAR" />
+    <result column="business_product_id" property="businessProductId" jdbcType="VARCHAR" />
+    <result column="loan_items" property="loanItems" jdbcType="INTEGER" />
+    <result column="overdue_items" property="overdueItems" jdbcType="INTEGER" />
+    <result column="extension_items" property="extensionItems" jdbcType="INTEGER" />
+    <result column="repayment_items" property="repaymentItems" jdbcType="INTEGER" />
+    <result column="adjust_items" property="adjustItems" jdbcType="INTEGER" />
+    <result column="overdue_customer" property="overdueCustomer" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, owner_id, report_date, user_type, business_product_id, loan_items, overdue_items, 
+    extension_items, repayment_items, adjust_items, overdue_customer, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.report.dao.po.ReportFactorFinanceCountExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from report_factor_finance_count
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from report_factor_finance_count
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from report_factor_finance_count
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.report.dao.po.ReportFactorFinanceCountExample" >
+    delete from report_factor_finance_count
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.report.dao.po.ReportFactorFinanceCount" >
+    insert into report_factor_finance_count (id, owner_id, report_date, 
+      user_type, business_product_id, loan_items, 
+      overdue_items, extension_items, repayment_items, 
+      adjust_items, overdue_customer, create_time, 
+      update_time)
+    values (#{id,jdbcType=VARCHAR}, #{ownerId,jdbcType=VARCHAR}, #{reportDate,jdbcType=VARCHAR}, 
+      #{userType,jdbcType=VARCHAR}, #{businessProductId,jdbcType=VARCHAR}, #{loanItems,jdbcType=INTEGER}, 
+      #{overdueItems,jdbcType=INTEGER}, #{extensionItems,jdbcType=INTEGER}, #{repaymentItems,jdbcType=INTEGER}, 
+      #{adjustItems,jdbcType=INTEGER}, #{overdueCustomer,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.report.dao.po.ReportFactorFinanceCount" >
+    insert into report_factor_finance_count
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ownerId != null" >
+        owner_id,
+      </if>
+      <if test="reportDate != null" >
+        report_date,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="businessProductId != null" >
+        business_product_id,
+      </if>
+      <if test="loanItems != null" >
+        loan_items,
+      </if>
+      <if test="overdueItems != null" >
+        overdue_items,
+      </if>
+      <if test="extensionItems != null" >
+        extension_items,
+      </if>
+      <if test="repaymentItems != null" >
+        repayment_items,
+      </if>
+      <if test="adjustItems != null" >
+        adjust_items,
+      </if>
+      <if test="overdueCustomer != null" >
+        overdue_customer,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerId != null" >
+        #{ownerId,jdbcType=VARCHAR},
+      </if>
+      <if test="reportDate != null" >
+        #{reportDate,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="businessProductId != null" >
+        #{businessProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanItems != null" >
+        #{loanItems,jdbcType=INTEGER},
+      </if>
+      <if test="overdueItems != null" >
+        #{overdueItems,jdbcType=INTEGER},
+      </if>
+      <if test="extensionItems != null" >
+        #{extensionItems,jdbcType=INTEGER},
+      </if>
+      <if test="repaymentItems != null" >
+        #{repaymentItems,jdbcType=INTEGER},
+      </if>
+      <if test="adjustItems != null" >
+        #{adjustItems,jdbcType=INTEGER},
+      </if>
+      <if test="overdueCustomer != null" >
+        #{overdueCustomer,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.report.dao.po.ReportFactorFinanceCountExample" resultType="java.lang.Integer" >
+    select count(*) from report_factor_finance_count
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update report_factor_finance_count
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ownerId != null" >
+        owner_id = #{record.ownerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reportDate != null" >
+        report_date = #{record.reportDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userType != null" >
+        user_type = #{record.userType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessProductId != null" >
+        business_product_id = #{record.businessProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanItems != null" >
+        loan_items = #{record.loanItems,jdbcType=INTEGER},
+      </if>
+      <if test="record.overdueItems != null" >
+        overdue_items = #{record.overdueItems,jdbcType=INTEGER},
+      </if>
+      <if test="record.extensionItems != null" >
+        extension_items = #{record.extensionItems,jdbcType=INTEGER},
+      </if>
+      <if test="record.repaymentItems != null" >
+        repayment_items = #{record.repaymentItems,jdbcType=INTEGER},
+      </if>
+      <if test="record.adjustItems != null" >
+        adjust_items = #{record.adjustItems,jdbcType=INTEGER},
+      </if>
+      <if test="record.overdueCustomer != null" >
+        overdue_customer = #{record.overdueCustomer,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update report_factor_finance_count
+    set id = #{record.id,jdbcType=VARCHAR},
+      owner_id = #{record.ownerId,jdbcType=VARCHAR},
+      report_date = #{record.reportDate,jdbcType=VARCHAR},
+      user_type = #{record.userType,jdbcType=VARCHAR},
+      business_product_id = #{record.businessProductId,jdbcType=VARCHAR},
+      loan_items = #{record.loanItems,jdbcType=INTEGER},
+      overdue_items = #{record.overdueItems,jdbcType=INTEGER},
+      extension_items = #{record.extensionItems,jdbcType=INTEGER},
+      repayment_items = #{record.repaymentItems,jdbcType=INTEGER},
+      adjust_items = #{record.adjustItems,jdbcType=INTEGER},
+      overdue_customer = #{record.overdueCustomer,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.report.dao.po.ReportFactorFinanceCount" >
+    update report_factor_finance_count
+    <set >
+      <if test="ownerId != null" >
+        owner_id = #{ownerId,jdbcType=VARCHAR},
+      </if>
+      <if test="reportDate != null" >
+        report_date = #{reportDate,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="businessProductId != null" >
+        business_product_id = #{businessProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanItems != null" >
+        loan_items = #{loanItems,jdbcType=INTEGER},
+      </if>
+      <if test="overdueItems != null" >
+        overdue_items = #{overdueItems,jdbcType=INTEGER},
+      </if>
+      <if test="extensionItems != null" >
+        extension_items = #{extensionItems,jdbcType=INTEGER},
+      </if>
+      <if test="repaymentItems != null" >
+        repayment_items = #{repaymentItems,jdbcType=INTEGER},
+      </if>
+      <if test="adjustItems != null" >
+        adjust_items = #{adjustItems,jdbcType=INTEGER},
+      </if>
+      <if test="overdueCustomer != null" >
+        overdue_customer = #{overdueCustomer,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.report.dao.po.ReportFactorFinanceCount" >
+    update report_factor_finance_count
+    set owner_id = #{ownerId,jdbcType=VARCHAR},
+      report_date = #{reportDate,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=VARCHAR},
+      business_product_id = #{businessProductId,jdbcType=VARCHAR},
+      loan_items = #{loanItems,jdbcType=INTEGER},
+      overdue_items = #{overdueItems,jdbcType=INTEGER},
+      extension_items = #{extensionItems,jdbcType=INTEGER},
+      repayment_items = #{repaymentItems,jdbcType=INTEGER},
+      adjust_items = #{adjustItems,jdbcType=INTEGER},
+      overdue_customer = #{overdueCustomer,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from report_factor_finance_count
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.report.dao.po.ReportFactorFinanceCountExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from report_factor_finance_count
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

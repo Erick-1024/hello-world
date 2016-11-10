@@ -1,0 +1,4 @@
+//apply from: 'framework.settings.gradle'
+include 'test:test-springboot-server'
+include 'test:test-springboot-web'
+include 'test:test-springboot-api'

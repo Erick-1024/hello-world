@@ -1,0 +1,10 @@
+dependencies {
+	compile project(':asset:asset-dao')
+	compile project(':homsom:homsom-dao')
+	compile project(':member:member-api')
+	compile project(':account:account-api')
+	compile project(':framework:framework-dubbo-support')
+	compile project(':common:vbam-common-service')
+	compile project(':netdisk:netdisk-service')
+	compile project(':setting:setting-service')
+}

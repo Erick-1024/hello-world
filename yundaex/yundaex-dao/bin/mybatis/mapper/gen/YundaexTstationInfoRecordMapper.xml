@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.yundaex.dao.mapper.gen.YundaexTstationInfoRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.yundaex.dao.po.YundaexTstationInfoRecord" >
+    <id column="batch_date" property="batchDate" jdbcType="VARCHAR" />
+    <id column="station_no" property="stationNo" jdbcType="VARCHAR" />
+    <result column="station_data_status" property="stationDataStatus" jdbcType="VARCHAR" />
+    <result column="extra_data" property="extraData" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    batch_date, station_no, station_data_status, extra_data, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.yundaex.dao.po.YundaexTstationInfoRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yundaex_tstation_info_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.cana.yundaex.dao.po.YundaexTstationInfoRecordKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from yundaex_tstation_info_record
+    where batch_date = #{batchDate,jdbcType=VARCHAR}
+      and station_no = #{stationNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.cana.yundaex.dao.po.YundaexTstationInfoRecordKey" >
+    delete from yundaex_tstation_info_record
+    where batch_date = #{batchDate,jdbcType=VARCHAR}
+      and station_no = #{stationNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.yundaex.dao.po.YundaexTstationInfoRecordExample" >
+    delete from yundaex_tstation_info_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.yundaex.dao.po.YundaexTstationInfoRecord" >
+    insert into yundaex_tstation_info_record (batch_date, station_no, station_data_status, 
+      extra_data, create_time, update_time
+      )
+    values (#{batchDate,jdbcType=VARCHAR}, #{stationNo,jdbcType=VARCHAR}, #{stationDataStatus,jdbcType=VARCHAR}, 
+      #{extraData,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.yundaex.dao.po.YundaexTstationInfoRecord" >
+    insert into yundaex_tstation_info_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="batchDate != null" >
+        batch_date,
+      </if>
+      <if test="stationNo != null" >
+        station_no,
+      </if>
+      <if test="stationDataStatus != null" >
+        station_data_status,
+      </if>
+      <if test="extraData != null" >
+        extra_data,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="batchDate != null" >
+        #{batchDate,jdbcType=VARCHAR},
+      </if>
+      <if test="stationNo != null" >
+        #{stationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="stationDataStatus != null" >
+        #{stationDataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="extraData != null" >
+        #{extraData,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.yundaex.dao.po.YundaexTstationInfoRecordExample" resultType="java.lang.Integer" >
+    select count(*) from yundaex_tstation_info_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update yundaex_tstation_info_record
+    <set >
+      <if test="record.batchDate != null" >
+        batch_date = #{record.batchDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stationNo != null" >
+        station_no = #{record.stationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stationDataStatus != null" >
+        station_data_status = #{record.stationDataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extraData != null" >
+        extra_data = #{record.extraData,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update yundaex_tstation_info_record
+    set batch_date = #{record.batchDate,jdbcType=VARCHAR},
+      station_no = #{record.stationNo,jdbcType=VARCHAR},
+      station_data_status = #{record.stationDataStatus,jdbcType=VARCHAR},
+      extra_data = #{record.extraData,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.yundaex.dao.po.YundaexTstationInfoRecord" >
+    update yundaex_tstation_info_record
+    <set >
+      <if test="stationDataStatus != null" >
+        station_data_status = #{stationDataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="extraData != null" >
+        extra_data = #{extraData,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where batch_date = #{batchDate,jdbcType=VARCHAR}
+      and station_no = #{stationNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.yundaex.dao.po.YundaexTstationInfoRecord" >
+    update yundaex_tstation_info_record
+    set station_data_status = #{stationDataStatus,jdbcType=VARCHAR},
+      extra_data = #{extraData,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where batch_date = #{batchDate,jdbcType=VARCHAR}
+      and station_no = #{stationNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

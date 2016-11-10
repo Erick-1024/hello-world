@@ -1,0 +1,23 @@
+apply plugin: 'war'
+
+group = 'com.travelzen'
+//version = "${versions.tops_common}"
+archivesBaseName =  'tops-mediaserver'
+
+dependencies {
+	compile project(':framework:framework-base')
+	compile project(':framework:framework-core')
+	compile project(':framework:framework-logger')
+	compile project(':framework:framework-config')
+	compile project(':framework:framework-mongo-support')
+
+	compile libraries.spring_jdbc
+	compile libraries.spring_orm
+	compile libraries.spring_tx
+	compile libraries.spring_webmvc
+
+	providedCompile libraries.servlet_api
+	compile libraries.commons_io
+//	compile libraries.framework_quality
+}
+

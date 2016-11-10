@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLFBALQR</action>
+	<userName></userName><!--登录名 varchar(30) -->
+	<mctNo></mctNo><!--商户编号char(8) -->
+	<list name="userDataList">
+		<row>
+			<mctJnlNo></mctJnlNo><!--融资订单的商户流水号varchar(20) -->
+		</row>
+	</list>
+</stream>

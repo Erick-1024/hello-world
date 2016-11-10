@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.yundaex.dao.mapper.gen.ContractSignSituationMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.yundaex.dao.po.ContractSignSituation" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="station_name" property="stationName" jdbcType="VARCHAR" />
+    <result column="sign_situation" property="signSituation" jdbcType="INTEGER" />
+    <result column="sign_complete_time" property="signCompleteTime" jdbcType="TIMESTAMP" />
+    <result column="protocol_no" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="pay_account_name" property="payAccountName" jdbcType="VARCHAR" />
+    <result column="pay_account_no" property="payAccountNo" jdbcType="VARCHAR" />
+    <result column="pay_account_bank" property="payAccountBank" jdbcType="VARCHAR" />
+    <result column="pay_lian_hang_no" property="payLianHangNo" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="Finance_contract_sign_state" property="financeContractSignState" jdbcType="VARCHAR" />
+    <result column="credit_contract_sign_state" property="creditContractSignState" jdbcType="VARCHAR" />
+    <result column="duty_contract_sign_state" property="dutyContractSignState" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, station_name, sign_situation, sign_complete_time, protocol_no, pay_account_name, 
+    pay_account_no, pay_account_bank, pay_lian_hang_no, create_time, update_time, Finance_contract_sign_state, 
+    credit_contract_sign_state, duty_contract_sign_state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.yundaex.dao.po.ContractSignSituationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yundaex_contract_sign_situation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from yundaex_contract_sign_situation
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from yundaex_contract_sign_situation
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.yundaex.dao.po.ContractSignSituationExample" >
+    delete from yundaex_contract_sign_situation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.yundaex.dao.po.ContractSignSituation" >
+    insert into yundaex_contract_sign_situation (id, station_name, sign_situation, 
+      sign_complete_time, protocol_no, pay_account_name, 
+      pay_account_no, pay_account_bank, pay_lian_hang_no, 
+      create_time, update_time, Finance_contract_sign_state, 
+      credit_contract_sign_state, duty_contract_sign_state
+      )
+    values (#{id,jdbcType=VARCHAR}, #{stationName,jdbcType=VARCHAR}, #{signSituation,jdbcType=INTEGER}, 
+      #{signCompleteTime,jdbcType=TIMESTAMP}, #{protocolNo,jdbcType=VARCHAR}, #{payAccountName,jdbcType=VARCHAR}, 
+      #{payAccountNo,jdbcType=VARCHAR}, #{payAccountBank,jdbcType=VARCHAR}, #{payLianHangNo,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{financeContractSignState,jdbcType=VARCHAR}, 
+      #{creditContractSignState,jdbcType=VARCHAR}, #{dutyContractSignState,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.yundaex.dao.po.ContractSignSituation" >
+    insert into yundaex_contract_sign_situation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="stationName != null" >
+        station_name,
+      </if>
+      <if test="signSituation != null" >
+        sign_situation,
+      </if>
+      <if test="signCompleteTime != null" >
+        sign_complete_time,
+      </if>
+      <if test="protocolNo != null" >
+        protocol_no,
+      </if>
+      <if test="payAccountName != null" >
+        pay_account_name,
+      </if>
+      <if test="payAccountNo != null" >
+        pay_account_no,
+      </if>
+      <if test="payAccountBank != null" >
+        pay_account_bank,
+      </if>
+      <if test="payLianHangNo != null" >
+        pay_lian_hang_no,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="financeContractSignState != null" >
+        Finance_contract_sign_state,
+      </if>
+      <if test="creditContractSignState != null" >
+        credit_contract_sign_state,
+      </if>
+      <if test="dutyContractSignState != null" >
+        duty_contract_sign_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="stationName != null" >
+        #{stationName,jdbcType=VARCHAR},
+      </if>
+      <if test="signSituation != null" >
+        #{signSituation,jdbcType=INTEGER},
+      </if>
+      <if test="signCompleteTime != null" >
+        #{signCompleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="protocolNo != null" >
+        #{protocolNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payAccountName != null" >
+        #{payAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="payAccountNo != null" >
+        #{payAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payAccountBank != null" >
+        #{payAccountBank,jdbcType=VARCHAR},
+      </if>
+      <if test="payLianHangNo != null" >
+        #{payLianHangNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="financeContractSignState != null" >
+        #{financeContractSignState,jdbcType=VARCHAR},
+      </if>
+      <if test="creditContractSignState != null" >
+        #{creditContractSignState,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyContractSignState != null" >
+        #{dutyContractSignState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.yundaex.dao.po.ContractSignSituationExample" resultType="java.lang.Integer" >
+    select count(*) from yundaex_contract_sign_situation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update yundaex_contract_sign_situation
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stationName != null" >
+        station_name = #{record.stationName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signSituation != null" >
+        sign_situation = #{record.signSituation,jdbcType=INTEGER},
+      </if>
+      <if test="record.signCompleteTime != null" >
+        sign_complete_time = #{record.signCompleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.protocolNo != null" >
+        protocol_no = #{record.protocolNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payAccountName != null" >
+        pay_account_name = #{record.payAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payAccountNo != null" >
+        pay_account_no = #{record.payAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payAccountBank != null" >
+        pay_account_bank = #{record.payAccountBank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payLianHangNo != null" >
+        pay_lian_hang_no = #{record.payLianHangNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.financeContractSignState != null" >
+        Finance_contract_sign_state = #{record.financeContractSignState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creditContractSignState != null" >
+        credit_contract_sign_state = #{record.creditContractSignState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dutyContractSignState != null" >
+        duty_contract_sign_state = #{record.dutyContractSignState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update yundaex_contract_sign_situation
+    set id = #{record.id,jdbcType=VARCHAR},
+      station_name = #{record.stationName,jdbcType=VARCHAR},
+      sign_situation = #{record.signSituation,jdbcType=INTEGER},
+      sign_complete_time = #{record.signCompleteTime,jdbcType=TIMESTAMP},
+      protocol_no = #{record.protocolNo,jdbcType=VARCHAR},
+      pay_account_name = #{record.payAccountName,jdbcType=VARCHAR},
+      pay_account_no = #{record.payAccountNo,jdbcType=VARCHAR},
+      pay_account_bank = #{record.payAccountBank,jdbcType=VARCHAR},
+      pay_lian_hang_no = #{record.payLianHangNo,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      Finance_contract_sign_state = #{record.financeContractSignState,jdbcType=VARCHAR},
+      credit_contract_sign_state = #{record.creditContractSignState,jdbcType=VARCHAR},
+      duty_contract_sign_state = #{record.dutyContractSignState,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.yundaex.dao.po.ContractSignSituation" >
+    update yundaex_contract_sign_situation
+    <set >
+      <if test="stationName != null" >
+        station_name = #{stationName,jdbcType=VARCHAR},
+      </if>
+      <if test="signSituation != null" >
+        sign_situation = #{signSituation,jdbcType=INTEGER},
+      </if>
+      <if test="signCompleteTime != null" >
+        sign_complete_time = #{signCompleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="protocolNo != null" >
+        protocol_no = #{protocolNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payAccountName != null" >
+        pay_account_name = #{payAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="payAccountNo != null" >
+        pay_account_no = #{payAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payAccountBank != null" >
+        pay_account_bank = #{payAccountBank,jdbcType=VARCHAR},
+      </if>
+      <if test="payLianHangNo != null" >
+        pay_lian_hang_no = #{payLianHangNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="financeContractSignState != null" >
+        Finance_contract_sign_state = #{financeContractSignState,jdbcType=VARCHAR},
+      </if>
+      <if test="creditContractSignState != null" >
+        credit_contract_sign_state = #{creditContractSignState,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyContractSignState != null" >
+        duty_contract_sign_state = #{dutyContractSignState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.yundaex.dao.po.ContractSignSituation" >
+    update yundaex_contract_sign_situation
+    set station_name = #{stationName,jdbcType=VARCHAR},
+      sign_situation = #{signSituation,jdbcType=INTEGER},
+      sign_complete_time = #{signCompleteTime,jdbcType=TIMESTAMP},
+      protocol_no = #{protocolNo,jdbcType=VARCHAR},
+      pay_account_name = #{payAccountName,jdbcType=VARCHAR},
+      pay_account_no = #{payAccountNo,jdbcType=VARCHAR},
+      pay_account_bank = #{payAccountBank,jdbcType=VARCHAR},
+      pay_lian_hang_no = #{payLianHangNo,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      Finance_contract_sign_state = #{financeContractSignState,jdbcType=VARCHAR},
+      credit_contract_sign_state = #{creditContractSignState,jdbcType=VARCHAR},
+      duty_contract_sign_state = #{dutyContractSignState,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from yundaex_contract_sign_situation
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.yundaex.dao.po.ContractSignSituationExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yundaex_contract_sign_situation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

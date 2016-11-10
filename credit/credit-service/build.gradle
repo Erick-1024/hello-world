@@ -1,0 +1,12 @@
+dependencies {
+	compile project(':credit:credit-dao')
+	compile project(':credit:credit-limit-service')
+	compile project(':tops-common-mediaclient')
+	compile project(':flight-finance:flight-finance-service')
+	compile project(':flight-finance:flight-finance-dataaccess-travelzen')
+	compile project(':framework:framework-retry')
+	compile project(':repayment:repayment-service')
+	compile project(':marketing:marketing-api')
+	compile project(':asset:asset-api')
+	compile project(':repayment:repayment-api')
+}

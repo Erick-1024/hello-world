@@ -1,0 +1,45 @@
+
+
+
+jar {
+	baseName =  'framework-core'
+}
+
+dependencies {
+	testCompile libraries.junit
+	compile libraries.commons_lang3
+
+	compile libraries.guava
+	compile libraries.spring_core
+	
+	compile libraries.joda_time
+
+	compile libraries.fastjson
+	compile libraries.jackson_core_asl
+	compile libraries.jackson_mapper_asl
+
+	compile libraries.jcl_over_slf4j
+	compile libraries.logback
+	compile libraries.gson
+	compile libraries.javatuples
+	compile libraries.commons_collections
+	compile (libraries.cat_client){
+		exclude group: 'io.netty', module:'netty-all'
+	}
+	compile libraries.netty_all
+	compile (libraries.op4j) {
+		exclude group:'org.antlr', module:'antlr-runtime'
+	}
+	
+	compile  (libraries.zookeeper){
+		transitive  = false 
+	}
+	
+	compile libraries.conti_perf
+	
+}
+idea.module.iml{
+    whenMerged { module ->
+        module.dependencies*.exported = true
+    }
+}

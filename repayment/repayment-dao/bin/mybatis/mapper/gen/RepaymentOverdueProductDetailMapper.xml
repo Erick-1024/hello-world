@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.repayment.dao.mapper.gen.RepaymentOverdueProductDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.repayment.dao.po.RepaymentOverdueProductDetail" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="summary_id" property="summaryId" jdbcType="VARCHAR" />
+    <result column="related_id" property="relatedId" jdbcType="VARCHAR" />
+    <result column="related_type" property="relatedType" jdbcType="VARCHAR" />
+    <result column="loan_info_id" property="loanInfoId" jdbcType="VARCHAR" />
+    <result column="overdue_principal" property="overduePrincipal" jdbcType="DECIMAL" />
+    <result column="overdue_interest" property="overdueInterest" jdbcType="DECIMAL" />
+    <result column="overdue_service_charge" property="overdueServiceCharge" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, summary_id, related_id, related_type, loan_info_id, overdue_principal, overdue_interest, 
+    overdue_service_charge, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.repayment.dao.po.RepaymentOverdueProductDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from repayment_overdue_product_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from repayment_overdue_product_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from repayment_overdue_product_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.repayment.dao.po.RepaymentOverdueProductDetailExample" >
+    delete from repayment_overdue_product_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.repayment.dao.po.RepaymentOverdueProductDetail" >
+    insert into repayment_overdue_product_detail (id, summary_id, related_id, 
+      related_type, loan_info_id, overdue_principal, 
+      overdue_interest, overdue_service_charge, 
+      create_time, update_time)
+    values (#{id,jdbcType=VARCHAR}, #{summaryId,jdbcType=VARCHAR}, #{relatedId,jdbcType=VARCHAR}, 
+      #{relatedType,jdbcType=VARCHAR}, #{loanInfoId,jdbcType=VARCHAR}, #{overduePrincipal,jdbcType=DECIMAL}, 
+      #{overdueInterest,jdbcType=DECIMAL}, #{overdueServiceCharge,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.repayment.dao.po.RepaymentOverdueProductDetail" >
+    insert into repayment_overdue_product_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="summaryId != null" >
+        summary_id,
+      </if>
+      <if test="relatedId != null" >
+        related_id,
+      </if>
+      <if test="relatedType != null" >
+        related_type,
+      </if>
+      <if test="loanInfoId != null" >
+        loan_info_id,
+      </if>
+      <if test="overduePrincipal != null" >
+        overdue_principal,
+      </if>
+      <if test="overdueInterest != null" >
+        overdue_interest,
+      </if>
+      <if test="overdueServiceCharge != null" >
+        overdue_service_charge,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryId != null" >
+        #{summaryId,jdbcType=VARCHAR},
+      </if>
+      <if test="relatedId != null" >
+        #{relatedId,jdbcType=VARCHAR},
+      </if>
+      <if test="relatedType != null" >
+        #{relatedType,jdbcType=VARCHAR},
+      </if>
+      <if test="loanInfoId != null" >
+        #{loanInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="overduePrincipal != null" >
+        #{overduePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueInterest != null" >
+        #{overdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueServiceCharge != null" >
+        #{overdueServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.repayment.dao.po.RepaymentOverdueProductDetailExample" resultType="java.lang.Integer" >
+    select count(*) from repayment_overdue_product_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update repayment_overdue_product_detail
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.summaryId != null" >
+        summary_id = #{record.summaryId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relatedId != null" >
+        related_id = #{record.relatedId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relatedType != null" >
+        related_type = #{record.relatedType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanInfoId != null" >
+        loan_info_id = #{record.loanInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.overduePrincipal != null" >
+        overdue_principal = #{record.overduePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="record.overdueInterest != null" >
+        overdue_interest = #{record.overdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="record.overdueServiceCharge != null" >
+        overdue_service_charge = #{record.overdueServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update repayment_overdue_product_detail
+    set id = #{record.id,jdbcType=VARCHAR},
+      summary_id = #{record.summaryId,jdbcType=VARCHAR},
+      related_id = #{record.relatedId,jdbcType=VARCHAR},
+      related_type = #{record.relatedType,jdbcType=VARCHAR},
+      loan_info_id = #{record.loanInfoId,jdbcType=VARCHAR},
+      overdue_principal = #{record.overduePrincipal,jdbcType=DECIMAL},
+      overdue_interest = #{record.overdueInterest,jdbcType=DECIMAL},
+      overdue_service_charge = #{record.overdueServiceCharge,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.repayment.dao.po.RepaymentOverdueProductDetail" >
+    update repayment_overdue_product_detail
+    <set >
+      <if test="summaryId != null" >
+        summary_id = #{summaryId,jdbcType=VARCHAR},
+      </if>
+      <if test="relatedId != null" >
+        related_id = #{relatedId,jdbcType=VARCHAR},
+      </if>
+      <if test="relatedType != null" >
+        related_type = #{relatedType,jdbcType=VARCHAR},
+      </if>
+      <if test="loanInfoId != null" >
+        loan_info_id = #{loanInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="overduePrincipal != null" >
+        overdue_principal = #{overduePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueInterest != null" >
+        overdue_interest = #{overdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueServiceCharge != null" >
+        overdue_service_charge = #{overdueServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.repayment.dao.po.RepaymentOverdueProductDetail" >
+    update repayment_overdue_product_detail
+    set summary_id = #{summaryId,jdbcType=VARCHAR},
+      related_id = #{relatedId,jdbcType=VARCHAR},
+      related_type = #{relatedType,jdbcType=VARCHAR},
+      loan_info_id = #{loanInfoId,jdbcType=VARCHAR},
+      overdue_principal = #{overduePrincipal,jdbcType=DECIMAL},
+      overdue_interest = #{overdueInterest,jdbcType=DECIMAL},
+      overdue_service_charge = #{overdueServiceCharge,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from repayment_overdue_product_detail
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.repayment.dao.po.RepaymentOverdueProductDetailExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from repayment_overdue_product_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

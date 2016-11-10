@@ -1,0 +1,12 @@
+apply plugin:'application'
+
+dependencies {
+	compile project(':early-warning:early-warning-service')
+	compile project(':framework:framework-dubbo-support')
+	compile project(':report:report-api')
+}
+
+mainClassName = 'com.cana.early.warning.scheduler.main.EarlyWarningMain'
+
+applicationDefaultJvmArgs = ["-server", "-Xms256m", "-Xmx512m", "-XX:MaxPermSize=512m", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=12704", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false"]
+

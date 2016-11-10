@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息 varchar(254) -->
+	<list name="userDataList">
+		<row>
+			<wareHouseCode></wareHouseCode><!--仓库代码varchar(30) -->
+			<wareHouseNm></wareHouseNm><!--仓库名称varchar(300) -->
+			<address></address><!--详细地址varchar(300) -->
+			<status></status><!--仓库状态varchar(2) 值域参见附录4.2 -->
+			<statusText></statusText><!--状态信息varchar(254) -->
+		</row>
+	</list>
+</stream>

@@ -1,0 +1,9 @@
+dependencies {
+	compile project(':wechat:wechat-dao')
+	compile project(':common:common-dao')
+	compile project(':wechat:wechat-client')
+	compile project(':framework:framework-redis')
+	compile project(':member:member-api')
+	compile project(':account:account-service')
+	compile project(':common:bankgate-api')
+}

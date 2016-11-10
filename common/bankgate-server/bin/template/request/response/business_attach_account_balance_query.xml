@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息 varchar(254) -->
+	<list name="userDataList">
+		<row>
+			<subAccNo></subAccNo><!--附属账号varchar(19) -->
+			<SUBACCNM></SUBACCNM><!--附属账户名称varchar(60) -->
+			<TZAMT></TZAMT><!--透支额度decimal(15,2) -->
+			<XSACVL></XSACVL><!--实体账户可用资金decimal(15,2) -->
+			<KYAMT></KYAMT><!--可用余额 decimal(15,2) -->
+			<SJAMT></SJAMT><!--实际余额decimal(15,2) -->
+			<DJAMT></DJAMT><!--冻结金额decimal(15,2) -->
+		</row>
+	</list>
+</stream>

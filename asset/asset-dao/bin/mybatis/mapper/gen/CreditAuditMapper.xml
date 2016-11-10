@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.asset.dao.mapper.gen.CreditAuditMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.asset.dao.po.CreditAudit" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="credit_id" property="creditId" jdbcType="VARCHAR" />
+    <result column="credit_mode" property="creditMode" jdbcType="VARCHAR" />
+    <result column="currency" property="currency" jdbcType="VARCHAR" />
+    <result column="pre_total_limit" property="preTotalLimit" jdbcType="DECIMAL" />
+    <result column="total_limit" property="totalLimit" jdbcType="DECIMAL" />
+    <result column="pre_available_limit" property="preAvailableLimit" jdbcType="DECIMAL" />
+    <result column="available_limit" property="availableLimit" jdbcType="DECIMAL" />
+    <result column="pre_used_limit" property="preUsedLimit" jdbcType="DECIMAL" />
+    <result column="used_limit" property="usedLimit" jdbcType="DECIMAL" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="pre_effective_date" property="preEffectiveDate" jdbcType="VARCHAR" />
+    <result column="effective_date" property="effectiveDate" jdbcType="VARCHAR" />
+    <result column="pre_due_date" property="preDueDate" jdbcType="VARCHAR" />
+    <result column="due_date" property="dueDate" jdbcType="VARCHAR" />
+    <result column="pre_credit_status" property="preCreditStatus" jdbcType="VARCHAR" />
+    <result column="credit_status" property="creditStatus" jdbcType="VARCHAR" />
+    <result column="operator_id" property="operatorId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="factor_id" property="factorId" jdbcType="VARCHAR" />
+    <result column="bussiness_contract_no" property="bussinessContractNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, type, credit_id, credit_mode, currency, pre_total_limit, total_limit, pre_available_limit, 
+    available_limit, pre_used_limit, used_limit, customer_id, pre_effective_date, effective_date, 
+    pre_due_date, due_date, pre_credit_status, credit_status, operator_id, create_time, 
+    factor_id, bussiness_contract_no
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.asset.dao.po.CreditAuditExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from asset_credit_audit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset_credit_audit
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from asset_credit_audit
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.asset.dao.po.CreditAuditExample" >
+    delete from asset_credit_audit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.asset.dao.po.CreditAudit" >
+    insert into asset_credit_audit (id, type, credit_id, 
+      credit_mode, currency, pre_total_limit, 
+      total_limit, pre_available_limit, available_limit, 
+      pre_used_limit, used_limit, customer_id, 
+      pre_effective_date, effective_date, pre_due_date, 
+      due_date, pre_credit_status, credit_status, 
+      operator_id, create_time, factor_id, 
+      bussiness_contract_no)
+    values (#{id,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{creditId,jdbcType=VARCHAR}, 
+      #{creditMode,jdbcType=VARCHAR}, #{currency,jdbcType=VARCHAR}, #{preTotalLimit,jdbcType=DECIMAL}, 
+      #{totalLimit,jdbcType=DECIMAL}, #{preAvailableLimit,jdbcType=DECIMAL}, #{availableLimit,jdbcType=DECIMAL}, 
+      #{preUsedLimit,jdbcType=DECIMAL}, #{usedLimit,jdbcType=DECIMAL}, #{customerId,jdbcType=VARCHAR}, 
+      #{preEffectiveDate,jdbcType=VARCHAR}, #{effectiveDate,jdbcType=VARCHAR}, #{preDueDate,jdbcType=VARCHAR}, 
+      #{dueDate,jdbcType=VARCHAR}, #{preCreditStatus,jdbcType=VARCHAR}, #{creditStatus,jdbcType=VARCHAR}, 
+      #{operatorId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{factorId,jdbcType=VARCHAR}, 
+      #{bussinessContractNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.asset.dao.po.CreditAudit" >
+    insert into asset_credit_audit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="creditId != null" >
+        credit_id,
+      </if>
+      <if test="creditMode != null" >
+        credit_mode,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="preTotalLimit != null" >
+        pre_total_limit,
+      </if>
+      <if test="totalLimit != null" >
+        total_limit,
+      </if>
+      <if test="preAvailableLimit != null" >
+        pre_available_limit,
+      </if>
+      <if test="availableLimit != null" >
+        available_limit,
+      </if>
+      <if test="preUsedLimit != null" >
+        pre_used_limit,
+      </if>
+      <if test="usedLimit != null" >
+        used_limit,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="preEffectiveDate != null" >
+        pre_effective_date,
+      </if>
+      <if test="effectiveDate != null" >
+        effective_date,
+      </if>
+      <if test="preDueDate != null" >
+        pre_due_date,
+      </if>
+      <if test="dueDate != null" >
+        due_date,
+      </if>
+      <if test="preCreditStatus != null" >
+        pre_credit_status,
+      </if>
+      <if test="creditStatus != null" >
+        credit_status,
+      </if>
+      <if test="operatorId != null" >
+        operator_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="factorId != null" >
+        factor_id,
+      </if>
+      <if test="bussinessContractNo != null" >
+        bussiness_contract_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="creditId != null" >
+        #{creditId,jdbcType=VARCHAR},
+      </if>
+      <if test="creditMode != null" >
+        #{creditMode,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="preTotalLimit != null" >
+        #{preTotalLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="totalLimit != null" >
+        #{totalLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="preAvailableLimit != null" >
+        #{preAvailableLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="availableLimit != null" >
+        #{availableLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="preUsedLimit != null" >
+        #{preUsedLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="usedLimit != null" >
+        #{usedLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="preEffectiveDate != null" >
+        #{preEffectiveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveDate != null" >
+        #{effectiveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="preDueDate != null" >
+        #{preDueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="dueDate != null" >
+        #{dueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="preCreditStatus != null" >
+        #{preCreditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="creditStatus != null" >
+        #{creditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="factorId != null" >
+        #{factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="bussinessContractNo != null" >
+        #{bussinessContractNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.asset.dao.po.CreditAuditExample" resultType="java.lang.Integer" >
+    select count(*) from asset_credit_audit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update asset_credit_audit
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creditId != null" >
+        credit_id = #{record.creditId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creditMode != null" >
+        credit_mode = #{record.creditMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currency != null" >
+        currency = #{record.currency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.preTotalLimit != null" >
+        pre_total_limit = #{record.preTotalLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalLimit != null" >
+        total_limit = #{record.totalLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.preAvailableLimit != null" >
+        pre_available_limit = #{record.preAvailableLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.availableLimit != null" >
+        available_limit = #{record.availableLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.preUsedLimit != null" >
+        pre_used_limit = #{record.preUsedLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.usedLimit != null" >
+        used_limit = #{record.usedLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.customerId != null" >
+        customer_id = #{record.customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.preEffectiveDate != null" >
+        pre_effective_date = #{record.preEffectiveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.effectiveDate != null" >
+        effective_date = #{record.effectiveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.preDueDate != null" >
+        pre_due_date = #{record.preDueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dueDate != null" >
+        due_date = #{record.dueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.preCreditStatus != null" >
+        pre_credit_status = #{record.preCreditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creditStatus != null" >
+        credit_status = #{record.creditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorId != null" >
+        operator_id = #{record.operatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.factorId != null" >
+        factor_id = #{record.factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bussinessContractNo != null" >
+        bussiness_contract_no = #{record.bussinessContractNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update asset_credit_audit
+    set id = #{record.id,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      credit_id = #{record.creditId,jdbcType=VARCHAR},
+      credit_mode = #{record.creditMode,jdbcType=VARCHAR},
+      currency = #{record.currency,jdbcType=VARCHAR},
+      pre_total_limit = #{record.preTotalLimit,jdbcType=DECIMAL},
+      total_limit = #{record.totalLimit,jdbcType=DECIMAL},
+      pre_available_limit = #{record.preAvailableLimit,jdbcType=DECIMAL},
+      available_limit = #{record.availableLimit,jdbcType=DECIMAL},
+      pre_used_limit = #{record.preUsedLimit,jdbcType=DECIMAL},
+      used_limit = #{record.usedLimit,jdbcType=DECIMAL},
+      customer_id = #{record.customerId,jdbcType=VARCHAR},
+      pre_effective_date = #{record.preEffectiveDate,jdbcType=VARCHAR},
+      effective_date = #{record.effectiveDate,jdbcType=VARCHAR},
+      pre_due_date = #{record.preDueDate,jdbcType=VARCHAR},
+      due_date = #{record.dueDate,jdbcType=VARCHAR},
+      pre_credit_status = #{record.preCreditStatus,jdbcType=VARCHAR},
+      credit_status = #{record.creditStatus,jdbcType=VARCHAR},
+      operator_id = #{record.operatorId,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      factor_id = #{record.factorId,jdbcType=VARCHAR},
+      bussiness_contract_no = #{record.bussinessContractNo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.asset.dao.po.CreditAudit" >
+    update asset_credit_audit
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="creditId != null" >
+        credit_id = #{creditId,jdbcType=VARCHAR},
+      </if>
+      <if test="creditMode != null" >
+        credit_mode = #{creditMode,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="preTotalLimit != null" >
+        pre_total_limit = #{preTotalLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="totalLimit != null" >
+        total_limit = #{totalLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="preAvailableLimit != null" >
+        pre_available_limit = #{preAvailableLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="availableLimit != null" >
+        available_limit = #{availableLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="preUsedLimit != null" >
+        pre_used_limit = #{preUsedLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="usedLimit != null" >
+        used_limit = #{usedLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="preEffectiveDate != null" >
+        pre_effective_date = #{preEffectiveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveDate != null" >
+        effective_date = #{effectiveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="preDueDate != null" >
+        pre_due_date = #{preDueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="dueDate != null" >
+        due_date = #{dueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="preCreditStatus != null" >
+        pre_credit_status = #{preCreditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="creditStatus != null" >
+        credit_status = #{creditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="factorId != null" >
+        factor_id = #{factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="bussinessContractNo != null" >
+        bussiness_contract_no = #{bussinessContractNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.asset.dao.po.CreditAudit" >
+    update asset_credit_audit
+    set type = #{type,jdbcType=VARCHAR},
+      credit_id = #{creditId,jdbcType=VARCHAR},
+      credit_mode = #{creditMode,jdbcType=VARCHAR},
+      currency = #{currency,jdbcType=VARCHAR},
+      pre_total_limit = #{preTotalLimit,jdbcType=DECIMAL},
+      total_limit = #{totalLimit,jdbcType=DECIMAL},
+      pre_available_limit = #{preAvailableLimit,jdbcType=DECIMAL},
+      available_limit = #{availableLimit,jdbcType=DECIMAL},
+      pre_used_limit = #{preUsedLimit,jdbcType=DECIMAL},
+      used_limit = #{usedLimit,jdbcType=DECIMAL},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      pre_effective_date = #{preEffectiveDate,jdbcType=VARCHAR},
+      effective_date = #{effectiveDate,jdbcType=VARCHAR},
+      pre_due_date = #{preDueDate,jdbcType=VARCHAR},
+      due_date = #{dueDate,jdbcType=VARCHAR},
+      pre_credit_status = #{preCreditStatus,jdbcType=VARCHAR},
+      credit_status = #{creditStatus,jdbcType=VARCHAR},
+      operator_id = #{operatorId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      factor_id = #{factorId,jdbcType=VARCHAR},
+      bussiness_contract_no = #{bussinessContractNo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset_credit_audit
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.asset.dao.po.CreditAuditExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from asset_credit_audit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

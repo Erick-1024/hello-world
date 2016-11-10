@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travelzen.framework.retry.dao.mapper.RetryTaskCustomMapper">
+    
+	<select id="getOldestRetryTask"  resultMap="com.travelzen.framework.retry.dao.mapper.gen.RetryTaskMapper.BaseResultMap">
+		select * from common_retry_task where finished = false 
+        and (state in ( 'not_begin', 'fail') or (state = 'processing' and process_timeout > 0 and (now() - start_time) > process_timeout)) 
+        and (max_attempts != 0 or task_deadline is not null) 
+        and (end_time is null or (now() - end_time) >= fixed_backoff_period) 
+        and task_type in
+        <foreach collection="taskTypes" item="taskType" open="(" close=")" separator="," >
+        	#{taskType}
+        </foreach>
+        order by end_time limit #{top}
+  	</select>
+    
+  	
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息 varchar(254) -->
+	<mctJnlNo></mctJnlNo><!--商户流水号varchar(20) -->
+	<list name="userDataList">
+		<row>
+			<stt></stt><!--状态标志 char(2) 00：未确认，01：成功，02：失败 -->
+			<status></status><!--状态代码 char(7) -->
+			<statusText></statusText><!--状态信息 varchar(254) -->
+			<freezeNo></freezeNo><!--冻结编号varchar(22) -->
+			<tranAmt></tranAmt><!--交易金额decimal(15,2) -->
+			<cryCode></cryCode><!--货币代码char(3) -->
+			<payAccNo></payAccNo><!--付款账号char(19) -->
+			<payAccNm></payAccNm><!--付款账户名称varchar(62) -->
+			<recvAccNo></recvAccNo><!--收款账号char(19) -->
+			<recvAccNm></recvAccNm><!--收款账户名称varchar(62) -->
+		</row>
+	</list>
+</stream>

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cana.repayment.dao.mapper.IFinanceReportMapper">
+
+	<select id="getFinanceBalanceByFinanceCompany" resultType="java.lang.Long" parameterType="java.lang.String" >
+   		select sum(finance_balance) from repayment_loan_info where finance_company=#{financeCompany}
+	</select>
+	
+	<select id="getFinanceBalanceByFactorId" resultType="java.lang.Long" parameterType="java.lang.String" >
+   		select sum(finance_balance) from repayment_loan_info where factor_id=#{factorId}
+	</select>
+	
+	<select id="getFinanceBalanceByCoreCompany" resultType="java.lang.Long" parameterType="java.lang.String" >
+   		select sum(finance_balance) from repayment_loan_info where core_company_id=#{coreCompanyId}
+	</select>
+	
+	<select id="getUnsettlledLoanInfoNumByFinanceCompany" resultType="java.lang.Integer" parameterType="java.lang.String" >
+   		select count(1) from repayment_loan_info where finance_company=#{financeCompany} and settle_status!='SETTLED'
+	</select>
+	
+	<select id="getUnsettlledLoanInfoNumByFactorId" resultType="java.lang.Integer" parameterType="java.lang.String" >
+   		select count(1) from repayment_loan_info where factor_id=#{factorId} and settle_status!='SETTLED'
+	</select>
+
+	<select id="getUnsettlledLoanInfoNumByCoreCompany" resultType="java.lang.Integer" parameterType="java.lang.String" >
+   		select count(1) from repayment_loan_info where core_company_Id=#{coreCompanyId} and settle_status!='SETTLED'
+	</select>
+	
+    <select id="getMaybeOverduePlansByFinanceCompany" resultMap="com.cana.repayment.dao.mapper.gen.RepaymentPlanMapper.BaseResultMap" parameterType="java.lang.String" >
+   	    	select * from  repayment_plan where (overdue_principal + overdue_interest + overdue_service_charge + overdue_principal_penalty + overdue_interest_penalty + overdue_service_charge_penalty + other_penalty) > 0
+   	    	                                    and finance_company=#{financeCompany}
+    </select>
+    
+    <select id="getMaybeOverduePlansByCoreCompany" resultMap="com.cana.repayment.dao.mapper.gen.RepaymentPlanMapper.BaseResultMap" parameterType="java.lang.String" >
+   	    	select * from  repayment_plan where (overdue_principal + overdue_interest + overdue_service_charge + overdue_principal_penalty + overdue_interest_penalty + overdue_service_charge_penalty + other_penalty) > 0
+   	    	                                    and core_company_Id=#{coreCompanyId}
+    </select>
+    
+    <select id="getMaybeOverduePlansByFactorId" resultMap="com.cana.repayment.dao.mapper.gen.RepaymentPlanMapper.BaseResultMap" parameterType="java.lang.String" >
+   	    	select * from  repayment_plan where (overdue_principal + overdue_interest + overdue_service_charge + overdue_principal_penalty + overdue_interest_penalty + overdue_service_charge_penalty + other_penalty) > 0
+   	    	                                    and factor_id=#{factorId}
+    </select>
+		
+	<select id="getToPayAmountOfPlansByFinanceCompany" resultType="java.lang.Long" >
+   		<![CDATA[ select sum(account_principal + account_interest + account_service_charge + account_extension_charge) from repayment_plan where finance_company=#{financeCompany} and repayment_date>=#{startDate} and repayment_date<=#{endDate} ]]>
+	</select>
+
+	<select id="getToPayAmountOfPlansByCoreCompany" resultType="java.lang.Long" >
+   		<![CDATA[ select sum(account_principal + account_interest + account_service_charge + account_extension_charge) from repayment_plan where core_company_Id=#{coreCompanyId} and repayment_date>=#{startDate} and repayment_date<=#{endDate} ]]>
+	</select>
+	
+	<select id="getToPayAmountOfExpensesByFinanceCompany" resultType="java.lang.Long" >
+   		<![CDATA[ select sum(repayment_amount) from repayment_expense where finance_company=#{financeCompany} and repayment_date>=#{startDate} and repayment_date<=#{endDate} ]]>
+	</select>
+	<select id="getToPayAmountOfExpensesByCoreCompany" resultType="java.lang.Long" >
+   		<![CDATA[ select sum(repayment_amount) from repayment_expense where core_company_Id=#{coreCompanyId} and repayment_date>=#{startDate} and repayment_date<=#{endDate} ]]>
+	</select>
+	
+	<sql id="queryRepaymentSummary_common_criteria">
+		<if test="financeId!=null and financeId!='' ">     
+            and loan.finance_id = #{financeId}      
+       	</if>
+		<if test="outCustomerId!=null and outCustomerId!='' ">
+            and loan.out_customer_id = #{outCustomerId}
+       	</if>
+      	<if test="factorId!=null and factorId!='' ">     
+         	and loan.factor_id = #{factorId}      
+      	</if>
+      	<if test="businessProductId!=null and businessProductId!='' ">     
+         	and loan.business_product_id = #{businessProductId}      
+      	</if>
+	</sql>
+	
+	<select id="queryRepaymentSummary" resultType="com.cana.vbam.common.repayment.dto.RepaymentAmount" parameterType="com.cana.vbam.common.repayment.dto.QueryRepaymentSummaryRequestDTO" >
+	
+   		select sum(account_principal) as accountPrincipal,
+	           sum(account_interest) as accountInterest,
+               sum(account_service_Charge) as accountServiceCharge,
+               sum(account_extension_charge) as accountExtensionCharge,
+               sum(overdue_principal) as overduePrincipal,
+               sum(overdue_interest) as overdueInterest,
+               sum(overdue_service_charge) as overdueServiceCharge,
+               sum(overdue_principal_penalty) as overduePrincipalPenalty,
+               sum(overdue_interest_penalty) as overdueInterestPenalty,
+               sum(overdue_service_charge_penalty) as overdueServiceChargePenalty,
+               sum(other_penalty) as otherPenalty,
+               sum(paid_normal_principal) as paidNormalPrincipal,
+               sum(paid_overdue_principal) as paidOverduePrincipal,
+               sum(paid_normal_interest) as paidNormalInterest,
+               sum(paid_overdue_interest) as paidOverdueInterest,
+               sum(paid_normal_service_charge) as paidNormalServiceCharge,
+               sum(paid_overdue_service_charge) as paidOverdueServiceCharge,
+               sum(paid_early_repayment_charge) as paidEarlyRepaymentCharge,
+               sum(paid_extension_charge) as paidExtensionCharge,
+               sum(paid_overdue_principal_penalty) as paidOverduePrincipalPenalty,
+               sum(paid_overdue_interest_penalty) as paidOverdueInterestPenalty,
+               sum(paid_overdue_service_charge_penalty) as paidOverdueServiceChargePenalty,
+               sum(paid_other_penalty) as paidOtherPenalty
+		from repayment_loan_info loan join  repayment_plan plan on loan.id=plan.loan_info_id
+		<where>
+			<trim prefixOverrides="and" >
+				<include refid="queryRepaymentSummary_common_criteria" />
+        	</trim>
+		</where>
+	
+	</select>
+	
+	<select id="queryUnsettledPlanIdListInNormalState" resultType="java.lang.String" parameterType="com.cana.vbam.common.repayment.dto.QueryRepaymentSummaryRequestDTO" >
+	
+   		select distinct(plan.id) from repayment_loan_info loan join  repayment_plan plan on loan.id=plan.loan_info_id
+		<where>
+			<trim prefixOverrides="and" >
+				<include refid="queryRepaymentSummary_common_criteria" />
+				and (plan.account_interest + account_service_Charge) > 0
+        	</trim>
+		</where>
+	
+	</select>
+	
+	<sql id="queryLoanInfoList_common_criteria">
+		<if test="financeId!=null and financeId!='' ">     
+       		 	and loan.finance_id = #{financeId}      
+        </if>
+        <if test="financeCompany!=null and financeCompany!='' ">     
+          		and loan.finance_company like #{financeCompany}      
+       	</if>
+       	<if test="outCustomerId!=null and outCustomerId!='' ">
+          		and loan.out_customer_id = #{outCustomerId}
+       	</if>
+       	<if test="factorId!=null and factorId!='' ">     
+          		and loan.factor_id = #{factorId}      
+       	</if>
+       	<if test="businessProductId!=null and businessProductId!='' ">     
+          		and loan.business_product_id = #{businessProductId}      
+       	</if>
+		<if test="loanInfoId!=null and loanInfoId!='' ">     
+       		 	and loan.id = #{loanInfoId}      
+        </if>
+       	<if test="loanDateStart!=null and loanDateStart!='' ">     
+          		<![CDATA[ and loan.loan_date >= #{loanDateStart} ]]>
+       	</if>
+       	<if test="loanDateEnd!=null and loanDateEnd!='' ">     
+          		<![CDATA[ and loan.loan_date <= #{loanDateEnd}   ]]>
+       	</if>
+       	<if test="dueDateStart!=null and dueDateStart!='' ">     
+          		<![CDATA[ and loan.due_date >= #{dueDateStart}   ]]>
+       	</if>
+       	<if test="dueDateEnd!=null and dueDateEnd!='' ">     
+          		<![CDATA[ and loan.due_date <= #{dueDateEnd}     ]]>
+       	</if>
+       	<if test="settleStatus!=null">     
+          		and loan.settle_status = #{settleStatus}      
+       	</if>
+	</sql>
+	
+	<select id="queryLoanInfoList" resultMap="com.cana.repayment.dao.mapper.gen.RepaymentLoanInfoMapper.BaseResultMap" parameterType="com.cana.vbam.common.repayment.dto.QueryLoanInfoListCriteria" >
+	
+   		select * from repayment_loan_info loan
+   		
+		<where>
+			<trim prefixOverrides="and" >
+				<include refid="queryLoanInfoList_common_criteria" />	
+        		<if test="orderByClause != null" >
+      				order by ${orderByClause}
+      				<if test="offset >= 0" >
+        				limit ${offset} , ${limit}
+      				</if>
+    			</if>
+        	</trim>
+		</where>
+	
+	</select>
+	
+	<select id="countLoanInfos" resultType="java.lang.Integer" parameterType="com.cana.vbam.common.repayment.dto.QueryLoanInfoListCriteria" >
+	
+   		select count(1) from repayment_loan_info loan
+   		
+		<where>
+			<trim prefixOverrides="and" >
+				<include refid="queryLoanInfoList_common_criteria" />
+        	</trim>
+		</where>
+	
+	</select>
+	
+	<sql id="queryOverduePlanList_common_criteria">
+	 
+	    overdue.related_type = 'REPAYMENTPLAN'
+	    
+	    <if test="businessProductId!=null and businessProductId!='' ">     
+          		and loan.business_product_id = #{businessProductId}      
+       	</if>
+		<if test="financeId!=null and financeId!='' ">     
+       		 	and plan.finance_id = #{financeId}      
+        </if>
+        <if test="outCustomerId!=null and outCustomerId!='' ">     
+       		 	and loan.out_customer_id = #{outCustomerId}      
+        </if>
+       	<if test="startTime!=null">     
+          		<![CDATA[ and overdue.create_time >= #{startTime} ]]>
+       	</if>
+       	<if test="endTime!=null">     
+          		<![CDATA[ and overdue.create_time < #{endTime} ]]>
+       	</if>
+       	
+	</sql>
+	
+	<select id="countOverduePlans" resultType="java.lang.Integer" parameterType="com.cana.vbam.common.repayment.dto.QueryPlanListCriteria" >
+	
+   		select count(distinct(overdue.related_id)) 
+        from repayment_overdue_product_detail overdue join repayment_plan plan on overdue.related_id = plan.id 
+             join repayment_loan_info loan on plan.loan_info_id = loan.id
+   		
+		<where>
+			<trim prefixOverrides="and" >
+				<include refid="queryOverduePlanList_common_criteria" />
+        	</trim>
+		</where>
+	
+	</select>
+	
+	<select id="queryOverduePlanIds" resultType="java.lang.String" parameterType="com.cana.vbam.common.repayment.dto.QueryPlanListCriteria" >
+	
+   		select distinct(overdue.related_id) 
+        from repayment_overdue_product_detail overdue join repayment_plan plan on overdue.related_id = plan.id 
+             join repayment_loan_info loan on plan.loan_info_id = loan.id
+   		
+		<where>
+			<trim prefixOverrides="and" >
+				<include refid="queryOverduePlanList_common_criteria" />
+        	</trim>
+		</where>
+	
+	</select>
+	
+	<sql id="queryPlanList_common_criteria">
+	 	    
+	    <if test="businessProductId!=null and businessProductId!='' ">     
+          		and loan.business_product_id = #{businessProductId}      
+       	</if>
+		<if test="financeId!=null and financeId!='' ">     
+       		 	and plan.finance_id = #{financeId}      
+        </if>
+       	<if test="outCustomerId!=null and outCustomerId!='' ">     
+       		 	and loan.out_customer_id = #{outCustomerId}      
+        </if>
+        <if test="repaymentDateStart!=null and repaymentDateStart!='' ">     
+       		 	<![CDATA[ and plan.repayment_date >= #{repaymentDateStart}  ]]>
+        </if>
+         <if test="repaymentDateEnd!=null and repaymentDateEnd!='' ">     
+       		 	<![CDATA[ and plan.repayment_date <= #{repaymentDateEnd}  ]]>
+        </if>
+	</sql>
+	
+	<select id="queryPlanList" resultMap="com.cana.repayment.dao.mapper.gen.RepaymentPlanMapper.BaseResultMap" parameterType="com.cana.vbam.common.repayment.dto.QueryPlanListCriteria" >
+	
+   		select plan.* from repayment_plan plan join repayment_loan_info loan on plan.loan_info_id = loan.id
+   		
+		<where>
+			<trim prefixOverrides="and" >
+				<include refid="queryPlanList_common_criteria" />	
+        		<if test="orderByClause != null" >
+      				order by ${orderByClause}
+      				<if test="offset >= 0" >
+        				limit ${offset} , ${limit}
+      				</if>
+    			</if>
+        	</trim>
+		</where>
+	
+	</select>
+	
+</mapper>

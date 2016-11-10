@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+	updateCheck="false">
+
+	<defaultCache maxElementsInMemory="1000" eternal="false"
+		timeToIdleSeconds="120" timeToLiveSeconds="300" overflowToDisk="true"
+		memoryStoreEvictionPolicy="LRU" />
+
+	<cache name="imageCache" eternal="false" maxElementsInMemory="100000"
+		overflowToDisk="true" diskPersistent="false" timeToIdleSeconds="0"
+		timeToLiveSeconds="300" memoryStoreEvictionPolicy="LRU" />
+
+
+	<cache name="invalidImageIdCache" eternal="false"
+		maxElementsInMemory="1000000" overflowToDisk="true" diskPersistent="false"
+		timeToIdleSeconds="0" timeToLiveSeconds="300"
+		memoryStoreEvictionPolicy="LRU" />
+
+</ehcache>

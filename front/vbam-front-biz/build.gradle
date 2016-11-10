@@ -1,0 +1,28 @@
+apply plugin: 'war'
+
+dependencies {
+// hystrix
+//	compile libraries.hystrix_core
+//	compile libraries.hystrix_javanica
+
+	compile project(':front:front-common')
+	compile project(':member:member-api')
+	compile project(':account:account-api')
+	compile project(':tops-common-mediaclient')
+	compile project(':framework:framework-redis')
+	compile project(':framework:framework-dubbo-support')
+	compile project(':common:vbam-common')
+	compile project(':repayment:repayment-api')
+	compile project(':message:message-api')
+	compile project(':credit:credit-api')
+	compile project(':report:report-api')
+	compile project(':flight-finance:flight-finance-api')
+	compile project(':asset:asset-api')
+	compile project(':yundaex:yundaex-api')
+	compile project(':signature:signature-api')
+	compile project(':early-warning:early-warning-api')
+	compile project(':vj:vj-api')
+	compile project(':setting:setting-api')
+	compile project(':wechat:wechat-api')
+	
+}

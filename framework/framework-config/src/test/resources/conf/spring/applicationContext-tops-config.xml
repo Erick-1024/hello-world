@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context				http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/aop    				http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/mvc					http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+
+	<bean class="com.travelzen.framework.config.tops.TzPropertyPlaceholderConfigurer">
+		<!--
+			 * 设置需要加载的properties文件路径列表
+			 * 文件路径遵循"{scope:path}"的约定
+			 * 如："R:properties/mongo-database.properties"代表获取“R”作用下的“properties/mongo-database.properties”
+		-->
+		<property name="tzProperties">
+			<list>
+				<value>R:properties/mongo-database.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="mongoProp" class="com.travelzen.framework.config.tops.TzPropertiesFactoryBean">
+		<!--
+			 * 设置需要加载的properties文件路径列表
+			 * 文件路径遵循"{scope:path}"的约定
+			 * 如："R:properties/mongo-database.properties"代表获取“R”作用下的“properties/mongo-database.properties”
+		-->
+		<property name="tzProperty" value="R:properties/test.properties"/>
+	</bean>
+
+<!-- 	<bean class="com.travelzen.framework.config.tops.TzPropertyPlaceholderConfigurer"> -->
+<!-- 		<property name="tzProperties"> -->
+<!-- 			<list> -->
+<!-- 				<value>R:properties/company-info.properties</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+
+	<bean id="configBean" class="com.travelzen.framwork.config.tops.bean.ConfigBean">
+		<property name="messagingMongoDbUri" value="${messaging.mongodb.uri}"></property>
+		<property name="company" value="${company}"></property>
+	</bean>
+
+	<context:component-scan base-package="com.travelzen.framwork.config.tops.bean"/>
+
+</beans>

@@ -1,0 +1,11 @@
+apply plugin: 'java'
+
+
+dependencies {
+	compile project(':framework:framework-config')
+	testCompile libraries.spring_test
+	compile libraries.commons_configuration
+	compile libraries.commons_pool
+	compile libraries.spring_data_redis
+	compile libraries.cglib_nodep
+}

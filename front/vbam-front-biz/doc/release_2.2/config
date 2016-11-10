@@ -1,0 +1,60 @@
+增加asset-search,canal
+
+[op3]
+1. asset-search/properties/canal.properties
+
+canal_server_ip=192.168.1.13
+canal_server_port=11111
+destination=asset-search
+
+2. asset-search/properties/mysql-jdbc.properties
+
+jdbc.username=asset_search
+jdbc.password=Abc12345
+jdbc.initialPoolSize=0
+jdbc.minPoolSize=0
+jdbc.maxPoolSize=20
+
+grant select,insert,update,execute,delete on vbam.* to 'asset_search'@'192.168.1.0/255.255.255.0' identified by 'Abc12345';
+grant select,insert,update,execute,delete on vbam.* to 'asset_search'@'127.0.0.1' identified by 'Abc12345';
+grant select,insert,update,execute,delete on vbam.* to 'asset_search'@'localhost' identified by 'Abc12345';
+
+
+CREATE USER canal IDENTIFIED BY 'canal';  
+GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'canal'@'%';
+GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'canal'@'localhost';
+-- GRANT ALL PRIVILEGES ON *.* TO 'canal'@'%' ;
+FLUSH PRIVILEGES;
+
+
+[prod]
+
+1. asset-search/properties/canal.properties
+
+canal_server_ip=192.168.192.102
+canal_server_port=11111
+destination=asset-search
+
+2. asset-search/properties/mysql-jdbc.properties
+
+jdbc.username=asset_search
+jdbc.password=Abc12345
+jdbc.initialPoolSize=0
+jdbc.minPoolSize=0
+jdbc.maxPoolSize=20
+
+grant select,insert,update,execute,delete on vbam.* to 'asset_search'@'192.168.192.0/255.255.255.0' identified by 'Abc12345';
+grant select,insert,update,execute,delete on vbam.* to 'asset_search'@'127.0.0.1' identified by 'Abc12345';
+grant select,insert,update,execute,delete on vbam.* to 'asset_search'@'localhost' identified by 'Abc12345';
+
+CREATE USER canal IDENTIFIED BY 'canal';  
+GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'canal'@'%';
+GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'canal'@'localhost';
+-- GRANT ALL PRIVILEGES ON *.* TO 'canal'@'%' ;
+FLUSH PRIVILEGES;
+
+ABS
+
+1. 在global/properties/lucene-index.properties。内容：index.file.path=/data/index
+
+2. 

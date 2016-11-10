@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLSORWTT</action>
+	<userName></userName><!--登录名varchar(30) -->
+	<mctNo></mctNo><!--商户编号char(8) -->
+	<clientID></clientID><!--客户流水号varchar (20) -->
+	<payAccNo></payAccNo><!--付款账号varchar(19) -->
+	<recvAccNo></recvAccNo><!--收款账号varchar(19) -->
+	<tranAmt></tranAmt><!--交易金额 decimal(15,2) -->
+	<freezeNo></freezeNo><!--仓单冻结编号varchar (20) -->
+	<cryCode></cryCode><!--币种代码 char(3)， "CNY":人民币 -->
+	<memo></memo><!--摘要varchar(22) -->
+	<purpose></purpose><!--备注varchar(60) -->
+	<tranType></tranType><!--交易类型char(2)，"Z0"：支付冻结；"Z1"：直接支付 -->
+	<list name="userDataList">
+		<row>
+			<stockNo></stockNo><!--仓单编号varchar(20) -->
+			<dealUnitPrice></dealUnitPrice><!--成交单价decimal(15,2) -->
+		</row>
+	</list>
+</stream>

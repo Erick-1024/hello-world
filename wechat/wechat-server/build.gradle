@@ -1,0 +1,15 @@
+apply plugin: 'application'
+
+dependencies {
+	compile project(':framework:framework-base')
+	compile project(':framework:framework-dubbo-support')
+	compile project(':wechat:wechat-api')
+	compile project(':member:member-api')
+	compile project(':framework:framework-redis')
+	compile project(':wechat:wechat-service')
+	compile project(':common:common-dao')
+}
+
+mainClassName = 'com.cana.wechat.server.main.WeChatServerMain'
+
+applicationDefaultJvmArgs = ["-server", "-Xms256m", "-Xmx2048m", "-XX:MaxPermSize=512m", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=12810", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false"]

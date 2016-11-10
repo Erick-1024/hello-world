@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLBSAQRY</action>
+	<userName></userName><!--登录名 varchar(30) -->
+	<mainAccNo></mainAccNo><!--主体账号varchar(19) 可空，主体账号和附属账号不可同时为空 -->
+	<subAccNo></subAccNo><!--附属账号varchar(19) 可空，主体账号和附属账号不可同时为空 -->
+	<oppBankNo></oppBankNo><!--对方支付联行号varchar(14) 可空 -->
+	<startDate></startDate><!--起始日期char(8) 格式YYYYMMDD -->
+	<endDate></endDate><!--终止日期char(8) 格式YYYYMMDD -->
+</stream>

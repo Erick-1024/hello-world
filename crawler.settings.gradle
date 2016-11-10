@@ -1,0 +1,7 @@
+apply from: 'framework.settings.gradle'
+include 'common:vbam-common'
+include 'crawler:crawler-common'
+include 'crawler:crawler-dao'
+include 'crawler:crawler-shixincourt-api'
+include 'crawler:crawler-shixincourt-server'
+include 'crawler:crawler-lianhanghao'

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.report.dao.mapper.ReportFundMonthlySumMapper" >
+
+  <select id="getCurrentMonthAccountBalanceSum" parameterType="com.cana.vbam.common.report.dto.ReportFundMonthlySearchCriteria" resultType="java.lang.Long">
+	select sum(balance) as balanceSum from report_fund_monthly 
+	<include refid="Select_Where_Clause" />
+  </select>
+  
+  <sql id="Select_Where_Clause" >
+		<where>
+			is_main_account = 0
+			<if test="(searchCriteria.reportDate != null and searchCriteria.reportDate !='') "> 
+			    and month=#{searchCriteria.reportDate, jdbcType=VARCHAR} 
+			</if>
+			<if test="(searchCriteria.accountNo != null and searchCriteria.accountNo !='') ">  
+				and account_no like CONCAT('%',#{searchCriteria.accountNo, jdbcType=VARCHAR},'%') 
+			</if>
+			<if test="(searchCriteria.financeName != null and searchCriteria.financeName !='') ">  
+				and finance_name like CONCAT('%',#{searchCriteria.financeName, jdbcType=VARCHAR},'%') 
+			</if>
+			<if test="(searchCriteria.accountName != null and searchCriteria.accountName !='') ">  
+				and account_name like CONCAT('%',#{searchCriteria.financeName, jdbcType=VARCHAR},'%') 
+			</if>
+			<if test="(searchCriteria.factorName != null and searchCriteria.factorName !='') ">  
+				and factor_name like CONCAT('%',#{searchCriteria.factorName, jdbcType=VARCHAR},'%') 
+			</if>
+			<if test="(searchCriteria.accountType != null and searchCriteria.accountType !='') ">  
+				and account_type = #{searchCriteria.accountType}
+			</if>
+			<if test="(searchCriteria.supervisionStatus != null and searchCriteria.supervisionStatus !='') ">  
+				and supervision_status = #{searchCriteria.supervisionStatus}
+			</if>
+			<if test="searchCriteria.transferInAccount == true">  
+				and is_transfer_in_account = 1
+			</if>
+			<if test="searchCriteria.transferInAccount == false">  
+				and is_transfer_in_account = 0 
+			</if>
+			<if test="(searchCriteria.accountStatus != null and searchCriteria.accountStatus !='') ">  
+				and account_status = #{searchCriteria.accountStatus}
+			</if>
+			<if test="(searchCriteria.fundBalanceGetState != null and searchCriteria.fundBalanceGetState !='') ">  
+				and result = #{searchCriteria.fundBalanceGetState}
+			</if>
+		</where>
+	</sql>
+</mapper>

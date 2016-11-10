@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.flight.finance.dao.mapper.gen.TzCustomerInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.flight.finance.dao.po.TzCustomerInfo" >
+    <id column="tz_short_id" property="tzShortId" jdbcType="INTEGER" />
+    <result column="tz_customer_id" property="tzCustomerId" jdbcType="VARCHAR" />
+    <result column="customer_names" property="customerNames" jdbcType="VARCHAR" />
+    <result column="first_business_time" property="firstBusinessTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    tz_short_id, tz_customer_id, customer_names, first_business_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.flight.finance.dao.po.TzCustomerInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tz_customer_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tz_customer_info
+    where tz_short_id = #{tzShortId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tz_customer_info
+    where tz_short_id = #{tzShortId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.flight.finance.dao.po.TzCustomerInfoExample" >
+    delete from tz_customer_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.flight.finance.dao.po.TzCustomerInfo" >
+    insert into tz_customer_info (tz_short_id, tz_customer_id, customer_names, 
+      first_business_time)
+    values (#{tzShortId,jdbcType=INTEGER}, #{tzCustomerId,jdbcType=VARCHAR}, #{customerNames,jdbcType=VARCHAR}, 
+      #{firstBusinessTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.flight.finance.dao.po.TzCustomerInfo" >
+    insert into tz_customer_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tzShortId != null" >
+        tz_short_id,
+      </if>
+      <if test="tzCustomerId != null" >
+        tz_customer_id,
+      </if>
+      <if test="customerNames != null" >
+        customer_names,
+      </if>
+      <if test="firstBusinessTime != null" >
+        first_business_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tzShortId != null" >
+        #{tzShortId,jdbcType=INTEGER},
+      </if>
+      <if test="tzCustomerId != null" >
+        #{tzCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerNames != null" >
+        #{customerNames,jdbcType=VARCHAR},
+      </if>
+      <if test="firstBusinessTime != null" >
+        #{firstBusinessTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.flight.finance.dao.po.TzCustomerInfoExample" resultType="java.lang.Integer" >
+    select count(*) from tz_customer_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tz_customer_info
+    <set >
+      <if test="record.tzShortId != null" >
+        tz_short_id = #{record.tzShortId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tzCustomerId != null" >
+        tz_customer_id = #{record.tzCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerNames != null" >
+        customer_names = #{record.customerNames,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstBusinessTime != null" >
+        first_business_time = #{record.firstBusinessTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tz_customer_info
+    set tz_short_id = #{record.tzShortId,jdbcType=INTEGER},
+      tz_customer_id = #{record.tzCustomerId,jdbcType=VARCHAR},
+      customer_names = #{record.customerNames,jdbcType=VARCHAR},
+      first_business_time = #{record.firstBusinessTime,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.flight.finance.dao.po.TzCustomerInfo" >
+    update tz_customer_info
+    <set >
+      <if test="tzCustomerId != null" >
+        tz_customer_id = #{tzCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerNames != null" >
+        customer_names = #{customerNames,jdbcType=VARCHAR},
+      </if>
+      <if test="firstBusinessTime != null" >
+        first_business_time = #{firstBusinessTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tz_short_id = #{tzShortId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.flight.finance.dao.po.TzCustomerInfo" >
+    update tz_customer_info
+    set tz_customer_id = #{tzCustomerId,jdbcType=VARCHAR},
+      customer_names = #{customerNames,jdbcType=VARCHAR},
+      first_business_time = #{firstBusinessTime,jdbcType=VARCHAR}
+    where tz_short_id = #{tzShortId,jdbcType=INTEGER}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tz_customer_info
+    where tz_short_id = #{tzShortId}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.flight.finance.dao.po.TzCustomerInfoExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tz_customer_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

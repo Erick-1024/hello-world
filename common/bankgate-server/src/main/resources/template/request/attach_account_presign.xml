@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLBREGST</action>
+	<userName></userName><!--登录名varchar(30) -->
+	<mainAccNo></mainAccNo><!--主体账号char(19) -->
+	<appFlag></appFlag><!--应用系统char(1)， 2：B2B电子商务；3：投标保证金 -->
+	<accGenType></accGenType><!--附属账户生成方式char(1) ，0：自动输入 ；1：手动生成 -->
+	<subAccNo></subAccNo><!--附属账号 char(14) ，在accGenType生成方式为1：手动输入时，必输；为0：自动生成时可空 -->
+	<subAccNm></subAccNm><!--附属账户名称 varchar(100)，可空，appFlag为2时必输，appFlag为3时可空，若不为空则其值必须为客户名称 -->
+	<accType></accType><!--附属账户类型 char(2)，03：一般交易账号；04：保证金账号；11：招投标保证金 -->
+	<calInterestFlag></calInterestFlag><!--是否计算利息标志 char(1)， 0：不计息；1：不分段计息；2：分段计息；当appFlag为3时，是否计算利息标志必须为0 -->
+	<interestRate></interestRate><!--默认计息利率 decimal(9.7)，calInterestFlag为 0时，可空；appFlag为3时，必须为0 -->
+	<overFlag></overFlag><!--是否允许透支char(1)，0：不允许；1：限额透支；2：全额透支 ；appFlag为3时，必须为0 -->
+	<overAmt></overAmt><!--透支额度decimal(15.2)，当overFlag为 0时，可空；appFlag为3时，必须为空 -->
+	<overRate></overRate><!--透支利率decimal(9.7)，当overFlag为 0时，可空；appFlag为3时，必须为空 -->
+	<autoAssignInterestFlag></autoAssignInterestFlag><!--自动分配利息标示char(1)，0：否；1：是；appFlag为3时，必须为0 -->
+	<autoAssignTranFeeFlag></autoAssignTranFeeFlag><!--自动分配转账手续费标char(1)，0：否；1：是；appFlag为3时，必须为0 -->
+	<feeType></feeType><!--手续费收取方式 char(1)，0：不收取；1：实时收取；2：月末累计；appFlag为3时，必须为0 -->
+	<realNameParm></realNameParm><!--实名制更换char(1) ，0：账户名与账号全不换；1：账户名与账号全换；2：换账户名；3：换账号；appFlag为3时，必须为0 -->
+	<subAccPrintParm></subAccPrintParm><!--附属账户凭证打印更换 char(1)，0：全部显示；1：显示附属账户名和账号；2：显示实体账户名和账号；3：显示附属账户名和实体账号；4：显示实体账户名和附属账号；appFlag为3时，必须为0 -->
+	<mngNode></mngNode><!--会员确认中心char(6) -->
+</stream>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLSAFQRY</action>
+	<userName></userName><!--登录名 varchar(30) -->
+	<subAccNo></subAccNo><!--附属账号 char(19) -->
+	<tranDate></tranDate><!--查询日期 char(8) -->
+</stream>

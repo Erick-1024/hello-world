@@ -1,0 +1,5 @@
+consumerTraceId=com.travelzen.framework.dubbo.support.filter.ConsumerTraceIdFilter
+providerTraceId=com.travelzen.framework.dubbo.support.filter.ProviderTraceIdFilter
+consumerCatRemoteCall=com.travelzen.framework.dubbo.support.filter.ConsumerCatRemoteCallFilter
+providerCatRemoteCall=com.travelzen.framework.dubbo.support.filter.ProviderCatRemoteCallFilter
+customizedException=com.travelzen.framework.dubbo.support.filter.CustomizedExceptionFilter

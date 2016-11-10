@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.yundaex.dao.mapper.gen.YundaexCreditTransferMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.yundaex.dao.po.YundaexCreditTransfer" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="business_seq" property="businessSeq" jdbcType="VARCHAR" />
+    <result column="loan_id" property="loanId" jdbcType="VARCHAR" />
+    <result column="transfer_status" property="transferStatus" jdbcType="VARCHAR" />
+    <result column="fee" property="fee" jdbcType="DECIMAL" />
+    <result column="transfer_type" property="transferType" jdbcType="VARCHAR" />
+    <result column="from_account_no" property="fromAccountNo" jdbcType="VARCHAR" />
+    <result column="from_account_name" property="fromAccountName" jdbcType="VARCHAR" />
+    <result column="to_account_no" property="toAccountNo" jdbcType="VARCHAR" />
+    <result column="to_account_name" property="toAccountName" jdbcType="VARCHAR" />
+    <result column="to_account_address" property="toAccountAddress" jdbcType="VARCHAR" />
+    <result column="operator_id" property="operatorId" jdbcType="VARCHAR" />
+    <result column="transfer_start_time" property="transferStartTime" jdbcType="TIMESTAMP" />
+    <result column="transfer_end_time" property="transferEndTime" jdbcType="TIMESTAMP" />
+    <result column="business_seq_history" property="businessSeqHistory" jdbcType="VARCHAR" />
+    <result column="to_lian_hang_no" property="toLianHangNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, business_seq, loan_id, transfer_status, fee, transfer_type, from_account_no, 
+    from_account_name, to_account_no, to_account_name, to_account_address, operator_id, 
+    transfer_start_time, transfer_end_time, business_seq_history, to_lian_hang_no
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.yundaex.dao.po.YundaexCreditTransferExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yundaex_credit_transfer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from yundaex_credit_transfer
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from yundaex_credit_transfer
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.yundaex.dao.po.YundaexCreditTransferExample" >
+    delete from yundaex_credit_transfer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.yundaex.dao.po.YundaexCreditTransfer" >
+    insert into yundaex_credit_transfer (id, business_seq, loan_id, 
+      transfer_status, fee, transfer_type, 
+      from_account_no, from_account_name, to_account_no, 
+      to_account_name, to_account_address, operator_id, 
+      transfer_start_time, transfer_end_time, 
+      business_seq_history, to_lian_hang_no)
+    values (#{id,jdbcType=VARCHAR}, #{businessSeq,jdbcType=VARCHAR}, #{loanId,jdbcType=VARCHAR}, 
+      #{transferStatus,jdbcType=VARCHAR}, #{fee,jdbcType=DECIMAL}, #{transferType,jdbcType=VARCHAR}, 
+      #{fromAccountNo,jdbcType=VARCHAR}, #{fromAccountName,jdbcType=VARCHAR}, #{toAccountNo,jdbcType=VARCHAR}, 
+      #{toAccountName,jdbcType=VARCHAR}, #{toAccountAddress,jdbcType=VARCHAR}, #{operatorId,jdbcType=VARCHAR}, 
+      #{transferStartTime,jdbcType=TIMESTAMP}, #{transferEndTime,jdbcType=TIMESTAMP}, 
+      #{businessSeqHistory,jdbcType=VARCHAR}, #{toLianHangNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.yundaex.dao.po.YundaexCreditTransfer" >
+    insert into yundaex_credit_transfer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="businessSeq != null" >
+        business_seq,
+      </if>
+      <if test="loanId != null" >
+        loan_id,
+      </if>
+      <if test="transferStatus != null" >
+        transfer_status,
+      </if>
+      <if test="fee != null" >
+        fee,
+      </if>
+      <if test="transferType != null" >
+        transfer_type,
+      </if>
+      <if test="fromAccountNo != null" >
+        from_account_no,
+      </if>
+      <if test="fromAccountName != null" >
+        from_account_name,
+      </if>
+      <if test="toAccountNo != null" >
+        to_account_no,
+      </if>
+      <if test="toAccountName != null" >
+        to_account_name,
+      </if>
+      <if test="toAccountAddress != null" >
+        to_account_address,
+      </if>
+      <if test="operatorId != null" >
+        operator_id,
+      </if>
+      <if test="transferStartTime != null" >
+        transfer_start_time,
+      </if>
+      <if test="transferEndTime != null" >
+        transfer_end_time,
+      </if>
+      <if test="businessSeqHistory != null" >
+        business_seq_history,
+      </if>
+      <if test="toLianHangNo != null" >
+        to_lian_hang_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="businessSeq != null" >
+        #{businessSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="loanId != null" >
+        #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="transferStatus != null" >
+        #{transferStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="transferType != null" >
+        #{transferType,jdbcType=VARCHAR},
+      </if>
+      <if test="fromAccountNo != null" >
+        #{fromAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fromAccountName != null" >
+        #{fromAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="toAccountNo != null" >
+        #{toAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="toAccountName != null" >
+        #{toAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="toAccountAddress != null" >
+        #{toAccountAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="transferStartTime != null" >
+        #{transferStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transferEndTime != null" >
+        #{transferEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessSeqHistory != null" >
+        #{businessSeqHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="toLianHangNo != null" >
+        #{toLianHangNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.yundaex.dao.po.YundaexCreditTransferExample" resultType="java.lang.Integer" >
+    select count(*) from yundaex_credit_transfer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update yundaex_credit_transfer
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessSeq != null" >
+        business_seq = #{record.businessSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanId != null" >
+        loan_id = #{record.loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transferStatus != null" >
+        transfer_status = #{record.transferStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fee != null" >
+        fee = #{record.fee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.transferType != null" >
+        transfer_type = #{record.transferType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromAccountNo != null" >
+        from_account_no = #{record.fromAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromAccountName != null" >
+        from_account_name = #{record.fromAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toAccountNo != null" >
+        to_account_no = #{record.toAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toAccountName != null" >
+        to_account_name = #{record.toAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toAccountAddress != null" >
+        to_account_address = #{record.toAccountAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorId != null" >
+        operator_id = #{record.operatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transferStartTime != null" >
+        transfer_start_time = #{record.transferStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.transferEndTime != null" >
+        transfer_end_time = #{record.transferEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.businessSeqHistory != null" >
+        business_seq_history = #{record.businessSeqHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toLianHangNo != null" >
+        to_lian_hang_no = #{record.toLianHangNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update yundaex_credit_transfer
+    set id = #{record.id,jdbcType=VARCHAR},
+      business_seq = #{record.businessSeq,jdbcType=VARCHAR},
+      loan_id = #{record.loanId,jdbcType=VARCHAR},
+      transfer_status = #{record.transferStatus,jdbcType=VARCHAR},
+      fee = #{record.fee,jdbcType=DECIMAL},
+      transfer_type = #{record.transferType,jdbcType=VARCHAR},
+      from_account_no = #{record.fromAccountNo,jdbcType=VARCHAR},
+      from_account_name = #{record.fromAccountName,jdbcType=VARCHAR},
+      to_account_no = #{record.toAccountNo,jdbcType=VARCHAR},
+      to_account_name = #{record.toAccountName,jdbcType=VARCHAR},
+      to_account_address = #{record.toAccountAddress,jdbcType=VARCHAR},
+      operator_id = #{record.operatorId,jdbcType=VARCHAR},
+      transfer_start_time = #{record.transferStartTime,jdbcType=TIMESTAMP},
+      transfer_end_time = #{record.transferEndTime,jdbcType=TIMESTAMP},
+      business_seq_history = #{record.businessSeqHistory,jdbcType=VARCHAR},
+      to_lian_hang_no = #{record.toLianHangNo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.yundaex.dao.po.YundaexCreditTransfer" >
+    update yundaex_credit_transfer
+    <set >
+      <if test="businessSeq != null" >
+        business_seq = #{businessSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="loanId != null" >
+        loan_id = #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="transferStatus != null" >
+        transfer_status = #{transferStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null" >
+        fee = #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="transferType != null" >
+        transfer_type = #{transferType,jdbcType=VARCHAR},
+      </if>
+      <if test="fromAccountNo != null" >
+        from_account_no = #{fromAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fromAccountName != null" >
+        from_account_name = #{fromAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="toAccountNo != null" >
+        to_account_no = #{toAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="toAccountName != null" >
+        to_account_name = #{toAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="toAccountAddress != null" >
+        to_account_address = #{toAccountAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="transferStartTime != null" >
+        transfer_start_time = #{transferStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transferEndTime != null" >
+        transfer_end_time = #{transferEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessSeqHistory != null" >
+        business_seq_history = #{businessSeqHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="toLianHangNo != null" >
+        to_lian_hang_no = #{toLianHangNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.yundaex.dao.po.YundaexCreditTransfer" >
+    update yundaex_credit_transfer
+    set business_seq = #{businessSeq,jdbcType=VARCHAR},
+      loan_id = #{loanId,jdbcType=VARCHAR},
+      transfer_status = #{transferStatus,jdbcType=VARCHAR},
+      fee = #{fee,jdbcType=DECIMAL},
+      transfer_type = #{transferType,jdbcType=VARCHAR},
+      from_account_no = #{fromAccountNo,jdbcType=VARCHAR},
+      from_account_name = #{fromAccountName,jdbcType=VARCHAR},
+      to_account_no = #{toAccountNo,jdbcType=VARCHAR},
+      to_account_name = #{toAccountName,jdbcType=VARCHAR},
+      to_account_address = #{toAccountAddress,jdbcType=VARCHAR},
+      operator_id = #{operatorId,jdbcType=VARCHAR},
+      transfer_start_time = #{transferStartTime,jdbcType=TIMESTAMP},
+      transfer_end_time = #{transferEndTime,jdbcType=TIMESTAMP},
+      business_seq_history = #{businessSeqHistory,jdbcType=VARCHAR},
+      to_lian_hang_no = #{toLianHangNo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

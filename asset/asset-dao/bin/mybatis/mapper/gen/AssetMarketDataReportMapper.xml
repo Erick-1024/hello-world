@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.asset.dao.mapper.gen.AssetMarketDataReportMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.asset.dao.po.AssetMarketDataReport" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="underlying_asset_type" property="underlyingAssetType" jdbcType="VARCHAR" />
+    <result column="issue_amount" property="issueAmount" jdbcType="DECIMAL" />
+    <result column="issue_num" property="issueNum" jdbcType="INTEGER" />
+    <result column="month" property="month" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="upate_time" property="upateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, underlying_asset_type, issue_amount, issue_num, month, create_time, upate_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.asset.dao.po.AssetMarketDataReportExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from asset_market_data_report
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset_market_data_report
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from asset_market_data_report
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.asset.dao.po.AssetMarketDataReportExample" >
+    delete from asset_market_data_report
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.asset.dao.po.AssetMarketDataReport" >
+    insert into asset_market_data_report (id, underlying_asset_type, issue_amount, 
+      issue_num, month, create_time, 
+      upate_time)
+    values (#{id,jdbcType=VARCHAR}, #{underlyingAssetType,jdbcType=VARCHAR}, #{issueAmount,jdbcType=DECIMAL}, 
+      #{issueNum,jdbcType=INTEGER}, #{month,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{upateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.asset.dao.po.AssetMarketDataReport" >
+    insert into asset_market_data_report
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="underlyingAssetType != null" >
+        underlying_asset_type,
+      </if>
+      <if test="issueAmount != null" >
+        issue_amount,
+      </if>
+      <if test="issueNum != null" >
+        issue_num,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="upateTime != null" >
+        upate_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="underlyingAssetType != null" >
+        #{underlyingAssetType,jdbcType=VARCHAR},
+      </if>
+      <if test="issueAmount != null" >
+        #{issueAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="issueNum != null" >
+        #{issueNum,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upateTime != null" >
+        #{upateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.asset.dao.po.AssetMarketDataReportExample" resultType="java.lang.Integer" >
+    select count(*) from asset_market_data_report
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update asset_market_data_report
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.underlyingAssetType != null" >
+        underlying_asset_type = #{record.underlyingAssetType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issueAmount != null" >
+        issue_amount = #{record.issueAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.issueNum != null" >
+        issue_num = #{record.issueNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.month != null" >
+        month = #{record.month,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.upateTime != null" >
+        upate_time = #{record.upateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update asset_market_data_report
+    set id = #{record.id,jdbcType=VARCHAR},
+      underlying_asset_type = #{record.underlyingAssetType,jdbcType=VARCHAR},
+      issue_amount = #{record.issueAmount,jdbcType=DECIMAL},
+      issue_num = #{record.issueNum,jdbcType=INTEGER},
+      month = #{record.month,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      upate_time = #{record.upateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.asset.dao.po.AssetMarketDataReport" >
+    update asset_market_data_report
+    <set >
+      <if test="underlyingAssetType != null" >
+        underlying_asset_type = #{underlyingAssetType,jdbcType=VARCHAR},
+      </if>
+      <if test="issueAmount != null" >
+        issue_amount = #{issueAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="issueNum != null" >
+        issue_num = #{issueNum,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        month = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upateTime != null" >
+        upate_time = #{upateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.asset.dao.po.AssetMarketDataReport" >
+    update asset_market_data_report
+    set underlying_asset_type = #{underlyingAssetType,jdbcType=VARCHAR},
+      issue_amount = #{issueAmount,jdbcType=DECIMAL},
+      issue_num = #{issueNum,jdbcType=INTEGER},
+      month = #{month,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      upate_time = #{upateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,392 @@
+韵达
+
+1. 韵达字段名称一致
+
+ALTER TABLE `vbam`.`yundaex_customer_apply`
+CHANGE COLUMN `loan_type` `loan_type` VARCHAR(45) NULL DEFAULT NULL COMMENT '借款类型' AFTER `short_loan`,
+CHANGE COLUMN `bail_ratio` `bail_ratio` DECIMAL(18,4) NULL DEFAULT NULL COMMENT '保证金与日资金需求的比率' AFTER `station_address`,
+CHANGE COLUMN `grade_state_remarks` `grade_state_remarks` VARCHAR(45) NULL DEFAULT NULL COMMENT '评级状态备注' ,
+CHANGE COLUMN `notify_flag` `notify_flag` TINYINT(1) NOT NULL COMMENT '是否发送通知' AFTER `apply_type`,
+DROP INDEX `idx_yundaex_customer_apply_audit_time` ,
+ADD INDEX `idx_yundaex_customer_apply_apply_type` (`apply_type` ASC),
+DROP INDEX `idx_yundaex_customer_apply_apply_type` ,
+ADD INDEX `idx_yundaex_customer_apply_audit_time` (`audit_time` ASC);
+
+
+ALTER TABLE `vbam`.`yundaex_tstation_info`
+CHANGE COLUMN `avg_receive_num` `avg_receive_num` DECIMAL(15,3) NOT NULL DEFAULT 0.000 COMMENT '日平均揽件数' ,
+CHANGE COLUMN `receive_sum_signed` `receive_sum_signed` INT(11) NOT NULL DEFAULT 0 COMMENT '已签收总数（揽件）' ,
+CHANGE COLUMN `receive_sum_unsign` `receive_sum_unsign` INT(11) NOT NULL DEFAULT 0 COMMENT '未签收总数（揽件）' ,
+CHANGE COLUMN `avg_send_num` `avg_send_num` DECIMAL(15,3) NOT NULL DEFAULT 0.000 COMMENT '日平均到件数' ,
+CHANGE COLUMN `send_sum_signed` `send_sum_signed` INT(11) NOT NULL DEFAULT 0 COMMENT '已签收总数（派件）' ,
+CHANGE COLUMN `send_sum_unsign` `send_sum_unsign` INT(11) NOT NULL DEFAULT 0 COMMENT '未签收总数（派件）' ,
+CHANGE COLUMN `rec_send_dif` `rec_send_dif` INT(11) NOT NULL DEFAULT 0 COMMENT '揽件派件月差额' ,
+CHANGE COLUMN `rec_send_ratio` `rec_send_ratio` DECIMAL(15,3) NOT NULL DEFAULT 0.000 COMMENT '揽派比' ;
+
+真旅
+
+ALTER TABLE `vbam`.`credit_customer_apply`
+ADD COLUMN `automatic_audit_data` VARCHAR(255) NULL COMMENT '自动审核后的数据（例如：{\"cooperationPeriod\":26,\"purchaseOrderGrowthRate\":0.1,\"overdueRate\":0.05,\"overdueTimes\":2,\"overdueDays\":2}）' AFTER `automatic_audit_rule_batch_no`;
+
+ABS
+
+CREATE TABLE `asset_special_program_log` (
+  `id` varchar(32) NOT NULL COMMENT '主键',
+  `special_program_id` varchar(60) NOT NULL COMMENT '专项计划编号',
+  `special_program_name` varchar(255) NOT NULL COMMENT '专项计划名称',
+  `underlying_asset_type` varchar(50) NOT NULL COMMENT '基础资产类型 @see UnderlyingAssetSource',
+  `asset_pool_amount` decimal(18,0) NOT NULL COMMENT '资产池金额',
+  `operate_company_name` varchar(255) NOT NULL COMMENT '操作人的企业名称',
+  `operate_username` varchar(255) NOT NULL COMMENT '操作人的用户名',
+  `operate_type` varchar(32) NOT NULL COMMENT '操作类型 @see SpecialProgramStatus',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `asset_underlying_asset_log` (
+  `id` varchar(32) NOT NULL COMMENT '日志主键',
+  `loan_info_id` varchar(32) NOT NULL COMMENT '放款编号',
+  `business_contract_no` varchar(50) NOT NULL COMMENT '业务合同号',
+  `customer_name` varchar(255) NOT NULL COMMENT '借款人姓名，即放款中的融资客户公司名称',
+  `customer_economic_category` varchar(255) DEFAULT NULL COMMENT '借款人经济类型类型，客户输入的文本',
+  `counterparty` varchar(255) DEFAULT NULL COMMENT '交易对手名称',
+  `counterparty_economic_category` varchar(255) DEFAULT NULL COMMENT '交易对手经济类型，客户输入的文本',
+  `customer_city` varchar(255) DEFAULT NULL COMMENT '借款人所在地区，客户输入的文本',
+  `customer_industry` varchar(255) DEFAULT NULL COMMENT '借款人所属行业，客户输入的文本',
+  `counterparty_city` varchar(255) DEFAULT NULL COMMENT '交易对手所在地区，客户输入的文本',
+  `counterparty_industry` varchar(255) DEFAULT NULL COMMENT '交易对手所属行业，客户输入的文本',
+  `credit_limit` decimal(18,0) DEFAULT NULL COMMENT '授信额度',
+  `credit_balance` decimal(18,0) DEFAULT NULL COMMENT '可用额度',
+  `counterparty_limit` decimal(18,0) DEFAULT NULL COMMENT '交易对手非承保额度，保理放款不存在此值',
+  `counterparty_balance` decimal(18,0) DEFAULT NULL COMMENT '交易对手非承保余额，保理放款不存在此值',
+  `invoice_amount` decimal(18,0) DEFAULT NULL COMMENT '应收账款金额',
+  `invoice_balance` decimal(18,0) DEFAULT NULL COMMENT '应收账款余额',
+  `finance_amount` decimal(18,0) DEFAULT NULL COMMENT '融资金额',
+  `finance_balance` decimal(18,0) DEFAULT NULL COMMENT '融资余额',
+  `loan_date` varchar(10) NOT NULL COMMENT '放款日（起息日）',
+  `due_date` varchar(10) NOT NULL COMMENT '到期日',
+  `repayment_method` varchar(255) DEFAULT NULL COMMENT '还款方式',
+  `interest_rate_unit` varchar(100) DEFAULT NULL COMMENT '利率单位',
+  `interest_rate` decimal(7,5) DEFAULT NULL COMMENT '利率',
+  `loan_period` varchar(100) DEFAULT NULL COMMENT '放款期限',
+  `special_program_id` varchar(32) DEFAULT NULL COMMENT '基础资产关联的专项计划编号',
+  `factor_id` varchar(32) NOT NULL COMMENT '创建基础资产的客户ID',
+  `operate_company_name` varchar(255) NOT NULL COMMENT '操作人的企业名称',
+  `operate_username` varchar(255) NOT NULL COMMENT '操作人的用户名',
+  `operate_type` varchar(32) NOT NULL COMMENT '操作类型，@see UnderlyingAssetOperateTypeEnum',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '操作时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_asset_underlying_asset_log_loan_info_id` (`loan_info_id`),
+  KEY `idx_asset_underlying_asset_log_special_program_id` (`special_program_id`),
+  KEY `idx_asset_underlying_asset_log_business_contract_no` (`business_contract_no`),
+  KEY `idx_asset_underlying_asset_log_create_time` (`create_time`),
+  KEY `idx_asset_underlying_asset_log_operate_company_name` (`operate_company_name`),
+  KEY `idx_asset_underlying_asset_log_operate_type` (`operate_type`),
+  KEY `idx_asset_underlying_asset_log_factor_id` (`factor_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `asset_underlying_asset` (
+
+  `id` varchar(32) NOT NULL DEFAULT '' COMMENT '放款编号',
+
+  `business_contract_no` varchar(50) NOT NULL DEFAULT '' COMMENT '业务合同号',
+
+  `special_program_id` varchar(32) DEFAULT NULL COMMENT '基础资产关联的专项计划编号',
+
+  `asset_pool_status` varchar(32) NOT NULL DEFAULT '' COMMENT '资产池状态，未入池，备选池，入池',
+
+  `asset_source` varchar(32) NOT NULL DEFAULT '' COMMENT '基础资产来源，保理类型来源，非保理类型来源',
+
+  `factor_id` varchar(32) NOT NULL DEFAULT '' COMMENT '创建基础资产的客户ID',
+
+  `customer_id` varchar(32) DEFAULT NULL COMMENT '借款人ID，保理资产才有值',
+
+  `customer_name` varchar(255) NOT NULL DEFAULT '' COMMENT '借款人名称，即放款中的融资客户公司名称',
+
+  `customer_economic_category` varchar(255) DEFAULT NULL COMMENT '借款人经济类型类型，客户输入的文本',
+
+  `customer_city` varchar(255) DEFAULT NULL COMMENT '借款人所在地区，客户输入的文本',
+
+  `customer_industry` varchar(255) DEFAULT NULL COMMENT '借款人所属行业，客户输入的文本',
+
+  `customer_rating` varchar(255) DEFAULT NULL COMMENT '借款人评级，客户输入的文本',
+
+  `counterparty_id` varchar(32) DEFAULT NULL COMMENT '交易对手ID，只有保理资产才有值',
+
+  `counterparty` varchar(255) DEFAULT NULL COMMENT '交易对手名称',
+
+  `counterparty_economic_category` varchar(255) DEFAULT NULL COMMENT '交易对手经济类型，客户输入的文本',
+
+  `counterparty_city` varchar(255) DEFAULT NULL COMMENT '交易对手所在地区，客户输入的文本',
+
+  `counterparty_industry` varchar(255) DEFAULT NULL COMMENT '交易对手所属行业，客户输入的文本',
+
+  `counterparty_rating` varchar(255) DEFAULT NULL COMMENT '交易对手评级，客户输入的文本',
+
+  `guarantee_info` varchar(255) DEFAULT NULL COMMENT '担保人信息，客户输入的文本',
+
+  `guarantee_type` varchar(255) DEFAULT NULL COMMENT '担保人类型，客户输入的文本',
+
+  `guarantee_company_info` varchar(255) DEFAULT NULL COMMENT '担保企业信息，客户输入的文本',
+
+  `guarantee_company_type` varchar(255) DEFAULT NULL COMMENT '担保企业类型，客户输入的文本',
+
+  `guarantee_goods_no` varchar(255) DEFAULT NULL COMMENT '担保品编号，客户输入的文本',
+
+  `credit_limit` decimal(18,0) DEFAULT '0' COMMENT '授信额度，如果是保理放款，则实时从额度模块读取',
+
+  `credit_balance` decimal(18,0) DEFAULT '0' COMMENT '授信额度可用余额，如果是保理放款，则实时从额度模块读取',
+
+  `counterparty_limit` decimal(18,0) DEFAULT '0' COMMENT '交易对手非承保额度，保理放款不存在此值',
+
+  `counterparty_balance` decimal(18,0) DEFAULT '0' COMMENT '交易对手非承保余额，保理放款不存在此值',
+
+  `invoice_amount` decimal(18,0) DEFAULT '0' COMMENT '应收账款金额，保理放款则实时计算',
+
+  `invoice_balance` decimal(18,0) DEFAULT '0' COMMENT '应收账款余额，保理放款时，为未到期的应收账款金额',
+
+  `finance_amount` decimal(18,0) DEFAULT '0' COMMENT '融资金额，保理放款实时取',
+
+  `finance_balance` decimal(18,0) DEFAULT '0' COMMENT '融资余额，保理放款实时取',
+
+  `loan_date` varchar(10) NOT NULL DEFAULT '' COMMENT '放款日，保理放款实时冗余到此',
+
+  `due_date` varchar(10) NOT NULL DEFAULT '' COMMENT '到期日，保理放款实时冗余到此',
+
+  `repayment_method` varchar(255) DEFAULT NULL COMMENT '还本付息方式，保理放款实时取，非保理资产为业务手动录入的文本',
+
+  `interest_rate_unit` varchar(100) DEFAULT NULL COMMENT '利率单位，非保理资产可为空值',
+
+  `interest_rate` decimal(7,5) DEFAULT NULL COMMENT '利率',
+
+  `loan_period` varchar(255) DEFAULT NULL COMMENT '放款期限，保理放款实时取',
+
+  `five_level_category` varchar(255) DEFAULT NULL COMMENT '五级分类',
+
+  `settle_status` varchar(50) DEFAULT NULL COMMENT '结清状态（已结清、未结清）@see SettleStatus',
+
+  `forward_days` int(11) DEFAULT NULL COMMENT '提前还款天数，保理放款取提前的最大天数',
+
+  `overdue_days` int(11) DEFAULT NULL COMMENT '逾期天数，保理放款取逾期的最大天数',
+
+  `extension_days` int(11) DEFAULT NULL COMMENT '展期天数，保理放款目前不存在，取0',
+
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+
+  PRIMARY KEY (`id`),
+
+  KEY `index_loan_info_factor_id` (`factor_id`),
+
+  KEY `index_loan_info_finance_company` (`customer_name`),
+
+  KEY `index_underlying_asset_pool_status` (`asset_pool_status`),
+
+  KEY `index_underlying_special_program_id` (`special_program_id`),
+
+  KEY `index_underlying_asset_customer_id` (`customer_id`),
+
+  KEY `index_underlying_asset_counterparty_id` (`counterparty_id`)
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ABS基础资产表';
+
+CREATE TABLE `asset_special_program` (
+  `id` varchar(60) NOT NULL COMMENT '主键专项计划编号 ',
+  `special_program_name` varchar(255) NOT NULL COMMENT '专项计划名称',
+  `underlying_asset_type` varchar(50) NOT NULL COMMENT '基础资产类型(保理)',
+  `manager_name` varchar(100) NOT NULL COMMENT '管理人名称',
+  `manager_id` varchar(60) DEFAULT NULL COMMENT '管理者id',
+  `creater_name` varchar(100) NOT NULL COMMENT '创建者名称',
+  `creater_id` varchar(60) NOT NULL COMMENT '创建者id',
+  `law_firm_name` varchar(100) DEFAULT NULL COMMENT '律所',
+  `accounting_firm_name` varchar(100) DEFAULT NULL COMMENT '会计事务所',
+  `supervision_bank` varchar(100) DEFAULT NULL COMMENT '监管银行',
+  `custodian_bank` varchar(100) DEFAULT NULL COMMENT '托管银行',
+  `rating_agency` varchar(100) DEFAULT NULL COMMENT '评级机构',
+  `asset_evaluation_agency` varchar(100) DEFAULT NULL COMMENT '资产评估机构',
+  `estimate_establishment_date` varchar(10) DEFAULT NULL COMMENT '预计成立日期',
+  `establishment_date` varchar(10) DEFAULT NULL COMMENT '成立日期',
+  `estimate_due_date` varchar(10) DEFAULT NULL COMMENT '预计到期日期',
+  `statutory_due_date` varchar(10) DEFAULT NULL COMMENT '法定到期日期',
+  `status` varchar(50) NOT NULL COMMENT '状态',
+  `encapsulation_date` varchar(10) DEFAULT NULL COMMENT '封包日期',
+  `renewal_period` int(5) NOT NULL DEFAULT '0' COMMENT '续存期',
+  `gross` decimal(18,0) NOT NULL DEFAULT '0' COMMENT '总规模',
+  `prefer_a` decimal(18,0) NOT NULL DEFAULT '0' COMMENT '优先A',
+  `prefer_b` decimal(18,0) NOT NULL DEFAULT '0' COMMENT '优先B',
+  `defer` decimal(18,0) NOT NULL DEFAULT '0' COMMENT '次级',
+  `trust_method` varchar(100) DEFAULT NULL COMMENT '增信方式',
+  `asset_pool_principal_balance` decimal(18,0) NOT NULL DEFAULT '0' COMMENT '资产池本金余额',
+  `contract_num` int(5) DEFAULT NULL COMMENT '合同笔数',
+  `weighted_average_contract_period` int(5) DEFAULT NULL COMMENT '加权平均合同期限',
+  `finance_num` int(5) DEFAULT NULL COMMENT '融资人数量',
+  `weighted_average_interest_rate` decimal(7,5) NOT NULL DEFAULT '0.00000' COMMENT '加权平均利率',
+  `cycle_purchase_structure` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否是循环购买结构',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '删除标志默认为０',
+  `cycle_period` int(8) NOT NULL DEFAULT '0' COMMENT '循环期',
+  `capital_accumulation_date` varchar(10) DEFAULT NULL COMMENT '资金归集日',
+  `cycle_purchase_date` varchar(10) DEFAULT NULL COMMENT '循环购买日',
+  `income_recovery_date` varchar(10) DEFAULT NULL COMMENT '收入回收日',
+  `recycling_payment_date` varchar(10) DEFAULT NULL COMMENT '回收款转付日',
+  `excess_fund` decimal(18,0) NOT NULL DEFAULT '0' COMMENT '超额资金',
+  `cycle_purchase_term` varchar(100) DEFAULT NULL COMMENT '循环购买条款',
+  `underlying_asset_quality_standard` varchar(100) DEFAULT NULL COMMENT '基础资产合格标准',
+  `cycle_weighted_average_interest_rate` decimal(7,5) NOT NULL DEFAULT '0.00000' COMMENT '循环购买的加权平均利率',
+  PRIMARY KEY (`id`),
+  KEY `manager_id_index` (`manager_id`),
+  KEY `statuory_due_date_index` (`statutory_due_date`),
+  KEY `establishment_date_index` (`establishment_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `asset_originator` (
+  `id` varchar(60) NOT NULL COMMENT '主键 ',
+  `special_program_id` varchar(60) NOT NULL COMMENT '专项计划id',
+  `originator_name` varchar(255) NOT NULL COMMENT '原始权限人名称',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `upate_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `special_program_id_index` (`special_program_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `asset_service_agency` (
+  `id` varchar(60) NOT NULL COMMENT '主键 ',
+  `special_program_id` varchar(60) NOT NULL COMMENT '专项计划id',
+  `service_agency_name` varchar(255) NOT NULL COMMENT '资产服务机构名称',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `upate_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `special_program_id_index` (`special_program_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+市场研究：
+CREATE TABLE `asset_market_data_project` (
+  `id` varchar(32) NOT NULL COMMENT ' 主键',
+  `project_name` varchar(200) NOT NULL COMMENT '项目名称',
+  `value_date` varchar(10) NOT NULL COMMENT '计息起始日',
+  `originator` varchar(200) NOT NULL COMMENT '发起机构',
+  `issue_total_amount` decimal(18,5) NOT NULL DEFAULT '0.00000' COMMENT '发行总金额(亿元)',
+  `supervision_agency` varchar(200) NOT NULL COMMENT '监管机构',
+  `underlying_asset_type` varchar(50) NOT NULL COMMENT '基础资产类型',
+  `issuer` varchar(200) NOT NULL COMMENT '发行人',
+  `issue_month` int(2) NOT NULL COMMENT '发行月份',
+  `AAA_average_interest_rate` decimal(8,5) NOT NULL DEFAULT '0.00000' COMMENT 'AAA平均利率',
+  `priority_average_interest_rate` decimal(8,5) NOT NULL DEFAULT '0.00000' COMMENT '优先级平均利率',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `upate_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `asset_market_data_product` (
+  `id` varchar(32) NOT NULL COMMENT ' 主键',
+  `product_name` varchar(200) NOT NULL COMMENT '项目名称',
+  `issue_amount` decimal(18,5) NOT NULL DEFAULT '0.00000' COMMENT '发行规模(亿元)',
+  `debt_rating` varchar(10) DEFAULT NULL COMMENT '债项评级',
+  `interest_rate` decimal(8,5) NOT NULL DEFAULT '0.00000' COMMENT '利率',
+  `rating_agency` varchar(200) DEFAULT NULL COMMENT '评级机构',
+  `project_id` varchar(32) NOT NULL COMMENT ' 项目id',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `upate_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `project_id_index` (`project_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `asset_market_data_report` (
+  `id` varchar(32) NOT NULL COMMENT ' 主键',
+  `underlying_asset_type` varchar(50) NOT NULL COMMENT '基础资产类型',
+  `issue_amount` decimal(18,5) NOT NULL DEFAULT '0.00000' COMMENT '发行总额',
+  `issue_num` int(8) NOT NULL DEFAULT '0' COMMENT '发行数量',
+  `month` varchar(7) DEFAULT NULL COMMENT '发布的年月',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `upate_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `type_and_month_unique_index` (`underlying_asset_type`,`month`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `common_netdisk` (
+  `id` varchar(32) NOT NULL COMMENT '主键',
+  `module` varchar(16) NOT NULL COMMENT '模块(ASSET_ARCHIVES：资产证券化-档案管理)',
+  `group_id` varchar(32) NOT NULL COMMENT '组Id',
+  `path` varchar(200) NOT NULL COMMENT '路径（“/”为根目录）',
+  `type` varchar(16) NOT NULL COMMENT '类型（DIRECTORY：目录；FILE：文件）',
+  `name` varchar(255) NOT NULL COMMENT '名称',
+  `media_id` varchar(50) DEFAULT NULL COMMENT '文件的媒体服务器ID',
+  `size` decimal(18,0) DEFAULT NULL COMMENT '文件大小(字节)',
+  `creator_id` varchar(32) NOT NULL COMMENT '创建人ID',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `idx_netdisk_name` (`name`),
+  KEY `idx_netdisk_module_group_id_path` (`module`,`group_id`,`path`),
+  KEY `idx_common_netdisk_type` (`type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `report_fund_monthly` (
+
+  `id` varchar(32) NOT NULL COMMENT '主键',
+
+  `month` varchar(12) NOT NULL COMMENT '余额月份',
+
+  `factor_id` varchar(32) DEFAULT NULL COMMENT '保理商Id',
+
+  `factor_name` varchar(255) DEFAULT NULL COMMENT '保理商名称',
+
+  `finance_name` varchar(255) DEFAULT NULL COMMENT '融资客户名称',
+
+  `account_name` varchar(255) DEFAULT '' COMMENT '账户名称',
+
+  `account_no` varchar(30) DEFAULT '' COMMENT '银行账号',
+
+  `account_type` varchar(50) DEFAULT NULL COMMENT '账户类型',
+
+  `supervision_status` varchar(50) DEFAULT NULL COMMENT '监管类型',
+
+  `is_transfer_in_account` tinyint(1) DEFAULT NULL COMMENT '回款账户',
+
+  `account_status` varchar(50) DEFAULT NULL COMMENT '账户状态',
+
+  `balance` decimal(18,0) NOT NULL DEFAULT '0' COMMENT '当月账户余额',
+
+  `result` varchar(50) DEFAULT NULL COMMENT '获取结果',
+
+  `is_main_account` tinyint(1) NOT NULL COMMENT '是否是主账户',
+
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+
+  PRIMARY KEY (`id`),
+
+  KEY `index_month` (`month`),
+
+  KEY `index_factor_name` (`factor_name`),
+
+  KEY `index_finance_name` (`finance_name`),
+
+  KEY `index_account_no` (`account_no`),
+
+  KEY `index_account_name` (`account_name`),
+
+  KEY `index_account_type` (`account_type`),
+
+  KEY `index_supervision_status` (`supervision_status`),
+
+  KEY `index_is_transfer_in_account` (`is_transfer_in_account`),
+
+  KEY `index_account_statue` (`account_status`),
+
+  KEY `index_result` (`result`),
+
+  KEY `index_is_main_account` (`is_main_account`)
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `vbam`.`asset_market_data_product`
+CHANGE COLUMN `interest_rate` `interest_rate` DECIMAL(8,5)   COMMENT '利率' ;
+
+ALTER TABLE `vbam`.`asset_market_data_project`
+CHANGE COLUMN `AAA_average_interest_rate` `AAA_average_interest_rate` DECIMAL(8,5) COMMENT 'AAA平均利率' ,
+CHANGE COLUMN `priority_average_interest_rate` `priority_average_interest_rate` DECIMAL(8,5) COMMENT '优先级平均利率' ;

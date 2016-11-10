@@ -1,0 +1,6 @@
+dependencies {
+	compile project(':member:member-dao')
+	compile project(':common:vbam-common-service')
+	compile project(':framework:framework-dubbo-support')
+	compile project(':message:message-client')
+}

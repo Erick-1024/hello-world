@@ -1,0 +1,9 @@
+apply plugin:'application'
+dependencies {
+	compile project(':flight-finance:flight-finance-service')
+	compile project(':flight-finance:flight-finance-api')
+	compile project(':framework:framework-dubbo-support')
+}
+mainClassName = 'com.cana.flight.finance.server.main.FlightFinanceServerMain'
+
+applicationDefaultJvmArgs = ["-server", "-Xms256m", "-Xmx1024m", "-XX:MaxPermSize=512m", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=14405", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false"]

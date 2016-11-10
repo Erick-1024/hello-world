@@ -1,0 +1,58 @@
+rootProject.allprojects {
+    configurations {
+        all { resolutionStrategy.force libraries.spring_core }
+        all { resolutionStrategy.force libraries.spring_aop }
+        all { resolutionStrategy.force libraries.spring_beans }
+        all { resolutionStrategy.force libraries.spring_context }
+        all { resolutionStrategy.force libraries.spring_context_support }
+        all { resolutionStrategy.force libraries.spring_expression }
+        all { resolutionStrategy.force libraries.spring_web }
+        all { resolutionStrategy.force libraries.spring_webmvc }
+    }
+}
+
+jar { baseName =  'framework-spring' }
+
+dependencies {
+	compile project(':framework:framework-core')
+
+	
+	compile libraries.aspectj
+	compile libraries.aspectj_rt
+	compile libraries.perf4j
+	compile (libraries.spring_test){ 
+		force=true 
+	}
+	compile (libraries.spring_batch_core) {
+		exclude group:'com.thoughtworks.xstream', module:'xstream'
+		exclude group:'org.springframework', module:'spring-tx'
+	}
+	compile (libraries.spring_core){ 
+		force=true 
+	}
+	compile (libraries.spring_aop){ 
+	    force=true 
+	}
+	compile (libraries.spring_beans){ 
+		force=true 
+	}
+	compile (libraries.spring_context){ 
+		force=true 
+	}
+	compile (libraries.spring_context_support){ 
+		force=true 
+	}
+	compile (libraries.spring_expression){ 
+		force=true 
+	}
+	compile (libraries.spring_web){ 
+		force=true 
+	}
+	compile (libraries.spring_webmvc){ 
+		force=true 
+	}
+	compile libraries.ehcache
+	compile libraries.freemarker
+	compile libraries.servlet_api
+	compile libraries.mail
+}

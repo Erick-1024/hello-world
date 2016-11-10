@@ -1,0 +1,9 @@
+apply plugin:'application'
+dependencies {
+	compile project(':member:member-api')
+	compile project(':member:member-service')
+}
+
+mainClassName = 'com.cana.member.server.main.Main'
+
+applicationDefaultJvmArgs = ["-server", "-Xms256m", "-Xmx1024m", "-XX:MaxPermSize=512m", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=12400", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false"]

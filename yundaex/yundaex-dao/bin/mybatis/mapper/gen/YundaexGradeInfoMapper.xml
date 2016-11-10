@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.yundaex.dao.mapper.gen.YundaexGradeInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.yundaex.dao.po.YundaexGradeInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="min_points" property="minPoints" jdbcType="DECIMAL" />
+    <result column="max_points" property="maxPoints" jdbcType="DECIMAL" />
+    <result column="grade" property="grade" jdbcType="VARCHAR" />
+    <result column="beta" property="beta" jdbcType="DECIMAL" />
+    <result column="ratio" property="ratio" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, min_points, max_points, grade, beta, ratio
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.yundaex.dao.po.YundaexGradeInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yundaex_grade_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yundaex_grade_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yundaex_grade_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.yundaex.dao.po.YundaexGradeInfoExample" >
+    delete from yundaex_grade_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.yundaex.dao.po.YundaexGradeInfo" >
+    insert into yundaex_grade_info (id, min_points, max_points, 
+      grade, beta, ratio)
+    values (#{id,jdbcType=INTEGER}, #{minPoints,jdbcType=DECIMAL}, #{maxPoints,jdbcType=DECIMAL}, 
+      #{grade,jdbcType=VARCHAR}, #{beta,jdbcType=DECIMAL}, #{ratio,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.yundaex.dao.po.YundaexGradeInfo" >
+    insert into yundaex_grade_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="minPoints != null" >
+        min_points,
+      </if>
+      <if test="maxPoints != null" >
+        max_points,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+      <if test="beta != null" >
+        beta,
+      </if>
+      <if test="ratio != null" >
+        ratio,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="minPoints != null" >
+        #{minPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="maxPoints != null" >
+        #{maxPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="beta != null" >
+        #{beta,jdbcType=DECIMAL},
+      </if>
+      <if test="ratio != null" >
+        #{ratio,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.yundaex.dao.po.YundaexGradeInfoExample" resultType="java.lang.Integer" >
+    select count(*) from yundaex_grade_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update yundaex_grade_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.minPoints != null" >
+        min_points = #{record.minPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="record.maxPoints != null" >
+        max_points = #{record.maxPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="record.grade != null" >
+        grade = #{record.grade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beta != null" >
+        beta = #{record.beta,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ratio != null" >
+        ratio = #{record.ratio,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update yundaex_grade_info
+    set id = #{record.id,jdbcType=INTEGER},
+      min_points = #{record.minPoints,jdbcType=DECIMAL},
+      max_points = #{record.maxPoints,jdbcType=DECIMAL},
+      grade = #{record.grade,jdbcType=VARCHAR},
+      beta = #{record.beta,jdbcType=DECIMAL},
+      ratio = #{record.ratio,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.yundaex.dao.po.YundaexGradeInfo" >
+    update yundaex_grade_info
+    <set >
+      <if test="minPoints != null" >
+        min_points = #{minPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="maxPoints != null" >
+        max_points = #{maxPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="beta != null" >
+        beta = #{beta,jdbcType=DECIMAL},
+      </if>
+      <if test="ratio != null" >
+        ratio = #{ratio,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.yundaex.dao.po.YundaexGradeInfo" >
+    update yundaex_grade_info
+    set min_points = #{minPoints,jdbcType=DECIMAL},
+      max_points = #{maxPoints,jdbcType=DECIMAL},
+      grade = #{grade,jdbcType=VARCHAR},
+      beta = #{beta,jdbcType=DECIMAL},
+      ratio = #{ratio,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

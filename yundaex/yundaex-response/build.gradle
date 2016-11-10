@@ -1,0 +1,4 @@
+dependencies {
+	compile project(':yundaex:yundaex-common')
+	compile project(':common:vbam-common-service')
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLGTYRTN</action>
+	<userName></userName><!--登录名 varchar(30) -->
+	<clientID></clientID><!--客户流水号 char(20) -->
+	<accountNo></accountNo><!--主体账号varchar(19) -->
+	<payAccNo></payAccNo><!--会员保证金账号varchar(19) -->
+	<recvAccNo></recvAccNo><!--会员交易资金账号varchar(19) -->
+	<recvAccNm></recvAccNm><!--会员交易资金账户名称varchar(60) -->
+	<tranAmt></tranAmt><!--交易金额decimal(15,2) -->
+	<memo></memo><!--摘要varchar(22) 可空 -->
+</stream>

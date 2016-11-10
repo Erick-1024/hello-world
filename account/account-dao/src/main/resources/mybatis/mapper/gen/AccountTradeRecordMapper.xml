@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.account.dao.mapper.gen.AccountTradeRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.account.dao.po.AccountTradeRecord" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="account_id" property="accountId" jdbcType="VARCHAR" />
+    <result column="account_no" property="accountNo" jdbcType="VARCHAR" />
+    <result column="account_name" property="accountName" jdbcType="VARCHAR" />
+    <result column="account_type" property="accountType" jdbcType="VARCHAR" />
+    <result column="trade_type" property="tradeType" jdbcType="VARCHAR" />
+    <result column="operate_type" property="operateType" jdbcType="VARCHAR" />
+    <result column="opposite_account_id" property="oppositeAccountId" jdbcType="VARCHAR" />
+    <result column="opposite_account_no" property="oppositeAccountNo" jdbcType="VARCHAR" />
+    <result column="opposite_account_name" property="oppositeAccountName" jdbcType="VARCHAR" />
+    <result column="withdraw_bank" property="withdrawBank" jdbcType="VARCHAR" />
+    <result column="withdraw_bank_address" property="withdrawBankAddress" jdbcType="VARCHAR" />
+    <result column="account_supervision_id" property="accountSupervisionId" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="business_seq" property="businessSeq" jdbcType="VARCHAR" />
+    <result column="trade_start_time" property="tradeStartTime" jdbcType="TIMESTAMP" />
+    <result column="trade_end_time" property="tradeEndTime" jdbcType="TIMESTAMP" />
+    <result column="operate_user_id" property="operateUserId" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="user_type" property="userType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, company_id, account_id, account_no, account_name, account_type, trade_type, operate_type, 
+    opposite_account_id, opposite_account_no, opposite_account_name, withdraw_bank, withdraw_bank_address, 
+    account_supervision_id, amount, status, business_seq, trade_start_time, trade_end_time, 
+    operate_user_id, remark, user_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.account.dao.po.AccountTradeRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from account_trade_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from account_trade_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from account_trade_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.account.dao.po.AccountTradeRecordExample" >
+    delete from account_trade_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.account.dao.po.AccountTradeRecord" >
+    insert into account_trade_record (id, company_id, account_id, 
+      account_no, account_name, account_type, 
+      trade_type, operate_type, opposite_account_id, 
+      opposite_account_no, opposite_account_name, 
+      withdraw_bank, withdraw_bank_address, account_supervision_id, 
+      amount, status, business_seq, 
+      trade_start_time, trade_end_time, operate_user_id, 
+      remark, user_type)
+    values (#{id,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, 
+      #{accountNo,jdbcType=VARCHAR}, #{accountName,jdbcType=VARCHAR}, #{accountType,jdbcType=VARCHAR}, 
+      #{tradeType,jdbcType=VARCHAR}, #{operateType,jdbcType=VARCHAR}, #{oppositeAccountId,jdbcType=VARCHAR}, 
+      #{oppositeAccountNo,jdbcType=VARCHAR}, #{oppositeAccountName,jdbcType=VARCHAR}, 
+      #{withdrawBank,jdbcType=VARCHAR}, #{withdrawBankAddress,jdbcType=VARCHAR}, #{accountSupervisionId,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR}, #{businessSeq,jdbcType=VARCHAR}, 
+      #{tradeStartTime,jdbcType=TIMESTAMP}, #{tradeEndTime,jdbcType=TIMESTAMP}, #{operateUserId,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.account.dao.po.AccountTradeRecord" >
+    insert into account_trade_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="accountNo != null" >
+        account_no,
+      </if>
+      <if test="accountName != null" >
+        account_name,
+      </if>
+      <if test="accountType != null" >
+        account_type,
+      </if>
+      <if test="tradeType != null" >
+        trade_type,
+      </if>
+      <if test="operateType != null" >
+        operate_type,
+      </if>
+      <if test="oppositeAccountId != null" >
+        opposite_account_id,
+      </if>
+      <if test="oppositeAccountNo != null" >
+        opposite_account_no,
+      </if>
+      <if test="oppositeAccountName != null" >
+        opposite_account_name,
+      </if>
+      <if test="withdrawBank != null" >
+        withdraw_bank,
+      </if>
+      <if test="withdrawBankAddress != null" >
+        withdraw_bank_address,
+      </if>
+      <if test="accountSupervisionId != null" >
+        account_supervision_id,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="businessSeq != null" >
+        business_seq,
+      </if>
+      <if test="tradeStartTime != null" >
+        trade_start_time,
+      </if>
+      <if test="tradeEndTime != null" >
+        trade_end_time,
+      </if>
+      <if test="operateUserId != null" >
+        operate_user_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null" >
+        #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null" >
+        #{accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null" >
+        #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="operateType != null" >
+        #{operateType,jdbcType=VARCHAR},
+      </if>
+      <if test="oppositeAccountId != null" >
+        #{oppositeAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="oppositeAccountNo != null" >
+        #{oppositeAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oppositeAccountName != null" >
+        #{oppositeAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawBank != null" >
+        #{withdrawBank,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawBankAddress != null" >
+        #{withdrawBankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="accountSupervisionId != null" >
+        #{accountSupervisionId,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="businessSeq != null" >
+        #{businessSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeStartTime != null" >
+        #{tradeStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeEndTime != null" >
+        #{tradeEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateUserId != null" >
+        #{operateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.account.dao.po.AccountTradeRecordExample" resultType="java.lang.Integer" >
+    select count(*) from account_trade_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update account_trade_record
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null" >
+        company_id = #{record.companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountId != null" >
+        account_id = #{record.accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountNo != null" >
+        account_no = #{record.accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountName != null" >
+        account_name = #{record.accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountType != null" >
+        account_type = #{record.accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradeType != null" >
+        trade_type = #{record.tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateType != null" >
+        operate_type = #{record.operateType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oppositeAccountId != null" >
+        opposite_account_id = #{record.oppositeAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oppositeAccountNo != null" >
+        opposite_account_no = #{record.oppositeAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oppositeAccountName != null" >
+        opposite_account_name = #{record.oppositeAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.withdrawBank != null" >
+        withdraw_bank = #{record.withdrawBank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.withdrawBankAddress != null" >
+        withdraw_bank_address = #{record.withdrawBankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountSupervisionId != null" >
+        account_supervision_id = #{record.accountSupervisionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null" >
+        amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessSeq != null" >
+        business_seq = #{record.businessSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradeStartTime != null" >
+        trade_start_time = #{record.tradeStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tradeEndTime != null" >
+        trade_end_time = #{record.tradeEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.operateUserId != null" >
+        operate_user_id = #{record.operateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userType != null" >
+        user_type = #{record.userType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update account_trade_record
+    set id = #{record.id,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=VARCHAR},
+      account_id = #{record.accountId,jdbcType=VARCHAR},
+      account_no = #{record.accountNo,jdbcType=VARCHAR},
+      account_name = #{record.accountName,jdbcType=VARCHAR},
+      account_type = #{record.accountType,jdbcType=VARCHAR},
+      trade_type = #{record.tradeType,jdbcType=VARCHAR},
+      operate_type = #{record.operateType,jdbcType=VARCHAR},
+      opposite_account_id = #{record.oppositeAccountId,jdbcType=VARCHAR},
+      opposite_account_no = #{record.oppositeAccountNo,jdbcType=VARCHAR},
+      opposite_account_name = #{record.oppositeAccountName,jdbcType=VARCHAR},
+      withdraw_bank = #{record.withdrawBank,jdbcType=VARCHAR},
+      withdraw_bank_address = #{record.withdrawBankAddress,jdbcType=VARCHAR},
+      account_supervision_id = #{record.accountSupervisionId,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=DECIMAL},
+      status = #{record.status,jdbcType=VARCHAR},
+      business_seq = #{record.businessSeq,jdbcType=VARCHAR},
+      trade_start_time = #{record.tradeStartTime,jdbcType=TIMESTAMP},
+      trade_end_time = #{record.tradeEndTime,jdbcType=TIMESTAMP},
+      operate_user_id = #{record.operateUserId,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      user_type = #{record.userType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.account.dao.po.AccountTradeRecord" >
+    update account_trade_record
+    <set >
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null" >
+        account_no = #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null" >
+        account_type = #{accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null" >
+        trade_type = #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="operateType != null" >
+        operate_type = #{operateType,jdbcType=VARCHAR},
+      </if>
+      <if test="oppositeAccountId != null" >
+        opposite_account_id = #{oppositeAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="oppositeAccountNo != null" >
+        opposite_account_no = #{oppositeAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oppositeAccountName != null" >
+        opposite_account_name = #{oppositeAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawBank != null" >
+        withdraw_bank = #{withdrawBank,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawBankAddress != null" >
+        withdraw_bank_address = #{withdrawBankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="accountSupervisionId != null" >
+        account_supervision_id = #{accountSupervisionId,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="businessSeq != null" >
+        business_seq = #{businessSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeStartTime != null" >
+        trade_start_time = #{tradeStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeEndTime != null" >
+        trade_end_time = #{tradeEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateUserId != null" >
+        operate_user_id = #{operateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.account.dao.po.AccountTradeRecord" >
+    update account_trade_record
+    set company_id = #{companyId,jdbcType=VARCHAR},
+      account_id = #{accountId,jdbcType=VARCHAR},
+      account_no = #{accountNo,jdbcType=VARCHAR},
+      account_name = #{accountName,jdbcType=VARCHAR},
+      account_type = #{accountType,jdbcType=VARCHAR},
+      trade_type = #{tradeType,jdbcType=VARCHAR},
+      operate_type = #{operateType,jdbcType=VARCHAR},
+      opposite_account_id = #{oppositeAccountId,jdbcType=VARCHAR},
+      opposite_account_no = #{oppositeAccountNo,jdbcType=VARCHAR},
+      opposite_account_name = #{oppositeAccountName,jdbcType=VARCHAR},
+      withdraw_bank = #{withdrawBank,jdbcType=VARCHAR},
+      withdraw_bank_address = #{withdrawBankAddress,jdbcType=VARCHAR},
+      account_supervision_id = #{accountSupervisionId,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      status = #{status,jdbcType=VARCHAR},
+      business_seq = #{businessSeq,jdbcType=VARCHAR},
+      trade_start_time = #{tradeStartTime,jdbcType=TIMESTAMP},
+      trade_end_time = #{tradeEndTime,jdbcType=TIMESTAMP},
+      operate_user_id = #{operateUserId,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from account_trade_record
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.account.dao.po.AccountTradeRecordExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from account_trade_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

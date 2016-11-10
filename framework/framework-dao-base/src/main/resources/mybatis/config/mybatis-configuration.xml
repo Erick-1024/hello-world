@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="aggressiveLazyLoading" value="false"/>
+		<setting name="lazyLoadingEnabled" value="true"/>
+		<!--<setting name="cacheEnabled" value="true"/>-->
+		<!--<setting name="multipleResultSetsEnabled" value="true"/>-->
+		<!--<setting name="useColumnLabel" value="true"/>-->
+		<!--<setting name="useGeneratedKeys" value="false"/>-->
+		<!--<setting name="autoMappingBehavior" value="PARTIAL"/>-->
+		<!--<setting name="defaultExecutorType" value="SIMPLE"/>-->
+		<!--<setting name="defaultStatementTimeout" value="25"/>-->
+		<!--<setting name="safeRowBoundsEnabled" value="false"/>-->
+		<!-- 开启自动驼峰映射减少resultmap的书写 -->
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		<!--<setting name="localCacheScope" value="SESSION"/>-->
+		<!--<setting name="jdbcTypeForNull" value="OTHER"/>-->
+		<!--<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>-->
+	</settings>
+	<typeHandlers>
+		<!-- <typeHandler jdbcType="TIMESTAMP" handler="org.joda.time.mybatis.handlers.DateTimeTypeHandler"/> -->
+	</typeHandlers>
+
+
+	<!-- <environments default="development">
+		<environment id="development">
+		<transactionManager type="JDBC"/>
+		<dataSource type="POOLED">
+			<property name="dataSourceName" value="ds-retry-online-master" />
+			<property name="driverClass" value="${jdbc.driver}" />
+			<property name="jdbcUrl" value="${jdbc.url.retry-master}" />
+			<property name="user" value="${jdbc.username}" />
+			<property name="password" value="${jdbc.password}" />
+			<property name="initialPoolSize" value="${jdbc.retry.initialPoolSize.master.online}" />
+			<property name="minPoolSize" value="${jdbc.retry.minPoolSize.master.online}" />
+			<property name="maxPoolSize" value="${jdbc.retry.maxPoolSize.master.online}" />
+			<property name="preferredTestQuery" value="SELECT NOW()" />
+			<property name="checkoutTimeout" value="30000" />
+			<property name="testConnectionOnCheckin" value="true" />
+			<property name="testConnectionOnCheckout" value="true" />
+			<property name="maxIdleTimeExcessConnections" value="10" />
+		</dataSource>
+		</environment>
+	</environments> -->
+
+	<!--<mappers>
+		<mapper resource="org/mybatis/example/BlogMapper.xml"/>
+	</mappers>-->
+</configuration>

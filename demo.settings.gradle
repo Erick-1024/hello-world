@@ -1,0 +1,2 @@
+apply from: 'framework.settings.gradle'
+include 'demo:vj-demo'

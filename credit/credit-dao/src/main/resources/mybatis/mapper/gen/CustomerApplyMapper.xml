@@ -1,0 +1,1038 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.credit.dao.mapper.gen.CustomerApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.credit.dao.po.CustomerApply" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="tz_customer_id" property="tzCustomerId" jdbcType="VARCHAR" />
+    <result column="tz_customer_name" property="tzCustomerName" jdbcType="VARCHAR" />
+    <result column="apply_date" property="applyDate" jdbcType="TIMESTAMP" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="real_control_person" property="realControlPerson" jdbcType="VARCHAR" />
+    <result column="apply_credit_limit" property="applyCreditLimit" jdbcType="DECIMAL" />
+    <result column="apply_type" property="applyType" jdbcType="VARCHAR" />
+    <result column="organization_no" property="organizationNo" jdbcType="VARCHAR" />
+    <result column="organization_media_id" property="organizationMediaId" jdbcType="VARCHAR" />
+    <result column="business_licence_no" property="businessLicenceNo" jdbcType="VARCHAR" />
+    <result column="business_licence_media_id" property="businessLicenceMediaId" jdbcType="VARCHAR" />
+    <result column="tax_registration_certificate_no" property="taxRegistrationCertificateNo" jdbcType="VARCHAR" />
+    <result column="tax_registration_certificate_media_id" property="taxRegistrationCertificateMediaId" jdbcType="VARCHAR" />
+    <result column="real_control_person_id" property="realControlPersonId" jdbcType="VARCHAR" />
+    <result column="real_control_person_id_handheld_front_media_id" property="realControlPersonIdHandheldFrontMediaId" jdbcType="VARCHAR" />
+    <result column="legal_person_id" property="legalPersonId" jdbcType="VARCHAR" />
+    <result column="legal_person_id_handheld_front_media_id" property="legalPersonIdHandheldFrontMediaId" jdbcType="VARCHAR" />
+    <result column="contact_name" property="contactName" jdbcType="VARCHAR" />
+    <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="downstream_customer_type" property="downstreamCustomerType" jdbcType="VARCHAR" />
+    <result column="downstream_repayment_account_period" property="downstreamRepaymentAccountPeriod" jdbcType="VARCHAR" />
+    <result column="applicant_type" property="applicantType" jdbcType="VARCHAR" />
+    <result column="enterprise_execution_money" property="enterpriseExecutionMoney" jdbcType="DECIMAL" />
+    <result column="enterprise_execution_times" property="enterpriseExecutionTimes" jdbcType="INTEGER" />
+    <result column="individual_execution_money" property="individualExecutionMoney" jdbcType="DECIMAL" />
+    <result column="individual_execution_times" property="individualExecutionTimes" jdbcType="INTEGER" />
+    <result column="negative_network" property="negativeNetwork" jdbcType="VARCHAR" />
+    <result column="consistency_check" property="consistencyCheck" jdbcType="INTEGER" />
+    <result column="automatic_audit_remarks" property="automaticAuditRemarks" jdbcType="VARCHAR" />
+    <result column="access_automatic_state" property="accessAutomaticState" jdbcType="VARCHAR" />
+    <result column="automatic_audit_rule_batch_no" property="automaticAuditRuleBatchNo" jdbcType="INTEGER" />
+    <result column="automatic_audit_data" property="automaticAuditData" jdbcType="VARCHAR" />
+    <result column="manual_audit_remarks" property="manualAuditRemarks" jdbcType="VARCHAR" />
+    <result column="access_manual_state" property="accessManualState" jdbcType="VARCHAR" />
+    <result column="manual_audit_rule_batch_no" property="manualAuditRuleBatchNo" jdbcType="INTEGER" />
+    <result column="credit_limit_generate_state" property="creditLimitGenerateState" jdbcType="VARCHAR" />
+    <result column="auditor_id" property="auditorId" jdbcType="VARCHAR" />
+    <result column="in_whitelist" property="inWhitelist" jdbcType="BIT" />
+    <result column="approver_id" property="approverId" jdbcType="VARCHAR" />
+    <result column="legal_person" property="legalPerson" jdbcType="VARCHAR" />
+    <result column="audit_notify_url" property="auditNotifyUrl" jdbcType="VARCHAR" />
+    <result column="limit_notify_url" property="limitNotifyUrl" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cana.credit.dao.po.CustomerApply" extends="BaseResultMap" >
+    <result column="sale_data" property="saleData" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, tz_customer_id, tz_customer_name, apply_date, company_name, real_control_person, 
+    apply_credit_limit, apply_type, organization_no, organization_media_id, business_licence_no, 
+    business_licence_media_id, tax_registration_certificate_no, tax_registration_certificate_media_id, 
+    real_control_person_id, real_control_person_id_handheld_front_media_id, legal_person_id, 
+    legal_person_id_handheld_front_media_id, contact_name, phone_number, email, downstream_customer_type, 
+    downstream_repayment_account_period, applicant_type, enterprise_execution_money, 
+    enterprise_execution_times, individual_execution_money, individual_execution_times, 
+    negative_network, consistency_check, automatic_audit_remarks, access_automatic_state, 
+    automatic_audit_rule_batch_no, automatic_audit_data, manual_audit_remarks, access_manual_state, 
+    manual_audit_rule_batch_no, credit_limit_generate_state, auditor_id, in_whitelist, 
+    approver_id, legal_person, audit_notify_url, limit_notify_url, update_time, create_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    sale_data
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cana.credit.dao.po.CustomerApplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from credit_customer_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.credit.dao.po.CustomerApplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from credit_customer_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from credit_customer_apply
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from credit_customer_apply
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.credit.dao.po.CustomerApplyExample" >
+    delete from credit_customer_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.credit.dao.po.CustomerApply" >
+    insert into credit_customer_apply (id, tz_customer_id, tz_customer_name, 
+      apply_date, company_name, real_control_person, 
+      apply_credit_limit, apply_type, organization_no, 
+      organization_media_id, business_licence_no, 
+      business_licence_media_id, tax_registration_certificate_no, 
+      tax_registration_certificate_media_id, real_control_person_id, 
+      real_control_person_id_handheld_front_media_id, legal_person_id, 
+      legal_person_id_handheld_front_media_id, contact_name, 
+      phone_number, email, downstream_customer_type, 
+      downstream_repayment_account_period, applicant_type, 
+      enterprise_execution_money, enterprise_execution_times, 
+      individual_execution_money, individual_execution_times, 
+      negative_network, consistency_check, automatic_audit_remarks, 
+      access_automatic_state, automatic_audit_rule_batch_no, 
+      automatic_audit_data, manual_audit_remarks, 
+      access_manual_state, manual_audit_rule_batch_no, 
+      credit_limit_generate_state, auditor_id, in_whitelist, 
+      approver_id, legal_person, audit_notify_url, 
+      limit_notify_url, update_time, create_time, 
+      sale_data)
+    values (#{id,jdbcType=VARCHAR}, #{tzCustomerId,jdbcType=VARCHAR}, #{tzCustomerName,jdbcType=VARCHAR}, 
+      #{applyDate,jdbcType=TIMESTAMP}, #{companyName,jdbcType=VARCHAR}, #{realControlPerson,jdbcType=VARCHAR}, 
+      #{applyCreditLimit,jdbcType=DECIMAL}, #{applyType,jdbcType=VARCHAR}, #{organizationNo,jdbcType=VARCHAR}, 
+      #{organizationMediaId,jdbcType=VARCHAR}, #{businessLicenceNo,jdbcType=VARCHAR}, 
+      #{businessLicenceMediaId,jdbcType=VARCHAR}, #{taxRegistrationCertificateNo,jdbcType=VARCHAR}, 
+      #{taxRegistrationCertificateMediaId,jdbcType=VARCHAR}, #{realControlPersonId,jdbcType=VARCHAR}, 
+      #{realControlPersonIdHandheldFrontMediaId,jdbcType=VARCHAR}, #{legalPersonId,jdbcType=VARCHAR}, 
+      #{legalPersonIdHandheldFrontMediaId,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, 
+      #{phoneNumber,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{downstreamCustomerType,jdbcType=VARCHAR}, 
+      #{downstreamRepaymentAccountPeriod,jdbcType=VARCHAR}, #{applicantType,jdbcType=VARCHAR}, 
+      #{enterpriseExecutionMoney,jdbcType=DECIMAL}, #{enterpriseExecutionTimes,jdbcType=INTEGER}, 
+      #{individualExecutionMoney,jdbcType=DECIMAL}, #{individualExecutionTimes,jdbcType=INTEGER}, 
+      #{negativeNetwork,jdbcType=VARCHAR}, #{consistencyCheck,jdbcType=INTEGER}, #{automaticAuditRemarks,jdbcType=VARCHAR}, 
+      #{accessAutomaticState,jdbcType=VARCHAR}, #{automaticAuditRuleBatchNo,jdbcType=INTEGER}, 
+      #{automaticAuditData,jdbcType=VARCHAR}, #{manualAuditRemarks,jdbcType=VARCHAR}, 
+      #{accessManualState,jdbcType=VARCHAR}, #{manualAuditRuleBatchNo,jdbcType=INTEGER}, 
+      #{creditLimitGenerateState,jdbcType=VARCHAR}, #{auditorId,jdbcType=VARCHAR}, #{inWhitelist,jdbcType=BIT}, 
+      #{approverId,jdbcType=VARCHAR}, #{legalPerson,jdbcType=VARCHAR}, #{auditNotifyUrl,jdbcType=VARCHAR}, 
+      #{limitNotifyUrl,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{saleData,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.credit.dao.po.CustomerApply" >
+    insert into credit_customer_apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tzCustomerId != null" >
+        tz_customer_id,
+      </if>
+      <if test="tzCustomerName != null" >
+        tz_customer_name,
+      </if>
+      <if test="applyDate != null" >
+        apply_date,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="realControlPerson != null" >
+        real_control_person,
+      </if>
+      <if test="applyCreditLimit != null" >
+        apply_credit_limit,
+      </if>
+      <if test="applyType != null" >
+        apply_type,
+      </if>
+      <if test="organizationNo != null" >
+        organization_no,
+      </if>
+      <if test="organizationMediaId != null" >
+        organization_media_id,
+      </if>
+      <if test="businessLicenceNo != null" >
+        business_licence_no,
+      </if>
+      <if test="businessLicenceMediaId != null" >
+        business_licence_media_id,
+      </if>
+      <if test="taxRegistrationCertificateNo != null" >
+        tax_registration_certificate_no,
+      </if>
+      <if test="taxRegistrationCertificateMediaId != null" >
+        tax_registration_certificate_media_id,
+      </if>
+      <if test="realControlPersonId != null" >
+        real_control_person_id,
+      </if>
+      <if test="realControlPersonIdHandheldFrontMediaId != null" >
+        real_control_person_id_handheld_front_media_id,
+      </if>
+      <if test="legalPersonId != null" >
+        legal_person_id,
+      </if>
+      <if test="legalPersonIdHandheldFrontMediaId != null" >
+        legal_person_id_handheld_front_media_id,
+      </if>
+      <if test="contactName != null" >
+        contact_name,
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="downstreamCustomerType != null" >
+        downstream_customer_type,
+      </if>
+      <if test="downstreamRepaymentAccountPeriod != null" >
+        downstream_repayment_account_period,
+      </if>
+      <if test="applicantType != null" >
+        applicant_type,
+      </if>
+      <if test="enterpriseExecutionMoney != null" >
+        enterprise_execution_money,
+      </if>
+      <if test="enterpriseExecutionTimes != null" >
+        enterprise_execution_times,
+      </if>
+      <if test="individualExecutionMoney != null" >
+        individual_execution_money,
+      </if>
+      <if test="individualExecutionTimes != null" >
+        individual_execution_times,
+      </if>
+      <if test="negativeNetwork != null" >
+        negative_network,
+      </if>
+      <if test="consistencyCheck != null" >
+        consistency_check,
+      </if>
+      <if test="automaticAuditRemarks != null" >
+        automatic_audit_remarks,
+      </if>
+      <if test="accessAutomaticState != null" >
+        access_automatic_state,
+      </if>
+      <if test="automaticAuditRuleBatchNo != null" >
+        automatic_audit_rule_batch_no,
+      </if>
+      <if test="automaticAuditData != null" >
+        automatic_audit_data,
+      </if>
+      <if test="manualAuditRemarks != null" >
+        manual_audit_remarks,
+      </if>
+      <if test="accessManualState != null" >
+        access_manual_state,
+      </if>
+      <if test="manualAuditRuleBatchNo != null" >
+        manual_audit_rule_batch_no,
+      </if>
+      <if test="creditLimitGenerateState != null" >
+        credit_limit_generate_state,
+      </if>
+      <if test="auditorId != null" >
+        auditor_id,
+      </if>
+      <if test="inWhitelist != null" >
+        in_whitelist,
+      </if>
+      <if test="approverId != null" >
+        approver_id,
+      </if>
+      <if test="legalPerson != null" >
+        legal_person,
+      </if>
+      <if test="auditNotifyUrl != null" >
+        audit_notify_url,
+      </if>
+      <if test="limitNotifyUrl != null" >
+        limit_notify_url,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="saleData != null" >
+        sale_data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="tzCustomerId != null" >
+        #{tzCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="tzCustomerName != null" >
+        #{tzCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null" >
+        #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="realControlPerson != null" >
+        #{realControlPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="applyCreditLimit != null" >
+        #{applyCreditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="applyType != null" >
+        #{applyType,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationNo != null" >
+        #{organizationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationMediaId != null" >
+        #{organizationMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceNo != null" >
+        #{businessLicenceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceMediaId != null" >
+        #{businessLicenceMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationCertificateNo != null" >
+        #{taxRegistrationCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationCertificateMediaId != null" >
+        #{taxRegistrationCertificateMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="realControlPersonId != null" >
+        #{realControlPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="realControlPersonIdHandheldFrontMediaId != null" >
+        #{realControlPersonIdHandheldFrontMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonId != null" >
+        #{legalPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonIdHandheldFrontMediaId != null" >
+        #{legalPersonIdHandheldFrontMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="downstreamCustomerType != null" >
+        #{downstreamCustomerType,jdbcType=VARCHAR},
+      </if>
+      <if test="downstreamRepaymentAccountPeriod != null" >
+        #{downstreamRepaymentAccountPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="applicantType != null" >
+        #{applicantType,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseExecutionMoney != null" >
+        #{enterpriseExecutionMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="enterpriseExecutionTimes != null" >
+        #{enterpriseExecutionTimes,jdbcType=INTEGER},
+      </if>
+      <if test="individualExecutionMoney != null" >
+        #{individualExecutionMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="individualExecutionTimes != null" >
+        #{individualExecutionTimes,jdbcType=INTEGER},
+      </if>
+      <if test="negativeNetwork != null" >
+        #{negativeNetwork,jdbcType=VARCHAR},
+      </if>
+      <if test="consistencyCheck != null" >
+        #{consistencyCheck,jdbcType=INTEGER},
+      </if>
+      <if test="automaticAuditRemarks != null" >
+        #{automaticAuditRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="accessAutomaticState != null" >
+        #{accessAutomaticState,jdbcType=VARCHAR},
+      </if>
+      <if test="automaticAuditRuleBatchNo != null" >
+        #{automaticAuditRuleBatchNo,jdbcType=INTEGER},
+      </if>
+      <if test="automaticAuditData != null" >
+        #{automaticAuditData,jdbcType=VARCHAR},
+      </if>
+      <if test="manualAuditRemarks != null" >
+        #{manualAuditRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="accessManualState != null" >
+        #{accessManualState,jdbcType=VARCHAR},
+      </if>
+      <if test="manualAuditRuleBatchNo != null" >
+        #{manualAuditRuleBatchNo,jdbcType=INTEGER},
+      </if>
+      <if test="creditLimitGenerateState != null" >
+        #{creditLimitGenerateState,jdbcType=VARCHAR},
+      </if>
+      <if test="auditorId != null" >
+        #{auditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="inWhitelist != null" >
+        #{inWhitelist,jdbcType=BIT},
+      </if>
+      <if test="approverId != null" >
+        #{approverId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null" >
+        #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="auditNotifyUrl != null" >
+        #{auditNotifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="limitNotifyUrl != null" >
+        #{limitNotifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saleData != null" >
+        #{saleData,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.credit.dao.po.CustomerApplyExample" resultType="java.lang.Integer" >
+    select count(*) from credit_customer_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update credit_customer_apply
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tzCustomerId != null" >
+        tz_customer_id = #{record.tzCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tzCustomerName != null" >
+        tz_customer_name = #{record.tzCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyDate != null" >
+        apply_date = #{record.applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.companyName != null" >
+        company_name = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realControlPerson != null" >
+        real_control_person = #{record.realControlPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyCreditLimit != null" >
+        apply_credit_limit = #{record.applyCreditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.applyType != null" >
+        apply_type = #{record.applyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizationNo != null" >
+        organization_no = #{record.organizationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizationMediaId != null" >
+        organization_media_id = #{record.organizationMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessLicenceNo != null" >
+        business_licence_no = #{record.businessLicenceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessLicenceMediaId != null" >
+        business_licence_media_id = #{record.businessLicenceMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxRegistrationCertificateNo != null" >
+        tax_registration_certificate_no = #{record.taxRegistrationCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxRegistrationCertificateMediaId != null" >
+        tax_registration_certificate_media_id = #{record.taxRegistrationCertificateMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realControlPersonId != null" >
+        real_control_person_id = #{record.realControlPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realControlPersonIdHandheldFrontMediaId != null" >
+        real_control_person_id_handheld_front_media_id = #{record.realControlPersonIdHandheldFrontMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalPersonId != null" >
+        legal_person_id = #{record.legalPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalPersonIdHandheldFrontMediaId != null" >
+        legal_person_id_handheld_front_media_id = #{record.legalPersonIdHandheldFrontMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactName != null" >
+        contact_name = #{record.contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneNumber != null" >
+        phone_number = #{record.phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.downstreamCustomerType != null" >
+        downstream_customer_type = #{record.downstreamCustomerType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.downstreamRepaymentAccountPeriod != null" >
+        downstream_repayment_account_period = #{record.downstreamRepaymentAccountPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicantType != null" >
+        applicant_type = #{record.applicantType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enterpriseExecutionMoney != null" >
+        enterprise_execution_money = #{record.enterpriseExecutionMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.enterpriseExecutionTimes != null" >
+        enterprise_execution_times = #{record.enterpriseExecutionTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.individualExecutionMoney != null" >
+        individual_execution_money = #{record.individualExecutionMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.individualExecutionTimes != null" >
+        individual_execution_times = #{record.individualExecutionTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.negativeNetwork != null" >
+        negative_network = #{record.negativeNetwork,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consistencyCheck != null" >
+        consistency_check = #{record.consistencyCheck,jdbcType=INTEGER},
+      </if>
+      <if test="record.automaticAuditRemarks != null" >
+        automatic_audit_remarks = #{record.automaticAuditRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accessAutomaticState != null" >
+        access_automatic_state = #{record.accessAutomaticState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.automaticAuditRuleBatchNo != null" >
+        automatic_audit_rule_batch_no = #{record.automaticAuditRuleBatchNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.automaticAuditData != null" >
+        automatic_audit_data = #{record.automaticAuditData,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manualAuditRemarks != null" >
+        manual_audit_remarks = #{record.manualAuditRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accessManualState != null" >
+        access_manual_state = #{record.accessManualState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manualAuditRuleBatchNo != null" >
+        manual_audit_rule_batch_no = #{record.manualAuditRuleBatchNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.creditLimitGenerateState != null" >
+        credit_limit_generate_state = #{record.creditLimitGenerateState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditorId != null" >
+        auditor_id = #{record.auditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inWhitelist != null" >
+        in_whitelist = #{record.inWhitelist,jdbcType=BIT},
+      </if>
+      <if test="record.approverId != null" >
+        approver_id = #{record.approverId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalPerson != null" >
+        legal_person = #{record.legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditNotifyUrl != null" >
+        audit_notify_url = #{record.auditNotifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.limitNotifyUrl != null" >
+        limit_notify_url = #{record.limitNotifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.saleData != null" >
+        sale_data = #{record.saleData,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update credit_customer_apply
+    set id = #{record.id,jdbcType=VARCHAR},
+      tz_customer_id = #{record.tzCustomerId,jdbcType=VARCHAR},
+      tz_customer_name = #{record.tzCustomerName,jdbcType=VARCHAR},
+      apply_date = #{record.applyDate,jdbcType=TIMESTAMP},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      real_control_person = #{record.realControlPerson,jdbcType=VARCHAR},
+      apply_credit_limit = #{record.applyCreditLimit,jdbcType=DECIMAL},
+      apply_type = #{record.applyType,jdbcType=VARCHAR},
+      organization_no = #{record.organizationNo,jdbcType=VARCHAR},
+      organization_media_id = #{record.organizationMediaId,jdbcType=VARCHAR},
+      business_licence_no = #{record.businessLicenceNo,jdbcType=VARCHAR},
+      business_licence_media_id = #{record.businessLicenceMediaId,jdbcType=VARCHAR},
+      tax_registration_certificate_no = #{record.taxRegistrationCertificateNo,jdbcType=VARCHAR},
+      tax_registration_certificate_media_id = #{record.taxRegistrationCertificateMediaId,jdbcType=VARCHAR},
+      real_control_person_id = #{record.realControlPersonId,jdbcType=VARCHAR},
+      real_control_person_id_handheld_front_media_id = #{record.realControlPersonIdHandheldFrontMediaId,jdbcType=VARCHAR},
+      legal_person_id = #{record.legalPersonId,jdbcType=VARCHAR},
+      legal_person_id_handheld_front_media_id = #{record.legalPersonIdHandheldFrontMediaId,jdbcType=VARCHAR},
+      contact_name = #{record.contactName,jdbcType=VARCHAR},
+      phone_number = #{record.phoneNumber,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      downstream_customer_type = #{record.downstreamCustomerType,jdbcType=VARCHAR},
+      downstream_repayment_account_period = #{record.downstreamRepaymentAccountPeriod,jdbcType=VARCHAR},
+      applicant_type = #{record.applicantType,jdbcType=VARCHAR},
+      enterprise_execution_money = #{record.enterpriseExecutionMoney,jdbcType=DECIMAL},
+      enterprise_execution_times = #{record.enterpriseExecutionTimes,jdbcType=INTEGER},
+      individual_execution_money = #{record.individualExecutionMoney,jdbcType=DECIMAL},
+      individual_execution_times = #{record.individualExecutionTimes,jdbcType=INTEGER},
+      negative_network = #{record.negativeNetwork,jdbcType=VARCHAR},
+      consistency_check = #{record.consistencyCheck,jdbcType=INTEGER},
+      automatic_audit_remarks = #{record.automaticAuditRemarks,jdbcType=VARCHAR},
+      access_automatic_state = #{record.accessAutomaticState,jdbcType=VARCHAR},
+      automatic_audit_rule_batch_no = #{record.automaticAuditRuleBatchNo,jdbcType=INTEGER},
+      automatic_audit_data = #{record.automaticAuditData,jdbcType=VARCHAR},
+      manual_audit_remarks = #{record.manualAuditRemarks,jdbcType=VARCHAR},
+      access_manual_state = #{record.accessManualState,jdbcType=VARCHAR},
+      manual_audit_rule_batch_no = #{record.manualAuditRuleBatchNo,jdbcType=INTEGER},
+      credit_limit_generate_state = #{record.creditLimitGenerateState,jdbcType=VARCHAR},
+      auditor_id = #{record.auditorId,jdbcType=VARCHAR},
+      in_whitelist = #{record.inWhitelist,jdbcType=BIT},
+      approver_id = #{record.approverId,jdbcType=VARCHAR},
+      legal_person = #{record.legalPerson,jdbcType=VARCHAR},
+      audit_notify_url = #{record.auditNotifyUrl,jdbcType=VARCHAR},
+      limit_notify_url = #{record.limitNotifyUrl,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      sale_data = #{record.saleData,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update credit_customer_apply
+    set id = #{record.id,jdbcType=VARCHAR},
+      tz_customer_id = #{record.tzCustomerId,jdbcType=VARCHAR},
+      tz_customer_name = #{record.tzCustomerName,jdbcType=VARCHAR},
+      apply_date = #{record.applyDate,jdbcType=TIMESTAMP},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      real_control_person = #{record.realControlPerson,jdbcType=VARCHAR},
+      apply_credit_limit = #{record.applyCreditLimit,jdbcType=DECIMAL},
+      apply_type = #{record.applyType,jdbcType=VARCHAR},
+      organization_no = #{record.organizationNo,jdbcType=VARCHAR},
+      organization_media_id = #{record.organizationMediaId,jdbcType=VARCHAR},
+      business_licence_no = #{record.businessLicenceNo,jdbcType=VARCHAR},
+      business_licence_media_id = #{record.businessLicenceMediaId,jdbcType=VARCHAR},
+      tax_registration_certificate_no = #{record.taxRegistrationCertificateNo,jdbcType=VARCHAR},
+      tax_registration_certificate_media_id = #{record.taxRegistrationCertificateMediaId,jdbcType=VARCHAR},
+      real_control_person_id = #{record.realControlPersonId,jdbcType=VARCHAR},
+      real_control_person_id_handheld_front_media_id = #{record.realControlPersonIdHandheldFrontMediaId,jdbcType=VARCHAR},
+      legal_person_id = #{record.legalPersonId,jdbcType=VARCHAR},
+      legal_person_id_handheld_front_media_id = #{record.legalPersonIdHandheldFrontMediaId,jdbcType=VARCHAR},
+      contact_name = #{record.contactName,jdbcType=VARCHAR},
+      phone_number = #{record.phoneNumber,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      downstream_customer_type = #{record.downstreamCustomerType,jdbcType=VARCHAR},
+      downstream_repayment_account_period = #{record.downstreamRepaymentAccountPeriod,jdbcType=VARCHAR},
+      applicant_type = #{record.applicantType,jdbcType=VARCHAR},
+      enterprise_execution_money = #{record.enterpriseExecutionMoney,jdbcType=DECIMAL},
+      enterprise_execution_times = #{record.enterpriseExecutionTimes,jdbcType=INTEGER},
+      individual_execution_money = #{record.individualExecutionMoney,jdbcType=DECIMAL},
+      individual_execution_times = #{record.individualExecutionTimes,jdbcType=INTEGER},
+      negative_network = #{record.negativeNetwork,jdbcType=VARCHAR},
+      consistency_check = #{record.consistencyCheck,jdbcType=INTEGER},
+      automatic_audit_remarks = #{record.automaticAuditRemarks,jdbcType=VARCHAR},
+      access_automatic_state = #{record.accessAutomaticState,jdbcType=VARCHAR},
+      automatic_audit_rule_batch_no = #{record.automaticAuditRuleBatchNo,jdbcType=INTEGER},
+      automatic_audit_data = #{record.automaticAuditData,jdbcType=VARCHAR},
+      manual_audit_remarks = #{record.manualAuditRemarks,jdbcType=VARCHAR},
+      access_manual_state = #{record.accessManualState,jdbcType=VARCHAR},
+      manual_audit_rule_batch_no = #{record.manualAuditRuleBatchNo,jdbcType=INTEGER},
+      credit_limit_generate_state = #{record.creditLimitGenerateState,jdbcType=VARCHAR},
+      auditor_id = #{record.auditorId,jdbcType=VARCHAR},
+      in_whitelist = #{record.inWhitelist,jdbcType=BIT},
+      approver_id = #{record.approverId,jdbcType=VARCHAR},
+      legal_person = #{record.legalPerson,jdbcType=VARCHAR},
+      audit_notify_url = #{record.auditNotifyUrl,jdbcType=VARCHAR},
+      limit_notify_url = #{record.limitNotifyUrl,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.credit.dao.po.CustomerApply" >
+    update credit_customer_apply
+    <set >
+      <if test="tzCustomerId != null" >
+        tz_customer_id = #{tzCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="tzCustomerName != null" >
+        tz_customer_name = #{tzCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null" >
+        apply_date = #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="realControlPerson != null" >
+        real_control_person = #{realControlPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="applyCreditLimit != null" >
+        apply_credit_limit = #{applyCreditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="applyType != null" >
+        apply_type = #{applyType,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationNo != null" >
+        organization_no = #{organizationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationMediaId != null" >
+        organization_media_id = #{organizationMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceNo != null" >
+        business_licence_no = #{businessLicenceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceMediaId != null" >
+        business_licence_media_id = #{businessLicenceMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationCertificateNo != null" >
+        tax_registration_certificate_no = #{taxRegistrationCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationCertificateMediaId != null" >
+        tax_registration_certificate_media_id = #{taxRegistrationCertificateMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="realControlPersonId != null" >
+        real_control_person_id = #{realControlPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="realControlPersonIdHandheldFrontMediaId != null" >
+        real_control_person_id_handheld_front_media_id = #{realControlPersonIdHandheldFrontMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonId != null" >
+        legal_person_id = #{legalPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonIdHandheldFrontMediaId != null" >
+        legal_person_id_handheld_front_media_id = #{legalPersonIdHandheldFrontMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="downstreamCustomerType != null" >
+        downstream_customer_type = #{downstreamCustomerType,jdbcType=VARCHAR},
+      </if>
+      <if test="downstreamRepaymentAccountPeriod != null" >
+        downstream_repayment_account_period = #{downstreamRepaymentAccountPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="applicantType != null" >
+        applicant_type = #{applicantType,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseExecutionMoney != null" >
+        enterprise_execution_money = #{enterpriseExecutionMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="enterpriseExecutionTimes != null" >
+        enterprise_execution_times = #{enterpriseExecutionTimes,jdbcType=INTEGER},
+      </if>
+      <if test="individualExecutionMoney != null" >
+        individual_execution_money = #{individualExecutionMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="individualExecutionTimes != null" >
+        individual_execution_times = #{individualExecutionTimes,jdbcType=INTEGER},
+      </if>
+      <if test="negativeNetwork != null" >
+        negative_network = #{negativeNetwork,jdbcType=VARCHAR},
+      </if>
+      <if test="consistencyCheck != null" >
+        consistency_check = #{consistencyCheck,jdbcType=INTEGER},
+      </if>
+      <if test="automaticAuditRemarks != null" >
+        automatic_audit_remarks = #{automaticAuditRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="accessAutomaticState != null" >
+        access_automatic_state = #{accessAutomaticState,jdbcType=VARCHAR},
+      </if>
+      <if test="automaticAuditRuleBatchNo != null" >
+        automatic_audit_rule_batch_no = #{automaticAuditRuleBatchNo,jdbcType=INTEGER},
+      </if>
+      <if test="automaticAuditData != null" >
+        automatic_audit_data = #{automaticAuditData,jdbcType=VARCHAR},
+      </if>
+      <if test="manualAuditRemarks != null" >
+        manual_audit_remarks = #{manualAuditRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="accessManualState != null" >
+        access_manual_state = #{accessManualState,jdbcType=VARCHAR},
+      </if>
+      <if test="manualAuditRuleBatchNo != null" >
+        manual_audit_rule_batch_no = #{manualAuditRuleBatchNo,jdbcType=INTEGER},
+      </if>
+      <if test="creditLimitGenerateState != null" >
+        credit_limit_generate_state = #{creditLimitGenerateState,jdbcType=VARCHAR},
+      </if>
+      <if test="auditorId != null" >
+        auditor_id = #{auditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="inWhitelist != null" >
+        in_whitelist = #{inWhitelist,jdbcType=BIT},
+      </if>
+      <if test="approverId != null" >
+        approver_id = #{approverId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null" >
+        legal_person = #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="auditNotifyUrl != null" >
+        audit_notify_url = #{auditNotifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="limitNotifyUrl != null" >
+        limit_notify_url = #{limitNotifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saleData != null" >
+        sale_data = #{saleData,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cana.credit.dao.po.CustomerApply" >
+    update credit_customer_apply
+    set tz_customer_id = #{tzCustomerId,jdbcType=VARCHAR},
+      tz_customer_name = #{tzCustomerName,jdbcType=VARCHAR},
+      apply_date = #{applyDate,jdbcType=TIMESTAMP},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      real_control_person = #{realControlPerson,jdbcType=VARCHAR},
+      apply_credit_limit = #{applyCreditLimit,jdbcType=DECIMAL},
+      apply_type = #{applyType,jdbcType=VARCHAR},
+      organization_no = #{organizationNo,jdbcType=VARCHAR},
+      organization_media_id = #{organizationMediaId,jdbcType=VARCHAR},
+      business_licence_no = #{businessLicenceNo,jdbcType=VARCHAR},
+      business_licence_media_id = #{businessLicenceMediaId,jdbcType=VARCHAR},
+      tax_registration_certificate_no = #{taxRegistrationCertificateNo,jdbcType=VARCHAR},
+      tax_registration_certificate_media_id = #{taxRegistrationCertificateMediaId,jdbcType=VARCHAR},
+      real_control_person_id = #{realControlPersonId,jdbcType=VARCHAR},
+      real_control_person_id_handheld_front_media_id = #{realControlPersonIdHandheldFrontMediaId,jdbcType=VARCHAR},
+      legal_person_id = #{legalPersonId,jdbcType=VARCHAR},
+      legal_person_id_handheld_front_media_id = #{legalPersonIdHandheldFrontMediaId,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      downstream_customer_type = #{downstreamCustomerType,jdbcType=VARCHAR},
+      downstream_repayment_account_period = #{downstreamRepaymentAccountPeriod,jdbcType=VARCHAR},
+      applicant_type = #{applicantType,jdbcType=VARCHAR},
+      enterprise_execution_money = #{enterpriseExecutionMoney,jdbcType=DECIMAL},
+      enterprise_execution_times = #{enterpriseExecutionTimes,jdbcType=INTEGER},
+      individual_execution_money = #{individualExecutionMoney,jdbcType=DECIMAL},
+      individual_execution_times = #{individualExecutionTimes,jdbcType=INTEGER},
+      negative_network = #{negativeNetwork,jdbcType=VARCHAR},
+      consistency_check = #{consistencyCheck,jdbcType=INTEGER},
+      automatic_audit_remarks = #{automaticAuditRemarks,jdbcType=VARCHAR},
+      access_automatic_state = #{accessAutomaticState,jdbcType=VARCHAR},
+      automatic_audit_rule_batch_no = #{automaticAuditRuleBatchNo,jdbcType=INTEGER},
+      automatic_audit_data = #{automaticAuditData,jdbcType=VARCHAR},
+      manual_audit_remarks = #{manualAuditRemarks,jdbcType=VARCHAR},
+      access_manual_state = #{accessManualState,jdbcType=VARCHAR},
+      manual_audit_rule_batch_no = #{manualAuditRuleBatchNo,jdbcType=INTEGER},
+      credit_limit_generate_state = #{creditLimitGenerateState,jdbcType=VARCHAR},
+      auditor_id = #{auditorId,jdbcType=VARCHAR},
+      in_whitelist = #{inWhitelist,jdbcType=BIT},
+      approver_id = #{approverId,jdbcType=VARCHAR},
+      legal_person = #{legalPerson,jdbcType=VARCHAR},
+      audit_notify_url = #{auditNotifyUrl,jdbcType=VARCHAR},
+      limit_notify_url = #{limitNotifyUrl,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      sale_data = #{saleData,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.credit.dao.po.CustomerApply" >
+    update credit_customer_apply
+    set tz_customer_id = #{tzCustomerId,jdbcType=VARCHAR},
+      tz_customer_name = #{tzCustomerName,jdbcType=VARCHAR},
+      apply_date = #{applyDate,jdbcType=TIMESTAMP},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      real_control_person = #{realControlPerson,jdbcType=VARCHAR},
+      apply_credit_limit = #{applyCreditLimit,jdbcType=DECIMAL},
+      apply_type = #{applyType,jdbcType=VARCHAR},
+      organization_no = #{organizationNo,jdbcType=VARCHAR},
+      organization_media_id = #{organizationMediaId,jdbcType=VARCHAR},
+      business_licence_no = #{businessLicenceNo,jdbcType=VARCHAR},
+      business_licence_media_id = #{businessLicenceMediaId,jdbcType=VARCHAR},
+      tax_registration_certificate_no = #{taxRegistrationCertificateNo,jdbcType=VARCHAR},
+      tax_registration_certificate_media_id = #{taxRegistrationCertificateMediaId,jdbcType=VARCHAR},
+      real_control_person_id = #{realControlPersonId,jdbcType=VARCHAR},
+      real_control_person_id_handheld_front_media_id = #{realControlPersonIdHandheldFrontMediaId,jdbcType=VARCHAR},
+      legal_person_id = #{legalPersonId,jdbcType=VARCHAR},
+      legal_person_id_handheld_front_media_id = #{legalPersonIdHandheldFrontMediaId,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      downstream_customer_type = #{downstreamCustomerType,jdbcType=VARCHAR},
+      downstream_repayment_account_period = #{downstreamRepaymentAccountPeriod,jdbcType=VARCHAR},
+      applicant_type = #{applicantType,jdbcType=VARCHAR},
+      enterprise_execution_money = #{enterpriseExecutionMoney,jdbcType=DECIMAL},
+      enterprise_execution_times = #{enterpriseExecutionTimes,jdbcType=INTEGER},
+      individual_execution_money = #{individualExecutionMoney,jdbcType=DECIMAL},
+      individual_execution_times = #{individualExecutionTimes,jdbcType=INTEGER},
+      negative_network = #{negativeNetwork,jdbcType=VARCHAR},
+      consistency_check = #{consistencyCheck,jdbcType=INTEGER},
+      automatic_audit_remarks = #{automaticAuditRemarks,jdbcType=VARCHAR},
+      access_automatic_state = #{accessAutomaticState,jdbcType=VARCHAR},
+      automatic_audit_rule_batch_no = #{automaticAuditRuleBatchNo,jdbcType=INTEGER},
+      automatic_audit_data = #{automaticAuditData,jdbcType=VARCHAR},
+      manual_audit_remarks = #{manualAuditRemarks,jdbcType=VARCHAR},
+      access_manual_state = #{accessManualState,jdbcType=VARCHAR},
+      manual_audit_rule_batch_no = #{manualAuditRuleBatchNo,jdbcType=INTEGER},
+      credit_limit_generate_state = #{creditLimitGenerateState,jdbcType=VARCHAR},
+      auditor_id = #{auditorId,jdbcType=VARCHAR},
+      in_whitelist = #{inWhitelist,jdbcType=BIT},
+      approver_id = #{approverId,jdbcType=VARCHAR},
+      legal_person = #{legalPerson,jdbcType=VARCHAR},
+      audit_notify_url = #{auditNotifyUrl,jdbcType=VARCHAR},
+      limit_notify_url = #{limitNotifyUrl,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from credit_customer_apply
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.credit.dao.po.CustomerApplyExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from credit_customer_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

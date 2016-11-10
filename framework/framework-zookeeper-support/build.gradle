@@ -1,0 +1,8 @@
+jar {
+	baseName =  'framework-zookeeper-support'
+}
+dependencies {
+	compile project(':framework:framework-core')
+	compile project(':framework:framework-spring')
+	compile    libraries.curator_recipes    
+}

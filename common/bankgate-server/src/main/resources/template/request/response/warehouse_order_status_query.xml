@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息 varchar(254) -->
+	<list name="userDataList">
+		<row>
+			<mctNo></mctNo><!--商户编号char(8) -->
+			<stockNo></stockNo><!--仓单编号varchar(20) -->
+			<stt></stt><!--仓单状态char(2)，值域参见附录4.1 -->
+		</row>
+	</list>
+</stream>

@@ -1,0 +1,1 @@
+依赖 framework-core 和  framework-logger-core

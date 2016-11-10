@@ -1,0 +1,7 @@
+apply from: 'common.settings.gradle'
+include 'message:message-dao'
+include 'message:message-server'
+include 'message:message-client'
+include 'message:message-api'
+include 'member:member-api'
+include 'member:member-dao'

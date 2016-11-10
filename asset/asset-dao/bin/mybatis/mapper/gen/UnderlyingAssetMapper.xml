@@ -1,0 +1,859 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.asset.dao.mapper.gen.UnderlyingAssetMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.asset.dao.po.UnderlyingAsset" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="business_contract_no" property="businessContractNo" jdbcType="VARCHAR" />
+    <result column="special_program_id" property="specialProgramId" jdbcType="VARCHAR" />
+    <result column="asset_pool_status" property="assetPoolStatus" jdbcType="VARCHAR" />
+    <result column="asset_source" property="assetSource" jdbcType="VARCHAR" />
+    <result column="factor_id" property="factorId" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="customer_economic_category" property="customerEconomicCategory" jdbcType="VARCHAR" />
+    <result column="customer_city" property="customerCity" jdbcType="VARCHAR" />
+    <result column="customer_industry" property="customerIndustry" jdbcType="VARCHAR" />
+    <result column="customer_rating" property="customerRating" jdbcType="VARCHAR" />
+    <result column="counterparty_id" property="counterpartyId" jdbcType="VARCHAR" />
+    <result column="counterparty" property="counterparty" jdbcType="VARCHAR" />
+    <result column="counterparty_economic_category" property="counterpartyEconomicCategory" jdbcType="VARCHAR" />
+    <result column="counterparty_city" property="counterpartyCity" jdbcType="VARCHAR" />
+    <result column="counterparty_industry" property="counterpartyIndustry" jdbcType="VARCHAR" />
+    <result column="counterparty_rating" property="counterpartyRating" jdbcType="VARCHAR" />
+    <result column="guarantee_info" property="guaranteeInfo" jdbcType="VARCHAR" />
+    <result column="guarantee_type" property="guaranteeType" jdbcType="VARCHAR" />
+    <result column="guarantee_company_info" property="guaranteeCompanyInfo" jdbcType="VARCHAR" />
+    <result column="guarantee_company_type" property="guaranteeCompanyType" jdbcType="VARCHAR" />
+    <result column="guarantee_goods_no" property="guaranteeGoodsNo" jdbcType="VARCHAR" />
+    <result column="credit_limit" property="creditLimit" jdbcType="DECIMAL" />
+    <result column="credit_balance" property="creditBalance" jdbcType="DECIMAL" />
+    <result column="counterparty_limit" property="counterpartyLimit" jdbcType="DECIMAL" />
+    <result column="counterparty_balance" property="counterpartyBalance" jdbcType="DECIMAL" />
+    <result column="invoice_amount" property="invoiceAmount" jdbcType="DECIMAL" />
+    <result column="invoice_balance" property="invoiceBalance" jdbcType="DECIMAL" />
+    <result column="finance_amount" property="financeAmount" jdbcType="DECIMAL" />
+    <result column="finance_balance" property="financeBalance" jdbcType="DECIMAL" />
+    <result column="loan_date" property="loanDate" jdbcType="VARCHAR" />
+    <result column="due_date" property="dueDate" jdbcType="VARCHAR" />
+    <result column="repayment_method" property="repaymentMethod" jdbcType="VARCHAR" />
+    <result column="interest_rate_unit" property="interestRateUnit" jdbcType="VARCHAR" />
+    <result column="interest_rate" property="interestRate" jdbcType="DECIMAL" />
+    <result column="loan_period" property="loanPeriod" jdbcType="VARCHAR" />
+    <result column="five_level_category" property="fiveLevelCategory" jdbcType="VARCHAR" />
+    <result column="settle_status" property="settleStatus" jdbcType="VARCHAR" />
+    <result column="forward_days" property="forwardDays" jdbcType="INTEGER" />
+    <result column="overdue_days" property="overdueDays" jdbcType="INTEGER" />
+    <result column="extension_days" property="extensionDays" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, business_contract_no, special_program_id, asset_pool_status, asset_source, factor_id, 
+    customer_id, customer_name, customer_economic_category, customer_city, customer_industry, 
+    customer_rating, counterparty_id, counterparty, counterparty_economic_category, counterparty_city, 
+    counterparty_industry, counterparty_rating, guarantee_info, guarantee_type, guarantee_company_info, 
+    guarantee_company_type, guarantee_goods_no, credit_limit, credit_balance, counterparty_limit, 
+    counterparty_balance, invoice_amount, invoice_balance, finance_amount, finance_balance, 
+    loan_date, due_date, repayment_method, interest_rate_unit, interest_rate, loan_period, 
+    five_level_category, settle_status, forward_days, overdue_days, extension_days, create_time, 
+    update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.asset.dao.po.UnderlyingAssetExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from asset_underlying_asset
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset_underlying_asset
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from asset_underlying_asset
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.asset.dao.po.UnderlyingAssetExample" >
+    delete from asset_underlying_asset
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.asset.dao.po.UnderlyingAsset" >
+    insert into asset_underlying_asset (id, business_contract_no, special_program_id, 
+      asset_pool_status, asset_source, factor_id, 
+      customer_id, customer_name, customer_economic_category, 
+      customer_city, customer_industry, customer_rating, 
+      counterparty_id, counterparty, counterparty_economic_category, 
+      counterparty_city, counterparty_industry, 
+      counterparty_rating, guarantee_info, guarantee_type, 
+      guarantee_company_info, guarantee_company_type, 
+      guarantee_goods_no, credit_limit, credit_balance, 
+      counterparty_limit, counterparty_balance, 
+      invoice_amount, invoice_balance, finance_amount, 
+      finance_balance, loan_date, due_date, 
+      repayment_method, interest_rate_unit, interest_rate, 
+      loan_period, five_level_category, settle_status, 
+      forward_days, overdue_days, extension_days, 
+      create_time, update_time)
+    values (#{id,jdbcType=VARCHAR}, #{businessContractNo,jdbcType=VARCHAR}, #{specialProgramId,jdbcType=VARCHAR}, 
+      #{assetPoolStatus,jdbcType=VARCHAR}, #{assetSource,jdbcType=VARCHAR}, #{factorId,jdbcType=VARCHAR}, 
+      #{customerId,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, #{customerEconomicCategory,jdbcType=VARCHAR}, 
+      #{customerCity,jdbcType=VARCHAR}, #{customerIndustry,jdbcType=VARCHAR}, #{customerRating,jdbcType=VARCHAR}, 
+      #{counterpartyId,jdbcType=VARCHAR}, #{counterparty,jdbcType=VARCHAR}, #{counterpartyEconomicCategory,jdbcType=VARCHAR}, 
+      #{counterpartyCity,jdbcType=VARCHAR}, #{counterpartyIndustry,jdbcType=VARCHAR}, 
+      #{counterpartyRating,jdbcType=VARCHAR}, #{guaranteeInfo,jdbcType=VARCHAR}, #{guaranteeType,jdbcType=VARCHAR}, 
+      #{guaranteeCompanyInfo,jdbcType=VARCHAR}, #{guaranteeCompanyType,jdbcType=VARCHAR}, 
+      #{guaranteeGoodsNo,jdbcType=VARCHAR}, #{creditLimit,jdbcType=DECIMAL}, #{creditBalance,jdbcType=DECIMAL}, 
+      #{counterpartyLimit,jdbcType=DECIMAL}, #{counterpartyBalance,jdbcType=DECIMAL}, 
+      #{invoiceAmount,jdbcType=DECIMAL}, #{invoiceBalance,jdbcType=DECIMAL}, #{financeAmount,jdbcType=DECIMAL}, 
+      #{financeBalance,jdbcType=DECIMAL}, #{loanDate,jdbcType=VARCHAR}, #{dueDate,jdbcType=VARCHAR}, 
+      #{repaymentMethod,jdbcType=VARCHAR}, #{interestRateUnit,jdbcType=VARCHAR}, #{interestRate,jdbcType=DECIMAL}, 
+      #{loanPeriod,jdbcType=VARCHAR}, #{fiveLevelCategory,jdbcType=VARCHAR}, #{settleStatus,jdbcType=VARCHAR}, 
+      #{forwardDays,jdbcType=INTEGER}, #{overdueDays,jdbcType=INTEGER}, #{extensionDays,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.asset.dao.po.UnderlyingAsset" >
+    insert into asset_underlying_asset
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="businessContractNo != null" >
+        business_contract_no,
+      </if>
+      <if test="specialProgramId != null" >
+        special_program_id,
+      </if>
+      <if test="assetPoolStatus != null" >
+        asset_pool_status,
+      </if>
+      <if test="assetSource != null" >
+        asset_source,
+      </if>
+      <if test="factorId != null" >
+        factor_id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="customerEconomicCategory != null" >
+        customer_economic_category,
+      </if>
+      <if test="customerCity != null" >
+        customer_city,
+      </if>
+      <if test="customerIndustry != null" >
+        customer_industry,
+      </if>
+      <if test="customerRating != null" >
+        customer_rating,
+      </if>
+      <if test="counterpartyId != null" >
+        counterparty_id,
+      </if>
+      <if test="counterparty != null" >
+        counterparty,
+      </if>
+      <if test="counterpartyEconomicCategory != null" >
+        counterparty_economic_category,
+      </if>
+      <if test="counterpartyCity != null" >
+        counterparty_city,
+      </if>
+      <if test="counterpartyIndustry != null" >
+        counterparty_industry,
+      </if>
+      <if test="counterpartyRating != null" >
+        counterparty_rating,
+      </if>
+      <if test="guaranteeInfo != null" >
+        guarantee_info,
+      </if>
+      <if test="guaranteeType != null" >
+        guarantee_type,
+      </if>
+      <if test="guaranteeCompanyInfo != null" >
+        guarantee_company_info,
+      </if>
+      <if test="guaranteeCompanyType != null" >
+        guarantee_company_type,
+      </if>
+      <if test="guaranteeGoodsNo != null" >
+        guarantee_goods_no,
+      </if>
+      <if test="creditLimit != null" >
+        credit_limit,
+      </if>
+      <if test="creditBalance != null" >
+        credit_balance,
+      </if>
+      <if test="counterpartyLimit != null" >
+        counterparty_limit,
+      </if>
+      <if test="counterpartyBalance != null" >
+        counterparty_balance,
+      </if>
+      <if test="invoiceAmount != null" >
+        invoice_amount,
+      </if>
+      <if test="invoiceBalance != null" >
+        invoice_balance,
+      </if>
+      <if test="financeAmount != null" >
+        finance_amount,
+      </if>
+      <if test="financeBalance != null" >
+        finance_balance,
+      </if>
+      <if test="loanDate != null" >
+        loan_date,
+      </if>
+      <if test="dueDate != null" >
+        due_date,
+      </if>
+      <if test="repaymentMethod != null" >
+        repayment_method,
+      </if>
+      <if test="interestRateUnit != null" >
+        interest_rate_unit,
+      </if>
+      <if test="interestRate != null" >
+        interest_rate,
+      </if>
+      <if test="loanPeriod != null" >
+        loan_period,
+      </if>
+      <if test="fiveLevelCategory != null" >
+        five_level_category,
+      </if>
+      <if test="settleStatus != null" >
+        settle_status,
+      </if>
+      <if test="forwardDays != null" >
+        forward_days,
+      </if>
+      <if test="overdueDays != null" >
+        overdue_days,
+      </if>
+      <if test="extensionDays != null" >
+        extension_days,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="businessContractNo != null" >
+        #{businessContractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="specialProgramId != null" >
+        #{specialProgramId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetPoolStatus != null" >
+        #{assetPoolStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="assetSource != null" >
+        #{assetSource,jdbcType=VARCHAR},
+      </if>
+      <if test="factorId != null" >
+        #{factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerEconomicCategory != null" >
+        #{customerEconomicCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCity != null" >
+        #{customerCity,jdbcType=VARCHAR},
+      </if>
+      <if test="customerIndustry != null" >
+        #{customerIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="customerRating != null" >
+        #{customerRating,jdbcType=VARCHAR},
+      </if>
+      <if test="counterpartyId != null" >
+        #{counterpartyId,jdbcType=VARCHAR},
+      </if>
+      <if test="counterparty != null" >
+        #{counterparty,jdbcType=VARCHAR},
+      </if>
+      <if test="counterpartyEconomicCategory != null" >
+        #{counterpartyEconomicCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="counterpartyCity != null" >
+        #{counterpartyCity,jdbcType=VARCHAR},
+      </if>
+      <if test="counterpartyIndustry != null" >
+        #{counterpartyIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="counterpartyRating != null" >
+        #{counterpartyRating,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteeInfo != null" >
+        #{guaranteeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteeType != null" >
+        #{guaranteeType,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteeCompanyInfo != null" >
+        #{guaranteeCompanyInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteeCompanyType != null" >
+        #{guaranteeCompanyType,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteeGoodsNo != null" >
+        #{guaranteeGoodsNo,jdbcType=VARCHAR},
+      </if>
+      <if test="creditLimit != null" >
+        #{creditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="creditBalance != null" >
+        #{creditBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="counterpartyLimit != null" >
+        #{counterpartyLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="counterpartyBalance != null" >
+        #{counterpartyBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceAmount != null" >
+        #{invoiceAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceBalance != null" >
+        #{invoiceBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="financeAmount != null" >
+        #{financeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="financeBalance != null" >
+        #{financeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="loanDate != null" >
+        #{loanDate,jdbcType=VARCHAR},
+      </if>
+      <if test="dueDate != null" >
+        #{dueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentMethod != null" >
+        #{repaymentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="interestRateUnit != null" >
+        #{interestRateUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="interestRate != null" >
+        #{interestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="loanPeriod != null" >
+        #{loanPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="fiveLevelCategory != null" >
+        #{fiveLevelCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="settleStatus != null" >
+        #{settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="forwardDays != null" >
+        #{forwardDays,jdbcType=INTEGER},
+      </if>
+      <if test="overdueDays != null" >
+        #{overdueDays,jdbcType=INTEGER},
+      </if>
+      <if test="extensionDays != null" >
+        #{extensionDays,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.asset.dao.po.UnderlyingAssetExample" resultType="java.lang.Integer" >
+    select count(*) from asset_underlying_asset
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update asset_underlying_asset
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessContractNo != null" >
+        business_contract_no = #{record.businessContractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialProgramId != null" >
+        special_program_id = #{record.specialProgramId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.assetPoolStatus != null" >
+        asset_pool_status = #{record.assetPoolStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.assetSource != null" >
+        asset_source = #{record.assetSource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factorId != null" >
+        factor_id = #{record.factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerId != null" >
+        customer_id = #{record.customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerName != null" >
+        customer_name = #{record.customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerEconomicCategory != null" >
+        customer_economic_category = #{record.customerEconomicCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerCity != null" >
+        customer_city = #{record.customerCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerIndustry != null" >
+        customer_industry = #{record.customerIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerRating != null" >
+        customer_rating = #{record.customerRating,jdbcType=VARCHAR},
+      </if>
+      <if test="record.counterpartyId != null" >
+        counterparty_id = #{record.counterpartyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.counterparty != null" >
+        counterparty = #{record.counterparty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.counterpartyEconomicCategory != null" >
+        counterparty_economic_category = #{record.counterpartyEconomicCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.counterpartyCity != null" >
+        counterparty_city = #{record.counterpartyCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.counterpartyIndustry != null" >
+        counterparty_industry = #{record.counterpartyIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.counterpartyRating != null" >
+        counterparty_rating = #{record.counterpartyRating,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guaranteeInfo != null" >
+        guarantee_info = #{record.guaranteeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guaranteeType != null" >
+        guarantee_type = #{record.guaranteeType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guaranteeCompanyInfo != null" >
+        guarantee_company_info = #{record.guaranteeCompanyInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guaranteeCompanyType != null" >
+        guarantee_company_type = #{record.guaranteeCompanyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guaranteeGoodsNo != null" >
+        guarantee_goods_no = #{record.guaranteeGoodsNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creditLimit != null" >
+        credit_limit = #{record.creditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.creditBalance != null" >
+        credit_balance = #{record.creditBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.counterpartyLimit != null" >
+        counterparty_limit = #{record.counterpartyLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.counterpartyBalance != null" >
+        counterparty_balance = #{record.counterpartyBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.invoiceAmount != null" >
+        invoice_amount = #{record.invoiceAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.invoiceBalance != null" >
+        invoice_balance = #{record.invoiceBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.financeAmount != null" >
+        finance_amount = #{record.financeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.financeBalance != null" >
+        finance_balance = #{record.financeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.loanDate != null" >
+        loan_date = #{record.loanDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dueDate != null" >
+        due_date = #{record.dueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repaymentMethod != null" >
+        repayment_method = #{record.repaymentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.interestRateUnit != null" >
+        interest_rate_unit = #{record.interestRateUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.interestRate != null" >
+        interest_rate = #{record.interestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.loanPeriod != null" >
+        loan_period = #{record.loanPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fiveLevelCategory != null" >
+        five_level_category = #{record.fiveLevelCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settleStatus != null" >
+        settle_status = #{record.settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.forwardDays != null" >
+        forward_days = #{record.forwardDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.overdueDays != null" >
+        overdue_days = #{record.overdueDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.extensionDays != null" >
+        extension_days = #{record.extensionDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update asset_underlying_asset
+    set id = #{record.id,jdbcType=VARCHAR},
+      business_contract_no = #{record.businessContractNo,jdbcType=VARCHAR},
+      special_program_id = #{record.specialProgramId,jdbcType=VARCHAR},
+      asset_pool_status = #{record.assetPoolStatus,jdbcType=VARCHAR},
+      asset_source = #{record.assetSource,jdbcType=VARCHAR},
+      factor_id = #{record.factorId,jdbcType=VARCHAR},
+      customer_id = #{record.customerId,jdbcType=VARCHAR},
+      customer_name = #{record.customerName,jdbcType=VARCHAR},
+      customer_economic_category = #{record.customerEconomicCategory,jdbcType=VARCHAR},
+      customer_city = #{record.customerCity,jdbcType=VARCHAR},
+      customer_industry = #{record.customerIndustry,jdbcType=VARCHAR},
+      customer_rating = #{record.customerRating,jdbcType=VARCHAR},
+      counterparty_id = #{record.counterpartyId,jdbcType=VARCHAR},
+      counterparty = #{record.counterparty,jdbcType=VARCHAR},
+      counterparty_economic_category = #{record.counterpartyEconomicCategory,jdbcType=VARCHAR},
+      counterparty_city = #{record.counterpartyCity,jdbcType=VARCHAR},
+      counterparty_industry = #{record.counterpartyIndustry,jdbcType=VARCHAR},
+      counterparty_rating = #{record.counterpartyRating,jdbcType=VARCHAR},
+      guarantee_info = #{record.guaranteeInfo,jdbcType=VARCHAR},
+      guarantee_type = #{record.guaranteeType,jdbcType=VARCHAR},
+      guarantee_company_info = #{record.guaranteeCompanyInfo,jdbcType=VARCHAR},
+      guarantee_company_type = #{record.guaranteeCompanyType,jdbcType=VARCHAR},
+      guarantee_goods_no = #{record.guaranteeGoodsNo,jdbcType=VARCHAR},
+      credit_limit = #{record.creditLimit,jdbcType=DECIMAL},
+      credit_balance = #{record.creditBalance,jdbcType=DECIMAL},
+      counterparty_limit = #{record.counterpartyLimit,jdbcType=DECIMAL},
+      counterparty_balance = #{record.counterpartyBalance,jdbcType=DECIMAL},
+      invoice_amount = #{record.invoiceAmount,jdbcType=DECIMAL},
+      invoice_balance = #{record.invoiceBalance,jdbcType=DECIMAL},
+      finance_amount = #{record.financeAmount,jdbcType=DECIMAL},
+      finance_balance = #{record.financeBalance,jdbcType=DECIMAL},
+      loan_date = #{record.loanDate,jdbcType=VARCHAR},
+      due_date = #{record.dueDate,jdbcType=VARCHAR},
+      repayment_method = #{record.repaymentMethod,jdbcType=VARCHAR},
+      interest_rate_unit = #{record.interestRateUnit,jdbcType=VARCHAR},
+      interest_rate = #{record.interestRate,jdbcType=DECIMAL},
+      loan_period = #{record.loanPeriod,jdbcType=VARCHAR},
+      five_level_category = #{record.fiveLevelCategory,jdbcType=VARCHAR},
+      settle_status = #{record.settleStatus,jdbcType=VARCHAR},
+      forward_days = #{record.forwardDays,jdbcType=INTEGER},
+      overdue_days = #{record.overdueDays,jdbcType=INTEGER},
+      extension_days = #{record.extensionDays,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.asset.dao.po.UnderlyingAsset" >
+    update asset_underlying_asset
+    <set >
+      <if test="businessContractNo != null" >
+        business_contract_no = #{businessContractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="specialProgramId != null" >
+        special_program_id = #{specialProgramId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetPoolStatus != null" >
+        asset_pool_status = #{assetPoolStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="assetSource != null" >
+        asset_source = #{assetSource,jdbcType=VARCHAR},
+      </if>
+      <if test="factorId != null" >
+        factor_id = #{factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerEconomicCategory != null" >
+        customer_economic_category = #{customerEconomicCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCity != null" >
+        customer_city = #{customerCity,jdbcType=VARCHAR},
+      </if>
+      <if test="customerIndustry != null" >
+        customer_industry = #{customerIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="customerRating != null" >
+        customer_rating = #{customerRating,jdbcType=VARCHAR},
+      </if>
+      <if test="counterpartyId != null" >
+        counterparty_id = #{counterpartyId,jdbcType=VARCHAR},
+      </if>
+      <if test="counterparty != null" >
+        counterparty = #{counterparty,jdbcType=VARCHAR},
+      </if>
+      <if test="counterpartyEconomicCategory != null" >
+        counterparty_economic_category = #{counterpartyEconomicCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="counterpartyCity != null" >
+        counterparty_city = #{counterpartyCity,jdbcType=VARCHAR},
+      </if>
+      <if test="counterpartyIndustry != null" >
+        counterparty_industry = #{counterpartyIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="counterpartyRating != null" >
+        counterparty_rating = #{counterpartyRating,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteeInfo != null" >
+        guarantee_info = #{guaranteeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteeType != null" >
+        guarantee_type = #{guaranteeType,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteeCompanyInfo != null" >
+        guarantee_company_info = #{guaranteeCompanyInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteeCompanyType != null" >
+        guarantee_company_type = #{guaranteeCompanyType,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteeGoodsNo != null" >
+        guarantee_goods_no = #{guaranteeGoodsNo,jdbcType=VARCHAR},
+      </if>
+      <if test="creditLimit != null" >
+        credit_limit = #{creditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="creditBalance != null" >
+        credit_balance = #{creditBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="counterpartyLimit != null" >
+        counterparty_limit = #{counterpartyLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="counterpartyBalance != null" >
+        counterparty_balance = #{counterpartyBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceAmount != null" >
+        invoice_amount = #{invoiceAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceBalance != null" >
+        invoice_balance = #{invoiceBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="financeAmount != null" >
+        finance_amount = #{financeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="financeBalance != null" >
+        finance_balance = #{financeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="loanDate != null" >
+        loan_date = #{loanDate,jdbcType=VARCHAR},
+      </if>
+      <if test="dueDate != null" >
+        due_date = #{dueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentMethod != null" >
+        repayment_method = #{repaymentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="interestRateUnit != null" >
+        interest_rate_unit = #{interestRateUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="interestRate != null" >
+        interest_rate = #{interestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="loanPeriod != null" >
+        loan_period = #{loanPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="fiveLevelCategory != null" >
+        five_level_category = #{fiveLevelCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="settleStatus != null" >
+        settle_status = #{settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="forwardDays != null" >
+        forward_days = #{forwardDays,jdbcType=INTEGER},
+      </if>
+      <if test="overdueDays != null" >
+        overdue_days = #{overdueDays,jdbcType=INTEGER},
+      </if>
+      <if test="extensionDays != null" >
+        extension_days = #{extensionDays,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.asset.dao.po.UnderlyingAsset" >
+    update asset_underlying_asset
+    set business_contract_no = #{businessContractNo,jdbcType=VARCHAR},
+      special_program_id = #{specialProgramId,jdbcType=VARCHAR},
+      asset_pool_status = #{assetPoolStatus,jdbcType=VARCHAR},
+      asset_source = #{assetSource,jdbcType=VARCHAR},
+      factor_id = #{factorId,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      customer_economic_category = #{customerEconomicCategory,jdbcType=VARCHAR},
+      customer_city = #{customerCity,jdbcType=VARCHAR},
+      customer_industry = #{customerIndustry,jdbcType=VARCHAR},
+      customer_rating = #{customerRating,jdbcType=VARCHAR},
+      counterparty_id = #{counterpartyId,jdbcType=VARCHAR},
+      counterparty = #{counterparty,jdbcType=VARCHAR},
+      counterparty_economic_category = #{counterpartyEconomicCategory,jdbcType=VARCHAR},
+      counterparty_city = #{counterpartyCity,jdbcType=VARCHAR},
+      counterparty_industry = #{counterpartyIndustry,jdbcType=VARCHAR},
+      counterparty_rating = #{counterpartyRating,jdbcType=VARCHAR},
+      guarantee_info = #{guaranteeInfo,jdbcType=VARCHAR},
+      guarantee_type = #{guaranteeType,jdbcType=VARCHAR},
+      guarantee_company_info = #{guaranteeCompanyInfo,jdbcType=VARCHAR},
+      guarantee_company_type = #{guaranteeCompanyType,jdbcType=VARCHAR},
+      guarantee_goods_no = #{guaranteeGoodsNo,jdbcType=VARCHAR},
+      credit_limit = #{creditLimit,jdbcType=DECIMAL},
+      credit_balance = #{creditBalance,jdbcType=DECIMAL},
+      counterparty_limit = #{counterpartyLimit,jdbcType=DECIMAL},
+      counterparty_balance = #{counterpartyBalance,jdbcType=DECIMAL},
+      invoice_amount = #{invoiceAmount,jdbcType=DECIMAL},
+      invoice_balance = #{invoiceBalance,jdbcType=DECIMAL},
+      finance_amount = #{financeAmount,jdbcType=DECIMAL},
+      finance_balance = #{financeBalance,jdbcType=DECIMAL},
+      loan_date = #{loanDate,jdbcType=VARCHAR},
+      due_date = #{dueDate,jdbcType=VARCHAR},
+      repayment_method = #{repaymentMethod,jdbcType=VARCHAR},
+      interest_rate_unit = #{interestRateUnit,jdbcType=VARCHAR},
+      interest_rate = #{interestRate,jdbcType=DECIMAL},
+      loan_period = #{loanPeriod,jdbcType=VARCHAR},
+      five_level_category = #{fiveLevelCategory,jdbcType=VARCHAR},
+      settle_status = #{settleStatus,jdbcType=VARCHAR},
+      forward_days = #{forwardDays,jdbcType=INTEGER},
+      overdue_days = #{overdueDays,jdbcType=INTEGER},
+      extension_days = #{extensionDays,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset_underlying_asset
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.asset.dao.po.UnderlyingAssetExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from asset_underlying_asset
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

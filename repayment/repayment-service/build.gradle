@@ -1,0 +1,15 @@
+dependencies {
+	compile project(':common:common-dao')
+	compile project(':framework:framework-base')
+	compile project(':common:bankgate-api')
+	compile project(':member:member-dao')
+	compile project(':repayment:repayment-dao')
+	compile project(':member:member-api')
+	compile project(':account:account-api')
+	compile project(':common:bankgate-api')
+	compile project(':common:vbam-common-service')
+	compile project(':message:message-client')
+	compile project(':framework:framework-retry')
+	compile project(':credit:credit-limit-service')
+	compile project(':setting:setting-service')
+}

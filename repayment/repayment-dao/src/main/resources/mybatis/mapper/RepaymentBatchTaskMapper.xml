@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cana.repayment.dao.mapper.IRepaymentBatchTaskMapper">
+
+	<select id="countFailDefaultDeduct" resultType="java.lang.Integer" parameterType="java.lang.String" >
+   		select count(1)
+		from `repayment_daily_batch_task` task join `repayment_daily_batch_task_item` item on task.id=item.task_id
+		where date=#{date} and task.next_task_item_id is not null and task.next_task_item_id=item.id and item.task_type='deduct' and item.extra_data like '%"defaultDeduct":"true"%'
+	</select>
+	
+</mapper>

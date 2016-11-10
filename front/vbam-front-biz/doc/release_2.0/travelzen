@@ -1,0 +1,55 @@
+###非白名单授信
+
+###发布项目
+credit-server,credit-scheduler,vbam-front-biz,credit-openapi,member-server,flight-finance-server
+
+###配置文件修改
+global/properties/credit.properties加上
+
+#非白名单授信额度计算公式中的资金授信使用天数N
+limit_user_dayN=10
+
+###数据库修改
+ALTER TABLE `vbam`.`credit_access_rule` 
+CHANGE COLUMN `batch_no` `batch_no` INT(11) NOT NULL COMMENT '批次号' ,
+ADD COLUMN `fit_object` VARCHAR(20) NOT NULL COMMENT '适用对象（白名单客户，非白名单客户）' AFTER `batch_no`,
+DROP PRIMARY KEY,
+ADD PRIMARY KEY (`batch_no`, `fit_object`),
+DROP INDEX `batch_no_UNIQUE` ;
+
+ALTER TABLE `vbam`.`credit_access_rule` 
+DROP COLUMN `downstream_repayment_account_period`,
+DROP COLUMN `is_check_proposal_audit_result`;
+
+ALTER TABLE `vbam`.`credit_access_rule` 
+CHANGE COLUMN `create_time` `create_time` TIMESTAMP NULL DEFAULT NULL COMMENT '创建时间' ,
+CHANGE COLUMN `update_time` `update_time` TIMESTAMP NULL DEFAULT NULL COMMENT '更新时间' ,
+ADD COLUMN `overdue_days_cana` INT(11) NULL DEFAULT NULL AFTER `overdue_times_cana`;
+
+ALTER TABLE `vbam`.`credit_access_rule` 
+CHANGE COLUMN `overdue_days_cana` `overdue_days_tz` INT(11) NULL DEFAULT NULL COMMENT '逾期天数的最大值（真旅网平台）' AFTER `overdue_times_tz`,
+CHANGE COLUMN `overdue_rate_tz` `overdue_rate_tz` DECIMAL(8,5) NULL DEFAULT NULL COMMENT '逾期率的最大值（真旅网平台）' ,
+CHANGE COLUMN `overdue_times_tz` `overdue_times_tz` INT(11) NULL DEFAULT NULL COMMENT '逾期次数的最大值（真旅网平台）' ,
+CHANGE COLUMN `overdue_rate_cana` `overdue_rate_cana` DECIMAL(8,5) NULL DEFAULT NULL COMMENT '逾期率的最大值（cana平台）' ,
+CHANGE COLUMN `overdue_times_cana` `overdue_times_cana` INT(11) NULL DEFAULT NULL COMMENT '逾期次数的最大值（cana平台）' ;
+
+ALTER TABLE `vbam`.`credit_customer_apply` 
+CHANGE COLUMN `audit_limit` `audit_limit` DECIMAL(18,0) NULL DEFAULT NULL COMMENT '（废弃）审核时填写的额度（非白名单客户）' ,
+DROP COLUMN `attachment`,
+ADD COLUMN `sale_data` TEXT NULL DEFAULT NULL COMMENT '客户在真旅的销售数据' AFTER `in_whitelist`;
+
+ALTER TABLE `vbam`.`credit_access_rule` 
+DROP COLUMN `is_check_negative_infomation`,
+DROP COLUMN `is_check_business_infomation`;
+
+ALTER TABLE `vbam`.`credit_access_rule` 
+CHANGE COLUMN `cooperation_period` `cooperation_period_min` INT(11) NULL DEFAULT NULL COMMENT '与真旅网合作月份的最小值' ,
+CHANGE COLUMN `update_time` `update_time` TIMESTAMP NULL DEFAULT NULL COMMENT '与真旅网合作月份的最大值' ,
+ADD COLUMN `cooperation_period_max` INT(11) NULL DEFAULT NULL COMMENT '与真旅网合作月份的最小值' AFTER `cooperation_period_min`;
+
+###准入规则数据初始化
+delete from vbam.credit_access_rule;
+insert into vbam.credit_access_rule values('1','NON_WHITE_CUSTOMER',true,13,25,0.05000,1,null,0.00000,0,null,300000,4,100000,4,now(),now());
+insert into vbam.credit_access_rule values('1','WHITE_CUSTOMER',true,26,null,0.05000,2,7,0.05000,2,0.10000,300000,4,100000,4,now(),now());
+
+

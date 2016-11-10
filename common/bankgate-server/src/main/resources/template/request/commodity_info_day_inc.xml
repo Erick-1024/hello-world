@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLPDINAQ</action>
+	<userName></userName><!--登录名 varchar(30) -->
+	<mctNo></mctNo><!--商户编号char(8) 备注：本期暂不使用，可空 -->
+	<proCode></proCode><!--商品类型代码char(8) -->
+	<synDate></synDate><!--同步日期 char(8) 格式YYYYMMDD -->
+</stream>

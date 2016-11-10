@@ -1,0 +1,1585 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.yundaex.dao.mapper.gen.YundaexCustomerApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.yundaex.dao.po.YundaexCustomerApply" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="apply_date" property="applyDate" jdbcType="TIMESTAMP" />
+    <result column="station_no" property="stationNo" jdbcType="VARCHAR" />
+    <result column="station_amount" property="stationAmount" jdbcType="INTEGER" />
+    <result column="station_mgr" property="stationMgr" jdbcType="VARCHAR" />
+    <result column="station_name" property="stationName" jdbcType="VARCHAR" />
+    <result column="cust_name" property="custName" jdbcType="VARCHAR" />
+    <result column="cust_idno" property="custIdno" jdbcType="VARCHAR" />
+    <result column="cust_phone" property="custPhone" jdbcType="VARCHAR" />
+    <result column="cust_email" property="custEmail" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="busi_limit" property="busiLimit" jdbcType="DECIMAL" />
+    <result column="regioncode" property="regioncode" jdbcType="VARCHAR" />
+    <result column="apply_credit_limit" property="applyCreditLimit" jdbcType="DECIMAL" />
+    <result column="funds_use" property="fundsUse" jdbcType="VARCHAR" />
+    <result column="loan_limit" property="loanLimit" jdbcType="VARCHAR" />
+    <result column="add_credit" property="addCredit" jdbcType="VARCHAR" />
+    <result column="repayment_type" property="repaymentType" jdbcType="VARCHAR" />
+    <result column="bank_account" property="bankAccount" jdbcType="VARCHAR" />
+    <result column="bank_account_name" property="bankAccountName" jdbcType="VARCHAR" />
+    <result column="bank_account_address" property="bankAccountAddress" jdbcType="VARCHAR" />
+    <result column="organization_no" property="organizationNo" jdbcType="VARCHAR" />
+    <result column="organization_media_id" property="organizationMediaId" jdbcType="VARCHAR" />
+    <result column="business_licence_no" property="businessLicenceNo" jdbcType="VARCHAR" />
+    <result column="business_licence_media_id" property="businessLicenceMediaId" jdbcType="VARCHAR" />
+    <result column="tax_registration_certificate_no" property="taxRegistrationCertificateNo" jdbcType="VARCHAR" />
+    <result column="tax_registration_certificate_media_id" property="taxRegistrationCertificateMediaId" jdbcType="VARCHAR" />
+    <result column="bail_balance" property="bailBalance" jdbcType="DECIMAL" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="access_manual_state" property="accessManualState" jdbcType="VARCHAR" />
+    <result column="manual_audit_remarks" property="manualAuditRemarks" jdbcType="VARCHAR" />
+    <result column="access_automatic_state" property="accessAutomaticState" jdbcType="VARCHAR" />
+    <result column="automatic_audit_remarks" property="automaticAuditRemarks" jdbcType="VARCHAR" />
+    <result column="auditor_id" property="auditorId" jdbcType="VARCHAR" />
+    <result column="consistency_check" property="consistencyCheck" jdbcType="INTEGER" />
+    <result column="whether_station_info" property="whetherStationInfo" jdbcType="CHAR" />
+    <result column="reason_W" property="reasonW" jdbcType="VARCHAR" />
+    <result column="automatic_audit_rule_batch_no" property="automaticAuditRuleBatchNo" jdbcType="INTEGER" />
+    <result column="manual_audit_rule_batch_no" property="manualAuditRuleBatchNo" jdbcType="INTEGER" />
+    <result column="credit_limit_generate_state" property="creditLimitGenerateState" jdbcType="VARCHAR" />
+    <result column="negative_network" property="negativeNetwork" jdbcType="VARCHAR" />
+    <result column="ranchise_contract_deadline" property="ranchiseContractDeadline" jdbcType="TIMESTAMP" />
+    <result column="execute_individual_info" property="executeIndividualInfo" jdbcType="VARCHAR" />
+    <result column="qualified_inspection_record" property="qualifiedInspectionRecord" jdbcType="VARCHAR" />
+    <result column="pay_account" property="payAccount" jdbcType="VARCHAR" />
+    <result column="pay_account_name" property="payAccountName" jdbcType="VARCHAR" />
+    <result column="pay_account_address" property="payAccountAddress" jdbcType="VARCHAR" />
+    <result column="lian_hang_no" property="lianHangNo" jdbcType="VARCHAR" />
+    <result column="controller" property="controller" jdbcType="VARCHAR" />
+    <result column="controller_idno" property="controllerIdno" jdbcType="VARCHAR" />
+    <result column="controller_email" property="controllerEmail" jdbcType="VARCHAR" />
+    <result column="controller_phone" property="controllerPhone" jdbcType="VARCHAR" />
+    <result column="controller_origin" property="controllerOrigin" jdbcType="VARCHAR" />
+    <result column="controller_is_legal" property="controllerIsLegal" jdbcType="CHAR" />
+    <result column="legal_person" property="legalPerson" jdbcType="VARCHAR" />
+    <result column="legal_email" property="legalEmail" jdbcType="VARCHAR" />
+    <result column="legal_phone" property="legalPhone" jdbcType="VARCHAR" />
+    <result column="account_owner" property="accountOwner" jdbcType="VARCHAR" />
+    <result column="account_owner_name" property="accountOwnerName" jdbcType="VARCHAR" />
+    <result column="account_owner_email" property="accountOwnerEmail" jdbcType="VARCHAR" />
+    <result column="account_owner_phone" property="accountOwnerPhone" jdbcType="VARCHAR" />
+    <result column="short_loan" property="shortLoan" jdbcType="DECIMAL" />
+    <result column="loan_type" property="loanType" jdbcType="VARCHAR" />
+    <result column="short_loan_limit" property="shortLoanLimit" jdbcType="INTEGER" />
+    <result column="loan_from" property="loanFrom" jdbcType="VARCHAR" />
+    <result column="limit_unit" property="limitUnit" jdbcType="VARCHAR" />
+    <result column="agent_qualification" property="agentQualification" jdbcType="VARCHAR" />
+    <result column="legal_idno" property="legalIdno" jdbcType="VARCHAR" />
+    <result column="legal_idno_front_media_id" property="legalIdnoFrontMediaId" jdbcType="VARCHAR" />
+    <result column="legal_idno_back_media_id" property="legalIdnoBackMediaId" jdbcType="VARCHAR" />
+    <result column="addition_information_media_id" property="additionInformationMediaId" jdbcType="VARCHAR" />
+    <result column="whether_tb_order" property="whetherTbOrder" jdbcType="CHAR" />
+    <result column="tb_order_ratio" property="tbOrderRatio" jdbcType="DECIMAL" />
+    <result column="yundaex_explain" property="yundaexExplain" jdbcType="VARCHAR" />
+    <result column="other_explain" property="otherExplain" jdbcType="VARCHAR" />
+    <result column="pay_account_bank_name" property="payAccountBankName" jdbcType="VARCHAR" />
+    <result column="bank_province" property="bankProvince" jdbcType="VARCHAR" />
+    <result column="bank_city" property="bankCity" jdbcType="VARCHAR" />
+    <result column="yundaex_judge" property="yundaexJudge" jdbcType="VARCHAR" />
+    <result column="station_address" property="stationAddress" jdbcType="VARCHAR" />
+    <result column="bail_ratio" property="bailRatio" jdbcType="DECIMAL" />
+    <result column="grade_state" property="gradeState" jdbcType="VARCHAR" />
+    <result column="grade_state_remarks" property="gradeStateRemarks" jdbcType="VARCHAR" />
+    <result column="limit_info_remarks" property="limitInfoRemarks" jdbcType="VARCHAR" />
+    <result column="apply_type" property="applyType" jdbcType="VARCHAR" />
+    <result column="notify_flag" property="notifyFlag" jdbcType="BIT" />
+    <result column="audit_time" property="auditTime" jdbcType="VARCHAR" />
+    <result column="recandsend_growth_rate" property="recandsendGrowthRate" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, apply_date, station_no, station_amount, station_mgr, station_name, cust_name, 
+    cust_idno, cust_phone, cust_email, province, city, address, busi_limit, regioncode, 
+    apply_credit_limit, funds_use, loan_limit, add_credit, repayment_type, bank_account, 
+    bank_account_name, bank_account_address, organization_no, organization_media_id, 
+    business_licence_no, business_licence_media_id, tax_registration_certificate_no, 
+    tax_registration_certificate_media_id, bail_balance, update_time, create_time, access_manual_state, 
+    manual_audit_remarks, access_automatic_state, automatic_audit_remarks, auditor_id, 
+    consistency_check, whether_station_info, reason_W, automatic_audit_rule_batch_no, 
+    manual_audit_rule_batch_no, credit_limit_generate_state, negative_network, ranchise_contract_deadline, 
+    execute_individual_info, qualified_inspection_record, pay_account, pay_account_name, 
+    pay_account_address, lian_hang_no, controller, controller_idno, controller_email, 
+    controller_phone, controller_origin, controller_is_legal, legal_person, legal_email, 
+    legal_phone, account_owner, account_owner_name, account_owner_email, account_owner_phone, 
+    short_loan, loan_type, short_loan_limit, loan_from, limit_unit, agent_qualification, 
+    legal_idno, legal_idno_front_media_id, legal_idno_back_media_id, addition_information_media_id, 
+    whether_tb_order, tb_order_ratio, yundaex_explain, other_explain, pay_account_bank_name, 
+    bank_province, bank_city, yundaex_judge, station_address, bail_ratio, grade_state, 
+    grade_state_remarks, limit_info_remarks, apply_type, notify_flag, audit_time, recandsend_growth_rate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.yundaex.dao.po.YundaexCustomerApplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yundaex_customer_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from yundaex_customer_apply
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from yundaex_customer_apply
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.yundaex.dao.po.YundaexCustomerApplyExample" >
+    delete from yundaex_customer_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.yundaex.dao.po.YundaexCustomerApply" >
+    insert into yundaex_customer_apply (id, apply_date, station_no, 
+      station_amount, station_mgr, station_name, 
+      cust_name, cust_idno, cust_phone, 
+      cust_email, province, city, 
+      address, busi_limit, regioncode, 
+      apply_credit_limit, funds_use, loan_limit, 
+      add_credit, repayment_type, bank_account, 
+      bank_account_name, bank_account_address, organization_no, 
+      organization_media_id, business_licence_no, 
+      business_licence_media_id, tax_registration_certificate_no, 
+      tax_registration_certificate_media_id, bail_balance, 
+      update_time, create_time, access_manual_state, 
+      manual_audit_remarks, access_automatic_state, 
+      automatic_audit_remarks, auditor_id, consistency_check, 
+      whether_station_info, reason_W, automatic_audit_rule_batch_no, 
+      manual_audit_rule_batch_no, credit_limit_generate_state, 
+      negative_network, ranchise_contract_deadline, 
+      execute_individual_info, qualified_inspection_record, 
+      pay_account, pay_account_name, pay_account_address, 
+      lian_hang_no, controller, controller_idno, 
+      controller_email, controller_phone, controller_origin, 
+      controller_is_legal, legal_person, legal_email, 
+      legal_phone, account_owner, account_owner_name, 
+      account_owner_email, account_owner_phone, short_loan, 
+      loan_type, short_loan_limit, loan_from, 
+      limit_unit, agent_qualification, legal_idno, 
+      legal_idno_front_media_id, legal_idno_back_media_id, 
+      addition_information_media_id, whether_tb_order, 
+      tb_order_ratio, yundaex_explain, other_explain, 
+      pay_account_bank_name, bank_province, bank_city, 
+      yundaex_judge, station_address, bail_ratio, 
+      grade_state, grade_state_remarks, limit_info_remarks, 
+      apply_type, notify_flag, audit_time, 
+      recandsend_growth_rate)
+    values (#{id,jdbcType=VARCHAR}, #{applyDate,jdbcType=TIMESTAMP}, #{stationNo,jdbcType=VARCHAR}, 
+      #{stationAmount,jdbcType=INTEGER}, #{stationMgr,jdbcType=VARCHAR}, #{stationName,jdbcType=VARCHAR}, 
+      #{custName,jdbcType=VARCHAR}, #{custIdno,jdbcType=VARCHAR}, #{custPhone,jdbcType=VARCHAR}, 
+      #{custEmail,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{busiLimit,jdbcType=DECIMAL}, #{regioncode,jdbcType=VARCHAR}, 
+      #{applyCreditLimit,jdbcType=DECIMAL}, #{fundsUse,jdbcType=VARCHAR}, #{loanLimit,jdbcType=VARCHAR}, 
+      #{addCredit,jdbcType=VARCHAR}, #{repaymentType,jdbcType=VARCHAR}, #{bankAccount,jdbcType=VARCHAR}, 
+      #{bankAccountName,jdbcType=VARCHAR}, #{bankAccountAddress,jdbcType=VARCHAR}, #{organizationNo,jdbcType=VARCHAR}, 
+      #{organizationMediaId,jdbcType=VARCHAR}, #{businessLicenceNo,jdbcType=VARCHAR}, 
+      #{businessLicenceMediaId,jdbcType=VARCHAR}, #{taxRegistrationCertificateNo,jdbcType=VARCHAR}, 
+      #{taxRegistrationCertificateMediaId,jdbcType=VARCHAR}, #{bailBalance,jdbcType=DECIMAL}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{accessManualState,jdbcType=VARCHAR}, 
+      #{manualAuditRemarks,jdbcType=VARCHAR}, #{accessAutomaticState,jdbcType=VARCHAR}, 
+      #{automaticAuditRemarks,jdbcType=VARCHAR}, #{auditorId,jdbcType=VARCHAR}, #{consistencyCheck,jdbcType=INTEGER}, 
+      #{whetherStationInfo,jdbcType=CHAR}, #{reasonW,jdbcType=VARCHAR}, #{automaticAuditRuleBatchNo,jdbcType=INTEGER}, 
+      #{manualAuditRuleBatchNo,jdbcType=INTEGER}, #{creditLimitGenerateState,jdbcType=VARCHAR}, 
+      #{negativeNetwork,jdbcType=VARCHAR}, #{ranchiseContractDeadline,jdbcType=TIMESTAMP}, 
+      #{executeIndividualInfo,jdbcType=VARCHAR}, #{qualifiedInspectionRecord,jdbcType=VARCHAR}, 
+      #{payAccount,jdbcType=VARCHAR}, #{payAccountName,jdbcType=VARCHAR}, #{payAccountAddress,jdbcType=VARCHAR}, 
+      #{lianHangNo,jdbcType=VARCHAR}, #{controller,jdbcType=VARCHAR}, #{controllerIdno,jdbcType=VARCHAR}, 
+      #{controllerEmail,jdbcType=VARCHAR}, #{controllerPhone,jdbcType=VARCHAR}, #{controllerOrigin,jdbcType=VARCHAR}, 
+      #{controllerIsLegal,jdbcType=CHAR}, #{legalPerson,jdbcType=VARCHAR}, #{legalEmail,jdbcType=VARCHAR}, 
+      #{legalPhone,jdbcType=VARCHAR}, #{accountOwner,jdbcType=VARCHAR}, #{accountOwnerName,jdbcType=VARCHAR}, 
+      #{accountOwnerEmail,jdbcType=VARCHAR}, #{accountOwnerPhone,jdbcType=VARCHAR}, #{shortLoan,jdbcType=DECIMAL}, 
+      #{loanType,jdbcType=VARCHAR}, #{shortLoanLimit,jdbcType=INTEGER}, #{loanFrom,jdbcType=VARCHAR}, 
+      #{limitUnit,jdbcType=VARCHAR}, #{agentQualification,jdbcType=VARCHAR}, #{legalIdno,jdbcType=VARCHAR}, 
+      #{legalIdnoFrontMediaId,jdbcType=VARCHAR}, #{legalIdnoBackMediaId,jdbcType=VARCHAR}, 
+      #{additionInformationMediaId,jdbcType=VARCHAR}, #{whetherTbOrder,jdbcType=CHAR}, 
+      #{tbOrderRatio,jdbcType=DECIMAL}, #{yundaexExplain,jdbcType=VARCHAR}, #{otherExplain,jdbcType=VARCHAR}, 
+      #{payAccountBankName,jdbcType=VARCHAR}, #{bankProvince,jdbcType=VARCHAR}, #{bankCity,jdbcType=VARCHAR}, 
+      #{yundaexJudge,jdbcType=VARCHAR}, #{stationAddress,jdbcType=VARCHAR}, #{bailRatio,jdbcType=DECIMAL}, 
+      #{gradeState,jdbcType=VARCHAR}, #{gradeStateRemarks,jdbcType=VARCHAR}, #{limitInfoRemarks,jdbcType=VARCHAR}, 
+      #{applyType,jdbcType=VARCHAR}, #{notifyFlag,jdbcType=BIT}, #{auditTime,jdbcType=VARCHAR}, 
+      #{recandsendGrowthRate,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.yundaex.dao.po.YundaexCustomerApply" >
+    insert into yundaex_customer_apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="applyDate != null" >
+        apply_date,
+      </if>
+      <if test="stationNo != null" >
+        station_no,
+      </if>
+      <if test="stationAmount != null" >
+        station_amount,
+      </if>
+      <if test="stationMgr != null" >
+        station_mgr,
+      </if>
+      <if test="stationName != null" >
+        station_name,
+      </if>
+      <if test="custName != null" >
+        cust_name,
+      </if>
+      <if test="custIdno != null" >
+        cust_idno,
+      </if>
+      <if test="custPhone != null" >
+        cust_phone,
+      </if>
+      <if test="custEmail != null" >
+        cust_email,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="busiLimit != null" >
+        busi_limit,
+      </if>
+      <if test="regioncode != null" >
+        regioncode,
+      </if>
+      <if test="applyCreditLimit != null" >
+        apply_credit_limit,
+      </if>
+      <if test="fundsUse != null" >
+        funds_use,
+      </if>
+      <if test="loanLimit != null" >
+        loan_limit,
+      </if>
+      <if test="addCredit != null" >
+        add_credit,
+      </if>
+      <if test="repaymentType != null" >
+        repayment_type,
+      </if>
+      <if test="bankAccount != null" >
+        bank_account,
+      </if>
+      <if test="bankAccountName != null" >
+        bank_account_name,
+      </if>
+      <if test="bankAccountAddress != null" >
+        bank_account_address,
+      </if>
+      <if test="organizationNo != null" >
+        organization_no,
+      </if>
+      <if test="organizationMediaId != null" >
+        organization_media_id,
+      </if>
+      <if test="businessLicenceNo != null" >
+        business_licence_no,
+      </if>
+      <if test="businessLicenceMediaId != null" >
+        business_licence_media_id,
+      </if>
+      <if test="taxRegistrationCertificateNo != null" >
+        tax_registration_certificate_no,
+      </if>
+      <if test="taxRegistrationCertificateMediaId != null" >
+        tax_registration_certificate_media_id,
+      </if>
+      <if test="bailBalance != null" >
+        bail_balance,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="accessManualState != null" >
+        access_manual_state,
+      </if>
+      <if test="manualAuditRemarks != null" >
+        manual_audit_remarks,
+      </if>
+      <if test="accessAutomaticState != null" >
+        access_automatic_state,
+      </if>
+      <if test="automaticAuditRemarks != null" >
+        automatic_audit_remarks,
+      </if>
+      <if test="auditorId != null" >
+        auditor_id,
+      </if>
+      <if test="consistencyCheck != null" >
+        consistency_check,
+      </if>
+      <if test="whetherStationInfo != null" >
+        whether_station_info,
+      </if>
+      <if test="reasonW != null" >
+        reason_W,
+      </if>
+      <if test="automaticAuditRuleBatchNo != null" >
+        automatic_audit_rule_batch_no,
+      </if>
+      <if test="manualAuditRuleBatchNo != null" >
+        manual_audit_rule_batch_no,
+      </if>
+      <if test="creditLimitGenerateState != null" >
+        credit_limit_generate_state,
+      </if>
+      <if test="negativeNetwork != null" >
+        negative_network,
+      </if>
+      <if test="ranchiseContractDeadline != null" >
+        ranchise_contract_deadline,
+      </if>
+      <if test="executeIndividualInfo != null" >
+        execute_individual_info,
+      </if>
+      <if test="qualifiedInspectionRecord != null" >
+        qualified_inspection_record,
+      </if>
+      <if test="payAccount != null" >
+        pay_account,
+      </if>
+      <if test="payAccountName != null" >
+        pay_account_name,
+      </if>
+      <if test="payAccountAddress != null" >
+        pay_account_address,
+      </if>
+      <if test="lianHangNo != null" >
+        lian_hang_no,
+      </if>
+      <if test="controller != null" >
+        controller,
+      </if>
+      <if test="controllerIdno != null" >
+        controller_idno,
+      </if>
+      <if test="controllerEmail != null" >
+        controller_email,
+      </if>
+      <if test="controllerPhone != null" >
+        controller_phone,
+      </if>
+      <if test="controllerOrigin != null" >
+        controller_origin,
+      </if>
+      <if test="controllerIsLegal != null" >
+        controller_is_legal,
+      </if>
+      <if test="legalPerson != null" >
+        legal_person,
+      </if>
+      <if test="legalEmail != null" >
+        legal_email,
+      </if>
+      <if test="legalPhone != null" >
+        legal_phone,
+      </if>
+      <if test="accountOwner != null" >
+        account_owner,
+      </if>
+      <if test="accountOwnerName != null" >
+        account_owner_name,
+      </if>
+      <if test="accountOwnerEmail != null" >
+        account_owner_email,
+      </if>
+      <if test="accountOwnerPhone != null" >
+        account_owner_phone,
+      </if>
+      <if test="shortLoan != null" >
+        short_loan,
+      </if>
+      <if test="loanType != null" >
+        loan_type,
+      </if>
+      <if test="shortLoanLimit != null" >
+        short_loan_limit,
+      </if>
+      <if test="loanFrom != null" >
+        loan_from,
+      </if>
+      <if test="limitUnit != null" >
+        limit_unit,
+      </if>
+      <if test="agentQualification != null" >
+        agent_qualification,
+      </if>
+      <if test="legalIdno != null" >
+        legal_idno,
+      </if>
+      <if test="legalIdnoFrontMediaId != null" >
+        legal_idno_front_media_id,
+      </if>
+      <if test="legalIdnoBackMediaId != null" >
+        legal_idno_back_media_id,
+      </if>
+      <if test="additionInformationMediaId != null" >
+        addition_information_media_id,
+      </if>
+      <if test="whetherTbOrder != null" >
+        whether_tb_order,
+      </if>
+      <if test="tbOrderRatio != null" >
+        tb_order_ratio,
+      </if>
+      <if test="yundaexExplain != null" >
+        yundaex_explain,
+      </if>
+      <if test="otherExplain != null" >
+        other_explain,
+      </if>
+      <if test="payAccountBankName != null" >
+        pay_account_bank_name,
+      </if>
+      <if test="bankProvince != null" >
+        bank_province,
+      </if>
+      <if test="bankCity != null" >
+        bank_city,
+      </if>
+      <if test="yundaexJudge != null" >
+        yundaex_judge,
+      </if>
+      <if test="stationAddress != null" >
+        station_address,
+      </if>
+      <if test="bailRatio != null" >
+        bail_ratio,
+      </if>
+      <if test="gradeState != null" >
+        grade_state,
+      </if>
+      <if test="gradeStateRemarks != null" >
+        grade_state_remarks,
+      </if>
+      <if test="limitInfoRemarks != null" >
+        limit_info_remarks,
+      </if>
+      <if test="applyType != null" >
+        apply_type,
+      </if>
+      <if test="notifyFlag != null" >
+        notify_flag,
+      </if>
+      <if test="auditTime != null" >
+        audit_time,
+      </if>
+      <if test="recandsendGrowthRate != null" >
+        recandsend_growth_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null" >
+        #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stationNo != null" >
+        #{stationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="stationAmount != null" >
+        #{stationAmount,jdbcType=INTEGER},
+      </if>
+      <if test="stationMgr != null" >
+        #{stationMgr,jdbcType=VARCHAR},
+      </if>
+      <if test="stationName != null" >
+        #{stationName,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null" >
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="custIdno != null" >
+        #{custIdno,jdbcType=VARCHAR},
+      </if>
+      <if test="custPhone != null" >
+        #{custPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="custEmail != null" >
+        #{custEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="busiLimit != null" >
+        #{busiLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="regioncode != null" >
+        #{regioncode,jdbcType=VARCHAR},
+      </if>
+      <if test="applyCreditLimit != null" >
+        #{applyCreditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="fundsUse != null" >
+        #{fundsUse,jdbcType=VARCHAR},
+      </if>
+      <if test="loanLimit != null" >
+        #{loanLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="addCredit != null" >
+        #{addCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentType != null" >
+        #{repaymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+        #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountName != null" >
+        #{bankAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountAddress != null" >
+        #{bankAccountAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationNo != null" >
+        #{organizationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationMediaId != null" >
+        #{organizationMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceNo != null" >
+        #{businessLicenceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceMediaId != null" >
+        #{businessLicenceMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationCertificateNo != null" >
+        #{taxRegistrationCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationCertificateMediaId != null" >
+        #{taxRegistrationCertificateMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="bailBalance != null" >
+        #{bailBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accessManualState != null" >
+        #{accessManualState,jdbcType=VARCHAR},
+      </if>
+      <if test="manualAuditRemarks != null" >
+        #{manualAuditRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="accessAutomaticState != null" >
+        #{accessAutomaticState,jdbcType=VARCHAR},
+      </if>
+      <if test="automaticAuditRemarks != null" >
+        #{automaticAuditRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="auditorId != null" >
+        #{auditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="consistencyCheck != null" >
+        #{consistencyCheck,jdbcType=INTEGER},
+      </if>
+      <if test="whetherStationInfo != null" >
+        #{whetherStationInfo,jdbcType=CHAR},
+      </if>
+      <if test="reasonW != null" >
+        #{reasonW,jdbcType=VARCHAR},
+      </if>
+      <if test="automaticAuditRuleBatchNo != null" >
+        #{automaticAuditRuleBatchNo,jdbcType=INTEGER},
+      </if>
+      <if test="manualAuditRuleBatchNo != null" >
+        #{manualAuditRuleBatchNo,jdbcType=INTEGER},
+      </if>
+      <if test="creditLimitGenerateState != null" >
+        #{creditLimitGenerateState,jdbcType=VARCHAR},
+      </if>
+      <if test="negativeNetwork != null" >
+        #{negativeNetwork,jdbcType=VARCHAR},
+      </if>
+      <if test="ranchiseContractDeadline != null" >
+        #{ranchiseContractDeadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="executeIndividualInfo != null" >
+        #{executeIndividualInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="qualifiedInspectionRecord != null" >
+        #{qualifiedInspectionRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="payAccount != null" >
+        #{payAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="payAccountName != null" >
+        #{payAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="payAccountAddress != null" >
+        #{payAccountAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="lianHangNo != null" >
+        #{lianHangNo,jdbcType=VARCHAR},
+      </if>
+      <if test="controller != null" >
+        #{controller,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerIdno != null" >
+        #{controllerIdno,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerEmail != null" >
+        #{controllerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerPhone != null" >
+        #{controllerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerOrigin != null" >
+        #{controllerOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerIsLegal != null" >
+        #{controllerIsLegal,jdbcType=CHAR},
+      </if>
+      <if test="legalPerson != null" >
+        #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="legalEmail != null" >
+        #{legalEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPhone != null" >
+        #{legalPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="accountOwner != null" >
+        #{accountOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="accountOwnerName != null" >
+        #{accountOwnerName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountOwnerEmail != null" >
+        #{accountOwnerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="accountOwnerPhone != null" >
+        #{accountOwnerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="shortLoan != null" >
+        #{shortLoan,jdbcType=DECIMAL},
+      </if>
+      <if test="loanType != null" >
+        #{loanType,jdbcType=VARCHAR},
+      </if>
+      <if test="shortLoanLimit != null" >
+        #{shortLoanLimit,jdbcType=INTEGER},
+      </if>
+      <if test="loanFrom != null" >
+        #{loanFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="limitUnit != null" >
+        #{limitUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="agentQualification != null" >
+        #{agentQualification,jdbcType=VARCHAR},
+      </if>
+      <if test="legalIdno != null" >
+        #{legalIdno,jdbcType=VARCHAR},
+      </if>
+      <if test="legalIdnoFrontMediaId != null" >
+        #{legalIdnoFrontMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalIdnoBackMediaId != null" >
+        #{legalIdnoBackMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="additionInformationMediaId != null" >
+        #{additionInformationMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherTbOrder != null" >
+        #{whetherTbOrder,jdbcType=CHAR},
+      </if>
+      <if test="tbOrderRatio != null" >
+        #{tbOrderRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="yundaexExplain != null" >
+        #{yundaexExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="otherExplain != null" >
+        #{otherExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="payAccountBankName != null" >
+        #{payAccountBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankProvince != null" >
+        #{bankProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCity != null" >
+        #{bankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="yundaexJudge != null" >
+        #{yundaexJudge,jdbcType=VARCHAR},
+      </if>
+      <if test="stationAddress != null" >
+        #{stationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bailRatio != null" >
+        #{bailRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="gradeState != null" >
+        #{gradeState,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeStateRemarks != null" >
+        #{gradeStateRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="limitInfoRemarks != null" >
+        #{limitInfoRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="applyType != null" >
+        #{applyType,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyFlag != null" >
+        #{notifyFlag,jdbcType=BIT},
+      </if>
+      <if test="auditTime != null" >
+        #{auditTime,jdbcType=VARCHAR},
+      </if>
+      <if test="recandsendGrowthRate != null" >
+        #{recandsendGrowthRate,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.yundaex.dao.po.YundaexCustomerApplyExample" resultType="java.lang.Integer" >
+    select count(*) from yundaex_customer_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update yundaex_customer_apply
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyDate != null" >
+        apply_date = #{record.applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.stationNo != null" >
+        station_no = #{record.stationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stationAmount != null" >
+        station_amount = #{record.stationAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.stationMgr != null" >
+        station_mgr = #{record.stationMgr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stationName != null" >
+        station_name = #{record.stationName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custName != null" >
+        cust_name = #{record.custName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custIdno != null" >
+        cust_idno = #{record.custIdno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custPhone != null" >
+        cust_phone = #{record.custPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custEmail != null" >
+        cust_email = #{record.custEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null" >
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busiLimit != null" >
+        busi_limit = #{record.busiLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.regioncode != null" >
+        regioncode = #{record.regioncode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyCreditLimit != null" >
+        apply_credit_limit = #{record.applyCreditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fundsUse != null" >
+        funds_use = #{record.fundsUse,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanLimit != null" >
+        loan_limit = #{record.loanLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addCredit != null" >
+        add_credit = #{record.addCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repaymentType != null" >
+        repayment_type = #{record.repaymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankAccount != null" >
+        bank_account = #{record.bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankAccountName != null" >
+        bank_account_name = #{record.bankAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankAccountAddress != null" >
+        bank_account_address = #{record.bankAccountAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizationNo != null" >
+        organization_no = #{record.organizationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizationMediaId != null" >
+        organization_media_id = #{record.organizationMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessLicenceNo != null" >
+        business_licence_no = #{record.businessLicenceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessLicenceMediaId != null" >
+        business_licence_media_id = #{record.businessLicenceMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxRegistrationCertificateNo != null" >
+        tax_registration_certificate_no = #{record.taxRegistrationCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxRegistrationCertificateMediaId != null" >
+        tax_registration_certificate_media_id = #{record.taxRegistrationCertificateMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bailBalance != null" >
+        bail_balance = #{record.bailBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.accessManualState != null" >
+        access_manual_state = #{record.accessManualState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manualAuditRemarks != null" >
+        manual_audit_remarks = #{record.manualAuditRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accessAutomaticState != null" >
+        access_automatic_state = #{record.accessAutomaticState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.automaticAuditRemarks != null" >
+        automatic_audit_remarks = #{record.automaticAuditRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditorId != null" >
+        auditor_id = #{record.auditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consistencyCheck != null" >
+        consistency_check = #{record.consistencyCheck,jdbcType=INTEGER},
+      </if>
+      <if test="record.whetherStationInfo != null" >
+        whether_station_info = #{record.whetherStationInfo,jdbcType=CHAR},
+      </if>
+      <if test="record.reasonW != null" >
+        reason_W = #{record.reasonW,jdbcType=VARCHAR},
+      </if>
+      <if test="record.automaticAuditRuleBatchNo != null" >
+        automatic_audit_rule_batch_no = #{record.automaticAuditRuleBatchNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.manualAuditRuleBatchNo != null" >
+        manual_audit_rule_batch_no = #{record.manualAuditRuleBatchNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.creditLimitGenerateState != null" >
+        credit_limit_generate_state = #{record.creditLimitGenerateState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.negativeNetwork != null" >
+        negative_network = #{record.negativeNetwork,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ranchiseContractDeadline != null" >
+        ranchise_contract_deadline = #{record.ranchiseContractDeadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.executeIndividualInfo != null" >
+        execute_individual_info = #{record.executeIndividualInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qualifiedInspectionRecord != null" >
+        qualified_inspection_record = #{record.qualifiedInspectionRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payAccount != null" >
+        pay_account = #{record.payAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payAccountName != null" >
+        pay_account_name = #{record.payAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payAccountAddress != null" >
+        pay_account_address = #{record.payAccountAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lianHangNo != null" >
+        lian_hang_no = #{record.lianHangNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.controller != null" >
+        controller = #{record.controller,jdbcType=VARCHAR},
+      </if>
+      <if test="record.controllerIdno != null" >
+        controller_idno = #{record.controllerIdno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.controllerEmail != null" >
+        controller_email = #{record.controllerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.controllerPhone != null" >
+        controller_phone = #{record.controllerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.controllerOrigin != null" >
+        controller_origin = #{record.controllerOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.controllerIsLegal != null" >
+        controller_is_legal = #{record.controllerIsLegal,jdbcType=CHAR},
+      </if>
+      <if test="record.legalPerson != null" >
+        legal_person = #{record.legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalEmail != null" >
+        legal_email = #{record.legalEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalPhone != null" >
+        legal_phone = #{record.legalPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountOwner != null" >
+        account_owner = #{record.accountOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountOwnerName != null" >
+        account_owner_name = #{record.accountOwnerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountOwnerEmail != null" >
+        account_owner_email = #{record.accountOwnerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountOwnerPhone != null" >
+        account_owner_phone = #{record.accountOwnerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shortLoan != null" >
+        short_loan = #{record.shortLoan,jdbcType=DECIMAL},
+      </if>
+      <if test="record.loanType != null" >
+        loan_type = #{record.loanType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shortLoanLimit != null" >
+        short_loan_limit = #{record.shortLoanLimit,jdbcType=INTEGER},
+      </if>
+      <if test="record.loanFrom != null" >
+        loan_from = #{record.loanFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.limitUnit != null" >
+        limit_unit = #{record.limitUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agentQualification != null" >
+        agent_qualification = #{record.agentQualification,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalIdno != null" >
+        legal_idno = #{record.legalIdno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalIdnoFrontMediaId != null" >
+        legal_idno_front_media_id = #{record.legalIdnoFrontMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalIdnoBackMediaId != null" >
+        legal_idno_back_media_id = #{record.legalIdnoBackMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.additionInformationMediaId != null" >
+        addition_information_media_id = #{record.additionInformationMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whetherTbOrder != null" >
+        whether_tb_order = #{record.whetherTbOrder,jdbcType=CHAR},
+      </if>
+      <if test="record.tbOrderRatio != null" >
+        tb_order_ratio = #{record.tbOrderRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="record.yundaexExplain != null" >
+        yundaex_explain = #{record.yundaexExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherExplain != null" >
+        other_explain = #{record.otherExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payAccountBankName != null" >
+        pay_account_bank_name = #{record.payAccountBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankProvince != null" >
+        bank_province = #{record.bankProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankCity != null" >
+        bank_city = #{record.bankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yundaexJudge != null" >
+        yundaex_judge = #{record.yundaexJudge,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stationAddress != null" >
+        station_address = #{record.stationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bailRatio != null" >
+        bail_ratio = #{record.bailRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="record.gradeState != null" >
+        grade_state = #{record.gradeState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gradeStateRemarks != null" >
+        grade_state_remarks = #{record.gradeStateRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.limitInfoRemarks != null" >
+        limit_info_remarks = #{record.limitInfoRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyType != null" >
+        apply_type = #{record.applyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.notifyFlag != null" >
+        notify_flag = #{record.notifyFlag,jdbcType=BIT},
+      </if>
+      <if test="record.auditTime != null" >
+        audit_time = #{record.auditTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recandsendGrowthRate != null" >
+        recandsend_growth_rate = #{record.recandsendGrowthRate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update yundaex_customer_apply
+    set id = #{record.id,jdbcType=VARCHAR},
+      apply_date = #{record.applyDate,jdbcType=TIMESTAMP},
+      station_no = #{record.stationNo,jdbcType=VARCHAR},
+      station_amount = #{record.stationAmount,jdbcType=INTEGER},
+      station_mgr = #{record.stationMgr,jdbcType=VARCHAR},
+      station_name = #{record.stationName,jdbcType=VARCHAR},
+      cust_name = #{record.custName,jdbcType=VARCHAR},
+      cust_idno = #{record.custIdno,jdbcType=VARCHAR},
+      cust_phone = #{record.custPhone,jdbcType=VARCHAR},
+      cust_email = #{record.custEmail,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      busi_limit = #{record.busiLimit,jdbcType=DECIMAL},
+      regioncode = #{record.regioncode,jdbcType=VARCHAR},
+      apply_credit_limit = #{record.applyCreditLimit,jdbcType=DECIMAL},
+      funds_use = #{record.fundsUse,jdbcType=VARCHAR},
+      loan_limit = #{record.loanLimit,jdbcType=VARCHAR},
+      add_credit = #{record.addCredit,jdbcType=VARCHAR},
+      repayment_type = #{record.repaymentType,jdbcType=VARCHAR},
+      bank_account = #{record.bankAccount,jdbcType=VARCHAR},
+      bank_account_name = #{record.bankAccountName,jdbcType=VARCHAR},
+      bank_account_address = #{record.bankAccountAddress,jdbcType=VARCHAR},
+      organization_no = #{record.organizationNo,jdbcType=VARCHAR},
+      organization_media_id = #{record.organizationMediaId,jdbcType=VARCHAR},
+      business_licence_no = #{record.businessLicenceNo,jdbcType=VARCHAR},
+      business_licence_media_id = #{record.businessLicenceMediaId,jdbcType=VARCHAR},
+      tax_registration_certificate_no = #{record.taxRegistrationCertificateNo,jdbcType=VARCHAR},
+      tax_registration_certificate_media_id = #{record.taxRegistrationCertificateMediaId,jdbcType=VARCHAR},
+      bail_balance = #{record.bailBalance,jdbcType=DECIMAL},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      access_manual_state = #{record.accessManualState,jdbcType=VARCHAR},
+      manual_audit_remarks = #{record.manualAuditRemarks,jdbcType=VARCHAR},
+      access_automatic_state = #{record.accessAutomaticState,jdbcType=VARCHAR},
+      automatic_audit_remarks = #{record.automaticAuditRemarks,jdbcType=VARCHAR},
+      auditor_id = #{record.auditorId,jdbcType=VARCHAR},
+      consistency_check = #{record.consistencyCheck,jdbcType=INTEGER},
+      whether_station_info = #{record.whetherStationInfo,jdbcType=CHAR},
+      reason_W = #{record.reasonW,jdbcType=VARCHAR},
+      automatic_audit_rule_batch_no = #{record.automaticAuditRuleBatchNo,jdbcType=INTEGER},
+      manual_audit_rule_batch_no = #{record.manualAuditRuleBatchNo,jdbcType=INTEGER},
+      credit_limit_generate_state = #{record.creditLimitGenerateState,jdbcType=VARCHAR},
+      negative_network = #{record.negativeNetwork,jdbcType=VARCHAR},
+      ranchise_contract_deadline = #{record.ranchiseContractDeadline,jdbcType=TIMESTAMP},
+      execute_individual_info = #{record.executeIndividualInfo,jdbcType=VARCHAR},
+      qualified_inspection_record = #{record.qualifiedInspectionRecord,jdbcType=VARCHAR},
+      pay_account = #{record.payAccount,jdbcType=VARCHAR},
+      pay_account_name = #{record.payAccountName,jdbcType=VARCHAR},
+      pay_account_address = #{record.payAccountAddress,jdbcType=VARCHAR},
+      lian_hang_no = #{record.lianHangNo,jdbcType=VARCHAR},
+      controller = #{record.controller,jdbcType=VARCHAR},
+      controller_idno = #{record.controllerIdno,jdbcType=VARCHAR},
+      controller_email = #{record.controllerEmail,jdbcType=VARCHAR},
+      controller_phone = #{record.controllerPhone,jdbcType=VARCHAR},
+      controller_origin = #{record.controllerOrigin,jdbcType=VARCHAR},
+      controller_is_legal = #{record.controllerIsLegal,jdbcType=CHAR},
+      legal_person = #{record.legalPerson,jdbcType=VARCHAR},
+      legal_email = #{record.legalEmail,jdbcType=VARCHAR},
+      legal_phone = #{record.legalPhone,jdbcType=VARCHAR},
+      account_owner = #{record.accountOwner,jdbcType=VARCHAR},
+      account_owner_name = #{record.accountOwnerName,jdbcType=VARCHAR},
+      account_owner_email = #{record.accountOwnerEmail,jdbcType=VARCHAR},
+      account_owner_phone = #{record.accountOwnerPhone,jdbcType=VARCHAR},
+      short_loan = #{record.shortLoan,jdbcType=DECIMAL},
+      loan_type = #{record.loanType,jdbcType=VARCHAR},
+      short_loan_limit = #{record.shortLoanLimit,jdbcType=INTEGER},
+      loan_from = #{record.loanFrom,jdbcType=VARCHAR},
+      limit_unit = #{record.limitUnit,jdbcType=VARCHAR},
+      agent_qualification = #{record.agentQualification,jdbcType=VARCHAR},
+      legal_idno = #{record.legalIdno,jdbcType=VARCHAR},
+      legal_idno_front_media_id = #{record.legalIdnoFrontMediaId,jdbcType=VARCHAR},
+      legal_idno_back_media_id = #{record.legalIdnoBackMediaId,jdbcType=VARCHAR},
+      addition_information_media_id = #{record.additionInformationMediaId,jdbcType=VARCHAR},
+      whether_tb_order = #{record.whetherTbOrder,jdbcType=CHAR},
+      tb_order_ratio = #{record.tbOrderRatio,jdbcType=DECIMAL},
+      yundaex_explain = #{record.yundaexExplain,jdbcType=VARCHAR},
+      other_explain = #{record.otherExplain,jdbcType=VARCHAR},
+      pay_account_bank_name = #{record.payAccountBankName,jdbcType=VARCHAR},
+      bank_province = #{record.bankProvince,jdbcType=VARCHAR},
+      bank_city = #{record.bankCity,jdbcType=VARCHAR},
+      yundaex_judge = #{record.yundaexJudge,jdbcType=VARCHAR},
+      station_address = #{record.stationAddress,jdbcType=VARCHAR},
+      bail_ratio = #{record.bailRatio,jdbcType=DECIMAL},
+      grade_state = #{record.gradeState,jdbcType=VARCHAR},
+      grade_state_remarks = #{record.gradeStateRemarks,jdbcType=VARCHAR},
+      limit_info_remarks = #{record.limitInfoRemarks,jdbcType=VARCHAR},
+      apply_type = #{record.applyType,jdbcType=VARCHAR},
+      notify_flag = #{record.notifyFlag,jdbcType=BIT},
+      audit_time = #{record.auditTime,jdbcType=VARCHAR},
+      recandsend_growth_rate = #{record.recandsendGrowthRate,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.yundaex.dao.po.YundaexCustomerApply" >
+    update yundaex_customer_apply
+    <set >
+      <if test="applyDate != null" >
+        apply_date = #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stationNo != null" >
+        station_no = #{stationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="stationAmount != null" >
+        station_amount = #{stationAmount,jdbcType=INTEGER},
+      </if>
+      <if test="stationMgr != null" >
+        station_mgr = #{stationMgr,jdbcType=VARCHAR},
+      </if>
+      <if test="stationName != null" >
+        station_name = #{stationName,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null" >
+        cust_name = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="custIdno != null" >
+        cust_idno = #{custIdno,jdbcType=VARCHAR},
+      </if>
+      <if test="custPhone != null" >
+        cust_phone = #{custPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="custEmail != null" >
+        cust_email = #{custEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="busiLimit != null" >
+        busi_limit = #{busiLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="regioncode != null" >
+        regioncode = #{regioncode,jdbcType=VARCHAR},
+      </if>
+      <if test="applyCreditLimit != null" >
+        apply_credit_limit = #{applyCreditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="fundsUse != null" >
+        funds_use = #{fundsUse,jdbcType=VARCHAR},
+      </if>
+      <if test="loanLimit != null" >
+        loan_limit = #{loanLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="addCredit != null" >
+        add_credit = #{addCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentType != null" >
+        repayment_type = #{repaymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+        bank_account = #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountName != null" >
+        bank_account_name = #{bankAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountAddress != null" >
+        bank_account_address = #{bankAccountAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationNo != null" >
+        organization_no = #{organizationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationMediaId != null" >
+        organization_media_id = #{organizationMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceNo != null" >
+        business_licence_no = #{businessLicenceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceMediaId != null" >
+        business_licence_media_id = #{businessLicenceMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationCertificateNo != null" >
+        tax_registration_certificate_no = #{taxRegistrationCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationCertificateMediaId != null" >
+        tax_registration_certificate_media_id = #{taxRegistrationCertificateMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="bailBalance != null" >
+        bail_balance = #{bailBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accessManualState != null" >
+        access_manual_state = #{accessManualState,jdbcType=VARCHAR},
+      </if>
+      <if test="manualAuditRemarks != null" >
+        manual_audit_remarks = #{manualAuditRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="accessAutomaticState != null" >
+        access_automatic_state = #{accessAutomaticState,jdbcType=VARCHAR},
+      </if>
+      <if test="automaticAuditRemarks != null" >
+        automatic_audit_remarks = #{automaticAuditRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="auditorId != null" >
+        auditor_id = #{auditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="consistencyCheck != null" >
+        consistency_check = #{consistencyCheck,jdbcType=INTEGER},
+      </if>
+      <if test="whetherStationInfo != null" >
+        whether_station_info = #{whetherStationInfo,jdbcType=CHAR},
+      </if>
+      <if test="reasonW != null" >
+        reason_W = #{reasonW,jdbcType=VARCHAR},
+      </if>
+      <if test="automaticAuditRuleBatchNo != null" >
+        automatic_audit_rule_batch_no = #{automaticAuditRuleBatchNo,jdbcType=INTEGER},
+      </if>
+      <if test="manualAuditRuleBatchNo != null" >
+        manual_audit_rule_batch_no = #{manualAuditRuleBatchNo,jdbcType=INTEGER},
+      </if>
+      <if test="creditLimitGenerateState != null" >
+        credit_limit_generate_state = #{creditLimitGenerateState,jdbcType=VARCHAR},
+      </if>
+      <if test="negativeNetwork != null" >
+        negative_network = #{negativeNetwork,jdbcType=VARCHAR},
+      </if>
+      <if test="ranchiseContractDeadline != null" >
+        ranchise_contract_deadline = #{ranchiseContractDeadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="executeIndividualInfo != null" >
+        execute_individual_info = #{executeIndividualInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="qualifiedInspectionRecord != null" >
+        qualified_inspection_record = #{qualifiedInspectionRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="payAccount != null" >
+        pay_account = #{payAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="payAccountName != null" >
+        pay_account_name = #{payAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="payAccountAddress != null" >
+        pay_account_address = #{payAccountAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="lianHangNo != null" >
+        lian_hang_no = #{lianHangNo,jdbcType=VARCHAR},
+      </if>
+      <if test="controller != null" >
+        controller = #{controller,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerIdno != null" >
+        controller_idno = #{controllerIdno,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerEmail != null" >
+        controller_email = #{controllerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerPhone != null" >
+        controller_phone = #{controllerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerOrigin != null" >
+        controller_origin = #{controllerOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerIsLegal != null" >
+        controller_is_legal = #{controllerIsLegal,jdbcType=CHAR},
+      </if>
+      <if test="legalPerson != null" >
+        legal_person = #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="legalEmail != null" >
+        legal_email = #{legalEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPhone != null" >
+        legal_phone = #{legalPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="accountOwner != null" >
+        account_owner = #{accountOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="accountOwnerName != null" >
+        account_owner_name = #{accountOwnerName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountOwnerEmail != null" >
+        account_owner_email = #{accountOwnerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="accountOwnerPhone != null" >
+        account_owner_phone = #{accountOwnerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="shortLoan != null" >
+        short_loan = #{shortLoan,jdbcType=DECIMAL},
+      </if>
+      <if test="loanType != null" >
+        loan_type = #{loanType,jdbcType=VARCHAR},
+      </if>
+      <if test="shortLoanLimit != null" >
+        short_loan_limit = #{shortLoanLimit,jdbcType=INTEGER},
+      </if>
+      <if test="loanFrom != null" >
+        loan_from = #{loanFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="limitUnit != null" >
+        limit_unit = #{limitUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="agentQualification != null" >
+        agent_qualification = #{agentQualification,jdbcType=VARCHAR},
+      </if>
+      <if test="legalIdno != null" >
+        legal_idno = #{legalIdno,jdbcType=VARCHAR},
+      </if>
+      <if test="legalIdnoFrontMediaId != null" >
+        legal_idno_front_media_id = #{legalIdnoFrontMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalIdnoBackMediaId != null" >
+        legal_idno_back_media_id = #{legalIdnoBackMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="additionInformationMediaId != null" >
+        addition_information_media_id = #{additionInformationMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherTbOrder != null" >
+        whether_tb_order = #{whetherTbOrder,jdbcType=CHAR},
+      </if>
+      <if test="tbOrderRatio != null" >
+        tb_order_ratio = #{tbOrderRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="yundaexExplain != null" >
+        yundaex_explain = #{yundaexExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="otherExplain != null" >
+        other_explain = #{otherExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="payAccountBankName != null" >
+        pay_account_bank_name = #{payAccountBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankProvince != null" >
+        bank_province = #{bankProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCity != null" >
+        bank_city = #{bankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="yundaexJudge != null" >
+        yundaex_judge = #{yundaexJudge,jdbcType=VARCHAR},
+      </if>
+      <if test="stationAddress != null" >
+        station_address = #{stationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bailRatio != null" >
+        bail_ratio = #{bailRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="gradeState != null" >
+        grade_state = #{gradeState,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeStateRemarks != null" >
+        grade_state_remarks = #{gradeStateRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="limitInfoRemarks != null" >
+        limit_info_remarks = #{limitInfoRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="applyType != null" >
+        apply_type = #{applyType,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyFlag != null" >
+        notify_flag = #{notifyFlag,jdbcType=BIT},
+      </if>
+      <if test="auditTime != null" >
+        audit_time = #{auditTime,jdbcType=VARCHAR},
+      </if>
+      <if test="recandsendGrowthRate != null" >
+        recandsend_growth_rate = #{recandsendGrowthRate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.yundaex.dao.po.YundaexCustomerApply" >
+    update yundaex_customer_apply
+    set apply_date = #{applyDate,jdbcType=TIMESTAMP},
+      station_no = #{stationNo,jdbcType=VARCHAR},
+      station_amount = #{stationAmount,jdbcType=INTEGER},
+      station_mgr = #{stationMgr,jdbcType=VARCHAR},
+      station_name = #{stationName,jdbcType=VARCHAR},
+      cust_name = #{custName,jdbcType=VARCHAR},
+      cust_idno = #{custIdno,jdbcType=VARCHAR},
+      cust_phone = #{custPhone,jdbcType=VARCHAR},
+      cust_email = #{custEmail,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      busi_limit = #{busiLimit,jdbcType=DECIMAL},
+      regioncode = #{regioncode,jdbcType=VARCHAR},
+      apply_credit_limit = #{applyCreditLimit,jdbcType=DECIMAL},
+      funds_use = #{fundsUse,jdbcType=VARCHAR},
+      loan_limit = #{loanLimit,jdbcType=VARCHAR},
+      add_credit = #{addCredit,jdbcType=VARCHAR},
+      repayment_type = #{repaymentType,jdbcType=VARCHAR},
+      bank_account = #{bankAccount,jdbcType=VARCHAR},
+      bank_account_name = #{bankAccountName,jdbcType=VARCHAR},
+      bank_account_address = #{bankAccountAddress,jdbcType=VARCHAR},
+      organization_no = #{organizationNo,jdbcType=VARCHAR},
+      organization_media_id = #{organizationMediaId,jdbcType=VARCHAR},
+      business_licence_no = #{businessLicenceNo,jdbcType=VARCHAR},
+      business_licence_media_id = #{businessLicenceMediaId,jdbcType=VARCHAR},
+      tax_registration_certificate_no = #{taxRegistrationCertificateNo,jdbcType=VARCHAR},
+      tax_registration_certificate_media_id = #{taxRegistrationCertificateMediaId,jdbcType=VARCHAR},
+      bail_balance = #{bailBalance,jdbcType=DECIMAL},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      access_manual_state = #{accessManualState,jdbcType=VARCHAR},
+      manual_audit_remarks = #{manualAuditRemarks,jdbcType=VARCHAR},
+      access_automatic_state = #{accessAutomaticState,jdbcType=VARCHAR},
+      automatic_audit_remarks = #{automaticAuditRemarks,jdbcType=VARCHAR},
+      auditor_id = #{auditorId,jdbcType=VARCHAR},
+      consistency_check = #{consistencyCheck,jdbcType=INTEGER},
+      whether_station_info = #{whetherStationInfo,jdbcType=CHAR},
+      reason_W = #{reasonW,jdbcType=VARCHAR},
+      automatic_audit_rule_batch_no = #{automaticAuditRuleBatchNo,jdbcType=INTEGER},
+      manual_audit_rule_batch_no = #{manualAuditRuleBatchNo,jdbcType=INTEGER},
+      credit_limit_generate_state = #{creditLimitGenerateState,jdbcType=VARCHAR},
+      negative_network = #{negativeNetwork,jdbcType=VARCHAR},
+      ranchise_contract_deadline = #{ranchiseContractDeadline,jdbcType=TIMESTAMP},
+      execute_individual_info = #{executeIndividualInfo,jdbcType=VARCHAR},
+      qualified_inspection_record = #{qualifiedInspectionRecord,jdbcType=VARCHAR},
+      pay_account = #{payAccount,jdbcType=VARCHAR},
+      pay_account_name = #{payAccountName,jdbcType=VARCHAR},
+      pay_account_address = #{payAccountAddress,jdbcType=VARCHAR},
+      lian_hang_no = #{lianHangNo,jdbcType=VARCHAR},
+      controller = #{controller,jdbcType=VARCHAR},
+      controller_idno = #{controllerIdno,jdbcType=VARCHAR},
+      controller_email = #{controllerEmail,jdbcType=VARCHAR},
+      controller_phone = #{controllerPhone,jdbcType=VARCHAR},
+      controller_origin = #{controllerOrigin,jdbcType=VARCHAR},
+      controller_is_legal = #{controllerIsLegal,jdbcType=CHAR},
+      legal_person = #{legalPerson,jdbcType=VARCHAR},
+      legal_email = #{legalEmail,jdbcType=VARCHAR},
+      legal_phone = #{legalPhone,jdbcType=VARCHAR},
+      account_owner = #{accountOwner,jdbcType=VARCHAR},
+      account_owner_name = #{accountOwnerName,jdbcType=VARCHAR},
+      account_owner_email = #{accountOwnerEmail,jdbcType=VARCHAR},
+      account_owner_phone = #{accountOwnerPhone,jdbcType=VARCHAR},
+      short_loan = #{shortLoan,jdbcType=DECIMAL},
+      loan_type = #{loanType,jdbcType=VARCHAR},
+      short_loan_limit = #{shortLoanLimit,jdbcType=INTEGER},
+      loan_from = #{loanFrom,jdbcType=VARCHAR},
+      limit_unit = #{limitUnit,jdbcType=VARCHAR},
+      agent_qualification = #{agentQualification,jdbcType=VARCHAR},
+      legal_idno = #{legalIdno,jdbcType=VARCHAR},
+      legal_idno_front_media_id = #{legalIdnoFrontMediaId,jdbcType=VARCHAR},
+      legal_idno_back_media_id = #{legalIdnoBackMediaId,jdbcType=VARCHAR},
+      addition_information_media_id = #{additionInformationMediaId,jdbcType=VARCHAR},
+      whether_tb_order = #{whetherTbOrder,jdbcType=CHAR},
+      tb_order_ratio = #{tbOrderRatio,jdbcType=DECIMAL},
+      yundaex_explain = #{yundaexExplain,jdbcType=VARCHAR},
+      other_explain = #{otherExplain,jdbcType=VARCHAR},
+      pay_account_bank_name = #{payAccountBankName,jdbcType=VARCHAR},
+      bank_province = #{bankProvince,jdbcType=VARCHAR},
+      bank_city = #{bankCity,jdbcType=VARCHAR},
+      yundaex_judge = #{yundaexJudge,jdbcType=VARCHAR},
+      station_address = #{stationAddress,jdbcType=VARCHAR},
+      bail_ratio = #{bailRatio,jdbcType=DECIMAL},
+      grade_state = #{gradeState,jdbcType=VARCHAR},
+      grade_state_remarks = #{gradeStateRemarks,jdbcType=VARCHAR},
+      limit_info_remarks = #{limitInfoRemarks,jdbcType=VARCHAR},
+      apply_type = #{applyType,jdbcType=VARCHAR},
+      notify_flag = #{notifyFlag,jdbcType=BIT},
+      audit_time = #{auditTime,jdbcType=VARCHAR},
+      recandsend_growth_rate = #{recandsendGrowthRate,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

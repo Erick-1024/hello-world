@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ - Copyright 1999-2011 Alibaba Group.
+ -
+ - Licensed under the Apache License, Version 2.0 (the "License");
+ - you may not use this file except in compliance with the License.
+ - You may obtain a copy of the License at
+ -
+ -      http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+						   http://code.alibabatech.com/schema/dubbo         http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<bean class="com.travelzen.framework.config.tops.TzPropertyPlaceholderConfigurer">
+        <property name="tzProperties">
+            <list>
+                <value>R:properties/zkService.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <dubbo:application name="${APP_NAME}" owner="shui.ren"/>
+    
+    <dubbo:registry protocol="zookeeper" address="${connectionString}"
+    	group="${dubboRegistryPath}" file="${user.home}/.dubbo/cache/${APP_NAME}.cache"/>
+    
+    <!-- dubbo的缺省超时时间是1秒，缺省重试为2次，check表示启动时检查提供者是否存在，true报错，false忽略-->
+    <dubbo:consumer timeout="60000" retries="0" check="false" />
+
+    <!--生成远程对象的本地存根，每个接口的超时时间需要根据该接口的复杂情况来设置，默认为 dubbo:consumer 的timeout -->
+    <dubbo:reference id="sayHello" interface="com.cana.member.api.ISayHello"/>
+    
+    <dubbo:reference id="testCenterApi" interface="com.cana.member.api.ITestCenterApi"/>
+    
+    <dubbo:reference id="userApiImpl" interface="com.cana.member.api.IUserApi"/>
+    
+    <dubbo:reference id="permissionApiImpl" interface="com.cana.member.api.IPermissionApi"/>
+	
+	<dubbo:reference id="roleApiImpl" interface="com.cana.member.api.IRoleApi"></dubbo:reference>
+	
+	<!-- Account -->
+	<dubbo:reference id="accountApiImpl" interface="com.cana.account.api.IAccountApi"></dubbo:reference>
+	<!-- Message -->
+	<dubbo:reference id="notificationApiImpl" interface="com.cana.message.api.INotificationApi"></dubbo:reference>
+	
+	<!-- Repayment -->
+	<dubbo:reference id="loanInfoApiImpl" interface="com.cana.repayment.api.ILoanInfoApi"></dubbo:reference>
+	<dubbo:reference id="repaymentApiApiImpl" interface="com.cana.repayment.api.IRepaymentPlanApi"></dubbo:reference>
+	<dubbo:reference id="repaymentPlanAdjustmentApi" interface="com.cana.repayment.api.IRepaymentPlanAdjustmentApi"></dubbo:reference>
+	<dubbo:reference id="RepaymentRuleApiImpl" interface="com.cana.repayment.api.IRepaymentRuleApi"></dubbo:reference>
+	<dubbo:reference id="FinanceReportApiImpl" interface="com.cana.repayment.api.IFinanceReportApi"></dubbo:reference>
+	<dubbo:reference id="creditApiImpl" interface="com.cana.credit.api.ICreditApi"></dubbo:reference>
+	<dubbo:reference id="activeRepaymentApiImpl" interface="com.cana.repayment.api.IActiveRepaymentApi"></dubbo:reference>
+	<dubbo:reference id="repaymentCalcApi" interface="com.cana.repayment.api.IRepaymentCalcApi"></dubbo:reference>
+	
+	<!-- Report -->
+	<dubbo:reference id="reportApi" interface="com.cana.report.api.IReportApi"></dubbo:reference>
+	<dubbo:reference id="flightFinanceApi" interface="com.cana.flight.finance.api.IFlightFinanceApi"></dubbo:reference>
+	
+	<!-- asset  url = "dubbo://127.0.0.1:20766" -->
+	<dubbo:reference id="assetApi" interface="com.cana.asset.api.IAssetApi"></dubbo:reference>
+	<dubbo:reference id="assetFactorBusinessApiImpl" interface="com.cana.asset.api.IAssetFactorBusinessApi"></dubbo:reference>
+	<dubbo:reference id="assetInvApiImpl" interface="com.cana.asset.api.IAssetInvApi"></dubbo:reference>
+	<dubbo:reference id="assetLoanInfoApiImpl" interface="com.cana.asset.api.IAssetLoanInfoApi"></dubbo:reference>
+	<dubbo:reference id="assetSpecialProgramApi" interface="com.cana.asset.api.IABSSpecialProgramApi"></dubbo:reference>
+	<dubbo:reference id="assetPoolApi" interface="com.cana.asset.api.IAssetPoolApi"></dubbo:reference>
+	
+	<!-- yundaex  url = "dubbo://127.0.0.1:20799"-->
+	<dubbo:reference id="yundaexCreditApiImpl" interface="com.cana.yundaex.api.IYundaexCreditApi"></dubbo:reference>
+	<dubbo:reference id="yundaexAuditApiImpl" interface="com.cana.yundaex.api.IYundaexAuditApi"></dubbo:reference>
+	<dubbo:reference id="yundaPersonalInfoImpl" interface="com.cana.yundaex.api.IYundaexPersonalInfoApi"></dubbo:reference>
+	<dubbo:reference id="yundaContractImpl" interface="com.cana.yundaex.api.IYundaexContractSituationApi"></dubbo:reference>
+	<dubbo:reference id="yundaexloanApplyApiImpl" interface="com.cana.yundaex.api.IYundaexLoanApplyApi"></dubbo:reference>
+	<dubbo:reference id="yundaexLoanInfoApiImpl" interface="com.cana.yundaex.api.IYundaexLoanInfoApi"></dubbo:reference>
+	<dubbo:reference id="yundaexInterstRateApiImpl" interface="com.cana.yundaex.api.IYundaexInterstRateApi"></dubbo:reference>
+	<dubbo:reference id="yundaexLineImportApiImpl" interface="com.cana.yundaex.api.IYundaexLineImportApi"></dubbo:reference>
+	<dubbo:reference id="yundaexMonitorApiImpl" interface="com.cana.yundaex.api.IYundaexMonitorApi"></dubbo:reference>
+	<!--项目管理接口-->
+	<dubbo:reference id="assetProjectManageApi" interface="com.cana.asset.api.IAssetProjectManageApi"></dubbo:reference>
+	
+	<!--客户信息接口-->
+	<dubbo:reference id="assetCustomerApi" interface="com.cana.asset.api.IAssetCustomerApi"></dubbo:reference>
+	
+	<!--mumber接口  -->
+	<dubbo:reference id="memberQueryApi" interface="com.cana.member.api.IMemberQueryApi" ></dubbo:reference>
+	
+<!-- signature -->
+	<dubbo:reference id="certApplyApi" interface="com.cana.signature.api.ICertApplyApi"></dubbo:reference>
+	<dubbo:reference id="signatureApi" interface="com.cana.signature.api.ISignatureApi"></dubbo:reference>
+	<!-- earlywarning -->
+	<dubbo:reference id="earlyWarningApiImpl" interface="com.cana.early.warning.api.IEarlyWarningApi"></dubbo:reference>
+	<dubbo:reference id="yundaexEarlyWarningApiImpl" interface="com.cana.early.warning.api.IYundaexEarlyWarningApi"></dubbo:reference>
+	<!-- vj -->
+	<dubbo:reference id="vjApi" interface="com.cana.vj.api.IVJApi"></dubbo:reference>
+	
+	<!-- 企业信息 -->
+	<dubbo:reference id="enterpriseInfoApi" interface="com.cana.asset.api.IAssetEnterpriseInfoApi"></dubbo:reference>
+	<!-- 额度管理 -->
+	<dubbo:reference id="assetCreditApi" interface="com.cana.asset.api.IAssetCreditApi"></dubbo:reference>
+	<!-- 数据权限管理 -->
+	<dubbo:reference id="assetUserPrivilegeApi" interface="com.cana.asset.api.IAssetUserPrivilegeApi"></dubbo:reference>
+	
+	<!-- ABS -->
+	<dubbo:reference id="aBSSpecialProgramApi" interface="com.cana.asset.api.IABSSpecialProgramApi"></dubbo:reference>
+	<dubbo:reference id="underlyingAssetApi" interface="com.cana.asset.api.IABSUnderlyingAssetApi"></dubbo:reference>
+	<dubbo:reference id="underlyingAssetSearchImpl" interface="com.cana.asset.api.IABSUnderlyingAssetSearchApi"></dubbo:reference>
+	<dubbo:reference id="assetArchivesManagementApiImpl" interface="com.cana.asset.api.IAssetArchivesManagementApi"></dubbo:reference>
+	<dubbo:reference id="absMarketResearchApiImpl" interface="com.cana.asset.api.IABSMarketResearchApi"></dubbo:reference>
+	
+	<!-- 管理日志 -->
+	<dubbo:reference id="absLogApiImpl" interface="com.cana.asset.api.IABSLogApi"></dubbo:reference>
+	
+	<!-- 恒顺国旅 -->
+	<dubbo:reference id="homsomApiImpl" interface="com.cana.asset.api.IHomsomApi"></dubbo:reference>
+	<dubbo:reference id="homsomSettlementApiImpl" interface="com.cana.asset.api.IHomsomSettlementApi"></dubbo:reference>
+	
+	<!-- 设置 -->
+	<dubbo:reference id="settingApiImpl" interface="com.cana.setting.api.ISettingApi"></dubbo:reference>
+	
+    <!--此处的每个方法的并发度数值，需要根据部署节点的情况来分配-->
+    <!-- <dubbo:monitor protocol="registry"/> -->
+</beans>

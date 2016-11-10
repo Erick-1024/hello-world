@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<!-- 驱动程序 -->
+	<classPathEntry
+		location="/home/zhaobinjie/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.24/a7d599d73b86a928303909b9be7573a4ea0ed28e/mysql-connector-java-5.1.24.jar" />
+
+	<context id="context2" targetRuntime="MyBatis3">
+	
+
+  
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+		<plugin type="org.mybatis.generator.plugins.PaginationPlugin4MySQL"></plugin>
+		<plugin type="org.mybatis.generator.plugins.GeneratedXmlFileOverwritePlugin"></plugin>
+		<plugin type="org.mybatis.generator.plugins.GenerateDBCommentPlugin"></plugin>
+
+		<commentGenerator >
+			<!-- 是否取消注释 -->
+			<property name="suppressAllComments" value="true"/>
+    		<property name="suppressDate" value="true"/>
+		</commentGenerator>
+		
+
+		
+    	
+		<!-- 数据库链接 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://10.3.21.145:3306/vbam" userId="root"
+			password="Abc12345" />
+			
+		<javaTypeResolver>
+	    	<property name="forceBigDecimals" value="false" />
+    	</javaTypeResolver>
+
+		<!-- java entity生成位置 -->
+		<javaModelGenerator targetPackage="com.travelzen.framework.retry.dao.po"
+			targetProject="/home/zhaobinjie/code/cana/framework/framework-retry/src/main/java">
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- mapper xml配置文件生成位置 -->
+		<sqlMapGenerator targetPackage="mybatis.mapper.gen"
+			targetProject="/home/zhaobinjie/code/cana/framework/framework-retry/src/main/resources">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<!-- mapper 接口生成位置 -->
+		<javaClientGenerator targetPackage="com.travelzen.framework.retry.dao.mapper.gen"
+			targetProject="/home/zhaobinjie/code/cana/framework/framework-retry/src/main/java"
+			type="XMLMAPPER">
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+
+		<!-- 表以及关系配置 -->
+        <table tableName="common_retry_task" domainObjectName="RetryTask" />
+	</context>
+</generatorConfiguration>

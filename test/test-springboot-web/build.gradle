@@ -1,0 +1,25 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.0.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+dependencies {
+	compile libraries.dubbo2
+	compile libraries.zkclient
+	compile project(':test:test-springboot-api')
+	compile('org.springframework.boot:spring-boot-starter')
+	testCompile("org.springframework.boot:spring-boot-starter-test")
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile ('org.springframework.boot:spring-boot-starter-actuator')
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+}

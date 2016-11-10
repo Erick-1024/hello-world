@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.repayment.dao.mapper.gen.RepaymentPenaltyProductDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.repayment.dao.po.RepaymentPenaltyProductDetail" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="summary_id" property="summaryId" jdbcType="VARCHAR" />
+    <result column="repayment_plan_id" property="repaymentPlanId" jdbcType="VARCHAR" />
+    <result column="loan_info_id" property="loanInfoId" jdbcType="VARCHAR" />
+    <result column="plus_principal_penalty" property="plusPrincipalPenalty" jdbcType="DECIMAL" />
+    <result column="plus_interest_penalty" property="plusInterestPenalty" jdbcType="DECIMAL" />
+    <result column="plus_service_charge_penalty" property="plusServiceChargePenalty" jdbcType="DECIMAL" />
+    <result column="overdue_principal" property="overduePrincipal" jdbcType="DECIMAL" />
+    <result column="overdue_interest" property="overdueInterest" jdbcType="DECIMAL" />
+    <result column="overdue_service_charge" property="overdueServiceCharge" jdbcType="DECIMAL" />
+    <result column="penalty_rate" property="penaltyRate" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="date" property="date" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, summary_id, repayment_plan_id, loan_info_id, plus_principal_penalty, plus_interest_penalty, 
+    plus_service_charge_penalty, overdue_principal, overdue_interest, overdue_service_charge, 
+    penalty_rate, create_time, update_time, date
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.repayment.dao.po.RepaymentPenaltyProductDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from repayment_penalty_product_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from repayment_penalty_product_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from repayment_penalty_product_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.repayment.dao.po.RepaymentPenaltyProductDetailExample" >
+    delete from repayment_penalty_product_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.repayment.dao.po.RepaymentPenaltyProductDetail" >
+    insert into repayment_penalty_product_detail (id, summary_id, repayment_plan_id, 
+      loan_info_id, plus_principal_penalty, plus_interest_penalty, 
+      plus_service_charge_penalty, overdue_principal, 
+      overdue_interest, overdue_service_charge, 
+      penalty_rate, create_time, update_time, 
+      date)
+    values (#{id,jdbcType=VARCHAR}, #{summaryId,jdbcType=VARCHAR}, #{repaymentPlanId,jdbcType=VARCHAR}, 
+      #{loanInfoId,jdbcType=VARCHAR}, #{plusPrincipalPenalty,jdbcType=DECIMAL}, #{plusInterestPenalty,jdbcType=DECIMAL}, 
+      #{plusServiceChargePenalty,jdbcType=DECIMAL}, #{overduePrincipal,jdbcType=DECIMAL}, 
+      #{overdueInterest,jdbcType=DECIMAL}, #{overdueServiceCharge,jdbcType=DECIMAL}, 
+      #{penaltyRate,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{date,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.repayment.dao.po.RepaymentPenaltyProductDetail" >
+    insert into repayment_penalty_product_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="summaryId != null" >
+        summary_id,
+      </if>
+      <if test="repaymentPlanId != null" >
+        repayment_plan_id,
+      </if>
+      <if test="loanInfoId != null" >
+        loan_info_id,
+      </if>
+      <if test="plusPrincipalPenalty != null" >
+        plus_principal_penalty,
+      </if>
+      <if test="plusInterestPenalty != null" >
+        plus_interest_penalty,
+      </if>
+      <if test="plusServiceChargePenalty != null" >
+        plus_service_charge_penalty,
+      </if>
+      <if test="overduePrincipal != null" >
+        overdue_principal,
+      </if>
+      <if test="overdueInterest != null" >
+        overdue_interest,
+      </if>
+      <if test="overdueServiceCharge != null" >
+        overdue_service_charge,
+      </if>
+      <if test="penaltyRate != null" >
+        penalty_rate,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryId != null" >
+        #{summaryId,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentPlanId != null" >
+        #{repaymentPlanId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanInfoId != null" >
+        #{loanInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="plusPrincipalPenalty != null" >
+        #{plusPrincipalPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="plusInterestPenalty != null" >
+        #{plusInterestPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="plusServiceChargePenalty != null" >
+        #{plusServiceChargePenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="overduePrincipal != null" >
+        #{overduePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueInterest != null" >
+        #{overdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueServiceCharge != null" >
+        #{overdueServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="penaltyRate != null" >
+        #{penaltyRate,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.repayment.dao.po.RepaymentPenaltyProductDetailExample" resultType="java.lang.Integer" >
+    select count(*) from repayment_penalty_product_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update repayment_penalty_product_detail
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.summaryId != null" >
+        summary_id = #{record.summaryId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repaymentPlanId != null" >
+        repayment_plan_id = #{record.repaymentPlanId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanInfoId != null" >
+        loan_info_id = #{record.loanInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plusPrincipalPenalty != null" >
+        plus_principal_penalty = #{record.plusPrincipalPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.plusInterestPenalty != null" >
+        plus_interest_penalty = #{record.plusInterestPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.plusServiceChargePenalty != null" >
+        plus_service_charge_penalty = #{record.plusServiceChargePenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.overduePrincipal != null" >
+        overdue_principal = #{record.overduePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="record.overdueInterest != null" >
+        overdue_interest = #{record.overdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="record.overdueServiceCharge != null" >
+        overdue_service_charge = #{record.overdueServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.penaltyRate != null" >
+        penalty_rate = #{record.penaltyRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.date != null" >
+        date = #{record.date,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update repayment_penalty_product_detail
+    set id = #{record.id,jdbcType=VARCHAR},
+      summary_id = #{record.summaryId,jdbcType=VARCHAR},
+      repayment_plan_id = #{record.repaymentPlanId,jdbcType=VARCHAR},
+      loan_info_id = #{record.loanInfoId,jdbcType=VARCHAR},
+      plus_principal_penalty = #{record.plusPrincipalPenalty,jdbcType=DECIMAL},
+      plus_interest_penalty = #{record.plusInterestPenalty,jdbcType=DECIMAL},
+      plus_service_charge_penalty = #{record.plusServiceChargePenalty,jdbcType=DECIMAL},
+      overdue_principal = #{record.overduePrincipal,jdbcType=DECIMAL},
+      overdue_interest = #{record.overdueInterest,jdbcType=DECIMAL},
+      overdue_service_charge = #{record.overdueServiceCharge,jdbcType=DECIMAL},
+      penalty_rate = #{record.penaltyRate,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      date = #{record.date,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.repayment.dao.po.RepaymentPenaltyProductDetail" >
+    update repayment_penalty_product_detail
+    <set >
+      <if test="summaryId != null" >
+        summary_id = #{summaryId,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentPlanId != null" >
+        repayment_plan_id = #{repaymentPlanId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanInfoId != null" >
+        loan_info_id = #{loanInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="plusPrincipalPenalty != null" >
+        plus_principal_penalty = #{plusPrincipalPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="plusInterestPenalty != null" >
+        plus_interest_penalty = #{plusInterestPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="plusServiceChargePenalty != null" >
+        plus_service_charge_penalty = #{plusServiceChargePenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="overduePrincipal != null" >
+        overdue_principal = #{overduePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueInterest != null" >
+        overdue_interest = #{overdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueServiceCharge != null" >
+        overdue_service_charge = #{overdueServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="penaltyRate != null" >
+        penalty_rate = #{penaltyRate,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.repayment.dao.po.RepaymentPenaltyProductDetail" >
+    update repayment_penalty_product_detail
+    set summary_id = #{summaryId,jdbcType=VARCHAR},
+      repayment_plan_id = #{repaymentPlanId,jdbcType=VARCHAR},
+      loan_info_id = #{loanInfoId,jdbcType=VARCHAR},
+      plus_principal_penalty = #{plusPrincipalPenalty,jdbcType=DECIMAL},
+      plus_interest_penalty = #{plusInterestPenalty,jdbcType=DECIMAL},
+      plus_service_charge_penalty = #{plusServiceChargePenalty,jdbcType=DECIMAL},
+      overdue_principal = #{overduePrincipal,jdbcType=DECIMAL},
+      overdue_interest = #{overdueInterest,jdbcType=DECIMAL},
+      overdue_service_charge = #{overdueServiceCharge,jdbcType=DECIMAL},
+      penalty_rate = #{penaltyRate,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      date = #{date,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from repayment_penalty_product_detail
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.repayment.dao.po.RepaymentPenaltyProductDetailExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from repayment_penalty_product_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

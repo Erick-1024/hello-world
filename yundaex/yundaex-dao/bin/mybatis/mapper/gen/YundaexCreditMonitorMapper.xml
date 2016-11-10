@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.yundaex.dao.mapper.gen.YundaexCreditMonitorMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.yundaex.dao.po.YundaexCreditMonitor" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="station_no" property="stationNo" jdbcType="VARCHAR" />
+    <result column="station_mgr" property="stationMgr" jdbcType="VARCHAR" />
+    <result column="station_name" property="stationName" jdbcType="VARCHAR" />
+    <result column="member_id" property="memberId" jdbcType="VARCHAR" />
+    <result column="recandsend_growth_rate" property="recandsendGrowthRate" jdbcType="DECIMAL" />
+    <result column="day_requirements" property="dayRequirements" jdbcType="DECIMAL" />
+    <result column="yundaex_grade" property="yundaexGrade" jdbcType="DECIMAL" />
+    <result column="last_yundaex_grade" property="lastYundaexGrade" jdbcType="DECIMAL" />
+    <result column="bail_balance" property="bailBalance" jdbcType="DECIMAL" />
+    <result column="net_cashflow" property="netCashflow" jdbcType="DECIMAL" />
+    <result column="credit_limit" property="creditLimit" jdbcType="DECIMAL" />
+    <result column="last_credit_limit" property="lastCreditLimit" jdbcType="DECIMAL" />
+    <result column="overdues" property="overdues" jdbcType="INTEGER" />
+    <result column="interest_rate" property="interestRate" jdbcType="VARCHAR" />
+    <result column="month" property="month" jdbcType="VARCHAR" />
+    <result column="audit_status" property="auditStatus" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, station_no, station_mgr, station_name, member_id, recandsend_growth_rate, day_requirements, 
+    yundaex_grade, last_yundaex_grade, bail_balance, net_cashflow, credit_limit, last_credit_limit, 
+    overdues, interest_rate, month, audit_status, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.yundaex.dao.po.YundaexCreditMonitorExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yundaex_credit_monitor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from yundaex_credit_monitor
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from yundaex_credit_monitor
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.yundaex.dao.po.YundaexCreditMonitorExample" >
+    delete from yundaex_credit_monitor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.yundaex.dao.po.YundaexCreditMonitor" >
+    insert into yundaex_credit_monitor (id, station_no, station_mgr, 
+      station_name, member_id, recandsend_growth_rate, 
+      day_requirements, yundaex_grade, last_yundaex_grade, 
+      bail_balance, net_cashflow, credit_limit, 
+      last_credit_limit, overdues, interest_rate, 
+      month, audit_status, create_time, 
+      update_time)
+    values (#{id,jdbcType=VARCHAR}, #{stationNo,jdbcType=VARCHAR}, #{stationMgr,jdbcType=VARCHAR}, 
+      #{stationName,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, #{recandsendGrowthRate,jdbcType=DECIMAL}, 
+      #{dayRequirements,jdbcType=DECIMAL}, #{yundaexGrade,jdbcType=DECIMAL}, #{lastYundaexGrade,jdbcType=DECIMAL}, 
+      #{bailBalance,jdbcType=DECIMAL}, #{netCashflow,jdbcType=DECIMAL}, #{creditLimit,jdbcType=DECIMAL}, 
+      #{lastCreditLimit,jdbcType=DECIMAL}, #{overdues,jdbcType=INTEGER}, #{interestRate,jdbcType=VARCHAR}, 
+      #{month,jdbcType=VARCHAR}, #{auditStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.yundaex.dao.po.YundaexCreditMonitor" >
+    insert into yundaex_credit_monitor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="stationNo != null" >
+        station_no,
+      </if>
+      <if test="stationMgr != null" >
+        station_mgr,
+      </if>
+      <if test="stationName != null" >
+        station_name,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="recandsendGrowthRate != null" >
+        recandsend_growth_rate,
+      </if>
+      <if test="dayRequirements != null" >
+        day_requirements,
+      </if>
+      <if test="yundaexGrade != null" >
+        yundaex_grade,
+      </if>
+      <if test="lastYundaexGrade != null" >
+        last_yundaex_grade,
+      </if>
+      <if test="bailBalance != null" >
+        bail_balance,
+      </if>
+      <if test="netCashflow != null" >
+        net_cashflow,
+      </if>
+      <if test="creditLimit != null" >
+        credit_limit,
+      </if>
+      <if test="lastCreditLimit != null" >
+        last_credit_limit,
+      </if>
+      <if test="overdues != null" >
+        overdues,
+      </if>
+      <if test="interestRate != null" >
+        interest_rate,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="auditStatus != null" >
+        audit_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="stationNo != null" >
+        #{stationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="stationMgr != null" >
+        #{stationMgr,jdbcType=VARCHAR},
+      </if>
+      <if test="stationName != null" >
+        #{stationName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="recandsendGrowthRate != null" >
+        #{recandsendGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="dayRequirements != null" >
+        #{dayRequirements,jdbcType=DECIMAL},
+      </if>
+      <if test="yundaexGrade != null" >
+        #{yundaexGrade,jdbcType=DECIMAL},
+      </if>
+      <if test="lastYundaexGrade != null" >
+        #{lastYundaexGrade,jdbcType=DECIMAL},
+      </if>
+      <if test="bailBalance != null" >
+        #{bailBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="netCashflow != null" >
+        #{netCashflow,jdbcType=DECIMAL},
+      </if>
+      <if test="creditLimit != null" >
+        #{creditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="lastCreditLimit != null" >
+        #{lastCreditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="overdues != null" >
+        #{overdues,jdbcType=INTEGER},
+      </if>
+      <if test="interestRate != null" >
+        #{interestRate,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null" >
+        #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.yundaex.dao.po.YundaexCreditMonitorExample" resultType="java.lang.Integer" >
+    select count(*) from yundaex_credit_monitor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update yundaex_credit_monitor
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stationNo != null" >
+        station_no = #{record.stationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stationMgr != null" >
+        station_mgr = #{record.stationMgr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stationName != null" >
+        station_name = #{record.stationName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recandsendGrowthRate != null" >
+        recandsend_growth_rate = #{record.recandsendGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dayRequirements != null" >
+        day_requirements = #{record.dayRequirements,jdbcType=DECIMAL},
+      </if>
+      <if test="record.yundaexGrade != null" >
+        yundaex_grade = #{record.yundaexGrade,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lastYundaexGrade != null" >
+        last_yundaex_grade = #{record.lastYundaexGrade,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bailBalance != null" >
+        bail_balance = #{record.bailBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.netCashflow != null" >
+        net_cashflow = #{record.netCashflow,jdbcType=DECIMAL},
+      </if>
+      <if test="record.creditLimit != null" >
+        credit_limit = #{record.creditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lastCreditLimit != null" >
+        last_credit_limit = #{record.lastCreditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.overdues != null" >
+        overdues = #{record.overdues,jdbcType=INTEGER},
+      </if>
+      <if test="record.interestRate != null" >
+        interest_rate = #{record.interestRate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.month != null" >
+        month = #{record.month,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditStatus != null" >
+        audit_status = #{record.auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update yundaex_credit_monitor
+    set id = #{record.id,jdbcType=VARCHAR},
+      station_no = #{record.stationNo,jdbcType=VARCHAR},
+      station_mgr = #{record.stationMgr,jdbcType=VARCHAR},
+      station_name = #{record.stationName,jdbcType=VARCHAR},
+      member_id = #{record.memberId,jdbcType=VARCHAR},
+      recandsend_growth_rate = #{record.recandsendGrowthRate,jdbcType=DECIMAL},
+      day_requirements = #{record.dayRequirements,jdbcType=DECIMAL},
+      yundaex_grade = #{record.yundaexGrade,jdbcType=DECIMAL},
+      last_yundaex_grade = #{record.lastYundaexGrade,jdbcType=DECIMAL},
+      bail_balance = #{record.bailBalance,jdbcType=DECIMAL},
+      net_cashflow = #{record.netCashflow,jdbcType=DECIMAL},
+      credit_limit = #{record.creditLimit,jdbcType=DECIMAL},
+      last_credit_limit = #{record.lastCreditLimit,jdbcType=DECIMAL},
+      overdues = #{record.overdues,jdbcType=INTEGER},
+      interest_rate = #{record.interestRate,jdbcType=VARCHAR},
+      month = #{record.month,jdbcType=VARCHAR},
+      audit_status = #{record.auditStatus,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.yundaex.dao.po.YundaexCreditMonitor" >
+    update yundaex_credit_monitor
+    <set >
+      <if test="stationNo != null" >
+        station_no = #{stationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="stationMgr != null" >
+        station_mgr = #{stationMgr,jdbcType=VARCHAR},
+      </if>
+      <if test="stationName != null" >
+        station_name = #{stationName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="recandsendGrowthRate != null" >
+        recandsend_growth_rate = #{recandsendGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="dayRequirements != null" >
+        day_requirements = #{dayRequirements,jdbcType=DECIMAL},
+      </if>
+      <if test="yundaexGrade != null" >
+        yundaex_grade = #{yundaexGrade,jdbcType=DECIMAL},
+      </if>
+      <if test="lastYundaexGrade != null" >
+        last_yundaex_grade = #{lastYundaexGrade,jdbcType=DECIMAL},
+      </if>
+      <if test="bailBalance != null" >
+        bail_balance = #{bailBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="netCashflow != null" >
+        net_cashflow = #{netCashflow,jdbcType=DECIMAL},
+      </if>
+      <if test="creditLimit != null" >
+        credit_limit = #{creditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="lastCreditLimit != null" >
+        last_credit_limit = #{lastCreditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="overdues != null" >
+        overdues = #{overdues,jdbcType=INTEGER},
+      </if>
+      <if test="interestRate != null" >
+        interest_rate = #{interestRate,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        month = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null" >
+        audit_status = #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.yundaex.dao.po.YundaexCreditMonitor" >
+    update yundaex_credit_monitor
+    set station_no = #{stationNo,jdbcType=VARCHAR},
+      station_mgr = #{stationMgr,jdbcType=VARCHAR},
+      station_name = #{stationName,jdbcType=VARCHAR},
+      member_id = #{memberId,jdbcType=VARCHAR},
+      recandsend_growth_rate = #{recandsendGrowthRate,jdbcType=DECIMAL},
+      day_requirements = #{dayRequirements,jdbcType=DECIMAL},
+      yundaex_grade = #{yundaexGrade,jdbcType=DECIMAL},
+      last_yundaex_grade = #{lastYundaexGrade,jdbcType=DECIMAL},
+      bail_balance = #{bailBalance,jdbcType=DECIMAL},
+      net_cashflow = #{netCashflow,jdbcType=DECIMAL},
+      credit_limit = #{creditLimit,jdbcType=DECIMAL},
+      last_credit_limit = #{lastCreditLimit,jdbcType=DECIMAL},
+      overdues = #{overdues,jdbcType=INTEGER},
+      interest_rate = #{interestRate,jdbcType=VARCHAR},
+      month = #{month,jdbcType=VARCHAR},
+      audit_status = #{auditStatus,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

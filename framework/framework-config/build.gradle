@@ -1,0 +1,27 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+
+dependencies {
+	compile project(':framework:framework-logger-core')
+	compile project(':framework:framework-spring')
+
+	compile libraries.commons_io
+	compile libraries.curator_client
+	compile libraries.curator_framework
+	compile libraries.curator_recipes
+	compile libraries.curator_x_discovery
+	compile  libraries.zkclient
+	
+	compile  libraries.typesafe_config
+	compile  libraries.snakeyaml
+
+	compile libraries.spring_beans
+	compile libraries.spring_context
+	compile libraries.servlet_api
+	
+	compile (libraries.spring_core){
+		force=true
+	}
+}
+

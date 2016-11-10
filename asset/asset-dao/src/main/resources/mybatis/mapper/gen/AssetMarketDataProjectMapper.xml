@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.asset.dao.mapper.gen.AssetMarketDataProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.asset.dao.po.AssetMarketDataProject" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="value_date" property="valueDate" jdbcType="VARCHAR" />
+    <result column="originator" property="originator" jdbcType="VARCHAR" />
+    <result column="issue_total_amount" property="issueTotalAmount" jdbcType="DECIMAL" />
+    <result column="supervision_agency" property="supervisionAgency" jdbcType="VARCHAR" />
+    <result column="underlying_asset_type" property="underlyingAssetType" jdbcType="VARCHAR" />
+    <result column="issuer" property="issuer" jdbcType="VARCHAR" />
+    <result column="issue_month" property="issueMonth" jdbcType="INTEGER" />
+    <result column="AAA_average_interest_rate" property="aaaAverageInterestRate" jdbcType="DECIMAL" />
+    <result column="priority_average_interest_rate" property="priorityAverageInterestRate" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="upate_time" property="upateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, project_name, value_date, originator, issue_total_amount, supervision_agency, 
+    underlying_asset_type, issuer, issue_month, AAA_average_interest_rate, priority_average_interest_rate, 
+    create_time, upate_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.asset.dao.po.AssetMarketDataProjectExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from asset_market_data_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset_market_data_project
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from asset_market_data_project
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.asset.dao.po.AssetMarketDataProjectExample" >
+    delete from asset_market_data_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.asset.dao.po.AssetMarketDataProject" >
+    insert into asset_market_data_project (id, project_name, value_date, 
+      originator, issue_total_amount, supervision_agency, 
+      underlying_asset_type, issuer, issue_month, 
+      AAA_average_interest_rate, priority_average_interest_rate, 
+      create_time, upate_time)
+    values (#{id,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR}, #{valueDate,jdbcType=VARCHAR}, 
+      #{originator,jdbcType=VARCHAR}, #{issueTotalAmount,jdbcType=DECIMAL}, #{supervisionAgency,jdbcType=VARCHAR}, 
+      #{underlyingAssetType,jdbcType=VARCHAR}, #{issuer,jdbcType=VARCHAR}, #{issueMonth,jdbcType=INTEGER}, 
+      #{aaaAverageInterestRate,jdbcType=DECIMAL}, #{priorityAverageInterestRate,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{upateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.asset.dao.po.AssetMarketDataProject" >
+    insert into asset_market_data_project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="valueDate != null" >
+        value_date,
+      </if>
+      <if test="originator != null" >
+        originator,
+      </if>
+      <if test="issueTotalAmount != null" >
+        issue_total_amount,
+      </if>
+      <if test="supervisionAgency != null" >
+        supervision_agency,
+      </if>
+      <if test="underlyingAssetType != null" >
+        underlying_asset_type,
+      </if>
+      <if test="issuer != null" >
+        issuer,
+      </if>
+      <if test="issueMonth != null" >
+        issue_month,
+      </if>
+      <if test="aaaAverageInterestRate != null" >
+        AAA_average_interest_rate,
+      </if>
+      <if test="priorityAverageInterestRate != null" >
+        priority_average_interest_rate,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="upateTime != null" >
+        upate_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="valueDate != null" >
+        #{valueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="originator != null" >
+        #{originator,jdbcType=VARCHAR},
+      </if>
+      <if test="issueTotalAmount != null" >
+        #{issueTotalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionAgency != null" >
+        #{supervisionAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="underlyingAssetType != null" >
+        #{underlyingAssetType,jdbcType=VARCHAR},
+      </if>
+      <if test="issuer != null" >
+        #{issuer,jdbcType=VARCHAR},
+      </if>
+      <if test="issueMonth != null" >
+        #{issueMonth,jdbcType=INTEGER},
+      </if>
+      <if test="aaaAverageInterestRate != null" >
+        #{aaaAverageInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="priorityAverageInterestRate != null" >
+        #{priorityAverageInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upateTime != null" >
+        #{upateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.asset.dao.po.AssetMarketDataProjectExample" resultType="java.lang.Integer" >
+    select count(*) from asset_market_data_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update asset_market_data_project
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectName != null" >
+        project_name = #{record.projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.valueDate != null" >
+        value_date = #{record.valueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.originator != null" >
+        originator = #{record.originator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issueTotalAmount != null" >
+        issue_total_amount = #{record.issueTotalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.supervisionAgency != null" >
+        supervision_agency = #{record.supervisionAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.underlyingAssetType != null" >
+        underlying_asset_type = #{record.underlyingAssetType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issuer != null" >
+        issuer = #{record.issuer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issueMonth != null" >
+        issue_month = #{record.issueMonth,jdbcType=INTEGER},
+      </if>
+      <if test="record.aaaAverageInterestRate != null" >
+        AAA_average_interest_rate = #{record.aaaAverageInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.priorityAverageInterestRate != null" >
+        priority_average_interest_rate = #{record.priorityAverageInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.upateTime != null" >
+        upate_time = #{record.upateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update asset_market_data_project
+    set id = #{record.id,jdbcType=VARCHAR},
+      project_name = #{record.projectName,jdbcType=VARCHAR},
+      value_date = #{record.valueDate,jdbcType=VARCHAR},
+      originator = #{record.originator,jdbcType=VARCHAR},
+      issue_total_amount = #{record.issueTotalAmount,jdbcType=DECIMAL},
+      supervision_agency = #{record.supervisionAgency,jdbcType=VARCHAR},
+      underlying_asset_type = #{record.underlyingAssetType,jdbcType=VARCHAR},
+      issuer = #{record.issuer,jdbcType=VARCHAR},
+      issue_month = #{record.issueMonth,jdbcType=INTEGER},
+      AAA_average_interest_rate = #{record.aaaAverageInterestRate,jdbcType=DECIMAL},
+      priority_average_interest_rate = #{record.priorityAverageInterestRate,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      upate_time = #{record.upateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.asset.dao.po.AssetMarketDataProject" >
+    update asset_market_data_project
+    <set >
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="valueDate != null" >
+        value_date = #{valueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="originator != null" >
+        originator = #{originator,jdbcType=VARCHAR},
+      </if>
+      <if test="issueTotalAmount != null" >
+        issue_total_amount = #{issueTotalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionAgency != null" >
+        supervision_agency = #{supervisionAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="underlyingAssetType != null" >
+        underlying_asset_type = #{underlyingAssetType,jdbcType=VARCHAR},
+      </if>
+      <if test="issuer != null" >
+        issuer = #{issuer,jdbcType=VARCHAR},
+      </if>
+      <if test="issueMonth != null" >
+        issue_month = #{issueMonth,jdbcType=INTEGER},
+      </if>
+      <if test="aaaAverageInterestRate != null" >
+        AAA_average_interest_rate = #{aaaAverageInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="priorityAverageInterestRate != null" >
+        priority_average_interest_rate = #{priorityAverageInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upateTime != null" >
+        upate_time = #{upateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.asset.dao.po.AssetMarketDataProject" >
+    update asset_market_data_project
+    set project_name = #{projectName,jdbcType=VARCHAR},
+      value_date = #{valueDate,jdbcType=VARCHAR},
+      originator = #{originator,jdbcType=VARCHAR},
+      issue_total_amount = #{issueTotalAmount,jdbcType=DECIMAL},
+      supervision_agency = #{supervisionAgency,jdbcType=VARCHAR},
+      underlying_asset_type = #{underlyingAssetType,jdbcType=VARCHAR},
+      issuer = #{issuer,jdbcType=VARCHAR},
+      issue_month = #{issueMonth,jdbcType=INTEGER},
+      AAA_average_interest_rate = #{aaaAverageInterestRate,jdbcType=DECIMAL},
+      priority_average_interest_rate = #{priorityAverageInterestRate,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      upate_time = #{upateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

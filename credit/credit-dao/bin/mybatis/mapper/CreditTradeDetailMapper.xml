@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cana.credit.dao.mapper.CreditTradeDetailMapper">
+ 	<resultMap type="com.cana.credit.dao.po.CreditTradeFlow" id="CreditTradeResultMap">
+ 	    <id column="s.id" property="id" jdbcType="VARCHAR"/>
+ 		<result column="t.out_trade_no" property="outTradeNo" jdbcType="VARCHAR"/>
+ 		<result column="t.finace_customer_id" property="finaceCustomerId" jdbcType="VARCHAR"/>
+ 		<result column="t.trade_start_time" property="tradeStartTime" jdbcType="TIMESTAMP"/>
+ 		<result column="t.finace_customer_name" property="finaceCustomerName" jdbcType="VARCHAR"/>
+ 		<result column="t.out_origin_trade_no" property="outOriginTradeNo" jdbcType="VARCHAR"/>
+ 		<result column="s.transfer_status" property="transferStatus" jdbcType="VARCHAR"/>
+ 		<result column="s.fee" property="fee" jdbcType="DECIMAL"/>
+ 		<result column="s.transfer_start_time" property="transferStartTime" jdbcType="TIMESTAMP"/>
+ 		<result column="t.summary_id" property="summaryId" jdbcType="VARCHAR"/>
+ 		<result column="s.transfer_type" property="transferType" jdbcType="VARCHAR"/>
+ 		<result column="s.from_account_no" property="fromAccountNo" jdbcType="VARCHAR"/>
+ 		<!--对账单下载新加的-->
+ 		<result column="t.id" property="creditTradeId" jdbcType="VARCHAR"/>
+ 		<result column="t.trade_type" property="tradeType" jdbcType="VARCHAR"/>
+		<result column="t.trade_status" property="tradeStatus" jdbcType="VARCHAR"/>
+		<result column="s.business_seq" property="businessSeq" jdbcType="VARCHAR"/>
+		<result column="t.out_customer_name" property="outCustomerName" jdbcType="VARCHAR"/>
+		 		
+ 	</resultMap>
+ 	
+ 	<resultMap type="com.cana.vbam.common.credit.dto.trade.CreditUsedLimit" id="CreditUsedLimitMap">
+ 	    <result column="finace_customer_id" property="memberId" jdbcType="VARCHAR" />
+ 	    <result column="out_customer_id" property="outCustomerId" jdbcType="VARCHAR" />
+    	<result column="used_limit" property="usedLimit" jdbcType="DECIMAL" />
+ 	</resultMap>
+ 	
+	<select id="getCreditLoanFlowList" parameterType="com.cana.credit.dao.po.CreditTradeRequest" resultMap="CreditTradeResultMap">
+		select
+		*
+		from
+			credit_transfer s
+		left join
+			credit_trade t
+		on
+			t.id=s.credit_trade_id
+		<include refid="Where_Clause1"></include>
+		order by t.trade_start_time desc
+		limit ${(page-1)*pageSize},${pageSize}
+	</select>
+	
+	<select id="getCreditTradeFlowCount" resultType="java.lang.Integer" parameterType="com.cana.credit.dao.po.CreditTradeRequest">
+		select
+		count(*)
+		from
+			credit_transfer s
+		left join
+			credit_trade t
+		on
+			t.id=s.credit_trade_id
+		<include refid="Where_Clause1"></include>
+	</select>
+	
+	<select id="getCreditUsedLimit" parameterType="com.cana.vbam.common.credit.dto.trade.CreditUsedLimitQueryCriteria" resultMap="CreditUsedLimitMap">
+		SELECT sum(l.fee) used_limit, l.finace_customer_id 
+		FROM vbam.credit_trade as l
+			inner join vbam.credit_out_customer as r on l.finace_customer_id = r.member_id
+			where l.trade_type = "PAYMENT" and l.trade_status = "SUCCESS" and l.trade_end_time >= ${startDate, jdbcType=TIMESTAMP} and l.trade_end_time &lt;= ${endDate, jdbcType=TIMESTAMP} and r.institution_id = ${institution}
+		group by l.finace_customer_id;
+	</select>
+	
+	<select id="getCreditStatementNoPaging" parameterType="com.cana.credit.dao.po.CreditTradeRequest" resultMap="CreditTradeResultMap">
+		select
+		*
+		from
+			credit_transfer s
+		left join
+			credit_trade t
+		on
+			t.id=s.credit_trade_id
+		<include refid="Where_Clause1"></include>
+		order by t.trade_start_time desc
+	</select>
+	
+	<sql id="Where_Clause1">
+		<where>
+			<if test="tradeStartDate!=null">
+				t.trade_start_time &gt;= #{tradeStartDate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="tradeEndDate!=null">
+				and t.trade_start_time &lt; #{tradeEndDate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="summaryId!=null">
+				and t.summary_id=#{summaryId,jdbcType=VARCHAR}
+			</if>
+			<if test="customerName!=null">
+				and t.finace_customer_name=#{customerName,jdbcType=VARCHAR}
+			</if>
+			<if test="tradeStatus!=null">
+				and s.transfer_status=#{tradeStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="transferType!=null">
+				and s.transfer_type=#{transferType,jdbcType=VARCHAR}
+			</if>
+			<if test="tradeType!=null">
+				and t.trade_type=#{tradeType,jdbcType=VARCHAR}
+			</if>
+			<if test="statementSpecificField==true">
+				and s.transfer_type in ("LOAN","REFUND2FACTOR","AGENT_REPAYMENT")
+			</if>
+		</where>
+	</sql>
+	
+</mapper>

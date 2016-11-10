@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.credit.dao.mapper.WhiteCustomerAndRuleCustomMapper" >
+  
+  <select id="getAvailableWhiteCustomerIds" resultType="java.lang.String">
+  	select tz_customer_id
+  	from credit_white_customer w
+  	join credit_white_customer_rule r
+  	on w.rule_batch_no = r.batch_no
+    where r.enable=1
+  </select>
+  
+</mapper>

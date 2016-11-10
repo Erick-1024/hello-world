@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.yundaex.dao.mapper.gen.YundaexStationOperationMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.yundaex.dao.po.YundaexStationOperation" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cost_manual" property="costManual" jdbcType="DECIMAL" />
+    <result column="cost_receipt" property="costReceipt" jdbcType="DECIMAL" />
+    <result column="cost_package" property="costPackage" jdbcType="DECIMAL" />
+    <result column="transit_fee" property="transitFee" jdbcType="DECIMAL" />
+    <result column="other_materials_cost_rate" property="otherMaterialsCostRate" jdbcType="DECIMAL" />
+    <result column="opposite_station_send_cost" property="oppositeStationSendCost" jdbcType="DECIMAL" />
+    <result column="average_profit" property="averageProfit" jdbcType="DECIMAL" />
+    <result column="send_income" property="sendIncome" jdbcType="DECIMAL" />
+    <result column="courier_fee" property="courierFee" jdbcType="DECIMAL" />
+    <result column="other_materials_cost_rate_send" property="otherMaterialsCostRateSend" jdbcType="DECIMAL" />
+    <result column="transit_fee_bail" property="transitFeeBail" jdbcType="DECIMAL" />
+    <result column="other_fee_bail" property="otherFeeBail" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, cost_manual, cost_receipt, cost_package, transit_fee, other_materials_cost_rate, 
+    opposite_station_send_cost, average_profit, send_income, courier_fee, other_materials_cost_rate_send, 
+    transit_fee_bail, other_fee_bail
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.yundaex.dao.po.YundaexStationOperationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yundaex_station_operation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yundaex_station_operation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yundaex_station_operation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.yundaex.dao.po.YundaexStationOperationExample" >
+    delete from yundaex_station_operation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.yundaex.dao.po.YundaexStationOperation" >
+    insert into yundaex_station_operation (id, cost_manual, cost_receipt, 
+      cost_package, transit_fee, other_materials_cost_rate, 
+      opposite_station_send_cost, average_profit, 
+      send_income, courier_fee, other_materials_cost_rate_send, 
+      transit_fee_bail, other_fee_bail)
+    values (#{id,jdbcType=INTEGER}, #{costManual,jdbcType=DECIMAL}, #{costReceipt,jdbcType=DECIMAL}, 
+      #{costPackage,jdbcType=DECIMAL}, #{transitFee,jdbcType=DECIMAL}, #{otherMaterialsCostRate,jdbcType=DECIMAL}, 
+      #{oppositeStationSendCost,jdbcType=DECIMAL}, #{averageProfit,jdbcType=DECIMAL}, 
+      #{sendIncome,jdbcType=DECIMAL}, #{courierFee,jdbcType=DECIMAL}, #{otherMaterialsCostRateSend,jdbcType=DECIMAL}, 
+      #{transitFeeBail,jdbcType=DECIMAL}, #{otherFeeBail,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.yundaex.dao.po.YundaexStationOperation" >
+    insert into yundaex_station_operation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="costManual != null" >
+        cost_manual,
+      </if>
+      <if test="costReceipt != null" >
+        cost_receipt,
+      </if>
+      <if test="costPackage != null" >
+        cost_package,
+      </if>
+      <if test="transitFee != null" >
+        transit_fee,
+      </if>
+      <if test="otherMaterialsCostRate != null" >
+        other_materials_cost_rate,
+      </if>
+      <if test="oppositeStationSendCost != null" >
+        opposite_station_send_cost,
+      </if>
+      <if test="averageProfit != null" >
+        average_profit,
+      </if>
+      <if test="sendIncome != null" >
+        send_income,
+      </if>
+      <if test="courierFee != null" >
+        courier_fee,
+      </if>
+      <if test="otherMaterialsCostRateSend != null" >
+        other_materials_cost_rate_send,
+      </if>
+      <if test="transitFeeBail != null" >
+        transit_fee_bail,
+      </if>
+      <if test="otherFeeBail != null" >
+        other_fee_bail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="costManual != null" >
+        #{costManual,jdbcType=DECIMAL},
+      </if>
+      <if test="costReceipt != null" >
+        #{costReceipt,jdbcType=DECIMAL},
+      </if>
+      <if test="costPackage != null" >
+        #{costPackage,jdbcType=DECIMAL},
+      </if>
+      <if test="transitFee != null" >
+        #{transitFee,jdbcType=DECIMAL},
+      </if>
+      <if test="otherMaterialsCostRate != null" >
+        #{otherMaterialsCostRate,jdbcType=DECIMAL},
+      </if>
+      <if test="oppositeStationSendCost != null" >
+        #{oppositeStationSendCost,jdbcType=DECIMAL},
+      </if>
+      <if test="averageProfit != null" >
+        #{averageProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="sendIncome != null" >
+        #{sendIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="courierFee != null" >
+        #{courierFee,jdbcType=DECIMAL},
+      </if>
+      <if test="otherMaterialsCostRateSend != null" >
+        #{otherMaterialsCostRateSend,jdbcType=DECIMAL},
+      </if>
+      <if test="transitFeeBail != null" >
+        #{transitFeeBail,jdbcType=DECIMAL},
+      </if>
+      <if test="otherFeeBail != null" >
+        #{otherFeeBail,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.yundaex.dao.po.YundaexStationOperationExample" resultType="java.lang.Integer" >
+    select count(*) from yundaex_station_operation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update yundaex_station_operation
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.costManual != null" >
+        cost_manual = #{record.costManual,jdbcType=DECIMAL},
+      </if>
+      <if test="record.costReceipt != null" >
+        cost_receipt = #{record.costReceipt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.costPackage != null" >
+        cost_package = #{record.costPackage,jdbcType=DECIMAL},
+      </if>
+      <if test="record.transitFee != null" >
+        transit_fee = #{record.transitFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.otherMaterialsCostRate != null" >
+        other_materials_cost_rate = #{record.otherMaterialsCostRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.oppositeStationSendCost != null" >
+        opposite_station_send_cost = #{record.oppositeStationSendCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.averageProfit != null" >
+        average_profit = #{record.averageProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sendIncome != null" >
+        send_income = #{record.sendIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="record.courierFee != null" >
+        courier_fee = #{record.courierFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.otherMaterialsCostRateSend != null" >
+        other_materials_cost_rate_send = #{record.otherMaterialsCostRateSend,jdbcType=DECIMAL},
+      </if>
+      <if test="record.transitFeeBail != null" >
+        transit_fee_bail = #{record.transitFeeBail,jdbcType=DECIMAL},
+      </if>
+      <if test="record.otherFeeBail != null" >
+        other_fee_bail = #{record.otherFeeBail,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update yundaex_station_operation
+    set id = #{record.id,jdbcType=INTEGER},
+      cost_manual = #{record.costManual,jdbcType=DECIMAL},
+      cost_receipt = #{record.costReceipt,jdbcType=DECIMAL},
+      cost_package = #{record.costPackage,jdbcType=DECIMAL},
+      transit_fee = #{record.transitFee,jdbcType=DECIMAL},
+      other_materials_cost_rate = #{record.otherMaterialsCostRate,jdbcType=DECIMAL},
+      opposite_station_send_cost = #{record.oppositeStationSendCost,jdbcType=DECIMAL},
+      average_profit = #{record.averageProfit,jdbcType=DECIMAL},
+      send_income = #{record.sendIncome,jdbcType=DECIMAL},
+      courier_fee = #{record.courierFee,jdbcType=DECIMAL},
+      other_materials_cost_rate_send = #{record.otherMaterialsCostRateSend,jdbcType=DECIMAL},
+      transit_fee_bail = #{record.transitFeeBail,jdbcType=DECIMAL},
+      other_fee_bail = #{record.otherFeeBail,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.yundaex.dao.po.YundaexStationOperation" >
+    update yundaex_station_operation
+    <set >
+      <if test="costManual != null" >
+        cost_manual = #{costManual,jdbcType=DECIMAL},
+      </if>
+      <if test="costReceipt != null" >
+        cost_receipt = #{costReceipt,jdbcType=DECIMAL},
+      </if>
+      <if test="costPackage != null" >
+        cost_package = #{costPackage,jdbcType=DECIMAL},
+      </if>
+      <if test="transitFee != null" >
+        transit_fee = #{transitFee,jdbcType=DECIMAL},
+      </if>
+      <if test="otherMaterialsCostRate != null" >
+        other_materials_cost_rate = #{otherMaterialsCostRate,jdbcType=DECIMAL},
+      </if>
+      <if test="oppositeStationSendCost != null" >
+        opposite_station_send_cost = #{oppositeStationSendCost,jdbcType=DECIMAL},
+      </if>
+      <if test="averageProfit != null" >
+        average_profit = #{averageProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="sendIncome != null" >
+        send_income = #{sendIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="courierFee != null" >
+        courier_fee = #{courierFee,jdbcType=DECIMAL},
+      </if>
+      <if test="otherMaterialsCostRateSend != null" >
+        other_materials_cost_rate_send = #{otherMaterialsCostRateSend,jdbcType=DECIMAL},
+      </if>
+      <if test="transitFeeBail != null" >
+        transit_fee_bail = #{transitFeeBail,jdbcType=DECIMAL},
+      </if>
+      <if test="otherFeeBail != null" >
+        other_fee_bail = #{otherFeeBail,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.yundaex.dao.po.YundaexStationOperation" >
+    update yundaex_station_operation
+    set cost_manual = #{costManual,jdbcType=DECIMAL},
+      cost_receipt = #{costReceipt,jdbcType=DECIMAL},
+      cost_package = #{costPackage,jdbcType=DECIMAL},
+      transit_fee = #{transitFee,jdbcType=DECIMAL},
+      other_materials_cost_rate = #{otherMaterialsCostRate,jdbcType=DECIMAL},
+      opposite_station_send_cost = #{oppositeStationSendCost,jdbcType=DECIMAL},
+      average_profit = #{averageProfit,jdbcType=DECIMAL},
+      send_income = #{sendIncome,jdbcType=DECIMAL},
+      courier_fee = #{courierFee,jdbcType=DECIMAL},
+      other_materials_cost_rate_send = #{otherMaterialsCostRateSend,jdbcType=DECIMAL},
+      transit_fee_bail = #{transitFeeBail,jdbcType=DECIMAL},
+      other_fee_bail = #{otherFeeBail,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

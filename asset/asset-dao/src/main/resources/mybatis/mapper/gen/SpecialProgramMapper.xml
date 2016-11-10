@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.asset.dao.mapper.gen.SpecialProgramMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.asset.dao.po.SpecialProgram" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="special_program_name" property="specialProgramName" jdbcType="VARCHAR" />
+    <result column="underlying_asset_type" property="underlyingAssetType" jdbcType="VARCHAR" />
+    <result column="manager_name" property="managerName" jdbcType="VARCHAR" />
+    <result column="manager_id" property="managerId" jdbcType="VARCHAR" />
+    <result column="creater_name" property="createrName" jdbcType="VARCHAR" />
+    <result column="creater_id" property="createrId" jdbcType="VARCHAR" />
+    <result column="law_firm_name" property="lawFirmName" jdbcType="VARCHAR" />
+    <result column="accounting_firm_name" property="accountingFirmName" jdbcType="VARCHAR" />
+    <result column="supervision_bank" property="supervisionBank" jdbcType="VARCHAR" />
+    <result column="custodian_bank" property="custodianBank" jdbcType="VARCHAR" />
+    <result column="rating_agency" property="ratingAgency" jdbcType="VARCHAR" />
+    <result column="asset_evaluation_agency" property="assetEvaluationAgency" jdbcType="VARCHAR" />
+    <result column="estimate_establishment_date" property="estimateEstablishmentDate" jdbcType="VARCHAR" />
+    <result column="establishment_date" property="establishmentDate" jdbcType="VARCHAR" />
+    <result column="estimate_due_date" property="estimateDueDate" jdbcType="VARCHAR" />
+    <result column="statutory_due_date" property="statutoryDueDate" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="encapsulation_date" property="encapsulationDate" jdbcType="VARCHAR" />
+    <result column="renewal_period" property="renewalPeriod" jdbcType="INTEGER" />
+    <result column="gross" property="gross" jdbcType="DECIMAL" />
+    <result column="prefer_a" property="preferA" jdbcType="DECIMAL" />
+    <result column="prefer_b" property="preferB" jdbcType="DECIMAL" />
+    <result column="defer" property="defer" jdbcType="DECIMAL" />
+    <result column="trust_method" property="trustMethod" jdbcType="VARCHAR" />
+    <result column="asset_pool_principal_balance" property="assetPoolPrincipalBalance" jdbcType="DECIMAL" />
+    <result column="contract_num" property="contractNum" jdbcType="INTEGER" />
+    <result column="weighted_average_contract_period" property="weightedAverageContractPeriod" jdbcType="INTEGER" />
+    <result column="finance_num" property="financeNum" jdbcType="INTEGER" />
+    <result column="weighted_average_interest_rate" property="weightedAverageInterestRate" jdbcType="DECIMAL" />
+    <result column="cycle_purchase_structure" property="cyclePurchaseStructure" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="deleted" property="deleted" jdbcType="BIT" />
+    <result column="cycle_period" property="cyclePeriod" jdbcType="INTEGER" />
+    <result column="capital_accumulation_date" property="capitalAccumulationDate" jdbcType="VARCHAR" />
+    <result column="cycle_purchase_date" property="cyclePurchaseDate" jdbcType="VARCHAR" />
+    <result column="income_recovery_date" property="incomeRecoveryDate" jdbcType="VARCHAR" />
+    <result column="recycling_payment_date" property="recyclingPaymentDate" jdbcType="VARCHAR" />
+    <result column="excess_fund" property="excessFund" jdbcType="DECIMAL" />
+    <result column="cycle_purchase_term" property="cyclePurchaseTerm" jdbcType="VARCHAR" />
+    <result column="underlying_asset_quality_standard" property="underlyingAssetQualityStandard" jdbcType="VARCHAR" />
+    <result column="cycle_weighted_average_interest_rate" property="cycleWeightedAverageInterestRate" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, special_program_name, underlying_asset_type, manager_name, manager_id, creater_name, 
+    creater_id, law_firm_name, accounting_firm_name, supervision_bank, custodian_bank, 
+    rating_agency, asset_evaluation_agency, estimate_establishment_date, establishment_date, 
+    estimate_due_date, statutory_due_date, status, encapsulation_date, renewal_period, 
+    gross, prefer_a, prefer_b, defer, trust_method, asset_pool_principal_balance, contract_num, 
+    weighted_average_contract_period, finance_num, weighted_average_interest_rate, cycle_purchase_structure, 
+    create_time, update_time, deleted, cycle_period, capital_accumulation_date, cycle_purchase_date, 
+    income_recovery_date, recycling_payment_date, excess_fund, cycle_purchase_term, underlying_asset_quality_standard, 
+    cycle_weighted_average_interest_rate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.asset.dao.po.SpecialProgramExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from asset_special_program
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset_special_program
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from asset_special_program
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.asset.dao.po.SpecialProgramExample" >
+    delete from asset_special_program
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.asset.dao.po.SpecialProgram" >
+    insert into asset_special_program (id, special_program_name, underlying_asset_type, 
+      manager_name, manager_id, creater_name, 
+      creater_id, law_firm_name, accounting_firm_name, 
+      supervision_bank, custodian_bank, rating_agency, 
+      asset_evaluation_agency, estimate_establishment_date, 
+      establishment_date, estimate_due_date, statutory_due_date, 
+      status, encapsulation_date, renewal_period, 
+      gross, prefer_a, prefer_b, 
+      defer, trust_method, asset_pool_principal_balance, 
+      contract_num, weighted_average_contract_period, 
+      finance_num, weighted_average_interest_rate, 
+      cycle_purchase_structure, create_time, update_time, 
+      deleted, cycle_period, capital_accumulation_date, 
+      cycle_purchase_date, income_recovery_date, 
+      recycling_payment_date, excess_fund, cycle_purchase_term, 
+      underlying_asset_quality_standard, cycle_weighted_average_interest_rate
+      )
+    values (#{id,jdbcType=VARCHAR}, #{specialProgramName,jdbcType=VARCHAR}, #{underlyingAssetType,jdbcType=VARCHAR}, 
+      #{managerName,jdbcType=VARCHAR}, #{managerId,jdbcType=VARCHAR}, #{createrName,jdbcType=VARCHAR}, 
+      #{createrId,jdbcType=VARCHAR}, #{lawFirmName,jdbcType=VARCHAR}, #{accountingFirmName,jdbcType=VARCHAR}, 
+      #{supervisionBank,jdbcType=VARCHAR}, #{custodianBank,jdbcType=VARCHAR}, #{ratingAgency,jdbcType=VARCHAR}, 
+      #{assetEvaluationAgency,jdbcType=VARCHAR}, #{estimateEstablishmentDate,jdbcType=VARCHAR}, 
+      #{establishmentDate,jdbcType=VARCHAR}, #{estimateDueDate,jdbcType=VARCHAR}, #{statutoryDueDate,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{encapsulationDate,jdbcType=VARCHAR}, #{renewalPeriod,jdbcType=INTEGER}, 
+      #{gross,jdbcType=DECIMAL}, #{preferA,jdbcType=DECIMAL}, #{preferB,jdbcType=DECIMAL}, 
+      #{defer,jdbcType=DECIMAL}, #{trustMethod,jdbcType=VARCHAR}, #{assetPoolPrincipalBalance,jdbcType=DECIMAL}, 
+      #{contractNum,jdbcType=INTEGER}, #{weightedAverageContractPeriod,jdbcType=INTEGER}, 
+      #{financeNum,jdbcType=INTEGER}, #{weightedAverageInterestRate,jdbcType=DECIMAL}, 
+      #{cyclePurchaseStructure,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deleted,jdbcType=BIT}, #{cyclePeriod,jdbcType=INTEGER}, #{capitalAccumulationDate,jdbcType=VARCHAR}, 
+      #{cyclePurchaseDate,jdbcType=VARCHAR}, #{incomeRecoveryDate,jdbcType=VARCHAR}, 
+      #{recyclingPaymentDate,jdbcType=VARCHAR}, #{excessFund,jdbcType=DECIMAL}, #{cyclePurchaseTerm,jdbcType=VARCHAR}, 
+      #{underlyingAssetQualityStandard,jdbcType=VARCHAR}, #{cycleWeightedAverageInterestRate,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.asset.dao.po.SpecialProgram" >
+    insert into asset_special_program
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="specialProgramName != null" >
+        special_program_name,
+      </if>
+      <if test="underlyingAssetType != null" >
+        underlying_asset_type,
+      </if>
+      <if test="managerName != null" >
+        manager_name,
+      </if>
+      <if test="managerId != null" >
+        manager_id,
+      </if>
+      <if test="createrName != null" >
+        creater_name,
+      </if>
+      <if test="createrId != null" >
+        creater_id,
+      </if>
+      <if test="lawFirmName != null" >
+        law_firm_name,
+      </if>
+      <if test="accountingFirmName != null" >
+        accounting_firm_name,
+      </if>
+      <if test="supervisionBank != null" >
+        supervision_bank,
+      </if>
+      <if test="custodianBank != null" >
+        custodian_bank,
+      </if>
+      <if test="ratingAgency != null" >
+        rating_agency,
+      </if>
+      <if test="assetEvaluationAgency != null" >
+        asset_evaluation_agency,
+      </if>
+      <if test="estimateEstablishmentDate != null" >
+        estimate_establishment_date,
+      </if>
+      <if test="establishmentDate != null" >
+        establishment_date,
+      </if>
+      <if test="estimateDueDate != null" >
+        estimate_due_date,
+      </if>
+      <if test="statutoryDueDate != null" >
+        statutory_due_date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="encapsulationDate != null" >
+        encapsulation_date,
+      </if>
+      <if test="renewalPeriod != null" >
+        renewal_period,
+      </if>
+      <if test="gross != null" >
+        gross,
+      </if>
+      <if test="preferA != null" >
+        prefer_a,
+      </if>
+      <if test="preferB != null" >
+        prefer_b,
+      </if>
+      <if test="defer != null" >
+        defer,
+      </if>
+      <if test="trustMethod != null" >
+        trust_method,
+      </if>
+      <if test="assetPoolPrincipalBalance != null" >
+        asset_pool_principal_balance,
+      </if>
+      <if test="contractNum != null" >
+        contract_num,
+      </if>
+      <if test="weightedAverageContractPeriod != null" >
+        weighted_average_contract_period,
+      </if>
+      <if test="financeNum != null" >
+        finance_num,
+      </if>
+      <if test="weightedAverageInterestRate != null" >
+        weighted_average_interest_rate,
+      </if>
+      <if test="cyclePurchaseStructure != null" >
+        cycle_purchase_structure,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
+      <if test="cyclePeriod != null" >
+        cycle_period,
+      </if>
+      <if test="capitalAccumulationDate != null" >
+        capital_accumulation_date,
+      </if>
+      <if test="cyclePurchaseDate != null" >
+        cycle_purchase_date,
+      </if>
+      <if test="incomeRecoveryDate != null" >
+        income_recovery_date,
+      </if>
+      <if test="recyclingPaymentDate != null" >
+        recycling_payment_date,
+      </if>
+      <if test="excessFund != null" >
+        excess_fund,
+      </if>
+      <if test="cyclePurchaseTerm != null" >
+        cycle_purchase_term,
+      </if>
+      <if test="underlyingAssetQualityStandard != null" >
+        underlying_asset_quality_standard,
+      </if>
+      <if test="cycleWeightedAverageInterestRate != null" >
+        cycle_weighted_average_interest_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="specialProgramName != null" >
+        #{specialProgramName,jdbcType=VARCHAR},
+      </if>
+      <if test="underlyingAssetType != null" >
+        #{underlyingAssetType,jdbcType=VARCHAR},
+      </if>
+      <if test="managerName != null" >
+        #{managerName,jdbcType=VARCHAR},
+      </if>
+      <if test="managerId != null" >
+        #{managerId,jdbcType=VARCHAR},
+      </if>
+      <if test="createrName != null" >
+        #{createrName,jdbcType=VARCHAR},
+      </if>
+      <if test="createrId != null" >
+        #{createrId,jdbcType=VARCHAR},
+      </if>
+      <if test="lawFirmName != null" >
+        #{lawFirmName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingFirmName != null" >
+        #{accountingFirmName,jdbcType=VARCHAR},
+      </if>
+      <if test="supervisionBank != null" >
+        #{supervisionBank,jdbcType=VARCHAR},
+      </if>
+      <if test="custodianBank != null" >
+        #{custodianBank,jdbcType=VARCHAR},
+      </if>
+      <if test="ratingAgency != null" >
+        #{ratingAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="assetEvaluationAgency != null" >
+        #{assetEvaluationAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="estimateEstablishmentDate != null" >
+        #{estimateEstablishmentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="establishmentDate != null" >
+        #{establishmentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="estimateDueDate != null" >
+        #{estimateDueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="statutoryDueDate != null" >
+        #{statutoryDueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="encapsulationDate != null" >
+        #{encapsulationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="renewalPeriod != null" >
+        #{renewalPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="gross != null" >
+        #{gross,jdbcType=DECIMAL},
+      </if>
+      <if test="preferA != null" >
+        #{preferA,jdbcType=DECIMAL},
+      </if>
+      <if test="preferB != null" >
+        #{preferB,jdbcType=DECIMAL},
+      </if>
+      <if test="defer != null" >
+        #{defer,jdbcType=DECIMAL},
+      </if>
+      <if test="trustMethod != null" >
+        #{trustMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="assetPoolPrincipalBalance != null" >
+        #{assetPoolPrincipalBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="contractNum != null" >
+        #{contractNum,jdbcType=INTEGER},
+      </if>
+      <if test="weightedAverageContractPeriod != null" >
+        #{weightedAverageContractPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="financeNum != null" >
+        #{financeNum,jdbcType=INTEGER},
+      </if>
+      <if test="weightedAverageInterestRate != null" >
+        #{weightedAverageInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="cyclePurchaseStructure != null" >
+        #{cyclePurchaseStructure,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="cyclePeriod != null" >
+        #{cyclePeriod,jdbcType=INTEGER},
+      </if>
+      <if test="capitalAccumulationDate != null" >
+        #{capitalAccumulationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cyclePurchaseDate != null" >
+        #{cyclePurchaseDate,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeRecoveryDate != null" >
+        #{incomeRecoveryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="recyclingPaymentDate != null" >
+        #{recyclingPaymentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="excessFund != null" >
+        #{excessFund,jdbcType=DECIMAL},
+      </if>
+      <if test="cyclePurchaseTerm != null" >
+        #{cyclePurchaseTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="underlyingAssetQualityStandard != null" >
+        #{underlyingAssetQualityStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="cycleWeightedAverageInterestRate != null" >
+        #{cycleWeightedAverageInterestRate,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.asset.dao.po.SpecialProgramExample" resultType="java.lang.Integer" >
+    select count(*) from asset_special_program
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update asset_special_program
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialProgramName != null" >
+        special_program_name = #{record.specialProgramName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.underlyingAssetType != null" >
+        underlying_asset_type = #{record.underlyingAssetType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.managerName != null" >
+        manager_name = #{record.managerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.managerId != null" >
+        manager_id = #{record.managerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createrName != null" >
+        creater_name = #{record.createrName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createrId != null" >
+        creater_id = #{record.createrId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lawFirmName != null" >
+        law_firm_name = #{record.lawFirmName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountingFirmName != null" >
+        accounting_firm_name = #{record.accountingFirmName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supervisionBank != null" >
+        supervision_bank = #{record.supervisionBank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custodianBank != null" >
+        custodian_bank = #{record.custodianBank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ratingAgency != null" >
+        rating_agency = #{record.ratingAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.assetEvaluationAgency != null" >
+        asset_evaluation_agency = #{record.assetEvaluationAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.estimateEstablishmentDate != null" >
+        estimate_establishment_date = #{record.estimateEstablishmentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.establishmentDate != null" >
+        establishment_date = #{record.establishmentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.estimateDueDate != null" >
+        estimate_due_date = #{record.estimateDueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statutoryDueDate != null" >
+        statutory_due_date = #{record.statutoryDueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.encapsulationDate != null" >
+        encapsulation_date = #{record.encapsulationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.renewalPeriod != null" >
+        renewal_period = #{record.renewalPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.gross != null" >
+        gross = #{record.gross,jdbcType=DECIMAL},
+      </if>
+      <if test="record.preferA != null" >
+        prefer_a = #{record.preferA,jdbcType=DECIMAL},
+      </if>
+      <if test="record.preferB != null" >
+        prefer_b = #{record.preferB,jdbcType=DECIMAL},
+      </if>
+      <if test="record.defer != null" >
+        defer = #{record.defer,jdbcType=DECIMAL},
+      </if>
+      <if test="record.trustMethod != null" >
+        trust_method = #{record.trustMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.assetPoolPrincipalBalance != null" >
+        asset_pool_principal_balance = #{record.assetPoolPrincipalBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.contractNum != null" >
+        contract_num = #{record.contractNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.weightedAverageContractPeriod != null" >
+        weighted_average_contract_period = #{record.weightedAverageContractPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.financeNum != null" >
+        finance_num = #{record.financeNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.weightedAverageInterestRate != null" >
+        weighted_average_interest_rate = #{record.weightedAverageInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cyclePurchaseStructure != null" >
+        cycle_purchase_structure = #{record.cyclePurchaseStructure,jdbcType=BIT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deleted != null" >
+        deleted = #{record.deleted,jdbcType=BIT},
+      </if>
+      <if test="record.cyclePeriod != null" >
+        cycle_period = #{record.cyclePeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.capitalAccumulationDate != null" >
+        capital_accumulation_date = #{record.capitalAccumulationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cyclePurchaseDate != null" >
+        cycle_purchase_date = #{record.cyclePurchaseDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.incomeRecoveryDate != null" >
+        income_recovery_date = #{record.incomeRecoveryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recyclingPaymentDate != null" >
+        recycling_payment_date = #{record.recyclingPaymentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.excessFund != null" >
+        excess_fund = #{record.excessFund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cyclePurchaseTerm != null" >
+        cycle_purchase_term = #{record.cyclePurchaseTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.underlyingAssetQualityStandard != null" >
+        underlying_asset_quality_standard = #{record.underlyingAssetQualityStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cycleWeightedAverageInterestRate != null" >
+        cycle_weighted_average_interest_rate = #{record.cycleWeightedAverageInterestRate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update asset_special_program
+    set id = #{record.id,jdbcType=VARCHAR},
+      special_program_name = #{record.specialProgramName,jdbcType=VARCHAR},
+      underlying_asset_type = #{record.underlyingAssetType,jdbcType=VARCHAR},
+      manager_name = #{record.managerName,jdbcType=VARCHAR},
+      manager_id = #{record.managerId,jdbcType=VARCHAR},
+      creater_name = #{record.createrName,jdbcType=VARCHAR},
+      creater_id = #{record.createrId,jdbcType=VARCHAR},
+      law_firm_name = #{record.lawFirmName,jdbcType=VARCHAR},
+      accounting_firm_name = #{record.accountingFirmName,jdbcType=VARCHAR},
+      supervision_bank = #{record.supervisionBank,jdbcType=VARCHAR},
+      custodian_bank = #{record.custodianBank,jdbcType=VARCHAR},
+      rating_agency = #{record.ratingAgency,jdbcType=VARCHAR},
+      asset_evaluation_agency = #{record.assetEvaluationAgency,jdbcType=VARCHAR},
+      estimate_establishment_date = #{record.estimateEstablishmentDate,jdbcType=VARCHAR},
+      establishment_date = #{record.establishmentDate,jdbcType=VARCHAR},
+      estimate_due_date = #{record.estimateDueDate,jdbcType=VARCHAR},
+      statutory_due_date = #{record.statutoryDueDate,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      encapsulation_date = #{record.encapsulationDate,jdbcType=VARCHAR},
+      renewal_period = #{record.renewalPeriod,jdbcType=INTEGER},
+      gross = #{record.gross,jdbcType=DECIMAL},
+      prefer_a = #{record.preferA,jdbcType=DECIMAL},
+      prefer_b = #{record.preferB,jdbcType=DECIMAL},
+      defer = #{record.defer,jdbcType=DECIMAL},
+      trust_method = #{record.trustMethod,jdbcType=VARCHAR},
+      asset_pool_principal_balance = #{record.assetPoolPrincipalBalance,jdbcType=DECIMAL},
+      contract_num = #{record.contractNum,jdbcType=INTEGER},
+      weighted_average_contract_period = #{record.weightedAverageContractPeriod,jdbcType=INTEGER},
+      finance_num = #{record.financeNum,jdbcType=INTEGER},
+      weighted_average_interest_rate = #{record.weightedAverageInterestRate,jdbcType=DECIMAL},
+      cycle_purchase_structure = #{record.cyclePurchaseStructure,jdbcType=BIT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      deleted = #{record.deleted,jdbcType=BIT},
+      cycle_period = #{record.cyclePeriod,jdbcType=INTEGER},
+      capital_accumulation_date = #{record.capitalAccumulationDate,jdbcType=VARCHAR},
+      cycle_purchase_date = #{record.cyclePurchaseDate,jdbcType=VARCHAR},
+      income_recovery_date = #{record.incomeRecoveryDate,jdbcType=VARCHAR},
+      recycling_payment_date = #{record.recyclingPaymentDate,jdbcType=VARCHAR},
+      excess_fund = #{record.excessFund,jdbcType=DECIMAL},
+      cycle_purchase_term = #{record.cyclePurchaseTerm,jdbcType=VARCHAR},
+      underlying_asset_quality_standard = #{record.underlyingAssetQualityStandard,jdbcType=VARCHAR},
+      cycle_weighted_average_interest_rate = #{record.cycleWeightedAverageInterestRate,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.asset.dao.po.SpecialProgram" >
+    update asset_special_program
+    <set >
+      <if test="specialProgramName != null" >
+        special_program_name = #{specialProgramName,jdbcType=VARCHAR},
+      </if>
+      <if test="underlyingAssetType != null" >
+        underlying_asset_type = #{underlyingAssetType,jdbcType=VARCHAR},
+      </if>
+      <if test="managerName != null" >
+        manager_name = #{managerName,jdbcType=VARCHAR},
+      </if>
+      <if test="managerId != null" >
+        manager_id = #{managerId,jdbcType=VARCHAR},
+      </if>
+      <if test="createrName != null" >
+        creater_name = #{createrName,jdbcType=VARCHAR},
+      </if>
+      <if test="createrId != null" >
+        creater_id = #{createrId,jdbcType=VARCHAR},
+      </if>
+      <if test="lawFirmName != null" >
+        law_firm_name = #{lawFirmName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingFirmName != null" >
+        accounting_firm_name = #{accountingFirmName,jdbcType=VARCHAR},
+      </if>
+      <if test="supervisionBank != null" >
+        supervision_bank = #{supervisionBank,jdbcType=VARCHAR},
+      </if>
+      <if test="custodianBank != null" >
+        custodian_bank = #{custodianBank,jdbcType=VARCHAR},
+      </if>
+      <if test="ratingAgency != null" >
+        rating_agency = #{ratingAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="assetEvaluationAgency != null" >
+        asset_evaluation_agency = #{assetEvaluationAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="estimateEstablishmentDate != null" >
+        estimate_establishment_date = #{estimateEstablishmentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="establishmentDate != null" >
+        establishment_date = #{establishmentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="estimateDueDate != null" >
+        estimate_due_date = #{estimateDueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="statutoryDueDate != null" >
+        statutory_due_date = #{statutoryDueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="encapsulationDate != null" >
+        encapsulation_date = #{encapsulationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="renewalPeriod != null" >
+        renewal_period = #{renewalPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="gross != null" >
+        gross = #{gross,jdbcType=DECIMAL},
+      </if>
+      <if test="preferA != null" >
+        prefer_a = #{preferA,jdbcType=DECIMAL},
+      </if>
+      <if test="preferB != null" >
+        prefer_b = #{preferB,jdbcType=DECIMAL},
+      </if>
+      <if test="defer != null" >
+        defer = #{defer,jdbcType=DECIMAL},
+      </if>
+      <if test="trustMethod != null" >
+        trust_method = #{trustMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="assetPoolPrincipalBalance != null" >
+        asset_pool_principal_balance = #{assetPoolPrincipalBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="contractNum != null" >
+        contract_num = #{contractNum,jdbcType=INTEGER},
+      </if>
+      <if test="weightedAverageContractPeriod != null" >
+        weighted_average_contract_period = #{weightedAverageContractPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="financeNum != null" >
+        finance_num = #{financeNum,jdbcType=INTEGER},
+      </if>
+      <if test="weightedAverageInterestRate != null" >
+        weighted_average_interest_rate = #{weightedAverageInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="cyclePurchaseStructure != null" >
+        cycle_purchase_structure = #{cyclePurchaseStructure,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="cyclePeriod != null" >
+        cycle_period = #{cyclePeriod,jdbcType=INTEGER},
+      </if>
+      <if test="capitalAccumulationDate != null" >
+        capital_accumulation_date = #{capitalAccumulationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cyclePurchaseDate != null" >
+        cycle_purchase_date = #{cyclePurchaseDate,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeRecoveryDate != null" >
+        income_recovery_date = #{incomeRecoveryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="recyclingPaymentDate != null" >
+        recycling_payment_date = #{recyclingPaymentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="excessFund != null" >
+        excess_fund = #{excessFund,jdbcType=DECIMAL},
+      </if>
+      <if test="cyclePurchaseTerm != null" >
+        cycle_purchase_term = #{cyclePurchaseTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="underlyingAssetQualityStandard != null" >
+        underlying_asset_quality_standard = #{underlyingAssetQualityStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="cycleWeightedAverageInterestRate != null" >
+        cycle_weighted_average_interest_rate = #{cycleWeightedAverageInterestRate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.asset.dao.po.SpecialProgram" >
+    update asset_special_program
+    set special_program_name = #{specialProgramName,jdbcType=VARCHAR},
+      underlying_asset_type = #{underlyingAssetType,jdbcType=VARCHAR},
+      manager_name = #{managerName,jdbcType=VARCHAR},
+      manager_id = #{managerId,jdbcType=VARCHAR},
+      creater_name = #{createrName,jdbcType=VARCHAR},
+      creater_id = #{createrId,jdbcType=VARCHAR},
+      law_firm_name = #{lawFirmName,jdbcType=VARCHAR},
+      accounting_firm_name = #{accountingFirmName,jdbcType=VARCHAR},
+      supervision_bank = #{supervisionBank,jdbcType=VARCHAR},
+      custodian_bank = #{custodianBank,jdbcType=VARCHAR},
+      rating_agency = #{ratingAgency,jdbcType=VARCHAR},
+      asset_evaluation_agency = #{assetEvaluationAgency,jdbcType=VARCHAR},
+      estimate_establishment_date = #{estimateEstablishmentDate,jdbcType=VARCHAR},
+      establishment_date = #{establishmentDate,jdbcType=VARCHAR},
+      estimate_due_date = #{estimateDueDate,jdbcType=VARCHAR},
+      statutory_due_date = #{statutoryDueDate,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      encapsulation_date = #{encapsulationDate,jdbcType=VARCHAR},
+      renewal_period = #{renewalPeriod,jdbcType=INTEGER},
+      gross = #{gross,jdbcType=DECIMAL},
+      prefer_a = #{preferA,jdbcType=DECIMAL},
+      prefer_b = #{preferB,jdbcType=DECIMAL},
+      defer = #{defer,jdbcType=DECIMAL},
+      trust_method = #{trustMethod,jdbcType=VARCHAR},
+      asset_pool_principal_balance = #{assetPoolPrincipalBalance,jdbcType=DECIMAL},
+      contract_num = #{contractNum,jdbcType=INTEGER},
+      weighted_average_contract_period = #{weightedAverageContractPeriod,jdbcType=INTEGER},
+      finance_num = #{financeNum,jdbcType=INTEGER},
+      weighted_average_interest_rate = #{weightedAverageInterestRate,jdbcType=DECIMAL},
+      cycle_purchase_structure = #{cyclePurchaseStructure,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=BIT},
+      cycle_period = #{cyclePeriod,jdbcType=INTEGER},
+      capital_accumulation_date = #{capitalAccumulationDate,jdbcType=VARCHAR},
+      cycle_purchase_date = #{cyclePurchaseDate,jdbcType=VARCHAR},
+      income_recovery_date = #{incomeRecoveryDate,jdbcType=VARCHAR},
+      recycling_payment_date = #{recyclingPaymentDate,jdbcType=VARCHAR},
+      excess_fund = #{excessFund,jdbcType=DECIMAL},
+      cycle_purchase_term = #{cyclePurchaseTerm,jdbcType=VARCHAR},
+      underlying_asset_quality_standard = #{underlyingAssetQualityStandard,jdbcType=VARCHAR},
+      cycle_weighted_average_interest_rate = #{cycleWeightedAverageInterestRate,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset_special_program
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.asset.dao.po.SpecialProgramExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from asset_special_program
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context				http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/aop    				http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/mvc					http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://mybatis.org/schema/mybatis-spring                    http://mybatis.org/schema/mybatis-spring.xsd
+		http://www.springframework.org/schema/tx            		http://www.springframework.org/schema/tx/spring-tx.xsd">
+		
+	
+	<bean class="com.travelzen.framework.config.tops.TzPropertyPlaceholderConfigurer">
+		<!-- <property name="ignoreUnresolvablePlaceholders" value="true" /> -->
+		<property name="tzProperties">
+			<list>
+				<value>R:properties/mysql-jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="accessTokenTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
+	    <property name="cronExpression" value="0 0/1 * * * ?" />  
+	    <property name="jobDetail" ref="accessTokenJob" />
+	</bean>
+
+	<bean id="accessTokenJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">  
+	    <property name="jobClass" value="com.cana.wechat.scheduler.job.TokenJob" />  
+	    <property name="durability" value="true" />  
+	    <!-- 设置为true时，失败任务会被其他实例接管重新执行 -->
+	    <property name="requestsRecovery" value="true" />  
+	</bean>
+
+    <bean id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+        <property name="dataSource" ref="quartzDataSource" />  
+        <property name="quartzProperties">  
+            <props>  
+                <!-- 集群模式下最好指定为AUTO，在程序启动时会自动为该调度器实例分配instanceId, 默认的生成规则：当前主机的hostname+当前系统时间 -->
+                <prop key="org.quartz.scheduler.instanceId">AUTO</prop>  
+                <!-- 获取在未来多少秒内要被触发的trigger -->
+                <prop key="org.quartz.scheduler.idleWaitTime">30000</prop>  
+                <!-- 每次最大获取的trigger数量 -->
+                <prop key="org.quartz.scheduler.batchTriggerAcquisitionMaxCount">1</prop>  
+                <!-- 线程池配置 -->  
+                <prop key="org.quartz.threadPool.class">org.quartz.simpl.SimpleThreadPool</prop>  
+                <prop key="org.quartz.threadPool.threadCount">20</prop>  
+                <prop key="org.quartz.threadPool.threadPriority">5</prop>  
+                <!-- 集群配置 -->  
+                <prop key="org.quartz.jobStore.isClustered">true</prop>  
+                <!-- 每个调度器实例每隔指定20秒签到一次，如果未准时签到，就被认为失败，失败实例之前正在执行的任务会被其他实例接管 -->
+                <prop key="org.quartz.jobStore.clusterCheckinInterval">20000</prop>  
+                <prop key="org.quartz.jobStore.maxMisfiresToHandleAtATime">1</prop>  
+                <prop key="org.quartz.jobStore.misfireThreshold">120000</prop>  
+                <prop key="org.quartz.jobStore.tablePrefix">QRTZ_</prop>  
+            </props>  
+        </property>  
+        <!-- 这个字段用于标识不同的调度器，每个调度程序的名称要保证不一样，否则可能会出现trigger，job相互覆盖的情况 -->
+        <property name="schedulerName" value="wechat-scheduler-1" />  
+        <!-- 进程启动15秒后调度器才开始工作 -->
+        <property name="startupDelay" value="15" />  
+        <property name="applicationContextSchedulerContextKey" value="applicationContext" />  
+        <!-- 使用此实现可以为job实现类自动注入依赖 -->
+        <property name="jobFactory">
+    		<bean class="com.travelzen.framework.quartz.AutowireSpringBeanJobFactory" />  
+		</property>
+        <property name="overwriteExistingJobs" value="true" />  
+        <property name="autoStartup" value="true" />  
+        <property name="triggers">  
+            <list>  
+                <ref bean="accessTokenTrigger" />
+            </list>  
+        </property>  
+    </bean>  
+
+
+	<bean id="quartzDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+	    <property name="dataSourceName" value="quartz-dataSource" />
+	    <property name="driverClass" value="${jdbc.driver}" />
+	    <property name="jdbcUrl" value="${quartz.jdbc.url}" />
+	    <property name="user" value="${quartz.jdbc.username}" />
+	    <property name="password" value="${quartz.jdbc.password}" />
+	    <property name="initialPoolSize" value="0" />
+	    <property name="minPoolSize" value="0" />
+	    <property name="maxPoolSize" value="20" />
+	    <property name="preferredTestQuery" value="SELECT NOW()" />
+	    <property name="checkoutTimeout" value="30000" />
+	    <property name="testConnectionOnCheckin" value="true" />
+	    <property name="testConnectionOnCheckout" value="true" />
+	    <property name="maxIdleTime" value="10" />
+    </bean>
+
+</beans>

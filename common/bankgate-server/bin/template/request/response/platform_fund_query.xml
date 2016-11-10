@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息 varchar(254) -->
+	<list name="userDataList">
+		<row>
+			<netWorkCode></netWorkCode><!--网络编号varchar(20) -->
+			<amount></amount><!--市场额度decimal(15,2) -->
+			<usedAmt></usedAmt><!--已用额度decimal(15,2) -->
+			<unUsedAmt></unUsedAmt><!--未用额度decimal(15,2) -->
+			<ntDate></ntDate><!--到期日char(8) ，格式YYYYMMDD -->
+			<isTempAmt></isTempAmt><!--是否临时额度varchar(2) 1：否；2：是 -->
+			<isLoop></isLoop><!--是否可循环char(1) 1：循环；2：非循环 -->
+			<ntStartDate></ntStartDate><!--网络起始日char(8) ，格式YYYYMMDD -->
+			<oprOrgName></oprOrgName><!--经办机构名称varchar(32) -->
+			<oprOrgCode></oprOrgCode><!--经办机构编号 varchar(100) -->
+		</row>
+	</list>
+</stream>

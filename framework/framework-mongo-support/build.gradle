@@ -1,0 +1,19 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+
+jar {
+baseName =  'framework-mongo-support'
+}
+dependencies {
+	testCompile libraries.junit
+
+	compile libraries.joda_time
+	compile (libraries.morphia_validation) {
+		exclude group: 'com.github.jmkgreen.morphia', module:'morphia'
+	}
+	compile (libraries.morphia) {
+		exclude group: 'org.mongodb', module:'mongo-java-driver'
+	}
+	compile libraries.mongo_java_driver
+}

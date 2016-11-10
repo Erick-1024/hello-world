@@ -1,0 +1,63 @@
+/*上传按钮*/
+.in-up-box{
+    position:relative;
+    height:25px;
+    width:70px;
+
+}
+.up-input{
+    position:absolute;
+    left:0;
+    width:30px;
+    height:25px;
+    overflow:hidden;
+    font-size:0;
+    cursor:pointer;
+    filter:alpha(opacity=0);
+    -moz-opacity:0;
+    opacity:0;
+    z-index:10;
+}
+.in-up-txt{
+    position:absolute;
+    left:0;
+    width:30px;
+    height:25px;
+    line-height:25px;
+    color:#0f8aba;
+    z-index:1;
+    text-align:left;
+}
+.in-up-txt2{
+    position:absolute;
+    left:35px;
+    width:30px;
+    height:25px;
+    line-height:25px;
+    color:#0f8aba;
+    z-index:1;
+    text-align:center;
+}
+.in-up-txt3{
+    position:absolute;
+    left:70px;
+    width:30px;
+    height:25px;
+    line-height:25px;
+    color:#0f8aba;
+    z-index:1;
+    text-align:center;
+    background:url("../../images/del-one.png") no-repeat center center;
+    background-size:30px 25px;
+}
+
+.in-up-error{
+    position:absolute;
+    left:40px;
+    width:30px;
+    height:25px;
+    line-height:25px;
+    color:#ff0000;
+    z-index:1;
+    text-align:center;
+}

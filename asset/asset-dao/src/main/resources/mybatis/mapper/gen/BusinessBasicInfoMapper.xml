@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.asset.dao.mapper.gen.BusinessBasicInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.asset.dao.po.BusinessBasicInfo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="factor_id" property="factorId" jdbcType="VARCHAR" />
+    <result column="factor_name" property="factorName" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="business_contract_no" property="businessContractNo" jdbcType="VARCHAR" />
+    <result column="currency" property="currency" jdbcType="VARCHAR" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="business_product" property="businessProduct" jdbcType="VARCHAR" />
+    <result column="business_mode" property="businessMode" jdbcType="VARCHAR" />
+    <result column="contract_start_date" property="contractStartDate" jdbcType="VARCHAR" />
+    <result column="contract_end_date" property="contractEndDate" jdbcType="VARCHAR" />
+    <result column="interest_rate" property="interestRate" jdbcType="VARCHAR" />
+    <result column="interest_type" property="interestType" jdbcType="VARCHAR" />
+    <result column="fee_rate" property="feeRate" jdbcType="VARCHAR" />
+    <result column="penalty_rate" property="penaltyRate" jdbcType="VARCHAR" />
+    <result column="extension_days" property="extensionDays" jdbcType="VARCHAR" />
+    <result column="payment_period" property="paymentPeriod" jdbcType="VARCHAR" />
+    <result column="receipt_type" property="receiptType" jdbcType="VARCHAR" />
+    <result column="repayment_source" property="repaymentSource" jdbcType="VARCHAR" />
+    <result column="repayment_arrangement" property="repaymentArrangement" jdbcType="VARCHAR" />
+    <result column="fund_usage" property="fundUsage" jdbcType="VARCHAR" />
+    <result column="monitoring_solution" property="monitoringSolution" jdbcType="VARCHAR" />
+    <result column="increase_trust_measures" property="increaseTrustMeasures" jdbcType="VARCHAR" />
+    <result column="binding_provisions" property="bindingProvisions" jdbcType="VARCHAR" />
+    <result column="loan_state" property="loanState" jdbcType="VARCHAR" />
+    <result column="factoring_account_name" property="factoringAccountName" jdbcType="VARCHAR" />
+    <result column="factoring_account_bank_address" property="factoringAccountBankAddress" jdbcType="VARCHAR" />
+    <result column="factoring_account" property="factoringAccount" jdbcType="VARCHAR" />
+    <result column="settlement_account_name" property="settlementAccountName" jdbcType="VARCHAR" />
+    <result column="settlement_account_bank_address" property="settlementAccountBankAddress" jdbcType="VARCHAR" />
+    <result column="settlement_account" property="settlementAccount" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, factor_id, factor_name, customer_id, customer_name, business_contract_no, currency, 
+    project_name, business_product, business_mode, contract_start_date, contract_end_date, 
+    interest_rate, interest_type, fee_rate, penalty_rate, extension_days, payment_period, 
+    receipt_type, repayment_source, repayment_arrangement, fund_usage, monitoring_solution, 
+    increase_trust_measures, binding_provisions, loan_state, factoring_account_name, 
+    factoring_account_bank_address, factoring_account, settlement_account_name, settlement_account_bank_address, 
+    settlement_account, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.asset.dao.po.BusinessBasicInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from asset_business_basic_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset_business_basic_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from asset_business_basic_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.asset.dao.po.BusinessBasicInfoExample" >
+    delete from asset_business_basic_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.asset.dao.po.BusinessBasicInfo" >
+    insert into asset_business_basic_info (id, factor_id, factor_name, 
+      customer_id, customer_name, business_contract_no, 
+      currency, project_name, business_product, 
+      business_mode, contract_start_date, contract_end_date, 
+      interest_rate, interest_type, fee_rate, 
+      penalty_rate, extension_days, payment_period, 
+      receipt_type, repayment_source, repayment_arrangement, 
+      fund_usage, monitoring_solution, increase_trust_measures, 
+      binding_provisions, loan_state, factoring_account_name, 
+      factoring_account_bank_address, factoring_account, 
+      settlement_account_name, settlement_account_bank_address, 
+      settlement_account, create_time, update_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{factorId,jdbcType=VARCHAR}, #{factorName,jdbcType=VARCHAR}, 
+      #{customerId,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, #{businessContractNo,jdbcType=VARCHAR}, 
+      #{currency,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR}, #{businessProduct,jdbcType=VARCHAR}, 
+      #{businessMode,jdbcType=VARCHAR}, #{contractStartDate,jdbcType=VARCHAR}, #{contractEndDate,jdbcType=VARCHAR}, 
+      #{interestRate,jdbcType=VARCHAR}, #{interestType,jdbcType=VARCHAR}, #{feeRate,jdbcType=VARCHAR}, 
+      #{penaltyRate,jdbcType=VARCHAR}, #{extensionDays,jdbcType=VARCHAR}, #{paymentPeriod,jdbcType=VARCHAR}, 
+      #{receiptType,jdbcType=VARCHAR}, #{repaymentSource,jdbcType=VARCHAR}, #{repaymentArrangement,jdbcType=VARCHAR}, 
+      #{fundUsage,jdbcType=VARCHAR}, #{monitoringSolution,jdbcType=VARCHAR}, #{increaseTrustMeasures,jdbcType=VARCHAR}, 
+      #{bindingProvisions,jdbcType=VARCHAR}, #{loanState,jdbcType=VARCHAR}, #{factoringAccountName,jdbcType=VARCHAR}, 
+      #{factoringAccountBankAddress,jdbcType=VARCHAR}, #{factoringAccount,jdbcType=VARCHAR}, 
+      #{settlementAccountName,jdbcType=VARCHAR}, #{settlementAccountBankAddress,jdbcType=VARCHAR}, 
+      #{settlementAccount,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.asset.dao.po.BusinessBasicInfo" >
+    insert into asset_business_basic_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="factorId != null" >
+        factor_id,
+      </if>
+      <if test="factorName != null" >
+        factor_name,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="businessContractNo != null" >
+        business_contract_no,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="businessProduct != null" >
+        business_product,
+      </if>
+      <if test="businessMode != null" >
+        business_mode,
+      </if>
+      <if test="contractStartDate != null" >
+        contract_start_date,
+      </if>
+      <if test="contractEndDate != null" >
+        contract_end_date,
+      </if>
+      <if test="interestRate != null" >
+        interest_rate,
+      </if>
+      <if test="interestType != null" >
+        interest_type,
+      </if>
+      <if test="feeRate != null" >
+        fee_rate,
+      </if>
+      <if test="penaltyRate != null" >
+        penalty_rate,
+      </if>
+      <if test="extensionDays != null" >
+        extension_days,
+      </if>
+      <if test="paymentPeriod != null" >
+        payment_period,
+      </if>
+      <if test="receiptType != null" >
+        receipt_type,
+      </if>
+      <if test="repaymentSource != null" >
+        repayment_source,
+      </if>
+      <if test="repaymentArrangement != null" >
+        repayment_arrangement,
+      </if>
+      <if test="fundUsage != null" >
+        fund_usage,
+      </if>
+      <if test="monitoringSolution != null" >
+        monitoring_solution,
+      </if>
+      <if test="increaseTrustMeasures != null" >
+        increase_trust_measures,
+      </if>
+      <if test="bindingProvisions != null" >
+        binding_provisions,
+      </if>
+      <if test="loanState != null" >
+        loan_state,
+      </if>
+      <if test="factoringAccountName != null" >
+        factoring_account_name,
+      </if>
+      <if test="factoringAccountBankAddress != null" >
+        factoring_account_bank_address,
+      </if>
+      <if test="factoringAccount != null" >
+        factoring_account,
+      </if>
+      <if test="settlementAccountName != null" >
+        settlement_account_name,
+      </if>
+      <if test="settlementAccountBankAddress != null" >
+        settlement_account_bank_address,
+      </if>
+      <if test="settlementAccount != null" >
+        settlement_account,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="factorId != null" >
+        #{factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="factorName != null" >
+        #{factorName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessContractNo != null" >
+        #{businessContractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessProduct != null" >
+        #{businessProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="businessMode != null" >
+        #{businessMode,jdbcType=VARCHAR},
+      </if>
+      <if test="contractStartDate != null" >
+        #{contractStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="contractEndDate != null" >
+        #{contractEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="interestRate != null" >
+        #{interestRate,jdbcType=VARCHAR},
+      </if>
+      <if test="interestType != null" >
+        #{interestType,jdbcType=VARCHAR},
+      </if>
+      <if test="feeRate != null" >
+        #{feeRate,jdbcType=VARCHAR},
+      </if>
+      <if test="penaltyRate != null" >
+        #{penaltyRate,jdbcType=VARCHAR},
+      </if>
+      <if test="extensionDays != null" >
+        #{extensionDays,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentPeriod != null" >
+        #{paymentPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptType != null" >
+        #{receiptType,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentSource != null" >
+        #{repaymentSource,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentArrangement != null" >
+        #{repaymentArrangement,jdbcType=VARCHAR},
+      </if>
+      <if test="fundUsage != null" >
+        #{fundUsage,jdbcType=VARCHAR},
+      </if>
+      <if test="monitoringSolution != null" >
+        #{monitoringSolution,jdbcType=VARCHAR},
+      </if>
+      <if test="increaseTrustMeasures != null" >
+        #{increaseTrustMeasures,jdbcType=VARCHAR},
+      </if>
+      <if test="bindingProvisions != null" >
+        #{bindingProvisions,jdbcType=VARCHAR},
+      </if>
+      <if test="loanState != null" >
+        #{loanState,jdbcType=VARCHAR},
+      </if>
+      <if test="factoringAccountName != null" >
+        #{factoringAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="factoringAccountBankAddress != null" >
+        #{factoringAccountBankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="factoringAccount != null" >
+        #{factoringAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementAccountName != null" >
+        #{settlementAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementAccountBankAddress != null" >
+        #{settlementAccountBankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementAccount != null" >
+        #{settlementAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.asset.dao.po.BusinessBasicInfoExample" resultType="java.lang.Integer" >
+    select count(*) from asset_business_basic_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update asset_business_basic_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factorId != null" >
+        factor_id = #{record.factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factorName != null" >
+        factor_name = #{record.factorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerId != null" >
+        customer_id = #{record.customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerName != null" >
+        customer_name = #{record.customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessContractNo != null" >
+        business_contract_no = #{record.businessContractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currency != null" >
+        currency = #{record.currency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectName != null" >
+        project_name = #{record.projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessProduct != null" >
+        business_product = #{record.businessProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessMode != null" >
+        business_mode = #{record.businessMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractStartDate != null" >
+        contract_start_date = #{record.contractStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractEndDate != null" >
+        contract_end_date = #{record.contractEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.interestRate != null" >
+        interest_rate = #{record.interestRate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.interestType != null" >
+        interest_type = #{record.interestType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.feeRate != null" >
+        fee_rate = #{record.feeRate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.penaltyRate != null" >
+        penalty_rate = #{record.penaltyRate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extensionDays != null" >
+        extension_days = #{record.extensionDays,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentPeriod != null" >
+        payment_period = #{record.paymentPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiptType != null" >
+        receipt_type = #{record.receiptType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repaymentSource != null" >
+        repayment_source = #{record.repaymentSource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repaymentArrangement != null" >
+        repayment_arrangement = #{record.repaymentArrangement,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fundUsage != null" >
+        fund_usage = #{record.fundUsage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.monitoringSolution != null" >
+        monitoring_solution = #{record.monitoringSolution,jdbcType=VARCHAR},
+      </if>
+      <if test="record.increaseTrustMeasures != null" >
+        increase_trust_measures = #{record.increaseTrustMeasures,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bindingProvisions != null" >
+        binding_provisions = #{record.bindingProvisions,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanState != null" >
+        loan_state = #{record.loanState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoringAccountName != null" >
+        factoring_account_name = #{record.factoringAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoringAccountBankAddress != null" >
+        factoring_account_bank_address = #{record.factoringAccountBankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoringAccount != null" >
+        factoring_account = #{record.factoringAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settlementAccountName != null" >
+        settlement_account_name = #{record.settlementAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settlementAccountBankAddress != null" >
+        settlement_account_bank_address = #{record.settlementAccountBankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settlementAccount != null" >
+        settlement_account = #{record.settlementAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update asset_business_basic_info
+    set id = #{record.id,jdbcType=VARCHAR},
+      factor_id = #{record.factorId,jdbcType=VARCHAR},
+      factor_name = #{record.factorName,jdbcType=VARCHAR},
+      customer_id = #{record.customerId,jdbcType=VARCHAR},
+      customer_name = #{record.customerName,jdbcType=VARCHAR},
+      business_contract_no = #{record.businessContractNo,jdbcType=VARCHAR},
+      currency = #{record.currency,jdbcType=VARCHAR},
+      project_name = #{record.projectName,jdbcType=VARCHAR},
+      business_product = #{record.businessProduct,jdbcType=VARCHAR},
+      business_mode = #{record.businessMode,jdbcType=VARCHAR},
+      contract_start_date = #{record.contractStartDate,jdbcType=VARCHAR},
+      contract_end_date = #{record.contractEndDate,jdbcType=VARCHAR},
+      interest_rate = #{record.interestRate,jdbcType=VARCHAR},
+      interest_type = #{record.interestType,jdbcType=VARCHAR},
+      fee_rate = #{record.feeRate,jdbcType=VARCHAR},
+      penalty_rate = #{record.penaltyRate,jdbcType=VARCHAR},
+      extension_days = #{record.extensionDays,jdbcType=VARCHAR},
+      payment_period = #{record.paymentPeriod,jdbcType=VARCHAR},
+      receipt_type = #{record.receiptType,jdbcType=VARCHAR},
+      repayment_source = #{record.repaymentSource,jdbcType=VARCHAR},
+      repayment_arrangement = #{record.repaymentArrangement,jdbcType=VARCHAR},
+      fund_usage = #{record.fundUsage,jdbcType=VARCHAR},
+      monitoring_solution = #{record.monitoringSolution,jdbcType=VARCHAR},
+      increase_trust_measures = #{record.increaseTrustMeasures,jdbcType=VARCHAR},
+      binding_provisions = #{record.bindingProvisions,jdbcType=VARCHAR},
+      loan_state = #{record.loanState,jdbcType=VARCHAR},
+      factoring_account_name = #{record.factoringAccountName,jdbcType=VARCHAR},
+      factoring_account_bank_address = #{record.factoringAccountBankAddress,jdbcType=VARCHAR},
+      factoring_account = #{record.factoringAccount,jdbcType=VARCHAR},
+      settlement_account_name = #{record.settlementAccountName,jdbcType=VARCHAR},
+      settlement_account_bank_address = #{record.settlementAccountBankAddress,jdbcType=VARCHAR},
+      settlement_account = #{record.settlementAccount,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.asset.dao.po.BusinessBasicInfo" >
+    update asset_business_basic_info
+    <set >
+      <if test="factorId != null" >
+        factor_id = #{factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="factorName != null" >
+        factor_name = #{factorName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessContractNo != null" >
+        business_contract_no = #{businessContractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessProduct != null" >
+        business_product = #{businessProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="businessMode != null" >
+        business_mode = #{businessMode,jdbcType=VARCHAR},
+      </if>
+      <if test="contractStartDate != null" >
+        contract_start_date = #{contractStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="contractEndDate != null" >
+        contract_end_date = #{contractEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="interestRate != null" >
+        interest_rate = #{interestRate,jdbcType=VARCHAR},
+      </if>
+      <if test="interestType != null" >
+        interest_type = #{interestType,jdbcType=VARCHAR},
+      </if>
+      <if test="feeRate != null" >
+        fee_rate = #{feeRate,jdbcType=VARCHAR},
+      </if>
+      <if test="penaltyRate != null" >
+        penalty_rate = #{penaltyRate,jdbcType=VARCHAR},
+      </if>
+      <if test="extensionDays != null" >
+        extension_days = #{extensionDays,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentPeriod != null" >
+        payment_period = #{paymentPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptType != null" >
+        receipt_type = #{receiptType,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentSource != null" >
+        repayment_source = #{repaymentSource,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentArrangement != null" >
+        repayment_arrangement = #{repaymentArrangement,jdbcType=VARCHAR},
+      </if>
+      <if test="fundUsage != null" >
+        fund_usage = #{fundUsage,jdbcType=VARCHAR},
+      </if>
+      <if test="monitoringSolution != null" >
+        monitoring_solution = #{monitoringSolution,jdbcType=VARCHAR},
+      </if>
+      <if test="increaseTrustMeasures != null" >
+        increase_trust_measures = #{increaseTrustMeasures,jdbcType=VARCHAR},
+      </if>
+      <if test="bindingProvisions != null" >
+        binding_provisions = #{bindingProvisions,jdbcType=VARCHAR},
+      </if>
+      <if test="loanState != null" >
+        loan_state = #{loanState,jdbcType=VARCHAR},
+      </if>
+      <if test="factoringAccountName != null" >
+        factoring_account_name = #{factoringAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="factoringAccountBankAddress != null" >
+        factoring_account_bank_address = #{factoringAccountBankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="factoringAccount != null" >
+        factoring_account = #{factoringAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementAccountName != null" >
+        settlement_account_name = #{settlementAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementAccountBankAddress != null" >
+        settlement_account_bank_address = #{settlementAccountBankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementAccount != null" >
+        settlement_account = #{settlementAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.asset.dao.po.BusinessBasicInfo" >
+    update asset_business_basic_info
+    set factor_id = #{factorId,jdbcType=VARCHAR},
+      factor_name = #{factorName,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      business_contract_no = #{businessContractNo,jdbcType=VARCHAR},
+      currency = #{currency,jdbcType=VARCHAR},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      business_product = #{businessProduct,jdbcType=VARCHAR},
+      business_mode = #{businessMode,jdbcType=VARCHAR},
+      contract_start_date = #{contractStartDate,jdbcType=VARCHAR},
+      contract_end_date = #{contractEndDate,jdbcType=VARCHAR},
+      interest_rate = #{interestRate,jdbcType=VARCHAR},
+      interest_type = #{interestType,jdbcType=VARCHAR},
+      fee_rate = #{feeRate,jdbcType=VARCHAR},
+      penalty_rate = #{penaltyRate,jdbcType=VARCHAR},
+      extension_days = #{extensionDays,jdbcType=VARCHAR},
+      payment_period = #{paymentPeriod,jdbcType=VARCHAR},
+      receipt_type = #{receiptType,jdbcType=VARCHAR},
+      repayment_source = #{repaymentSource,jdbcType=VARCHAR},
+      repayment_arrangement = #{repaymentArrangement,jdbcType=VARCHAR},
+      fund_usage = #{fundUsage,jdbcType=VARCHAR},
+      monitoring_solution = #{monitoringSolution,jdbcType=VARCHAR},
+      increase_trust_measures = #{increaseTrustMeasures,jdbcType=VARCHAR},
+      binding_provisions = #{bindingProvisions,jdbcType=VARCHAR},
+      loan_state = #{loanState,jdbcType=VARCHAR},
+      factoring_account_name = #{factoringAccountName,jdbcType=VARCHAR},
+      factoring_account_bank_address = #{factoringAccountBankAddress,jdbcType=VARCHAR},
+      factoring_account = #{factoringAccount,jdbcType=VARCHAR},
+      settlement_account_name = #{settlementAccountName,jdbcType=VARCHAR},
+      settlement_account_bank_address = #{settlementAccountBankAddress,jdbcType=VARCHAR},
+      settlement_account = #{settlementAccount,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset_business_basic_info
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.asset.dao.po.BusinessBasicInfoExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from asset_business_basic_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

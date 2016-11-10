@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.repayment.dao.mapper.gen.RepaymentExtensionProductDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.repayment.dao.po.RepaymentExtensionProductDetail" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="summary_id" property="summaryId" jdbcType="VARCHAR" />
+    <result column="repayment_plan_id" property="repaymentPlanId" jdbcType="VARCHAR" />
+    <result column="loan_info_id" property="loanInfoId" jdbcType="VARCHAR" />
+    <result column="extension_charge" property="extensionCharge" jdbcType="DECIMAL" />
+    <result column="account_principal" property="accountPrincipal" jdbcType="DECIMAL" />
+    <result column="account_interest" property="accountInterest" jdbcType="DECIMAL" />
+    <result column="account_service_charge" property="accountServiceCharge" jdbcType="DECIMAL" />
+    <result column="extension_ratio" property="extensionRatio" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="date" property="date" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, summary_id, repayment_plan_id, loan_info_id, extension_charge, account_principal, 
+    account_interest, account_service_charge, extension_ratio, create_time, update_time, 
+    date
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.repayment.dao.po.RepaymentExtensionProductDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from repayment_extension_product_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from repayment_extension_product_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from repayment_extension_product_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.repayment.dao.po.RepaymentExtensionProductDetailExample" >
+    delete from repayment_extension_product_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.repayment.dao.po.RepaymentExtensionProductDetail" >
+    insert into repayment_extension_product_detail (id, summary_id, repayment_plan_id, 
+      loan_info_id, extension_charge, account_principal, 
+      account_interest, account_service_charge, 
+      extension_ratio, create_time, update_time, 
+      date)
+    values (#{id,jdbcType=VARCHAR}, #{summaryId,jdbcType=VARCHAR}, #{repaymentPlanId,jdbcType=VARCHAR}, 
+      #{loanInfoId,jdbcType=VARCHAR}, #{extensionCharge,jdbcType=DECIMAL}, #{accountPrincipal,jdbcType=DECIMAL}, 
+      #{accountInterest,jdbcType=DECIMAL}, #{accountServiceCharge,jdbcType=DECIMAL}, 
+      #{extensionRatio,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{date,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.repayment.dao.po.RepaymentExtensionProductDetail" >
+    insert into repayment_extension_product_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="summaryId != null" >
+        summary_id,
+      </if>
+      <if test="repaymentPlanId != null" >
+        repayment_plan_id,
+      </if>
+      <if test="loanInfoId != null" >
+        loan_info_id,
+      </if>
+      <if test="extensionCharge != null" >
+        extension_charge,
+      </if>
+      <if test="accountPrincipal != null" >
+        account_principal,
+      </if>
+      <if test="accountInterest != null" >
+        account_interest,
+      </if>
+      <if test="accountServiceCharge != null" >
+        account_service_charge,
+      </if>
+      <if test="extensionRatio != null" >
+        extension_ratio,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryId != null" >
+        #{summaryId,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentPlanId != null" >
+        #{repaymentPlanId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanInfoId != null" >
+        #{loanInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="extensionCharge != null" >
+        #{extensionCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="accountPrincipal != null" >
+        #{accountPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="accountInterest != null" >
+        #{accountInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="accountServiceCharge != null" >
+        #{accountServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="extensionRatio != null" >
+        #{extensionRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.repayment.dao.po.RepaymentExtensionProductDetailExample" resultType="java.lang.Integer" >
+    select count(*) from repayment_extension_product_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update repayment_extension_product_detail
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.summaryId != null" >
+        summary_id = #{record.summaryId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repaymentPlanId != null" >
+        repayment_plan_id = #{record.repaymentPlanId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanInfoId != null" >
+        loan_info_id = #{record.loanInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extensionCharge != null" >
+        extension_charge = #{record.extensionCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountPrincipal != null" >
+        account_principal = #{record.accountPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountInterest != null" >
+        account_interest = #{record.accountInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountServiceCharge != null" >
+        account_service_charge = #{record.accountServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.extensionRatio != null" >
+        extension_ratio = #{record.extensionRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.date != null" >
+        date = #{record.date,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update repayment_extension_product_detail
+    set id = #{record.id,jdbcType=VARCHAR},
+      summary_id = #{record.summaryId,jdbcType=VARCHAR},
+      repayment_plan_id = #{record.repaymentPlanId,jdbcType=VARCHAR},
+      loan_info_id = #{record.loanInfoId,jdbcType=VARCHAR},
+      extension_charge = #{record.extensionCharge,jdbcType=DECIMAL},
+      account_principal = #{record.accountPrincipal,jdbcType=DECIMAL},
+      account_interest = #{record.accountInterest,jdbcType=DECIMAL},
+      account_service_charge = #{record.accountServiceCharge,jdbcType=DECIMAL},
+      extension_ratio = #{record.extensionRatio,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      date = #{record.date,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.repayment.dao.po.RepaymentExtensionProductDetail" >
+    update repayment_extension_product_detail
+    <set >
+      <if test="summaryId != null" >
+        summary_id = #{summaryId,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentPlanId != null" >
+        repayment_plan_id = #{repaymentPlanId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanInfoId != null" >
+        loan_info_id = #{loanInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="extensionCharge != null" >
+        extension_charge = #{extensionCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="accountPrincipal != null" >
+        account_principal = #{accountPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="accountInterest != null" >
+        account_interest = #{accountInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="accountServiceCharge != null" >
+        account_service_charge = #{accountServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="extensionRatio != null" >
+        extension_ratio = #{extensionRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.repayment.dao.po.RepaymentExtensionProductDetail" >
+    update repayment_extension_product_detail
+    set summary_id = #{summaryId,jdbcType=VARCHAR},
+      repayment_plan_id = #{repaymentPlanId,jdbcType=VARCHAR},
+      loan_info_id = #{loanInfoId,jdbcType=VARCHAR},
+      extension_charge = #{extensionCharge,jdbcType=DECIMAL},
+      account_principal = #{accountPrincipal,jdbcType=DECIMAL},
+      account_interest = #{accountInterest,jdbcType=DECIMAL},
+      account_service_charge = #{accountServiceCharge,jdbcType=DECIMAL},
+      extension_ratio = #{extensionRatio,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      date = #{date,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from repayment_extension_product_detail
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.repayment.dao.po.RepaymentExtensionProductDetailExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from repayment_extension_product_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

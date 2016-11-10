@@ -1,0 +1,11 @@
+apply plugin:'application'
+
+dependencies {
+	compile project(':account:account-service')
+	compile project(':account:account-api')
+	compile project(':framework:framework-dubbo-support')
+}
+
+mainClassName = 'com.cana.account.server.main.AccountServerMain'
+
+applicationDefaultJvmArgs = ["-server", "-Xms256m", "-Xmx1024m", "-XX:MaxPermSize=512m", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=12401", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false"]

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLTRSFIN</action>
+	<userName></userName><!--登录名char(30) -->
+	<clientID></clientID><!--客户流水号 char(20) -->
+	<accountNo></accountNo><!--公共调账账号varchar(19) -->
+	<recvAccNo></recvAccNo><!--调入交易资金账号varchar(19) -->
+	<recvAccNm></recvAccNm><!--调入交易资金账户名称varchar(60) -->
+	<tranAmt></tranAmt><!--调账金额decimal(15,2) -->
+	<hostDate></hostDate><!--被调账日期char(8) -->
+	<hostFlw></hostFlw><!--被调账柜员交易号varchar(14) -->
+	<hostSeq></hostSeq><!--被调账交易序号varchar(13) -->
+	<memo></memo><!--摘要varchar(22) 可空 -->
+</stream>

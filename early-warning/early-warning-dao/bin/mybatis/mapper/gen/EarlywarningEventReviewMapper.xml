@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.early.warning.dao.mapper.gen.EarlywarningEventReviewMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.early.warning.dao.po.EarlywarningEventReview" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="VARCHAR" />
+    <result column="finance_id" property="financeId" jdbcType="VARCHAR" />
+    <result column="finance_company" property="financeCompany" jdbcType="VARCHAR" />
+    <result column="out_customer_id" property="outCustomerId" jdbcType="VARCHAR" />
+    <result column="event_id" property="eventId" jdbcType="VARCHAR" />
+    <result column="event_type" property="eventType" jdbcType="VARCHAR" />
+    <result column="event_sub_type" property="eventSubType" jdbcType="VARCHAR" />
+    <result column="apply_type" property="applyType" jdbcType="VARCHAR" />
+    <result column="review_time" property="reviewTime" jdbcType="TIMESTAMP" />
+    <result column="reviewer_user_id" property="reviewerUserId" jdbcType="VARCHAR" />
+    <result column="reviewer_real_name" property="reviewerRealName" jdbcType="VARCHAR" />
+    <result column="prev_level" property="prevLevel" jdbcType="VARCHAR" />
+    <result column="extra_data" property="extraData" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, product_id, finance_id, finance_company, out_customer_id, event_id, event_type, 
+    event_sub_type, apply_type, review_time, reviewer_user_id, reviewer_real_name, prev_level, 
+    extra_data, state, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.early.warning.dao.po.EarlywarningEventReviewExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from early_warning_event_review
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from early_warning_event_review
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from early_warning_event_review
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.early.warning.dao.po.EarlywarningEventReviewExample" >
+    delete from early_warning_event_review
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.early.warning.dao.po.EarlywarningEventReview" >
+    insert into early_warning_event_review (id, product_id, finance_id, 
+      finance_company, out_customer_id, event_id, 
+      event_type, event_sub_type, apply_type, 
+      review_time, reviewer_user_id, reviewer_real_name, 
+      prev_level, extra_data, state, 
+      create_time, update_time)
+    values (#{id,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{financeId,jdbcType=VARCHAR}, 
+      #{financeCompany,jdbcType=VARCHAR}, #{outCustomerId,jdbcType=VARCHAR}, #{eventId,jdbcType=VARCHAR}, 
+      #{eventType,jdbcType=VARCHAR}, #{eventSubType,jdbcType=VARCHAR}, #{applyType,jdbcType=VARCHAR}, 
+      #{reviewTime,jdbcType=TIMESTAMP}, #{reviewerUserId,jdbcType=VARCHAR}, #{reviewerRealName,jdbcType=VARCHAR}, 
+      #{prevLevel,jdbcType=VARCHAR}, #{extraData,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.early.warning.dao.po.EarlywarningEventReview" >
+    insert into early_warning_event_review
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="financeId != null" >
+        finance_id,
+      </if>
+      <if test="financeCompany != null" >
+        finance_company,
+      </if>
+      <if test="outCustomerId != null" >
+        out_customer_id,
+      </if>
+      <if test="eventId != null" >
+        event_id,
+      </if>
+      <if test="eventType != null" >
+        event_type,
+      </if>
+      <if test="eventSubType != null" >
+        event_sub_type,
+      </if>
+      <if test="applyType != null" >
+        apply_type,
+      </if>
+      <if test="reviewTime != null" >
+        review_time,
+      </if>
+      <if test="reviewerUserId != null" >
+        reviewer_user_id,
+      </if>
+      <if test="reviewerRealName != null" >
+        reviewer_real_name,
+      </if>
+      <if test="prevLevel != null" >
+        prev_level,
+      </if>
+      <if test="extraData != null" >
+        extra_data,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="financeId != null" >
+        #{financeId,jdbcType=VARCHAR},
+      </if>
+      <if test="financeCompany != null" >
+        #{financeCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="outCustomerId != null" >
+        #{outCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventId != null" >
+        #{eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventType != null" >
+        #{eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="eventSubType != null" >
+        #{eventSubType,jdbcType=VARCHAR},
+      </if>
+      <if test="applyType != null" >
+        #{applyType,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewTime != null" >
+        #{reviewTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewerUserId != null" >
+        #{reviewerUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewerRealName != null" >
+        #{reviewerRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="prevLevel != null" >
+        #{prevLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="extraData != null" >
+        #{extraData,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.early.warning.dao.po.EarlywarningEventReviewExample" resultType="java.lang.Integer" >
+    select count(*) from early_warning_event_review
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update early_warning_event_review
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productId != null" >
+        product_id = #{record.productId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financeId != null" >
+        finance_id = #{record.financeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financeCompany != null" >
+        finance_company = #{record.financeCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outCustomerId != null" >
+        out_customer_id = #{record.outCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eventId != null" >
+        event_id = #{record.eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eventType != null" >
+        event_type = #{record.eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eventSubType != null" >
+        event_sub_type = #{record.eventSubType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyType != null" >
+        apply_type = #{record.applyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewTime != null" >
+        review_time = #{record.reviewTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.reviewerUserId != null" >
+        reviewer_user_id = #{record.reviewerUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewerRealName != null" >
+        reviewer_real_name = #{record.reviewerRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prevLevel != null" >
+        prev_level = #{record.prevLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extraData != null" >
+        extra_data = #{record.extraData,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update early_warning_event_review
+    set id = #{record.id,jdbcType=VARCHAR},
+      product_id = #{record.productId,jdbcType=VARCHAR},
+      finance_id = #{record.financeId,jdbcType=VARCHAR},
+      finance_company = #{record.financeCompany,jdbcType=VARCHAR},
+      out_customer_id = #{record.outCustomerId,jdbcType=VARCHAR},
+      event_id = #{record.eventId,jdbcType=VARCHAR},
+      event_type = #{record.eventType,jdbcType=VARCHAR},
+      event_sub_type = #{record.eventSubType,jdbcType=VARCHAR},
+      apply_type = #{record.applyType,jdbcType=VARCHAR},
+      review_time = #{record.reviewTime,jdbcType=TIMESTAMP},
+      reviewer_user_id = #{record.reviewerUserId,jdbcType=VARCHAR},
+      reviewer_real_name = #{record.reviewerRealName,jdbcType=VARCHAR},
+      prev_level = #{record.prevLevel,jdbcType=VARCHAR},
+      extra_data = #{record.extraData,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.early.warning.dao.po.EarlywarningEventReview" >
+    update early_warning_event_review
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="financeId != null" >
+        finance_id = #{financeId,jdbcType=VARCHAR},
+      </if>
+      <if test="financeCompany != null" >
+        finance_company = #{financeCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="outCustomerId != null" >
+        out_customer_id = #{outCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventId != null" >
+        event_id = #{eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventType != null" >
+        event_type = #{eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="eventSubType != null" >
+        event_sub_type = #{eventSubType,jdbcType=VARCHAR},
+      </if>
+      <if test="applyType != null" >
+        apply_type = #{applyType,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewTime != null" >
+        review_time = #{reviewTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewerUserId != null" >
+        reviewer_user_id = #{reviewerUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewerRealName != null" >
+        reviewer_real_name = #{reviewerRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="prevLevel != null" >
+        prev_level = #{prevLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="extraData != null" >
+        extra_data = #{extraData,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.early.warning.dao.po.EarlywarningEventReview" >
+    update early_warning_event_review
+    set product_id = #{productId,jdbcType=VARCHAR},
+      finance_id = #{financeId,jdbcType=VARCHAR},
+      finance_company = #{financeCompany,jdbcType=VARCHAR},
+      out_customer_id = #{outCustomerId,jdbcType=VARCHAR},
+      event_id = #{eventId,jdbcType=VARCHAR},
+      event_type = #{eventType,jdbcType=VARCHAR},
+      event_sub_type = #{eventSubType,jdbcType=VARCHAR},
+      apply_type = #{applyType,jdbcType=VARCHAR},
+      review_time = #{reviewTime,jdbcType=TIMESTAMP},
+      reviewer_user_id = #{reviewerUserId,jdbcType=VARCHAR},
+      reviewer_real_name = #{reviewerRealName,jdbcType=VARCHAR},
+      prev_level = #{prevLevel,jdbcType=VARCHAR},
+      extra_data = #{extraData,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from early_warning_event_review
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.early.warning.dao.po.EarlywarningEventReviewExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from early_warning_event_review
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

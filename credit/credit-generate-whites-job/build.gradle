@@ -1,0 +1,6 @@
+apply plugin:'application'
+dependencies {
+	compile project(':credit:credit-service')
+}
+mainClassName='com.cana.credit.generate.whites.job.main.GenerateWhitesJobMain'
+applicationDefaultJvmArgs = ["-server", "-Xms512m", "-Xmx1024m", "-XX:MaxPermSize=512m", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=12710", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false"]

@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.credit.dao.mapper.gen.CreditTradeMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.credit.dao.po.CreditTrade" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="out_trade_no" property="outTradeNo" jdbcType="VARCHAR" />
+    <result column="out_customer_id" property="outCustomerId" jdbcType="VARCHAR" />
+    <result column="out_trade_time" property="outTradeTime" jdbcType="TIMESTAMP" />
+    <result column="out_customer_name" property="outCustomerName" jdbcType="VARCHAR" />
+    <result column="out_origin_trade_no" property="outOriginTradeNo" jdbcType="VARCHAR" />
+    <result column="finace_customer_id" property="finaceCustomerId" jdbcType="VARCHAR" />
+    <result column="finace_customer_name" property="finaceCustomerName" jdbcType="VARCHAR" />
+    <result column="institution" property="institution" jdbcType="VARCHAR" />
+    <result column="sign" property="sign" jdbcType="VARCHAR" />
+    <result column="fee" property="fee" jdbcType="DECIMAL" />
+    <result column="order_info" property="orderInfo" jdbcType="VARCHAR" />
+    <result column="notify_url" property="notifyUrl" jdbcType="VARCHAR" />
+    <result column="trade_type" property="tradeType" jdbcType="VARCHAR" />
+    <result column="trade_status" property="tradeStatus" jdbcType="VARCHAR" />
+    <result column="summary_id" property="summaryId" jdbcType="VARCHAR" />
+    <result column="trade_start_time" property="tradeStartTime" jdbcType="TIMESTAMP" />
+    <result column="trade_end_time" property="tradeEndTime" jdbcType="TIMESTAMP" />
+    <result column="origin_trade_end_time" property="originTradeEndTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, out_trade_no, out_customer_id, out_trade_time, out_customer_name, out_origin_trade_no, 
+    finace_customer_id, finace_customer_name, institution, sign, fee, order_info, notify_url, 
+    trade_type, trade_status, summary_id, trade_start_time, trade_end_time, origin_trade_end_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.credit.dao.po.CreditTradeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from credit_trade
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from credit_trade
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from credit_trade
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.credit.dao.po.CreditTradeExample" >
+    delete from credit_trade
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.credit.dao.po.CreditTrade" >
+    insert into credit_trade (id, out_trade_no, out_customer_id, 
+      out_trade_time, out_customer_name, out_origin_trade_no, 
+      finace_customer_id, finace_customer_name, institution, 
+      sign, fee, order_info, 
+      notify_url, trade_type, trade_status, 
+      summary_id, trade_start_time, trade_end_time, 
+      origin_trade_end_time)
+    values (#{id,jdbcType=VARCHAR}, #{outTradeNo,jdbcType=VARCHAR}, #{outCustomerId,jdbcType=VARCHAR}, 
+      #{outTradeTime,jdbcType=TIMESTAMP}, #{outCustomerName,jdbcType=VARCHAR}, #{outOriginTradeNo,jdbcType=VARCHAR}, 
+      #{finaceCustomerId,jdbcType=VARCHAR}, #{finaceCustomerName,jdbcType=VARCHAR}, #{institution,jdbcType=VARCHAR}, 
+      #{sign,jdbcType=VARCHAR}, #{fee,jdbcType=DECIMAL}, #{orderInfo,jdbcType=VARCHAR}, 
+      #{notifyUrl,jdbcType=VARCHAR}, #{tradeType,jdbcType=VARCHAR}, #{tradeStatus,jdbcType=VARCHAR}, 
+      #{summaryId,jdbcType=VARCHAR}, #{tradeStartTime,jdbcType=TIMESTAMP}, #{tradeEndTime,jdbcType=TIMESTAMP}, 
+      #{originTradeEndTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.credit.dao.po.CreditTrade" >
+    insert into credit_trade
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="outTradeNo != null" >
+        out_trade_no,
+      </if>
+      <if test="outCustomerId != null" >
+        out_customer_id,
+      </if>
+      <if test="outTradeTime != null" >
+        out_trade_time,
+      </if>
+      <if test="outCustomerName != null" >
+        out_customer_name,
+      </if>
+      <if test="outOriginTradeNo != null" >
+        out_origin_trade_no,
+      </if>
+      <if test="finaceCustomerId != null" >
+        finace_customer_id,
+      </if>
+      <if test="finaceCustomerName != null" >
+        finace_customer_name,
+      </if>
+      <if test="institution != null" >
+        institution,
+      </if>
+      <if test="sign != null" >
+        sign,
+      </if>
+      <if test="fee != null" >
+        fee,
+      </if>
+      <if test="orderInfo != null" >
+        order_info,
+      </if>
+      <if test="notifyUrl != null" >
+        notify_url,
+      </if>
+      <if test="tradeType != null" >
+        trade_type,
+      </if>
+      <if test="tradeStatus != null" >
+        trade_status,
+      </if>
+      <if test="summaryId != null" >
+        summary_id,
+      </if>
+      <if test="tradeStartTime != null" >
+        trade_start_time,
+      </if>
+      <if test="tradeEndTime != null" >
+        trade_end_time,
+      </if>
+      <if test="originTradeEndTime != null" >
+        origin_trade_end_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="outTradeNo != null" >
+        #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outCustomerId != null" >
+        #{outCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="outTradeTime != null" >
+        #{outTradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outCustomerName != null" >
+        #{outCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="outOriginTradeNo != null" >
+        #{outOriginTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="finaceCustomerId != null" >
+        #{finaceCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="finaceCustomerName != null" >
+        #{finaceCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="institution != null" >
+        #{institution,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null" >
+        #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="orderInfo != null" >
+        #{orderInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyUrl != null" >
+        #{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null" >
+        #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeStatus != null" >
+        #{tradeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryId != null" >
+        #{summaryId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeStartTime != null" >
+        #{tradeStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeEndTime != null" >
+        #{tradeEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="originTradeEndTime != null" >
+        #{originTradeEndTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.credit.dao.po.CreditTradeExample" resultType="java.lang.Integer" >
+    select count(*) from credit_trade
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update credit_trade
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outTradeNo != null" >
+        out_trade_no = #{record.outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outCustomerId != null" >
+        out_customer_id = #{record.outCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outTradeTime != null" >
+        out_trade_time = #{record.outTradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.outCustomerName != null" >
+        out_customer_name = #{record.outCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outOriginTradeNo != null" >
+        out_origin_trade_no = #{record.outOriginTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.finaceCustomerId != null" >
+        finace_customer_id = #{record.finaceCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.finaceCustomerName != null" >
+        finace_customer_name = #{record.finaceCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.institution != null" >
+        institution = #{record.institution,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sign != null" >
+        sign = #{record.sign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fee != null" >
+        fee = #{record.fee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.orderInfo != null" >
+        order_info = #{record.orderInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.notifyUrl != null" >
+        notify_url = #{record.notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradeType != null" >
+        trade_type = #{record.tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradeStatus != null" >
+        trade_status = #{record.tradeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.summaryId != null" >
+        summary_id = #{record.summaryId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradeStartTime != null" >
+        trade_start_time = #{record.tradeStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tradeEndTime != null" >
+        trade_end_time = #{record.tradeEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.originTradeEndTime != null" >
+        origin_trade_end_time = #{record.originTradeEndTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update credit_trade
+    set id = #{record.id,jdbcType=VARCHAR},
+      out_trade_no = #{record.outTradeNo,jdbcType=VARCHAR},
+      out_customer_id = #{record.outCustomerId,jdbcType=VARCHAR},
+      out_trade_time = #{record.outTradeTime,jdbcType=TIMESTAMP},
+      out_customer_name = #{record.outCustomerName,jdbcType=VARCHAR},
+      out_origin_trade_no = #{record.outOriginTradeNo,jdbcType=VARCHAR},
+      finace_customer_id = #{record.finaceCustomerId,jdbcType=VARCHAR},
+      finace_customer_name = #{record.finaceCustomerName,jdbcType=VARCHAR},
+      institution = #{record.institution,jdbcType=VARCHAR},
+      sign = #{record.sign,jdbcType=VARCHAR},
+      fee = #{record.fee,jdbcType=DECIMAL},
+      order_info = #{record.orderInfo,jdbcType=VARCHAR},
+      notify_url = #{record.notifyUrl,jdbcType=VARCHAR},
+      trade_type = #{record.tradeType,jdbcType=VARCHAR},
+      trade_status = #{record.tradeStatus,jdbcType=VARCHAR},
+      summary_id = #{record.summaryId,jdbcType=VARCHAR},
+      trade_start_time = #{record.tradeStartTime,jdbcType=TIMESTAMP},
+      trade_end_time = #{record.tradeEndTime,jdbcType=TIMESTAMP},
+      origin_trade_end_time = #{record.originTradeEndTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.credit.dao.po.CreditTrade" >
+    update credit_trade
+    <set >
+      <if test="outTradeNo != null" >
+        out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outCustomerId != null" >
+        out_customer_id = #{outCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="outTradeTime != null" >
+        out_trade_time = #{outTradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outCustomerName != null" >
+        out_customer_name = #{outCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="outOriginTradeNo != null" >
+        out_origin_trade_no = #{outOriginTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="finaceCustomerId != null" >
+        finace_customer_id = #{finaceCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="finaceCustomerName != null" >
+        finace_customer_name = #{finaceCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="institution != null" >
+        institution = #{institution,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null" >
+        sign = #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null" >
+        fee = #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="orderInfo != null" >
+        order_info = #{orderInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyUrl != null" >
+        notify_url = #{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null" >
+        trade_type = #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeStatus != null" >
+        trade_status = #{tradeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryId != null" >
+        summary_id = #{summaryId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeStartTime != null" >
+        trade_start_time = #{tradeStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeEndTime != null" >
+        trade_end_time = #{tradeEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="originTradeEndTime != null" >
+        origin_trade_end_time = #{originTradeEndTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.credit.dao.po.CreditTrade" >
+    update credit_trade
+    set out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+      out_customer_id = #{outCustomerId,jdbcType=VARCHAR},
+      out_trade_time = #{outTradeTime,jdbcType=TIMESTAMP},
+      out_customer_name = #{outCustomerName,jdbcType=VARCHAR},
+      out_origin_trade_no = #{outOriginTradeNo,jdbcType=VARCHAR},
+      finace_customer_id = #{finaceCustomerId,jdbcType=VARCHAR},
+      finace_customer_name = #{finaceCustomerName,jdbcType=VARCHAR},
+      institution = #{institution,jdbcType=VARCHAR},
+      sign = #{sign,jdbcType=VARCHAR},
+      fee = #{fee,jdbcType=DECIMAL},
+      order_info = #{orderInfo,jdbcType=VARCHAR},
+      notify_url = #{notifyUrl,jdbcType=VARCHAR},
+      trade_type = #{tradeType,jdbcType=VARCHAR},
+      trade_status = #{tradeStatus,jdbcType=VARCHAR},
+      summary_id = #{summaryId,jdbcType=VARCHAR},
+      trade_start_time = #{tradeStartTime,jdbcType=TIMESTAMP},
+      trade_end_time = #{tradeEndTime,jdbcType=TIMESTAMP},
+      origin_trade_end_time = #{originTradeEndTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from credit_trade
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.credit.dao.po.CreditTradeExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from credit_trade
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

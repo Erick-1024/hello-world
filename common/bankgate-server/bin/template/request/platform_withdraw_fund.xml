@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLFCSOUT</action>
+	<userName></userName><!--登录名char(30) -->
+	<clientID></clientID><!--客户流水号 char(20) -->
+	<accountNo></accountNo><!--付款账号varchar(19) -->
+	<recvAccNo></recvAccNo><!--收款账号varchar(32) -->
+	<recvAccNm></recvAccNm><!--收款账户名称varchar(60) -->
+	<tranAmt></tranAmt><!--交易金额decimal(15,2) -->
+	<sameBank></sameBank><!--中信标识char(1) 0：本行；1： 他行 -->
+	<!--收款账户开户行信息begin -->
+	<!--收款账户若为他行，则收款账户开户行支付联行号与收款账户开户行名至少一项不为空 -->
+	<recvTgfi></recvTgfi><!--收款账户开户行支付联行号varchar(12) -->
+	<recvBankNm></recvBankNm><!--收款账户开户行名varchar (60) -->
+	<!--收款账户开户行信息end -->
+	<memo></memo><!--摘要varchar(22) 可空 -->
+	<preFlg></preFlg><!--预约标志char(1) 0：非预约1：预约 -->
+	<preDate></preDate><!--预约日期char(8) 格式：YYYYMMDD 预约时非空 -->
+	<preTime></preTime><!--预约时间char(6) 格式：hhmmss 预约时非空，只限100000、120000、140000、160000四个时间点 -->
+</stream>

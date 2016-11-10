@@ -1,0 +1,12 @@
+apply from : 'common.settings.gradle'
+apply from: 'framework.settings.gradle'
+include ':asset:asset-server'
+include ':asset:asset-service'
+include ':asset:asset-dao'
+include ':asset:asset-api'
+include ':asset:asset-scheduler'
+include ':asset:asset-search'
+
+include ':member:member-api'
+include ':account:account-api'
+include ':yundaex:yundaex-common'

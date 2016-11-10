@@ -1,0 +1,889 @@
+@charset "utf-8";
+/** 项目管理-start **/
+html, body{
+    height:auto;
+}
+.searchList .searchTab tr th{
+    min-width: 60px;
+}
+.assetProjectListManageGrid{
+    width:100%;
+    color:#666;
+    margin-top:15px;
+    border-color:#EAEAEA;
+}
+#projectInfoSearch .datepicker{
+    width:120px;
+}
+.assetProjectListManageGrid .k-grid-header{
+    border-bottom: 0;
+    border-right:#F6F6F6;
+}
+.assetProjectListManageGrid .k-grid-header .k-header .k-link{
+    color:#666;
+}
+.assetProjectListManageGrid .k-grid-content td{
+    border-color:#EAEAEA;
+    height:30px;
+}
+.assetProjectListManageGrid .k-pager-wrap{
+    height:42px;
+    font-size: 13px;
+}
+.comRow-link{
+    margin-left:20px;
+}
+.form-search-link {
+    margin-top: 5px;
+}
+.accountList-download{
+    width:980px;
+    margin:10px auto;
+    font-size: 13px;
+    padding-right:3px;
+    text-align: right;
+    background-color: transparent;
+}
+.icon-download{
+    background: transparent url("../images/commonIcon.png") no-repeat -83px -44px;
+    width:10px;
+    height:13px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.accountList-wrap{
+    width:980px;
+    margin:10px auto 20px;
+    color:#666;
+    border:1px #EAEAEA solid;
+}
+.withdraw-wrap{
+    width:980px;
+    margin:20px auto;
+    color:#666;
+    border:1px #EAEAEA solid;
+    display: none;
+}
+.accountList-title{
+    height:38px;
+    color:#333;
+    padding:5px 20px;
+    line-height:28px;
+    background-color: #F5F5F5;
+}
+.accountList-content{
+    width:100%;
+    padding-top:15px;
+    padding-bottom: 15px;
+    border-bottom: 1px #DADADA dashed;
+}
+.accountList-content:last-child{
+    border-bottom: 0;
+}
+.accountList-content textarea{
+    width:400px;
+    height:100px;
+    margin-top:5px;
+    resize: none;
+}
+.accountList-table{
+    width:100%;
+    margin:0 auto;
+    font-size: 13px;
+    empty-cells:show;
+}
+.accountList-table tbody tr th{
+    padding-left:20px;
+    color:#333;
+    text-align: left;
+    vertical-align: top;
+}
+.accountList-table .redStar{
+    padding: 0px 3px;
+    vertical-align: top;
+    color: #F00;
+}
+.accountList-table-til{
+    text-align: right;
+    color:#999;
+}
+.accountList-table tbody tr td{
+    height:30px;
+    padding-right:20px;
+    vertical-align: middle;
+}
+.accountList-table tbody tr td .radio .labelFonts{
+    font-size: 13px;
+}
+.accountList-link{
+    color: #0F8ABA;
+    margin-right:20px;
+    display: inline-block;
+    text-decoration: none;
+}
+.accountList-link:last-child{
+    margin-right:0;
+}
+.accountList-link:hover{
+    text-decoration: underline;
+}
+#applyThead{
+    width:600px;
+    margin-left:100px;
+    border: 1px #EAEAEA solid;
+    border-collapse: collapse;
+}
+#applyThead tr th{
+    height:30px;
+    line-height:30px;
+    padding:0;
+    text-align: center;
+    vertical-align: middle;
+    border-right:1px #EAEAEA solid;
+    border-bottom:1px #EAEAEA solid;
+    background-color: #F5F5F5;
+}
+#applyThead tr th:last-child{
+    border-right:0;
+}
+#applyTheadSnd{
+    width:700px;
+    margin-left:100px;
+    border: 1px #EAEAEA solid;
+    border-collapse: collapse;
+}
+#applyTheadSnd tr th{
+      height:30px;
+      line-height:30px;
+      padding:0;
+      text-align: center;
+      vertical-align: middle;
+      border-right:1px #EAEAEA solid;
+      border-bottom:1px #EAEAEA solid;
+      background-color: #F5F5F5;
+}
+#applyTheadSnd tr th:last-child{
+      border-right:0;
+  }
+.account-auditTab{
+    width:600px;
+    margin-left:100px;
+    max-height:400px;
+    overflow-y: scroll;
+}
+.account-auditTabSnd{
+    width:700px;
+    margin-left:100px;
+    max-height:400px;
+    overflow-y: scroll;
+}
+.account-auditTab table, .account-auditTabSnd table{
+    width:100%;
+    border: 1px #EAEAEA solid;
+    border-collapse: collapse;
+}
+.account-auditTab table tr th, .account-auditTabSnd table tr th{
+    height:30px;
+    line-height:30px;
+    padding:0;
+    text-align: center;
+    border-right:1px #fff solid;
+    border-bottom:1px #EAEAEA solid;
+    background-color: #F5F5F5;
+}
+.account-auditTab table tr th:last-child, .account-auditTabSnd table tr th:last-child{
+    border-right:0;
+}
+.account-auditTab table tr td, .account-auditTabSnd table tr td{
+    height:30px;
+    line-height:30px;
+    padding-left:10px;
+    border-right:1px #EAEAEA solid;
+    border-bottom:1px #EAEAEA solid;
+}
+.account-auditTab table tr td:last-child, .account-auditTabSnd table tr td:last-child{
+    border-right: 0;
+}
+
+.waitAccountGrid{
+    width:100%;
+    color:#666;
+    margin-top:15px;
+    border-color:#EAEAEA;
+}
+.waitAccountGrid .k-grid-header{
+    border-bottom: 0;
+    border-right:#F6F6F6;
+}
+.waitAccountGrid .k-grid-header .k-header .k-link{
+    color:#666;
+}
+.waitAccountGrid .k-grid-content td{
+    border-color:#EAEAEA;
+}
+.waitAccountGrid .k-pager-wrap{
+    height:42px;
+    margin-bottom: 10px;
+}
+.clientList{
+    width:100%;
+    height:30px;
+    line-height:30px;
+    overflow-y: hidden;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.clientList-all{
+    width:100%;
+    line-height:30px;
+    height:auto;
+    overflow-y: auto;
+}
+.radioLabel{
+    display: inline-block;
+    margin-left:20px;
+    font-size: 12px;
+    color:#999;
+}
+/** end **/
+
+/** 开户申请-start **/
+.applyAut-table{
+    width:750px;
+    margin:0 auto;
+    font-size: 13px;
+}
+.applyAut-table .selectWrap{
+    width:180px;
+}
+.applyAut-table tbody tr th{
+    padding-top:8px;
+    padding-left:20px;
+    color:#333;
+    text-align: left;
+    vertical-align: text-top;
+}
+.applyAut-table .redStar{
+    padding: 0px 3px;
+    vertical-align: top;
+    color: #F00;
+}
+.applyAut-table-til{
+    text-align: right;
+    color:#999;
+}
+.applyAut-table tbody tr td{
+    height:30px;
+    padding-right:20px;
+}
+.applyAut-table tbody tr td:last-child{
+    padding-right:0;
+}
+.applyAut-table tbody tr td .radio .labelFonts{
+    font-size: 13px;
+}
+.applyAut-table tr td label{
+    min-width:90px;
+}
+.applyAut-table-notice{
+    color:#999;
+}
+.applyAut-link{
+    color:#0F8ABA;
+    text-decoration: none;
+}
+.applyAut-link:hover{
+    text-decoration: underline;
+}
+#audit-thead, #audit-thead01{
+    width:400px;
+    border: 1px #EAEAEA solid;
+    border-collapse: collapse;
+}
+#audit-thead tr th, #audit-thead01 tr th{
+    height:30px;
+    line-height:30px;
+    padding:0;
+    text-align: center;
+    border-right:1px #EAEAEA solid;
+    border-bottom:1px #EAEAEA solid;
+    background-color: #F5F5F5;
+    vertical-align: middle;
+}
+.applyAut-auditTab{
+    width:400px;
+    max-height:200px;
+    overflow-y: scroll;
+    border: 1px #EAEAEA solid;
+    border-top:0;
+}
+.applyAut-auditTab table{
+    width:100%;
+    border-collapse: collapse;
+}
+.applyAut-auditTab table tr th:last-child{
+    border-right:0;
+}
+.applyAut-auditTab table tr td{
+    height:30px;
+    line-height:30px;
+    padding-left:10px;
+    padding-right:0;
+    border-right:1px #EAEAEA solid;
+    border-bottom:1px #EAEAEA solid;
+}
+.applyAut-auditTab table tr td:last-child{
+    border-right: 0;
+}
+.acuTable-tips{
+    font-size: 12px;
+    margin-top:10px;
+    color:#999;
+}
+.excelBox{
+    position: relative;
+    display: inline-block;
+    width:100px;
+}
+.excelBox .frontage{
+    position:absolute;
+    width:70px;
+    left:0;
+    top:0;
+    opacity:0;
+    filter:alpha(opacity=0);
+    cursor:pointer;
+    height:30px;
+    overflow: hidden;
+}
+.excelBox .frontage-link{
+    width:70px;
+    height:30px;
+    line-height:30px;
+    display:inline-block;
+    cursor:pointer;
+    color:#0f8aba;
+    text-decoration:none;
+}
+.excelBox .frontage-link:hover{
+    text-decoration: underline;
+}
+/** end **/
+
+/** 代开户申请-start **/
+.applyAut-instead-table{
+    font-size: 12px;
+}
+.applyAut-instead-table .tageBox{
+    position: relative;
+}
+.tageBox .tageNotice{
+    margin-left:3px;
+}
+.registion-notice{
+    font-size: 13px;
+    color:red;
+}
+.tageNote{
+    color:#999;
+}
+.tageBox .frontage{
+    position:absolute;
+    left:0;
+    top:5px;
+    opacity:0;
+    filter:alpha(opacity=0);
+    cursor:pointer;
+    height:30px;
+    overflow: hidden;
+}
+.tageBox .frontage-link{
+    width:60px;
+    height:30px;
+    line-height:30px;
+    text-align: center;
+    display:inline-block;
+    color:#fff;
+    cursor:pointer;
+    background-color:#0f8aba;
+    text-decoration:none;
+}
+.applyAut-instead-table tbody tr th{
+    padding-top:8px;
+    padding-left:20px;
+    color:#333;
+    text-align: left;
+    vertical-align: text-top;
+}
+.applyAut-instead-table tbody tr td{
+    padding-right:10px;
+    height:40px;
+}
+.applyAut-instead-table input[type="text"]{
+    width:250px;
+    font-size: 13px;
+    padding-right:5px;
+}
+.applyAut-instead-table input[type="file"]{
+    width:60px;
+}
+.applyAut-instead-table input[type="email"]{
+    width:250px;
+    padding-right:5px;
+    border: 1px solid #dadada;
+    height: 35px;
+    line-height: 35px;
+    padding-left: 3px;
+}
+.applyAut-instead-table input[type="email"]:focus {
+    border: 1px solid #80d0ee !important;
+    outline: none;
+}
+.applyAut-instead-table input[type="file"]{
+    font-size: 13px;
+}
+/** end **/
+/** 银行账户详情 **/
+.bankAcuDetail{
+    margin:0 auto;
+    font-size: 13px;
+}
+.bankAcuDetail tr td{
+    height:30px;
+}
+.acu-title{
+    text-align: right;
+    padding-right: 20px;
+    color:#999;
+}
+.bankAcuDetail-row{
+    position: relative;
+}
+.bankAcuDetail-link{
+    color: #0F8ABA;
+    margin-left:15px;
+    display: inline-block;
+    text-decoration: none;
+}
+.bankAcuDetail-link:hover{
+    text-decoration: underline;
+}
+.bankAcuDetail-nav{
+    padding: 0 20px;
+}
+.bankAcuDetail-nav ul{
+    width:100%;
+    height:32px;
+    font-size: 14px;
+    margin-top:10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #EAEAEA;
+}
+.bankAcuDetail-nav ul li{
+    background-color:#fff;
+    float: left;
+    position: relative;
+    display: inline-block;
+    margin-right:5px;
+    margin-bottom: -1px;
+}
+.bankAcuNav-navlink{
+    min-width:100px;
+    line-height:30px;
+    padding:0 20px;
+    text-align: center;
+    display: inline-block;
+    color:#0F8ABA;
+    border: 1px solid transparent;
+    border-bottom-color:#EAEAEA;
+
+    text-decoration: none;
+}
+.bankAcuNav-navlink:hover{
+    background-color:#eff6fa;
+}
+.bankAcuNav-active .bankAcuNav-navlink{
+    color:#666;
+    cursor: default;
+    border:1px #EAEAEA solid;
+    border-bottom-color:transparent;
+}
+.bankAcuNav-active .bankAcuNav-navlink:hover{
+    background-color:#fff;
+}
+.accountDetail-wrap{
+    padding:0 20px;
+}
+.accountDetail{
+    width:100%;
+    color:#666;
+    margin-top:10px;
+    border-color:#EAEAEA;
+}
+.accountDetail .k-grid-header{
+    border-bottom: 0;
+    border-right:#F6F6F6;
+}
+.accountDetail .k-grid-header .k-header .k-link{
+    color:#666;
+}
+.accountDetail .k-grid-content td{
+     border-color:#EAEAEA;
+     height:30px;
+ }
+.accountDetail .k-pager-wrap{
+    height:42px;
+    font-size: 13px;
+}
+.account-tooltip {
+    color: #11b9b7;
+    cursor: default;
+    margin-left: 5px;
+}
+/** 开户成功 **/
+.applyAutSuccess-wrap{
+    width:980px;
+    margin:50px auto;
+    color:#666;
+    border:1px #EAEAEA solid;
+}
+.applyAutSuccess-title{
+    height:38px;
+    color:#333;
+    padding:5px 20px;
+    line-height:28px;
+    background-color: #F5F5F5;
+}
+.applyAutSu-content{
+    width:100%;
+    margin:20px auto;
+    line-height:30px;
+    text-align: center;
+}
+.applyAutSu-head{
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 10px;
+}
+.applyAutSu-foot{
+    font-size: 13px;
+    margin-top:30px;
+}
+.applyAutSu-link{
+    width:200px;
+    height:30px;
+    display: inline-block;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-align: center;
+    line-height:30px;
+    background-color:#0f8aba;
+    color:#fff;
+}
+.applyAutSu-link:hover{
+    background-color:#14ade9;
+}
+
+/** 提现 **/
+.withdraw, .supervise-table{
+    width:600px;
+    margin:0 auto;
+    font-size: 13px;
+}
+.withdraw tr td, .supervise-table tr td{
+    height:30px;
+    padding-bottom: 5px;
+}
+.withdraw-align{
+    text-align: right;
+}
+.withdraw-link{
+    color: #0F8ABA;
+    margin-left:20px;
+    display: inline-block;
+    text-decoration: none;
+}
+.withdraw-link:hover{
+    text-decoration: underline;
+}
+
+/** 新建监管关系 **/
+.addSupervise-table{
+    width:980px;
+}
+.addSupervise-head{
+    width:800px;
+    margin:0 auto;
+    font-size: 14px;
+    border: 1px #EAEAEA solid;
+    border-collapse: collapse;
+}
+.addSupervise-head tr th{
+    height:30px;
+    line-height:30px;
+    padding:0;
+    text-align: center;
+    border-right:1px #EAEAEA solid;
+    border-bottom:1px #EAEAEA solid;
+    background-color: #F5F5F5;
+    vertical-align: middle;
+}
+.addSupervise-body{
+    width:800px;
+    margin:0 auto;
+    font-size: 13px;
+    max-height:200px;
+    overflow-y: scroll;
+    border: 1px #EAEAEA solid;
+    border-collapse: collapse;
+}
+.addSupervise-body table input{
+    height:30px;
+    vertical-align: baseline;
+}
+.addSupervise-body table tr th:last-child{
+    border-right:0;
+}
+.addSupervise-body table tr td{
+    height:35px;
+    line-height:35px;
+    padding-left:10px;
+    padding-right:0;
+    border-right:1px #EAEAEA solid;
+    border-bottom:1px #EAEAEA solid;
+}
+.addSupervise-body table tr td:last-child{
+    border-right: 0;
+}
+.superive-foot{
+    width:auto;
+    margin:20px auto;
+    text-align: center;
+    font-size: 13px;
+}
+.superive-row{
+    position: relative;
+}
+.superive-link{
+    color: #0F8ABA;
+    display: inline-block;
+    text-decoration: none;
+    margin-left:15px;
+}
+.superive-link:hover{
+    text-decoration: underline;
+}
+.removeSu-foot{
+    margin-top:20px;
+    text-align: center;
+}
+.SuperviseAct{
+    width:800px;
+    margin:10px auto;
+}
+.SuperviseAct a{
+    min-width: 80px;
+    height: 30px;
+    font-size: 13px;
+    background-color: #0f8aba;
+    display: inline-block;
+    margin-right: 20px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+}
+.SuperviseAct a:hover{
+    text-decoration: none;
+    background-color: #14ade9;
+}
+.supervise-table .k-dropdown-wrap{
+    padding: 0 30px 0 0;
+    background-color:#fafafa;
+
+}
+.supervise-table .k-dropdown-wrap .k-select{
+    width:30px;
+    height:30px;
+    text-align: center;
+    line-height: 20px;
+    border-color: #F0F0F0;
+}
+.supervise-table .k-state-focused{
+    background-color:#ebebeb;
+}
+.supervise-table .k-state-border-down .k-icon{
+    background-position: 0px 0px;
+}
+.supervise-table .k-state-border-down{
+    background-color:#fafafa;
+}
+.superive-combobox{
+    width:100%;
+}
+.superive-combobox .combobox-left{
+    width:50%;
+    display: inline-block;
+    border-right: 1px dashed #EEE !important;
+}
+.superive-combobox .combobox-right{
+    width:50%;
+    display: inline-block;
+}
+.superive-wrapper{
+    width:100%;
+    background-color: #fff;
+    position: relative;
+}
+.checkboxWrap{
+    display: inline-block;
+}
+.checkboxWrap .checkboxInfo{
+    display: inline-block;
+    color: #666;
+    cursor: pointer;
+}
+.checkboxWrap .checkboxInfo .checkboxIcon{
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: transparent url("../images/commonIcon.png") no-repeat scroll -23px -62px;
+    margin: 0;
+    vertical-align: middle;
+}
+.checkboxWrap .checkboxInfo.active .checkboxIcon {
+    background-position: 0 -62px;
+}
+.superive-privateAcu{
+    width:880px;
+    margin: 0 auto 20px;
+}
+.superive-privateAcu table{
+    width:100%;
+    font-size: 13px;
+    border-width: 1px 0 0 1px;
+    border-style: solid;
+    border-color: #EAEAEA;
+}
+.superive-privateAcu table thead tr{
+    background-color: #F5F5F5;
+}
+.superive-privateAcu table tr{
+    height: 35px;
+}
+.superive-privateAcu table tr td{
+    padding-left: 10px;
+    padding-right:5px;
+    border-right: 1px solid #EAEAEA;
+    border-bottom: 1px solid #EAEAEA;
+}
+.font-right{
+    text-align: right;
+}
+.privateAcu-head{
+    margin:10px 0;
+    font-size: 13px;
+    color:#333;
+}
+.news-head{
+    font-size: 13px;
+    color:#333;
+}
+.validateImg{
+    display: inline-block;
+    width:93px;
+    height:33px;
+    font-size: 13px;
+    margin-left:5px;
+    outline: 1px #EAEAEA solid;
+}
+.validate-link{
+    color:#0F8ABA;
+    text-decoration: none;
+}
+.validate-link:hover{
+    text-decoration: underline;
+}
+.accountList-head{
+    font-size: 13px;
+    color:#333;
+    padding-left:20px;
+}
+
+.tableTpl-wrap{
+    width:750px;
+    outline: none;
+    position: relative;
+    font-size: 13px;
+    color:#444;
+    border: 1px #EAEAEA solid;
+    margin-bottom: 30px;
+}
+.tableTpl-head{
+    padding-right:17px;
+    background-color: #F5F5F5;
+    border-bottom: 1px #EAEAEA solid;
+}
+.tableTpl-head-wrap{
+    width:100%;
+    position: relative;
+    overflow: hidden;
+}
+.tableTpl-grid{
+    margin: 0px;
+    font-size: 13px;
+    table-layout: fixed;
+    width: 100%;
+    max-width: none;
+    border-spacing: 0px;
+    empty-cells: show;
+    border-width: 0px;
+    outline: 0px none;
+    border-collapse: collapse;
+}
+.tabTpl-link{
+    display: block;
+    min-height: 18px;
+    line-height: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.tableTpl-grid tr th{
+    padding: 0.5em;
+    vertical-align: bottom;
+    overflow: hidden;
+    line-height: 1.6em;
+    border-left: 1px #EAEAEA solid;
+    font-weight: normal;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+.tableTpl-grid tr th:first-child{
+    border-left-width: 0;
+}
+.tableTpl-grid tr td{
+    border-left: 1px #EAEAEA solid;
+    border-bottom: 1px #EAEAEA solid;
+    padding: 0.5em;
+    overflow: hidden;
+    line-height: 1.6em;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+}
+.tableTpl-grid tr td:first-child{
+    border-left-width: 0px;
+}
+.tableTpl-content{
+    height:200px;
+    white-space: normal;
+    position: relative;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: scroll;
+    min-height: 0;
+}

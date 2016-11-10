@@ -1,0 +1,11 @@
+apply plugin: "war"
+
+dependencies {
+	compile project(':framework:framework-base')
+	compile project(':framework:framework-dubbo-support')
+	compile project(':front:front-common')
+	compile libraries.sadk
+	compile libraries.cryptokit_jni
+	compile libraries.ra_toolkit
+	compile libraries.sansec_swxajce
+}

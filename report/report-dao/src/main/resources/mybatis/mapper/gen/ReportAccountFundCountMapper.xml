@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.report.dao.mapper.gen.ReportAccountFundCountMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.report.dao.po.ReportAccountFundCount" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="report_date" property="reportDate" jdbcType="CHAR" />
+    <result column="deposit_count" property="depositCount" jdbcType="DECIMAL" />
+    <result column="transfer_in_count" property="transferInCount" jdbcType="DECIMAL" />
+    <result column="transfer_out_count" property="transferOutCount" jdbcType="DECIMAL" />
+    <result column="withdraw_count" property="withdrawCount" jdbcType="DECIMAL" />
+    <result column="freeze_count" property="freezeCount" jdbcType="DECIMAL" />
+    <result column="unfreeze_count" property="unfreezeCount" jdbcType="DECIMAL" />
+    <result column="refund_count" property="refundCount" jdbcType="DECIMAL" />
+    <result column="supervision_deposit_count" property="supervisionDepositCount" jdbcType="DECIMAL" />
+    <result column="supervision_transfer_in_count" property="supervisionTransferInCount" jdbcType="DECIMAL" />
+    <result column="supervision_transfer_out_count" property="supervisionTransferOutCount" jdbcType="DECIMAL" />
+    <result column="supervision_withdraw_count" property="supervisionWithdrawCount" jdbcType="DECIMAL" />
+    <result column="supervision_freeze_count" property="supervisionFreezeCount" jdbcType="DECIMAL" />
+    <result column="supervision_unfreeze_count" property="supervisionUnfreezeCount" jdbcType="DECIMAL" />
+    <result column="supervision_refund_count" property="supervisionRefundCount" jdbcType="DECIMAL" />
+    <result column="fund_report_state" property="fundReportState" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, customer_id, report_date, deposit_count, transfer_in_count, transfer_out_count, 
+    withdraw_count, freeze_count, unfreeze_count, refund_count, supervision_deposit_count, 
+    supervision_transfer_in_count, supervision_transfer_out_count, supervision_withdraw_count, 
+    supervision_freeze_count, supervision_unfreeze_count, supervision_refund_count, fund_report_state, 
+    create_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.report.dao.po.ReportAccountFundCountExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from report_account_fund_count
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from report_account_fund_count
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from report_account_fund_count
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.report.dao.po.ReportAccountFundCountExample" >
+    delete from report_account_fund_count
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.report.dao.po.ReportAccountFundCount" useGeneratedKeys="true" keyProperty="id" >
+    insert into report_account_fund_count (customer_id, report_date, deposit_count, 
+      transfer_in_count, transfer_out_count, withdraw_count, 
+      freeze_count, unfreeze_count, refund_count, 
+      supervision_deposit_count, supervision_transfer_in_count, 
+      supervision_transfer_out_count, supervision_withdraw_count, 
+      supervision_freeze_count, supervision_unfreeze_count, 
+      supervision_refund_count, fund_report_state, 
+      create_time)
+    values (#{customerId,jdbcType=VARCHAR}, #{reportDate,jdbcType=CHAR}, #{depositCount,jdbcType=DECIMAL}, 
+      #{transferInCount,jdbcType=DECIMAL}, #{transferOutCount,jdbcType=DECIMAL}, #{withdrawCount,jdbcType=DECIMAL}, 
+      #{freezeCount,jdbcType=DECIMAL}, #{unfreezeCount,jdbcType=DECIMAL}, #{refundCount,jdbcType=DECIMAL}, 
+      #{supervisionDepositCount,jdbcType=DECIMAL}, #{supervisionTransferInCount,jdbcType=DECIMAL}, 
+      #{supervisionTransferOutCount,jdbcType=DECIMAL}, #{supervisionWithdrawCount,jdbcType=DECIMAL}, 
+      #{supervisionFreezeCount,jdbcType=DECIMAL}, #{supervisionUnfreezeCount,jdbcType=DECIMAL}, 
+      #{supervisionRefundCount,jdbcType=DECIMAL}, #{fundReportState,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.report.dao.po.ReportAccountFundCount" useGeneratedKeys="true" keyProperty="id" >
+    insert into report_account_fund_count
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="reportDate != null" >
+        report_date,
+      </if>
+      <if test="depositCount != null" >
+        deposit_count,
+      </if>
+      <if test="transferInCount != null" >
+        transfer_in_count,
+      </if>
+      <if test="transferOutCount != null" >
+        transfer_out_count,
+      </if>
+      <if test="withdrawCount != null" >
+        withdraw_count,
+      </if>
+      <if test="freezeCount != null" >
+        freeze_count,
+      </if>
+      <if test="unfreezeCount != null" >
+        unfreeze_count,
+      </if>
+      <if test="refundCount != null" >
+        refund_count,
+      </if>
+      <if test="supervisionDepositCount != null" >
+        supervision_deposit_count,
+      </if>
+      <if test="supervisionTransferInCount != null" >
+        supervision_transfer_in_count,
+      </if>
+      <if test="supervisionTransferOutCount != null" >
+        supervision_transfer_out_count,
+      </if>
+      <if test="supervisionWithdrawCount != null" >
+        supervision_withdraw_count,
+      </if>
+      <if test="supervisionFreezeCount != null" >
+        supervision_freeze_count,
+      </if>
+      <if test="supervisionUnfreezeCount != null" >
+        supervision_unfreeze_count,
+      </if>
+      <if test="supervisionRefundCount != null" >
+        supervision_refund_count,
+      </if>
+      <if test="fundReportState != null" >
+        fund_report_state,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="reportDate != null" >
+        #{reportDate,jdbcType=CHAR},
+      </if>
+      <if test="depositCount != null" >
+        #{depositCount,jdbcType=DECIMAL},
+      </if>
+      <if test="transferInCount != null" >
+        #{transferInCount,jdbcType=DECIMAL},
+      </if>
+      <if test="transferOutCount != null" >
+        #{transferOutCount,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawCount != null" >
+        #{withdrawCount,jdbcType=DECIMAL},
+      </if>
+      <if test="freezeCount != null" >
+        #{freezeCount,jdbcType=DECIMAL},
+      </if>
+      <if test="unfreezeCount != null" >
+        #{unfreezeCount,jdbcType=DECIMAL},
+      </if>
+      <if test="refundCount != null" >
+        #{refundCount,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionDepositCount != null" >
+        #{supervisionDepositCount,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionTransferInCount != null" >
+        #{supervisionTransferInCount,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionTransferOutCount != null" >
+        #{supervisionTransferOutCount,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionWithdrawCount != null" >
+        #{supervisionWithdrawCount,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionFreezeCount != null" >
+        #{supervisionFreezeCount,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionUnfreezeCount != null" >
+        #{supervisionUnfreezeCount,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionRefundCount != null" >
+        #{supervisionRefundCount,jdbcType=DECIMAL},
+      </if>
+      <if test="fundReportState != null" >
+        #{fundReportState,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.report.dao.po.ReportAccountFundCountExample" resultType="java.lang.Integer" >
+    select count(*) from report_account_fund_count
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update report_account_fund_count
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.customerId != null" >
+        customer_id = #{record.customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reportDate != null" >
+        report_date = #{record.reportDate,jdbcType=CHAR},
+      </if>
+      <if test="record.depositCount != null" >
+        deposit_count = #{record.depositCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.transferInCount != null" >
+        transfer_in_count = #{record.transferInCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.transferOutCount != null" >
+        transfer_out_count = #{record.transferOutCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.withdrawCount != null" >
+        withdraw_count = #{record.withdrawCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.freezeCount != null" >
+        freeze_count = #{record.freezeCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.unfreezeCount != null" >
+        unfreeze_count = #{record.unfreezeCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.refundCount != null" >
+        refund_count = #{record.refundCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.supervisionDepositCount != null" >
+        supervision_deposit_count = #{record.supervisionDepositCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.supervisionTransferInCount != null" >
+        supervision_transfer_in_count = #{record.supervisionTransferInCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.supervisionTransferOutCount != null" >
+        supervision_transfer_out_count = #{record.supervisionTransferOutCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.supervisionWithdrawCount != null" >
+        supervision_withdraw_count = #{record.supervisionWithdrawCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.supervisionFreezeCount != null" >
+        supervision_freeze_count = #{record.supervisionFreezeCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.supervisionUnfreezeCount != null" >
+        supervision_unfreeze_count = #{record.supervisionUnfreezeCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.supervisionRefundCount != null" >
+        supervision_refund_count = #{record.supervisionRefundCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fundReportState != null" >
+        fund_report_state = #{record.fundReportState,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update report_account_fund_count
+    set id = #{record.id,jdbcType=INTEGER},
+      customer_id = #{record.customerId,jdbcType=VARCHAR},
+      report_date = #{record.reportDate,jdbcType=CHAR},
+      deposit_count = #{record.depositCount,jdbcType=DECIMAL},
+      transfer_in_count = #{record.transferInCount,jdbcType=DECIMAL},
+      transfer_out_count = #{record.transferOutCount,jdbcType=DECIMAL},
+      withdraw_count = #{record.withdrawCount,jdbcType=DECIMAL},
+      freeze_count = #{record.freezeCount,jdbcType=DECIMAL},
+      unfreeze_count = #{record.unfreezeCount,jdbcType=DECIMAL},
+      refund_count = #{record.refundCount,jdbcType=DECIMAL},
+      supervision_deposit_count = #{record.supervisionDepositCount,jdbcType=DECIMAL},
+      supervision_transfer_in_count = #{record.supervisionTransferInCount,jdbcType=DECIMAL},
+      supervision_transfer_out_count = #{record.supervisionTransferOutCount,jdbcType=DECIMAL},
+      supervision_withdraw_count = #{record.supervisionWithdrawCount,jdbcType=DECIMAL},
+      supervision_freeze_count = #{record.supervisionFreezeCount,jdbcType=DECIMAL},
+      supervision_unfreeze_count = #{record.supervisionUnfreezeCount,jdbcType=DECIMAL},
+      supervision_refund_count = #{record.supervisionRefundCount,jdbcType=DECIMAL},
+      fund_report_state = #{record.fundReportState,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.report.dao.po.ReportAccountFundCount" >
+    update report_account_fund_count
+    <set >
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="reportDate != null" >
+        report_date = #{reportDate,jdbcType=CHAR},
+      </if>
+      <if test="depositCount != null" >
+        deposit_count = #{depositCount,jdbcType=DECIMAL},
+      </if>
+      <if test="transferInCount != null" >
+        transfer_in_count = #{transferInCount,jdbcType=DECIMAL},
+      </if>
+      <if test="transferOutCount != null" >
+        transfer_out_count = #{transferOutCount,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawCount != null" >
+        withdraw_count = #{withdrawCount,jdbcType=DECIMAL},
+      </if>
+      <if test="freezeCount != null" >
+        freeze_count = #{freezeCount,jdbcType=DECIMAL},
+      </if>
+      <if test="unfreezeCount != null" >
+        unfreeze_count = #{unfreezeCount,jdbcType=DECIMAL},
+      </if>
+      <if test="refundCount != null" >
+        refund_count = #{refundCount,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionDepositCount != null" >
+        supervision_deposit_count = #{supervisionDepositCount,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionTransferInCount != null" >
+        supervision_transfer_in_count = #{supervisionTransferInCount,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionTransferOutCount != null" >
+        supervision_transfer_out_count = #{supervisionTransferOutCount,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionWithdrawCount != null" >
+        supervision_withdraw_count = #{supervisionWithdrawCount,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionFreezeCount != null" >
+        supervision_freeze_count = #{supervisionFreezeCount,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionUnfreezeCount != null" >
+        supervision_unfreeze_count = #{supervisionUnfreezeCount,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionRefundCount != null" >
+        supervision_refund_count = #{supervisionRefundCount,jdbcType=DECIMAL},
+      </if>
+      <if test="fundReportState != null" >
+        fund_report_state = #{fundReportState,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.report.dao.po.ReportAccountFundCount" >
+    update report_account_fund_count
+    set customer_id = #{customerId,jdbcType=VARCHAR},
+      report_date = #{reportDate,jdbcType=CHAR},
+      deposit_count = #{depositCount,jdbcType=DECIMAL},
+      transfer_in_count = #{transferInCount,jdbcType=DECIMAL},
+      transfer_out_count = #{transferOutCount,jdbcType=DECIMAL},
+      withdraw_count = #{withdrawCount,jdbcType=DECIMAL},
+      freeze_count = #{freezeCount,jdbcType=DECIMAL},
+      unfreeze_count = #{unfreezeCount,jdbcType=DECIMAL},
+      refund_count = #{refundCount,jdbcType=DECIMAL},
+      supervision_deposit_count = #{supervisionDepositCount,jdbcType=DECIMAL},
+      supervision_transfer_in_count = #{supervisionTransferInCount,jdbcType=DECIMAL},
+      supervision_transfer_out_count = #{supervisionTransferOutCount,jdbcType=DECIMAL},
+      supervision_withdraw_count = #{supervisionWithdrawCount,jdbcType=DECIMAL},
+      supervision_freeze_count = #{supervisionFreezeCount,jdbcType=DECIMAL},
+      supervision_unfreeze_count = #{supervisionUnfreezeCount,jdbcType=DECIMAL},
+      supervision_refund_count = #{supervisionRefundCount,jdbcType=DECIMAL},
+      fund_report_state = #{fundReportState,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from report_account_fund_count
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.report.dao.po.ReportAccountFundCountExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from report_account_fund_count
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

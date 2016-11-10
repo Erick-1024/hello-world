@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ - Copyright 1999-2011 Alibaba Group.
+ -
+ - Licensed under the Apache License, Version 2.0 (the "License");
+ - you may not use this file except in compliance with the License.
+ - You may obtain a copy of the License at
+ -
+ -      http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+						   http://code.alibabatech.com/schema/dubbo         http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<bean class="com.travelzen.framework.config.tops.TzPropertyPlaceholderConfigurer">
+        <property name="tzProperties">
+            <list>
+                <value>R:properties/zkService.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <dubbo:application name="report-scheduler" owner="shui.ren"/>
+    <dubbo:registry protocol="zookeeper" address="${connectionString}"
+    	group="${dubboRegistryPath}" file="${user.home}/.dubbo/cache/${APP_NAME}.cache"/>
+    <!-- dubbo的缺省超时时间是1秒，缺省重试为2次，check表示启动时检查提供者是否存在，true报错，false忽略-->
+    <dubbo:consumer timeout="60000" retries="0" check="false" />
+    <dubbo:reference id="accountApiImpl" interface="com.cana.account.api.IAccountApi"></dubbo:reference>
+    <dubbo:reference id="userApiImpl" interface="com.cana.member.api.IUserApi"/> 
+    <dubbo:reference id="bankgateApiImpl" interface="com.cana.bankgate.api.BankgateApi"/> 
+    <dubbo:reference id="creditApiImpl" interface="com.cana.credit.api.ICreditApi" />
+    <dubbo:reference id="flightFinanceApiImpl" interface="com.cana.flight.finance.api.IFlightFinanceApi" />
+    <dubbo:reference id="repaymentProductApi" interface="com.cana.repayment.api.IRepaymentProductApi"></dubbo:reference>
+</beans>

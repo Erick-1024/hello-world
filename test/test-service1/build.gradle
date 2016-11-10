@@ -1,0 +1,4 @@
+dependencies {
+	compile project(':test:test-dao1')
+	compile project(':test:test-service2')
+}

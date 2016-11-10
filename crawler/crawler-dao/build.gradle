@@ -1,0 +1,16 @@
+
+dependencies {
+	compile project(':framework:framework-base')
+	compile project(':framework:framework-core')
+	compile project(':framework:framework-logger')
+	compile project(':framework:framework-config')
+	compile project(':framework:framework-mongo-support')
+	compile project(':common:vbam-common')
+
+	compile libraries.spring_jdbc
+	compile libraries.spring_orm
+	compile libraries.spring_tx
+	compile libraries.spring_webmvc
+
+}
+

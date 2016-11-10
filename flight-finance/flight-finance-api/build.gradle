@@ -1,0 +1,5 @@
+dependencies {
+	compile project(':flight-finance:flight-finance-common')
+	compile project(':common:vbam-common')
+}
+

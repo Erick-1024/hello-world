@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.repayment.dao.mapper.gen.RepaymentDailyBatchTaskMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.repayment.dao.po.RepaymentDailyBatchTask" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="loan_info_id" property="loanInfoId" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="VARCHAR" />
+    <result column="task_num" property="taskNum" jdbcType="INTEGER" />
+    <result column="sequence" property="sequence" jdbcType="INTEGER" />
+    <result column="next_task_item_id" property="nextTaskItemId" jdbcType="VARCHAR" />
+    <result column="next_task_item_execute_time" property="nextTaskItemExecuteTime" jdbcType="CHAR" />
+    <result column="fail_task_item_id" property="failTaskItemId" jdbcType="VARCHAR" />
+    <result column="fail_message" property="failMessage" jdbcType="VARCHAR" />
+    <result column="can_retry" property="canRetry" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="upate_time" property="upateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, loan_info_id, customer_id, date, task_num, sequence, next_task_item_id, next_task_item_execute_time, 
+    fail_task_item_id, fail_message, can_retry, create_time, upate_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.repayment.dao.po.RepaymentDailyBatchTaskExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from repayment_daily_batch_task
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from repayment_daily_batch_task
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from repayment_daily_batch_task
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.repayment.dao.po.RepaymentDailyBatchTaskExample" >
+    delete from repayment_daily_batch_task
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.repayment.dao.po.RepaymentDailyBatchTask" >
+    insert into repayment_daily_batch_task (id, loan_info_id, customer_id, 
+      date, task_num, sequence, 
+      next_task_item_id, next_task_item_execute_time, fail_task_item_id, 
+      fail_message, can_retry, create_time, 
+      upate_time)
+    values (#{id,jdbcType=VARCHAR}, #{loanInfoId,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, 
+      #{date,jdbcType=VARCHAR}, #{taskNum,jdbcType=INTEGER}, #{sequence,jdbcType=INTEGER}, 
+      #{nextTaskItemId,jdbcType=VARCHAR}, #{nextTaskItemExecuteTime,jdbcType=CHAR}, #{failTaskItemId,jdbcType=VARCHAR}, 
+      #{failMessage,jdbcType=VARCHAR}, #{canRetry,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{upateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.repayment.dao.po.RepaymentDailyBatchTask" >
+    insert into repayment_daily_batch_task
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="loanInfoId != null" >
+        loan_info_id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="taskNum != null" >
+        task_num,
+      </if>
+      <if test="sequence != null" >
+        sequence,
+      </if>
+      <if test="nextTaskItemId != null" >
+        next_task_item_id,
+      </if>
+      <if test="nextTaskItemExecuteTime != null" >
+        next_task_item_execute_time,
+      </if>
+      <if test="failTaskItemId != null" >
+        fail_task_item_id,
+      </if>
+      <if test="failMessage != null" >
+        fail_message,
+      </if>
+      <if test="canRetry != null" >
+        can_retry,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="upateTime != null" >
+        upate_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="loanInfoId != null" >
+        #{loanInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="taskNum != null" >
+        #{taskNum,jdbcType=INTEGER},
+      </if>
+      <if test="sequence != null" >
+        #{sequence,jdbcType=INTEGER},
+      </if>
+      <if test="nextTaskItemId != null" >
+        #{nextTaskItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="nextTaskItemExecuteTime != null" >
+        #{nextTaskItemExecuteTime,jdbcType=CHAR},
+      </if>
+      <if test="failTaskItemId != null" >
+        #{failTaskItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="failMessage != null" >
+        #{failMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="canRetry != null" >
+        #{canRetry,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upateTime != null" >
+        #{upateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.repayment.dao.po.RepaymentDailyBatchTaskExample" resultType="java.lang.Integer" >
+    select count(*) from repayment_daily_batch_task
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update repayment_daily_batch_task
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanInfoId != null" >
+        loan_info_id = #{record.loanInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerId != null" >
+        customer_id = #{record.customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.date != null" >
+        date = #{record.date,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskNum != null" >
+        task_num = #{record.taskNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.sequence != null" >
+        sequence = #{record.sequence,jdbcType=INTEGER},
+      </if>
+      <if test="record.nextTaskItemId != null" >
+        next_task_item_id = #{record.nextTaskItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nextTaskItemExecuteTime != null" >
+        next_task_item_execute_time = #{record.nextTaskItemExecuteTime,jdbcType=CHAR},
+      </if>
+      <if test="record.failTaskItemId != null" >
+        fail_task_item_id = #{record.failTaskItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.failMessage != null" >
+        fail_message = #{record.failMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.canRetry != null" >
+        can_retry = #{record.canRetry,jdbcType=BIT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.upateTime != null" >
+        upate_time = #{record.upateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update repayment_daily_batch_task
+    set id = #{record.id,jdbcType=VARCHAR},
+      loan_info_id = #{record.loanInfoId,jdbcType=VARCHAR},
+      customer_id = #{record.customerId,jdbcType=VARCHAR},
+      date = #{record.date,jdbcType=VARCHAR},
+      task_num = #{record.taskNum,jdbcType=INTEGER},
+      sequence = #{record.sequence,jdbcType=INTEGER},
+      next_task_item_id = #{record.nextTaskItemId,jdbcType=VARCHAR},
+      next_task_item_execute_time = #{record.nextTaskItemExecuteTime,jdbcType=CHAR},
+      fail_task_item_id = #{record.failTaskItemId,jdbcType=VARCHAR},
+      fail_message = #{record.failMessage,jdbcType=VARCHAR},
+      can_retry = #{record.canRetry,jdbcType=BIT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      upate_time = #{record.upateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.repayment.dao.po.RepaymentDailyBatchTask" >
+    update repayment_daily_batch_task
+    <set >
+      <if test="loanInfoId != null" >
+        loan_info_id = #{loanInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="taskNum != null" >
+        task_num = #{taskNum,jdbcType=INTEGER},
+      </if>
+      <if test="sequence != null" >
+        sequence = #{sequence,jdbcType=INTEGER},
+      </if>
+      <if test="nextTaskItemId != null" >
+        next_task_item_id = #{nextTaskItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="nextTaskItemExecuteTime != null" >
+        next_task_item_execute_time = #{nextTaskItemExecuteTime,jdbcType=CHAR},
+      </if>
+      <if test="failTaskItemId != null" >
+        fail_task_item_id = #{failTaskItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="failMessage != null" >
+        fail_message = #{failMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="canRetry != null" >
+        can_retry = #{canRetry,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upateTime != null" >
+        upate_time = #{upateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.repayment.dao.po.RepaymentDailyBatchTask" >
+    update repayment_daily_batch_task
+    set loan_info_id = #{loanInfoId,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      date = #{date,jdbcType=VARCHAR},
+      task_num = #{taskNum,jdbcType=INTEGER},
+      sequence = #{sequence,jdbcType=INTEGER},
+      next_task_item_id = #{nextTaskItemId,jdbcType=VARCHAR},
+      next_task_item_execute_time = #{nextTaskItemExecuteTime,jdbcType=CHAR},
+      fail_task_item_id = #{failTaskItemId,jdbcType=VARCHAR},
+      fail_message = #{failMessage,jdbcType=VARCHAR},
+      can_retry = #{canRetry,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      upate_time = #{upateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from repayment_daily_batch_task
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.repayment.dao.po.RepaymentDailyBatchTaskExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from repayment_daily_batch_task
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

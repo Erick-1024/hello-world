@@ -1,0 +1,16 @@
+
+jar {
+	baseName =  'framework-logger'
+}
+dependencies {
+	compile project(':framework:framework-config')
+	compile project(':framework:framework-dao-base')
+	
+	compile libraries.commons_cli
+	
+	compile libraries.aspectj
+	compile libraries.aspectj_rt
+	compile libraries.perf4j
+	compile libraries.groovy_all
+	compile libraries.spring_webmvc
+}

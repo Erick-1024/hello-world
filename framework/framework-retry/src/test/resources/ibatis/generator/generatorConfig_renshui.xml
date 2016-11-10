@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ibatorConfiguration
+  PUBLIC "-//Apache Software Foundation//DTD Apache iBATIS Ibator Configuration 1.0//EN"
+  "http://ibatis.apache.org/dtd/ibator-config_1_0.dtd">
+
+<ibatorConfiguration>
+
+	<classPathEntry
+		location="/home/renshui/tz/tz-thirdparty/spring-mvc/lib/postgresql-9.1-901.jdbc4.jar" />
+
+	<ibatorContext id="FlatJava5" targetRuntime="Ibatis2Java5"
+		defaultModelType="flat">
+
+		<property name="suppressTypeWarnings" value="true" /> <!-- should be ignored -->
+
+
+		 <!-- Serializable化 -->
+        <ibatorPlugin type="org.apache.ibatis.ibator.plugins.SerializablePlugin" />
+
+		<ibatorPlugin type="org.apache.ibatis.ibator.plugins.EqualsHashCodePlugin" />
+
+
+		<ibatorPlugin type="org.apache.ibatis.ibator.plugins.SqlMapConfigPlugin">
+			<property name="targetPackage" value="ibatis.sqlmap.gen" />
+			<property name="targetProject"
+				value="/home/renshui/tz/tz-common/framework-retry/src/test/resources" />
+		</ibatorPlugin>
+
+		<ibatorPlugin type="org.apache.ibatis.ibator.plugins.PaginationPlugin">
+			<property name="enablePagination" value="true" />
+			<property name="dbType" value="postgres" />
+		</ibatorPlugin>
+
+
+		<jdbcConnection driverClass="org.postgresql.Driver"
+			connectionURL="jdbc:postgresql://192.168.161.28:5432/dev" userId="dev"
+			password="bavBauft2" />
+
+
+		<javaModelGenerator targetPackage="com.travelzen.framework.retry.po.gen"
+			targetProject="/home/renshui/tz/tz-common/framework-retry/src/main/java">
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="ibatis.sqlmap.gen"
+			targetProject="/home/renshui/tz/tz-common/framework-retry/src/main/resources">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+
+		<daoGenerator type="GENERIC-SI"
+			targetPackage="com.travelzen.framework.retry.dao.gen"
+			targetProject="/home/renshui/tz/tz-common/framework-retry/src/main/java">
+			<property name="enableSubPackages" value="false" />
+		</daoGenerator>
+
+<!-- 		       <table tableName="eticket" schema="tops_order" /> -->
+		
+<!-- 		       <table tableName="eticket" schema="tops_order" /> -->
+<!--                <table tableName="eticket_flight_segment_state" schema="tops_order" /> -->
+            <!--   <table tableName="flight_order_item" schema="tops_order" />-->
+                <table tableName="retry_task" schema="common" />
+<!--                <table tableName="gathering_record" schema="tops_order" /> -->
+<!--                <table tableName="order" schema="tops_order" /> -->
+<!--                <table tableName="order_contact" schema="tops_order" /> -->
+<!--                <table tableName="flight_order_log" schema="tops_order" /> -->
+<!--                <table tableName="payment_record" schema="tops_order" /> -->
+<!--                <table tableName="pnr_info" schema="tops_order" /> -->
+<!--                <table tableName="pnr_passenger_fee" schema="tops_order" />   -->
+                <!--<table tableName="price_policy" schema="tops_order" />-->
+<!--                <table tableName="passenger" schema="tops_order" /> -->
+<!--                <table tableName="pnr_flight_segment" schema="tops_order" /> -->
+<!--                <table tableName="eticket_itinerary" schema="tops_order" /> -->
+<!-- 			   <table tableName="queue" schema="tops_order" /> -->
+<!-- 			   <table tableName="operator_queue" schema="tops_order" /> -->
+<!-- 			   <table tableName="price_apply" schema="tops_order" /> -->
+<!-- 			   <table tableName="outer_order" schema="tops_order" /> -->
+<!-- 			   <table tableName="delivery_info" schema="tops_order" /> -->
+<!-- 			   <table tableName="pnr_import_control" schema="tops_order" /> -->
+<!-- 			   <table tableName="flight_order_item_view" schema="tops_order" /> -->
+<!-- 			   <table tableName="attention" schema="tops_order" /> -->
+<!-- 			   <table tableName="import_order_item" schema="tops_order" /> -->
+<!-- 			   <table tableName="retry_task" schema="tops_order" /> -->
+   
+
+	</ibatorContext>
+
+
+</ibatorConfiguration>

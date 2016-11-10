@@ -1,0 +1,10 @@
+apply plugin:'application'
+
+dependencies {
+	compile project(':credit:credit-service')
+	compile project(':framework:framework-dubbo-support')
+}
+
+mainClassName = 'com.cana.credit.scheduler.main.Main'
+
+applicationDefaultJvmArgs = ["-server", "-Xms256m", "-Xmx512m", "-XX:MaxPermSize=512m", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=12709", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false"]

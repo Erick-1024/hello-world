@@ -1,0 +1,8 @@
+apply plugin: 'war'
+dependencies {
+	compile project(':yundaex:yundaex-api')
+	compile project(':framework:framework-dubbo-support')
+	compile project(':common:vbam-common')
+	compile project(':repayment:repayment-api')
+	compile project(':member:member-api')
+}

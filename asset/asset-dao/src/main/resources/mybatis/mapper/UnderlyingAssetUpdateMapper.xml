@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cana.asset.dao.mapper.UnderlyingAssetUpdateMapper">
+   
+  	<update id="updateUnderlyingAssetInCondition" parameterType="com.cana.vbam.common.asset.underlyingasset.dto.UnderlyingAssetUpdateDTO" >
+  		update asset_underlying_asset
+  		set flags = (#{operationNum}
+  		<if test="isAndOperation == true" >
+  			<![CDATA[ & ]]>
+      	</if>
+  		<if test="isAndOperation == false" >
+        	|
+      	</if>
+      	flags)
+  		<if test="underlyingAssetIdList != null" >
+  			<include refid="Update_Where_Clause" />
+  		</if>
+	</update>
+	
+	<sql id="Update_Where_Clause" >
+		<where>
+			id in
+			<foreach collection="underlyingAssetIdList" item="listItem" open="(" close=")" separator="," >
+				#{listItem}
+			</foreach>
+		</where>
+	</sql>
+
+</mapper>

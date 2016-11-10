@@ -1,0 +1,36 @@
+01./* 
+02. 用于操作字节数组的流对象。 
+03. ByteArrayInputStream ：在构造的时候，需要接收数据源，。而且数据源是一个字节数组。 
+04. ByteArrayOutputStream：在构造的时候，不用定义数据目的，因为该对象中已经内部封装了可变长度的字节数组。 
+05. 这就是数据目的地。 
+06. 
+07. 因为这两个流对象都操作的数组，并没有使用系统资源。 
+08. 所以，不用进行close关闭。 
+09. 
+10. 在流操作规律讲解时： 
+11. 
+12. 源设备， 
+13. 键盘 System.in，硬盘 FileStream，内存 ArrayStream。 
+14. 目的设备： 
+15. 控制台 System.out，硬盘FileStream，内存 ArrayStream。 
+16. 
+17. 用流的读写思想来操作数据。 
+18. */  
+19.class ByteArrayStream {  
+20.      
+21.    public static void main(String[] args) {  
+22.        // 数据源  
+23.        ByteArrayInputStream bis = new ByteArrayInputStream("ABCDEFD".getBytes());  
+24.        // 数据目的 代表内存  
+25.        ByteArrayOutputStream bos = new ByteArrayOutputStream();  
+26.        int by = 0;  
+27.        while ((by = bis.read()) != -1) {  
+28.            bos.write(by);  
+29.        }  
+30.        System.out.println(bos.size());  
+31.        System.out.println(bos.toString());  
+32.  
+33.        // bos.writeTo(new FileOutputStream("a.txt"));  
+34.    }  
+35.      
+36.}  

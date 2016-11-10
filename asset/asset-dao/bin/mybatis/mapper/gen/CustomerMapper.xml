@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.asset.dao.mapper.gen.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.asset.dao.po.Customer" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="customer_type" property="customerType" jdbcType="VARCHAR" />
+    <result column="contact_name" property="contactName" jdbcType="VARCHAR" />
+    <result column="mobile_no" property="mobileNo" jdbcType="VARCHAR" />
+    <result column="mail" property="mail" jdbcType="VARCHAR" />
+    <result column="company_address" property="companyAddress" jdbcType="VARCHAR" />
+    <result column="economic_category" property="economicCategory" jdbcType="VARCHAR" />
+    <result column="industry" property="industry" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="business_licence_code" property="businessLicenceCode" jdbcType="VARCHAR" />
+    <result column="business_licence_code_expiry_date" property="businessLicenceCodeExpiryDate" jdbcType="TIMESTAMP" />
+    <result column="tax_registration_certificate_code" property="taxRegistrationCertificateCode" jdbcType="VARCHAR" />
+    <result column="tax_registration_certificate_code_expiry_date" property="taxRegistrationCertificateCodeExpiryDate" jdbcType="TIMESTAMP" />
+    <result column="organization_code" property="organizationCode" jdbcType="VARCHAR" />
+    <result column="organization_code_expiry_date" property="organizationCodeExpiryDate" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="enterprise_material_state" property="enterpriseMaterialState" jdbcType="VARCHAR" />
+    <result column="factor_id" property="factorId" jdbcType="VARCHAR" />
+    <result column="legal_representative" property="legalRepresentative" jdbcType="VARCHAR" />
+    <result column="registered_capital" property="registeredCapital" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, customer_name, customer_type, contact_name, mobile_no, mail, company_address, 
+    economic_category, industry, city, business_licence_code, business_licence_code_expiry_date, 
+    tax_registration_certificate_code, tax_registration_certificate_code_expiry_date, 
+    organization_code, organization_code_expiry_date, create_time, update_time, enterprise_material_state, 
+    factor_id, legal_representative, registered_capital
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.asset.dao.po.CustomerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from asset_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset_customer
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from asset_customer
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.asset.dao.po.CustomerExample" >
+    delete from asset_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.asset.dao.po.Customer" >
+    insert into asset_customer (id, customer_name, customer_type, 
+      contact_name, mobile_no, mail, 
+      company_address, economic_category, industry, 
+      city, business_licence_code, business_licence_code_expiry_date, 
+      tax_registration_certificate_code, tax_registration_certificate_code_expiry_date, 
+      organization_code, organization_code_expiry_date, 
+      create_time, update_time, enterprise_material_state, 
+      factor_id, legal_representative, registered_capital
+      )
+    values (#{id,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, #{customerType,jdbcType=VARCHAR}, 
+      #{contactName,jdbcType=VARCHAR}, #{mobileNo,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR}, 
+      #{companyAddress,jdbcType=VARCHAR}, #{economicCategory,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{businessLicenceCode,jdbcType=VARCHAR}, #{businessLicenceCodeExpiryDate,jdbcType=TIMESTAMP}, 
+      #{taxRegistrationCertificateCode,jdbcType=VARCHAR}, #{taxRegistrationCertificateCodeExpiryDate,jdbcType=TIMESTAMP}, 
+      #{organizationCode,jdbcType=VARCHAR}, #{organizationCodeExpiryDate,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{enterpriseMaterialState,jdbcType=VARCHAR}, 
+      #{factorId,jdbcType=VARCHAR}, #{legalRepresentative,jdbcType=VARCHAR}, #{registeredCapital,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.asset.dao.po.Customer" >
+    insert into asset_customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="customerType != null" >
+        customer_type,
+      </if>
+      <if test="contactName != null" >
+        contact_name,
+      </if>
+      <if test="mobileNo != null" >
+        mobile_no,
+      </if>
+      <if test="mail != null" >
+        mail,
+      </if>
+      <if test="companyAddress != null" >
+        company_address,
+      </if>
+      <if test="economicCategory != null" >
+        economic_category,
+      </if>
+      <if test="industry != null" >
+        industry,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="businessLicenceCode != null" >
+        business_licence_code,
+      </if>
+      <if test="businessLicenceCodeExpiryDate != null" >
+        business_licence_code_expiry_date,
+      </if>
+      <if test="taxRegistrationCertificateCode != null" >
+        tax_registration_certificate_code,
+      </if>
+      <if test="taxRegistrationCertificateCodeExpiryDate != null" >
+        tax_registration_certificate_code_expiry_date,
+      </if>
+      <if test="organizationCode != null" >
+        organization_code,
+      </if>
+      <if test="organizationCodeExpiryDate != null" >
+        organization_code_expiry_date,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="enterpriseMaterialState != null" >
+        enterprise_material_state,
+      </if>
+      <if test="factorId != null" >
+        factor_id,
+      </if>
+      <if test="legalRepresentative != null" >
+        legal_representative,
+      </if>
+      <if test="registeredCapital != null" >
+        registered_capital,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null" >
+        #{customerType,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNo != null" >
+        #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null" >
+        #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="economicCategory != null" >
+        #{economicCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceCode != null" >
+        #{businessLicenceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceCodeExpiryDate != null" >
+        #{businessLicenceCodeExpiryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taxRegistrationCertificateCode != null" >
+        #{taxRegistrationCertificateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationCertificateCodeExpiryDate != null" >
+        #{taxRegistrationCertificateCodeExpiryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="organizationCode != null" >
+        #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCodeExpiryDate != null" >
+        #{organizationCodeExpiryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enterpriseMaterialState != null" >
+        #{enterpriseMaterialState,jdbcType=VARCHAR},
+      </if>
+      <if test="factorId != null" >
+        #{factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresentative != null" >
+        #{legalRepresentative,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredCapital != null" >
+        #{registeredCapital,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.asset.dao.po.CustomerExample" resultType="java.lang.Integer" >
+    select count(*) from asset_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update asset_customer
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerName != null" >
+        customer_name = #{record.customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerType != null" >
+        customer_type = #{record.customerType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactName != null" >
+        contact_name = #{record.contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobileNo != null" >
+        mobile_no = #{record.mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mail != null" >
+        mail = #{record.mail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyAddress != null" >
+        company_address = #{record.companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.economicCategory != null" >
+        economic_category = #{record.economicCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industry != null" >
+        industry = #{record.industry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessLicenceCode != null" >
+        business_licence_code = #{record.businessLicenceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessLicenceCodeExpiryDate != null" >
+        business_licence_code_expiry_date = #{record.businessLicenceCodeExpiryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.taxRegistrationCertificateCode != null" >
+        tax_registration_certificate_code = #{record.taxRegistrationCertificateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxRegistrationCertificateCodeExpiryDate != null" >
+        tax_registration_certificate_code_expiry_date = #{record.taxRegistrationCertificateCodeExpiryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.organizationCode != null" >
+        organization_code = #{record.organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizationCodeExpiryDate != null" >
+        organization_code_expiry_date = #{record.organizationCodeExpiryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.enterpriseMaterialState != null" >
+        enterprise_material_state = #{record.enterpriseMaterialState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factorId != null" >
+        factor_id = #{record.factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalRepresentative != null" >
+        legal_representative = #{record.legalRepresentative,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registeredCapital != null" >
+        registered_capital = #{record.registeredCapital,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update asset_customer
+    set id = #{record.id,jdbcType=VARCHAR},
+      customer_name = #{record.customerName,jdbcType=VARCHAR},
+      customer_type = #{record.customerType,jdbcType=VARCHAR},
+      contact_name = #{record.contactName,jdbcType=VARCHAR},
+      mobile_no = #{record.mobileNo,jdbcType=VARCHAR},
+      mail = #{record.mail,jdbcType=VARCHAR},
+      company_address = #{record.companyAddress,jdbcType=VARCHAR},
+      economic_category = #{record.economicCategory,jdbcType=VARCHAR},
+      industry = #{record.industry,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      business_licence_code = #{record.businessLicenceCode,jdbcType=VARCHAR},
+      business_licence_code_expiry_date = #{record.businessLicenceCodeExpiryDate,jdbcType=TIMESTAMP},
+      tax_registration_certificate_code = #{record.taxRegistrationCertificateCode,jdbcType=VARCHAR},
+      tax_registration_certificate_code_expiry_date = #{record.taxRegistrationCertificateCodeExpiryDate,jdbcType=TIMESTAMP},
+      organization_code = #{record.organizationCode,jdbcType=VARCHAR},
+      organization_code_expiry_date = #{record.organizationCodeExpiryDate,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      enterprise_material_state = #{record.enterpriseMaterialState,jdbcType=VARCHAR},
+      factor_id = #{record.factorId,jdbcType=VARCHAR},
+      legal_representative = #{record.legalRepresentative,jdbcType=VARCHAR},
+      registered_capital = #{record.registeredCapital,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.asset.dao.po.Customer" >
+    update asset_customer
+    <set >
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null" >
+        customer_type = #{customerType,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNo != null" >
+        mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        mail = #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null" >
+        company_address = #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="economicCategory != null" >
+        economic_category = #{economicCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        industry = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceCode != null" >
+        business_licence_code = #{businessLicenceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceCodeExpiryDate != null" >
+        business_licence_code_expiry_date = #{businessLicenceCodeExpiryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taxRegistrationCertificateCode != null" >
+        tax_registration_certificate_code = #{taxRegistrationCertificateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationCertificateCodeExpiryDate != null" >
+        tax_registration_certificate_code_expiry_date = #{taxRegistrationCertificateCodeExpiryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="organizationCode != null" >
+        organization_code = #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCodeExpiryDate != null" >
+        organization_code_expiry_date = #{organizationCodeExpiryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enterpriseMaterialState != null" >
+        enterprise_material_state = #{enterpriseMaterialState,jdbcType=VARCHAR},
+      </if>
+      <if test="factorId != null" >
+        factor_id = #{factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresentative != null" >
+        legal_representative = #{legalRepresentative,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredCapital != null" >
+        registered_capital = #{registeredCapital,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.asset.dao.po.Customer" >
+    update asset_customer
+    set customer_name = #{customerName,jdbcType=VARCHAR},
+      customer_type = #{customerType,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      mail = #{mail,jdbcType=VARCHAR},
+      company_address = #{companyAddress,jdbcType=VARCHAR},
+      economic_category = #{economicCategory,jdbcType=VARCHAR},
+      industry = #{industry,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      business_licence_code = #{businessLicenceCode,jdbcType=VARCHAR},
+      business_licence_code_expiry_date = #{businessLicenceCodeExpiryDate,jdbcType=TIMESTAMP},
+      tax_registration_certificate_code = #{taxRegistrationCertificateCode,jdbcType=VARCHAR},
+      tax_registration_certificate_code_expiry_date = #{taxRegistrationCertificateCodeExpiryDate,jdbcType=TIMESTAMP},
+      organization_code = #{organizationCode,jdbcType=VARCHAR},
+      organization_code_expiry_date = #{organizationCodeExpiryDate,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      enterprise_material_state = #{enterpriseMaterialState,jdbcType=VARCHAR},
+      factor_id = #{factorId,jdbcType=VARCHAR},
+      legal_representative = #{legalRepresentative,jdbcType=VARCHAR},
+      registered_capital = #{registeredCapital,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

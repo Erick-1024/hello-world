@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ - Copyright 1999-2011 Alibaba Group.
+ -
+ - Licensed under the Apache License, Version 2.0 (the "License");
+ - you may not use this file except in compliance with the License.
+ - You may obtain a copy of the License at
+ -
+ -      http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+						   http://code.alibabatech.com/schema/dubbo         http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<bean class="com.travelzen.framework.config.tops.TzPropertyPlaceholderConfigurer">
+        <property name="tzProperties">
+            <list>
+                <value>R:properties/zkService.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <dubbo:application name="${APP_NAME}" owner="shui.ren"/>
+    <dubbo:registry protocol="zookeeper" address="${connectionString}"
+    	group="${dubboRegistryPath}" file="${user.home}/.dubbo/cache/${APP_NAME}.cache"/>
+    <!--需要配置本地host，因为虚拟机获得的可能不是该虚拟机的ip-->
+    <dubbo:provider threads="150" executes="100" port="20766" host="${LOCAL_IP}" accesslog="true"  filter="-exception" />
+
+ 	<bean id="assetApiImpl" class="com.cana.asset.server.api.impl.AssetApiImpl"/>
+    <dubbo:service interface="com.cana.asset.api.IAssetApi" ref="assetApiImpl">
+    </dubbo:service>
+    <!--项目管理查询列表  -->
+    <bean id="assetProjectManageApiImpl" class="com.cana.asset.server.api.impl.AssetProjectManageApiImpl"/>
+    <dubbo:service interface="com.cana.asset.api.IAssetProjectManageApi" ref="assetProjectManageApiImpl">
+    </dubbo:service>
+    <!-- 客户信息查询 -->
+   	<bean id="assetCustomerApiImpl" class="com.cana.asset.server.api.impl.AssetCustomerApiImpl"/>
+    <dubbo:service interface="com.cana.asset.api.IAssetCustomerApi" ref="assetCustomerApiImpl">
+    </dubbo:service>
+    <!-- 企业信息 -->
+    <bean id="enterpriseInfoApi" class="com.cana.asset.server.api.impl.AssetEnterpriseInfoApiImpl"/>
+    <dubbo:service interface="com.cana.asset.api.IAssetEnterpriseInfoApi" ref="enterpriseInfoApi">
+    </dubbo:service> 
+   	<bean id="assetLoanInfoApiImpl" class="com.cana.asset.server.api.impl.AssetLoanInfoApiImpl"/>
+    <dubbo:service interface="com.cana.asset.api.IAssetLoanInfoApi" ref="assetLoanInfoApiImpl">
+    </dubbo:service>
+
+    <!-- 额度管理 -->
+    <bean id="assetCreditApi" class="com.cana.asset.server.api.impl.AssetCreditApiImpl"/>
+    <dubbo:service interface="com.cana.asset.api.IAssetCreditApi" ref="assetCreditApi">
+    </dubbo:service> 
+    
+	<!-- 业务合同 -->
+    <bean id="assetFactorBusinessApiImpl" class="com.cana.asset.server.api.impl.AssetFactorBusinessApiImpl"/>
+    <dubbo:service interface="com.cana.asset.api.IAssetFactorBusinessApi" ref="assetFactorBusinessApiImpl">
+    </dubbo:service> 
+    
+    <!-- 应收账款 -->
+    <bean id="assetInvApiImpl" class="com.cana.asset.server.api.impl.AssetInvApiImpl"/>
+    <dubbo:service interface="com.cana.asset.api.IAssetInvApi" ref="assetInvApiImpl">
+    </dubbo:service> 
+    
+    <!-- 数据权限 -->
+    <bean id="assetUserPrivilegeApiImpl" class="com.cana.asset.server.api.impl.AssetUserPrivilegeApiImpl"/>
+    <dubbo:service interface="com.cana.asset.api.IAssetUserPrivilegeApi" ref="assetUserPrivilegeApiImpl">
+    </dubbo:service>
+
+    <!-- 基础资产 -->
+    <bean id="underlyingAssetApiImpl" class="com.cana.asset.server.api.impl.ABSUnderlyingAssetApiImpl"/>
+    <dubbo:service interface="com.cana.asset.api.IABSUnderlyingAssetApi" ref="underlyingAssetApiImpl">
+    </dubbo:service>
+    
+     <!-- 专项计划管理 -->
+    <bean id="aBSSpecialProgramApiImpl" class="com.cana.asset.server.api.impl.ABSSpecialProgramApiImpl"/>
+    	<dubbo:service interface="com.cana.asset.api.IABSSpecialProgramApi" ref="aBSSpecialProgramApiImpl">
+    </dubbo:service>
+    
+     <!-- 资产池 -->
+    <bean id="assetPoolApiImpl" class="com.cana.asset.server.api.impl.AssetPoolApiImpl"/>
+    	<dubbo:service interface="com.cana.asset.api.IAssetPoolApi" ref="assetPoolApiImpl">
+    </dubbo:service>
+    
+    <!-- 档案管理 -->
+    <bean id="assetArchivesManagementApiImpl" class="com.cana.asset.server.api.impl.AssetArchivesManagementApiImpl"/>
+    	<dubbo:service interface="com.cana.asset.api.IAssetArchivesManagementApi" ref="assetArchivesManagementApiImpl">
+    </dubbo:service>
+    
+    <!-- 管理日志 -->
+    <bean id="absLogApiImpl" class="com.cana.asset.server.api.impl.ABSLogApiImpl"/>
+    	<dubbo:service interface="com.cana.asset.api.IABSLogApi" ref="absLogApiImpl">
+    </dubbo:service>
+    
+     <!-- ABS -->
+    <bean id="absMarketResearchApiImpl" class="com.cana.asset.server.api.impl.ABSMarketResearchApiImpl"/>
+    	<dubbo:service interface="com.cana.asset.api.IABSMarketResearchApi" ref="absMarketResearchApiImpl">
+    </dubbo:service>
+    
+    <!-- 恒顺国旅 -->
+    <bean id="homsomApiImpl" class="com.cana.asset.server.api.impl.HomsomApiImpl"/>
+	<dubbo:service interface="com.cana.asset.api.IHomsomApi" ref="homsomApiImpl">
+    </dubbo:service>
+    <bean id="homsomSettlementApiImpl" class="com.cana.asset.server.api.impl.HomsomSettlementApiImpl"/>
+	<dubbo:service interface="com.cana.asset.api.IHomsomSettlementApi" ref="homsomSettlementApiImpl">
+    </dubbo:service>
+    
+    <!-- dubbo的缺省超时时间是1秒，缺省重试为2次，check表示启动时检查提供者是否存在，true报错，false忽略-->
+    <dubbo:consumer timeout="60000" retries="2" check="false" />
+    <dubbo:reference id="userApiImpl" interface="com.cana.member.api.IUserApi"/>
+    <dubbo:reference id="memberQueryApi" interface="com.cana.member.api.IMemberQueryApi"/>
+    <dubbo:reference id="accountApiImpl" interface="com.cana.account.api.IAccountApi"/>
+    
+	
+    <!--此处的每个方法的并发度数值，需要根据部署节点的情况来分配-->
+    <!-- <dubbo:monitor protocol="registry"/>  -->
+</beans>

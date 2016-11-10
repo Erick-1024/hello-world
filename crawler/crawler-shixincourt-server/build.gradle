@@ -1,0 +1,14 @@
+apply plugin: 'application'
+
+dependencies {
+	compile project(':crawler:crawler-common')
+	compile project(':crawler:crawler-dao')
+	compile project(':framework:framework-dubbo-support')
+	compile project(':crawler:crawler-shixincourt-api')
+}
+
+
+mainClassName = 'com.cana.crawler.shixincourt.server.main.ShixinCourtServerMain'
+
+applicationDefaultJvmArgs = ["-server", "-Xms256m", "-Xmx2048m", "-XX:MaxPermSize=512m", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=12603", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false"]
+

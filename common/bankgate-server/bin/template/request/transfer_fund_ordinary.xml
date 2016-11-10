@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLSUBTRN</action>
+	<userName></userName><!--登录名 varchar(30) -->
+	<clientID></clientID><!--客户流水号varchar (20) -->
+	<payAccNo></payAccNo><!--付款账号varchar(19) -->
+	<recvAccNo></recvAccNo><!--收款账号varchar(19) -->
+	<recvAccNm></recvAccNm><!--收款账户名称varchar(60) -->
+	<tranAmt></tranAmt><!--交易金额decimal(15,2) -->
+	<memo></memo><!--摘要varchar(22) 可空 -->
+</stream>

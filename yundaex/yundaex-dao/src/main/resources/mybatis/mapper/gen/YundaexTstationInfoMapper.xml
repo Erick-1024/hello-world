@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.yundaex.dao.mapper.gen.YundaexTstationInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.yundaex.dao.po.YundaexTstationInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="station_no" property="stationNo" jdbcType="VARCHAR" />
+    <result column="statmonth" property="statmonth" jdbcType="VARCHAR" />
+    <result column="receive_total" property="receiveTotal" jdbcType="INTEGER" />
+    <result column="avg_receive_num" property="avgReceiveNum" jdbcType="DECIMAL" />
+    <result column="receive_sum_signed" property="receiveSumSigned" jdbcType="INTEGER" />
+    <result column="receive_sum_unsign" property="receiveSumUnsign" jdbcType="INTEGER" />
+    <result column="send_total" property="sendTotal" jdbcType="INTEGER" />
+    <result column="avg_send_num" property="avgSendNum" jdbcType="DECIMAL" />
+    <result column="send_sum_signed" property="sendSumSigned" jdbcType="INTEGER" />
+    <result column="send_sum_unsign" property="sendSumUnsign" jdbcType="INTEGER" />
+    <result column="rec_send_dif" property="recSendDif" jdbcType="INTEGER" />
+    <result column="rec_send_ratio" property="recSendRatio" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, station_no, statmonth, receive_total, avg_receive_num, receive_sum_signed, receive_sum_unsign, 
+    send_total, avg_send_num, send_sum_signed, send_sum_unsign, rec_send_dif, rec_send_ratio, 
+    create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.yundaex.dao.po.YundaexTstationInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yundaex_tstation_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yundaex_tstation_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yundaex_tstation_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.yundaex.dao.po.YundaexTstationInfoExample" >
+    delete from yundaex_tstation_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.yundaex.dao.po.YundaexTstationInfo" >
+    insert into yundaex_tstation_info (id, station_no, statmonth, 
+      receive_total, avg_receive_num, receive_sum_signed, 
+      receive_sum_unsign, send_total, avg_send_num, 
+      send_sum_signed, send_sum_unsign, rec_send_dif, 
+      rec_send_ratio, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{stationNo,jdbcType=VARCHAR}, #{statmonth,jdbcType=VARCHAR}, 
+      #{receiveTotal,jdbcType=INTEGER}, #{avgReceiveNum,jdbcType=DECIMAL}, #{receiveSumSigned,jdbcType=INTEGER}, 
+      #{receiveSumUnsign,jdbcType=INTEGER}, #{sendTotal,jdbcType=INTEGER}, #{avgSendNum,jdbcType=DECIMAL}, 
+      #{sendSumSigned,jdbcType=INTEGER}, #{sendSumUnsign,jdbcType=INTEGER}, #{recSendDif,jdbcType=INTEGER}, 
+      #{recSendRatio,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.yundaex.dao.po.YundaexTstationInfo" >
+    insert into yundaex_tstation_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="stationNo != null" >
+        station_no,
+      </if>
+      <if test="statmonth != null" >
+        statmonth,
+      </if>
+      <if test="receiveTotal != null" >
+        receive_total,
+      </if>
+      <if test="avgReceiveNum != null" >
+        avg_receive_num,
+      </if>
+      <if test="receiveSumSigned != null" >
+        receive_sum_signed,
+      </if>
+      <if test="receiveSumUnsign != null" >
+        receive_sum_unsign,
+      </if>
+      <if test="sendTotal != null" >
+        send_total,
+      </if>
+      <if test="avgSendNum != null" >
+        avg_send_num,
+      </if>
+      <if test="sendSumSigned != null" >
+        send_sum_signed,
+      </if>
+      <if test="sendSumUnsign != null" >
+        send_sum_unsign,
+      </if>
+      <if test="recSendDif != null" >
+        rec_send_dif,
+      </if>
+      <if test="recSendRatio != null" >
+        rec_send_ratio,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="stationNo != null" >
+        #{stationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="statmonth != null" >
+        #{statmonth,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveTotal != null" >
+        #{receiveTotal,jdbcType=INTEGER},
+      </if>
+      <if test="avgReceiveNum != null" >
+        #{avgReceiveNum,jdbcType=DECIMAL},
+      </if>
+      <if test="receiveSumSigned != null" >
+        #{receiveSumSigned,jdbcType=INTEGER},
+      </if>
+      <if test="receiveSumUnsign != null" >
+        #{receiveSumUnsign,jdbcType=INTEGER},
+      </if>
+      <if test="sendTotal != null" >
+        #{sendTotal,jdbcType=INTEGER},
+      </if>
+      <if test="avgSendNum != null" >
+        #{avgSendNum,jdbcType=DECIMAL},
+      </if>
+      <if test="sendSumSigned != null" >
+        #{sendSumSigned,jdbcType=INTEGER},
+      </if>
+      <if test="sendSumUnsign != null" >
+        #{sendSumUnsign,jdbcType=INTEGER},
+      </if>
+      <if test="recSendDif != null" >
+        #{recSendDif,jdbcType=INTEGER},
+      </if>
+      <if test="recSendRatio != null" >
+        #{recSendRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.yundaex.dao.po.YundaexTstationInfoExample" resultType="java.lang.Integer" >
+    select count(*) from yundaex_tstation_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update yundaex_tstation_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.stationNo != null" >
+        station_no = #{record.stationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statmonth != null" >
+        statmonth = #{record.statmonth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveTotal != null" >
+        receive_total = #{record.receiveTotal,jdbcType=INTEGER},
+      </if>
+      <if test="record.avgReceiveNum != null" >
+        avg_receive_num = #{record.avgReceiveNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.receiveSumSigned != null" >
+        receive_sum_signed = #{record.receiveSumSigned,jdbcType=INTEGER},
+      </if>
+      <if test="record.receiveSumUnsign != null" >
+        receive_sum_unsign = #{record.receiveSumUnsign,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendTotal != null" >
+        send_total = #{record.sendTotal,jdbcType=INTEGER},
+      </if>
+      <if test="record.avgSendNum != null" >
+        avg_send_num = #{record.avgSendNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sendSumSigned != null" >
+        send_sum_signed = #{record.sendSumSigned,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendSumUnsign != null" >
+        send_sum_unsign = #{record.sendSumUnsign,jdbcType=INTEGER},
+      </if>
+      <if test="record.recSendDif != null" >
+        rec_send_dif = #{record.recSendDif,jdbcType=INTEGER},
+      </if>
+      <if test="record.recSendRatio != null" >
+        rec_send_ratio = #{record.recSendRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update yundaex_tstation_info
+    set id = #{record.id,jdbcType=INTEGER},
+      station_no = #{record.stationNo,jdbcType=VARCHAR},
+      statmonth = #{record.statmonth,jdbcType=VARCHAR},
+      receive_total = #{record.receiveTotal,jdbcType=INTEGER},
+      avg_receive_num = #{record.avgReceiveNum,jdbcType=DECIMAL},
+      receive_sum_signed = #{record.receiveSumSigned,jdbcType=INTEGER},
+      receive_sum_unsign = #{record.receiveSumUnsign,jdbcType=INTEGER},
+      send_total = #{record.sendTotal,jdbcType=INTEGER},
+      avg_send_num = #{record.avgSendNum,jdbcType=DECIMAL},
+      send_sum_signed = #{record.sendSumSigned,jdbcType=INTEGER},
+      send_sum_unsign = #{record.sendSumUnsign,jdbcType=INTEGER},
+      rec_send_dif = #{record.recSendDif,jdbcType=INTEGER},
+      rec_send_ratio = #{record.recSendRatio,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.yundaex.dao.po.YundaexTstationInfo" >
+    update yundaex_tstation_info
+    <set >
+      <if test="stationNo != null" >
+        station_no = #{stationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="statmonth != null" >
+        statmonth = #{statmonth,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveTotal != null" >
+        receive_total = #{receiveTotal,jdbcType=INTEGER},
+      </if>
+      <if test="avgReceiveNum != null" >
+        avg_receive_num = #{avgReceiveNum,jdbcType=DECIMAL},
+      </if>
+      <if test="receiveSumSigned != null" >
+        receive_sum_signed = #{receiveSumSigned,jdbcType=INTEGER},
+      </if>
+      <if test="receiveSumUnsign != null" >
+        receive_sum_unsign = #{receiveSumUnsign,jdbcType=INTEGER},
+      </if>
+      <if test="sendTotal != null" >
+        send_total = #{sendTotal,jdbcType=INTEGER},
+      </if>
+      <if test="avgSendNum != null" >
+        avg_send_num = #{avgSendNum,jdbcType=DECIMAL},
+      </if>
+      <if test="sendSumSigned != null" >
+        send_sum_signed = #{sendSumSigned,jdbcType=INTEGER},
+      </if>
+      <if test="sendSumUnsign != null" >
+        send_sum_unsign = #{sendSumUnsign,jdbcType=INTEGER},
+      </if>
+      <if test="recSendDif != null" >
+        rec_send_dif = #{recSendDif,jdbcType=INTEGER},
+      </if>
+      <if test="recSendRatio != null" >
+        rec_send_ratio = #{recSendRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.yundaex.dao.po.YundaexTstationInfo" >
+    update yundaex_tstation_info
+    set station_no = #{stationNo,jdbcType=VARCHAR},
+      statmonth = #{statmonth,jdbcType=VARCHAR},
+      receive_total = #{receiveTotal,jdbcType=INTEGER},
+      avg_receive_num = #{avgReceiveNum,jdbcType=DECIMAL},
+      receive_sum_signed = #{receiveSumSigned,jdbcType=INTEGER},
+      receive_sum_unsign = #{receiveSumUnsign,jdbcType=INTEGER},
+      send_total = #{sendTotal,jdbcType=INTEGER},
+      avg_send_num = #{avgSendNum,jdbcType=DECIMAL},
+      send_sum_signed = #{sendSumSigned,jdbcType=INTEGER},
+      send_sum_unsign = #{sendSumUnsign,jdbcType=INTEGER},
+      rec_send_dif = #{recSendDif,jdbcType=INTEGER},
+      rec_send_ratio = #{recSendRatio,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

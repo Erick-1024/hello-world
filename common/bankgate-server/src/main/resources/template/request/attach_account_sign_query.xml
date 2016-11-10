@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLSASQRY</action>
+	<userName></userName><!--登录名varchar(30) -->
+	<mainAccNo></mainAccNo><!--主体账号 char(19) -->
+	<subAccNo></subAccNo><!--附属账号 char(19) 可空 -->
+	<stt></stt><!--状态 char(1)，0：正常；1：待审核；2：注销；3：审核拒绝；可空，空则代表全部状态 -->
+	<startDate></startDate><!--开始日期 char(8) -->
+	<endDate></endDate><!--截止日期 char(8) -->
+</stream>

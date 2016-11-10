@@ -1,0 +1,15 @@
+apply plugin: 'application'
+
+dependencies {
+	compile project(':framework:framework-base')
+	compile project(':framework:framework-dubbo-support')
+	compile project(':repayment:repayment-api')
+	compile project(':framework:framework-redis')
+	compile project(':repayment:repayment-service')
+	compile project(':repayment:repayment-dao')
+	compile project(':common:common-dao')
+}
+
+mainClassName = 'com.cana.repayment.server.main.RepaymentServerMain'
+
+applicationDefaultJvmArgs = ["-server", "-Xms256m", "-Xmx2048m", "-XX:MaxPermSize=512m", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=12403", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false"]

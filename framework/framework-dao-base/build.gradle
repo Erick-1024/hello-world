@@ -1,0 +1,20 @@
+jar { baseName =  'framework-dao-base' }
+dependencies {
+	compile project(':framework:framework-core')
+	compile project(':framework:framework-mongo-support')
+	compile project(':framework:framework-logger-core')
+	compile project(':framework:framework-mybatis')
+	compile libraries.mysql_connector
+	compile (libraries.commons_pool){ force=true }
+	compile libraries.c3p0
+	compile libraries.commons_dbcp
+	compile libraries.mchange_commons_java
+	compile libraries.spring_orm
+	compile libraries.spring_context
+	compile libraries.spring_security_core
+	compile libraries.ibatis
+	compile libraries.jdom
+	compile libraries.servlet_api
+	testCompile libraries.spring_test
+	
+}

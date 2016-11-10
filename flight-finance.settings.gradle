@@ -1,0 +1,17 @@
+apply from: 'framework.settings.gradle'
+include 'flight-finance:flight-finance-server'
+include 'flight-finance:flight-finance-service'
+include 'flight-finance:flight-finance-dao'
+include 'flight-finance:flight-finance-common'
+include 'flight-finance:flight-finance-dataaccess-travelzen'
+include 'flight-finance:flight-finance-restore-job'
+include 'flight-finance:flight-finance-scheduler'
+include 'flight-finance:flight-finance-api'
+
+include 'common:vbam-common'
+include 'common:common-dao'
+include ':common:vbam-common-service'
+
+include ':tops-common-mediaclient'
+
+include ':credit:credit-api'

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLDPBQRY</action>
+	<userName></userName><!--登录名 varchar(30) -->
+	<payAccNo></payAccNo><!--付款账号 char(19)，可空 -->
+	<startDate></startDate><!--开始日期 char(8)，可空，付款账号为空时必输 -->
+	<endDate></endDate><!--截止日期 char(8) 可空，付款账号为空时必输 -->
+</stream>

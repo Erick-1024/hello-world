@@ -1,0 +1,6 @@
+#配置文件修改    
+韵达监控导入 redis失效时间
+文件位置：global/properties/yundaex.properties
+新增内容：	
+		#one day in minute
+	    redis.temp.timeout=86400

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息 varchar(254) -->
+	<list name="userDataList">
+		<row>
+			<subAccNo></subAccNo><!--附属账号varchar(19) -->
+			<tranType></tranType><!--交易类型varchar(2) -->
+			<tranDate></tranDate><!--交易日期char(8) 格式YYYYMMDD -->
+			<tranTime></tranTime><!--交易时间char(6) 格式HHMMSS -->
+			<tranNo></tranNo><!--柜员交易号varchar(14) -->
+			<tranSeq></tranSeq><!--交易序号varchar(13) -->
+			<oppAccNo></oppAccNo><!--对方账号varchar(19) -->
+			<oppAccName></oppAccName><!--对方账户名称varchar(60) -->
+			<oppOpenBankName></oppOpenBankName><!--对方开户行名称varchar(60) -->
+			<creditDebitFlag></creditDebitFlag><!--借贷标志varchar (1) D：借；C：贷 -->
+			<tranAmt></tranAmt><!--交易金额decimal(15,2) -->
+			<accBal></accBal><!--账户余额decimal(15,2) -->
+			<xtsfAmt></xtsfAmt><!--手续费金额decimal(15,2) -->
+			<abstract></abstract><!--摘要varchar(22) -->
+			<xtrvfg></xtrvfg><!--被冲账标识 char(1) Y：已冲账；N：未冲账 -->
+		</row>
+	</list>
+</stream>

@@ -1,0 +1,9 @@
+apply plugin:'application'
+dependencies {
+	compile project(':asset:asset-service')
+	compile project(':asset:asset-api')
+	compile project(':framework:framework-redis')
+}
+mainClassName = 'com.cana.asset.server.main.AssetServerMain'
+
+applicationDefaultJvmArgs = ["-server", "-Xms256m", "-Xmx1024m", "-XX:MaxPermSize=512m", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=12501", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false"]

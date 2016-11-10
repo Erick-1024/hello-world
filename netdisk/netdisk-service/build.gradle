@@ -1,0 +1,4 @@
+dependencies {
+	compile project(':netdisk:netdisk-dao')
+}
+

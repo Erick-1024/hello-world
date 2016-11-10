@@ -1,0 +1,5 @@
+
+dependencies {
+	compile project(':member:member-api')
+	compile project(':framework:framework-dubbo-support')
+}

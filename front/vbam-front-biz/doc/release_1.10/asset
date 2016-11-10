@@ -1,0 +1,190 @@
+＃客户信息表
+CREATE TABLE `asset_customer` (
+  `id` varchar(32) NOT NULL COMMENT '客户ｉｄ',
+  `customer_name` varchar(255) DEFAULT NULL COMMENT '客户名称	',
+  `customer_type` varchar(16) DEFAULT NULL COMMENT '客户类型(融资申请人，交易对手，担保方)',
+  `contact_name` varchar(255) DEFAULT NULL COMMENT '联系人名字',
+  `mobile_no` varchar(50) DEFAULT NULL COMMENT '手机号码',
+  `mail` varchar(50) DEFAULT NULL COMMENT '电子邮箱',
+  `company_address` varchar(255) DEFAULT NULL COMMENT '公司地址',
+  `economic_category` varchar(32) DEFAULT NULL COMMENT '经济类型',
+  `industry` varchar(32) DEFAULT NULL COMMENT '行业',
+  `city` varchar(32) DEFAULT NULL COMMENT '所属地区',
+  `business_licence_code` varchar(50) DEFAULT NULL COMMENT '营业执照号码',
+  `business_licence_code_expiry_date` timestamp NULL DEFAULT NULL COMMENT '营业执照有效日期',
+  `tax_registration_certificate_code` varchar(50) DEFAULT NULL COMMENT '税务登记证号码',
+  `tax_registration_certificate_code_expiry_date` timestamp NULL DEFAULT NULL COMMENT '税务登记证有效日期',
+  `organization_code` varchar(50) DEFAULT NULL COMMENT '组织机构代码',
+  `organization_code_expiry_date` timestamp NULL DEFAULT NULL COMMENT '组织机构证有效日期',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录更新时间',
+  `enterprise_material_state` varchar(45) DEFAULT NULL COMMENT '企业资料提交状态',
+  `factor_id` varchar(32) DEFAULT NULL COMMENT '保理商Id',
+  `legal_representative` varchar(255) DEFAULT NULL COMMENT '法定代表人',
+  `registered_capital` decimal(18,4) DEFAULT NULL COMMENT '注册资本',
+  PRIMARY KEY (`id`),
+  KEY `index_factor_id` (`factor_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+＃客户高管表
+CREATE TABLE `asset_customer_mag` (
+  `id` varchar(32) NOT NULL COMMENT '高管id',
+  `customer_id` varchar(32) NOT NULL COMMENT '关联客户ｉｄ',
+  `mag_name` varchar(255) DEFAULT NULL COMMENT '姓名',
+  `mag_sex` varchar(16) DEFAULT NULL COMMENT '性别',
+  `mag_identity_card_no` varchar(50) DEFAULT NULL COMMENT '身份证号',
+  `mag_duty_type` varchar(50) DEFAULT NULL COMMENT '主要职务',
+  `mag_education` varchar(50) DEFAULT NULL COMMENT '学历',
+  `mag_profession` varchar(50) DEFAULT NULL COMMENT '专业',
+  `experience` varchar(1000) DEFAULT NULL COMMENT '主要经历',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新记录时间',
+  PRIMARY KEY (`id`),
+  KEY `index_customer_id` (`customer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+＃客户融资表
+CREATE TABLE `asset_customer_mas` (
+  `id` varchar(32) NOT NULL COMMENT '融资ｉｄ',
+  `customer_id` varchar(32) NOT NULL COMMENT '关联客户ｉｄ',
+  `financial_institution_name` varchar(255) DEFAULT NULL COMMENT '金融机构名称',
+  `amount` decimal(18,4) DEFAULT NULL COMMENT '金额（万元）',
+  `start_date` varchar(10) DEFAULT NULL COMMENT '开始时间',
+  `end_date` varchar(10) DEFAULT NULL COMMENT '到期日',
+  `guarantee_type` varchar(50) DEFAULT NULL COMMENT '担保方式',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录更新时间',
+  PRIMARY KEY (`id`),
+  KEY `index_customer_id` (`customer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+＃客户采购表
+CREATE TABLE `asset_customer_purchase` (
+  `id` varchar(32) NOT NULL COMMENT '采购ｉｄ',
+  `customer_id` varchar(32) NOT NULL COMMENT '关联客户ｉｄ',
+  `supplier_name` varchar(255) DEFAULT NULL COMMENT '供应商名称',
+  `purchase_last_year` decimal(18,4) DEFAULT NULL COMMENT '上年采购量（万元）',
+  `percent` decimal(16,5) DEFAULT NULL COMMENT '占总采购量%',
+  `settle_type` varchar(32) DEFAULT NULL COMMENT '结算方式',
+  `account_payable_balance` decimal(18,4) DEFAULT NULL COMMENT '应付账款余额（万元）',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录更新时间',
+  PRIMARY KEY (`id`),
+  KEY `index_customer_id` (`customer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+＃客户销售表
+CREATE TABLE `asset_customer_sale` (
+  `id` varchar(32) NOT NULL COMMENT '销售id',
+  `customer_id` varchar(32) NOT NULL COMMENT '关联客户ｉｄ',
+  `sale_customer_name` varchar(255) DEFAULT NULL COMMENT '客户名称',
+  `sale_last_year` decimal(18,4) DEFAULT NULL COMMENT '上年销货额（万元）',
+  `percent` decimal(16,5) DEFAULT NULL COMMENT ' 占总销售额%',
+  `cooperation_period` decimal(16,5) DEFAULT NULL COMMENT '合作年限',
+  `account_receivable_balance` decimal(18,4) DEFAULT NULL COMMENT '应收账款余额（万元）',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录更新时间',
+  PRIMARY KEY (`id`),
+  KEY `index_customer_id` (`customer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+＃客户股东表
+CREATE TABLE `asset_customer_stk` (
+  `id` varchar(32) NOT NULL COMMENT '股东id ',
+  `customer_id` varchar(32) NOT NULL COMMENT '客户ｉｄ',
+  `stk_type` varchar(32) DEFAULT NULL COMMENT '股东类型',
+  `stk_name` varchar(255) DEFAULT NULL COMMENT '股东名称',
+  `stk_payamt` decimal(18,4) DEFAULT NULL COMMENT '出资额（万元)',
+  `stk_pcnt` decimal(16,5) DEFAULT NULL COMMENT '出资比例',
+  `stk_payamt_type` varchar(32) DEFAULT NULL COMMENT '出资方式',
+  `stk_status` varchar(16) DEFAULT NULL COMMENT '是否到位',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录更新时间',
+  PRIMARY KEY (`id`),
+  KEY `index_customer_id` (`customer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+＃本次上线应用：asset-server vbam-front-biz member-server
+# 企业信息表
+CREATE TABLE `asset_enterprise_info` (
+  `id` varchar(32) NOT NULL COMMENT '主键',
+  `customer_id` varchar(32) NOT NULL COMMENT '客户Id',
+  `categlory` varchar(100) DEFAULT NULL COMMENT '材料类型',
+  `item_type` varchar(100) DEFAULT NULL COMMENT '文件类型',
+  `file_name` varchar(100) DEFAULT NULL COMMENT '文件名',
+  `media_id` varchar(60) DEFAULT NULL COMMENT '文件Id',
+  `remark` varchar(100) DEFAULT NULL COMMENT '附件说明',
+  `sequence` int(11) DEFAULT NULL COMMENT '资料顺序',
+  `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `customer_id_index` (`customer_id`) COMMENT '客户Id索引'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+// op3
+GRANT DELETE ON `vbam`.`asset_customer_mag` TO 'asset_server'@'127.0.0.1';
+GRANT DELETE ON `vbam`.`asset_customer_mag` TO 'asset_server'@'localhost';
+GRANT DELETE ON `vbam`.`asset_customer_mag` TO 'asset_server'@'192.168.1.0/255.255.255.0';
+
+GRANT DELETE ON `vbam`.`asset_customer_mas` TO 'asset_server'@'127.0.0.1';
+GRANT DELETE ON `vbam`.`asset_customer_mas` TO 'asset_server'@'localhost';
+GRANT DELETE ON `vbam`.`asset_customer_mas` TO 'asset_server'@'192.168.1.0/255.255.255.0';
+
+GRANT DELETE ON `vbam`.`asset_customer_purchase` TO 'asset_server'@'127.0.0.1';
+GRANT DELETE ON `vbam`.`asset_customer_purchase` TO 'asset_server'@'localhost';
+GRANT DELETE ON `vbam`.`asset_customer_purchase` TO 'asset_server'@'192.168.1.0/255.255.255.0';
+
+GRANT DELETE ON `vbam`.`asset_customer_sale` TO 'asset_server'@'127.0.0.1';
+GRANT DELETE ON `vbam`.`asset_customer_sale` TO 'asset_server'@'localhost';
+GRANT DELETE ON `vbam`.`asset_customer_sale` TO 'asset_server'@'192.168.1.0/255.255.255.0';
+
+GRANT DELETE ON `vbam`.`asset_customer_stk` TO 'asset_server'@'127.0.0.1';
+GRANT DELETE ON `vbam`.`asset_customer_stk` TO 'asset_server'@'localhost';
+GRANT DELETE ON `vbam`.`asset_customer_stk` TO 'asset_server'@'192.168.1.0/255.255.255.0';
+
+
+GRANT DELETE ON `vbam`.`asset_enterprise_info` TO 'asset_server'@'127.0.0.1';
+GRANT DELETE ON `vbam`.`asset_enterprise_info` TO 'asset_server'@'localhost';
+GRANT DELETE ON `vbam`.`asset_enterprise_info` TO 'asset_server'@'192.168.1.0/255.255.255.0';
+
+
+
+// prod
+GRANT DELETE ON `vbam`.`asset_customer_mag` TO 'asset_server'@'127.0.0.1';
+GRANT DELETE ON `vbam`.`asset_customer_mag` TO 'asset_server'@'localhost';
+GRANT DELETE ON `vbam`.`asset_customer_mag` TO 'asset_server'@'192.168.192.0/255.255.255.0';
+
+GRANT DELETE ON `vbam`.`asset_customer_mas` TO 'asset_server'@'127.0.0.1';
+GRANT DELETE ON `vbam`.`asset_customer_mas` TO 'asset_server'@'localhost';
+GRANT DELETE ON `vbam`.`asset_customer_mas` TO 'asset_server'@'192.168.192.0/255.255.255.0';
+
+GRANT DELETE ON `vbam`.`asset_customer_purchase` TO 'asset_server'@'127.0.0.1';
+GRANT DELETE ON `vbam`.`asset_customer_purchase` TO 'asset_server'@'localhost';
+GRANT DELETE ON `vbam`.`asset_customer_purchase` TO 'asset_server'@'192.168.192.0/255.255.255.0';
+
+GRANT DELETE ON `vbam`.`asset_customer_sale` TO 'asset_server'@'127.0.0.1';
+GRANT DELETE ON `vbam`.`asset_customer_sale` TO 'asset_server'@'localhost';
+GRANT DELETE ON `vbam`.`asset_customer_sale` TO 'asset_server'@'192.168.192.0/255.255.255.0';
+
+GRANT DELETE ON `vbam`.`asset_customer_stk` TO 'asset_server'@'127.0.0.1';
+GRANT DELETE ON `vbam`.`asset_customer_stk` TO 'asset_server'@'localhost';
+GRANT DELETE ON `vbam`.`asset_customer_stk` TO 'asset_server'@'192.168.192.0/255.255.255.0';
+
+
+GRANT DELETE ON `vbam`.`asset_enterprise_info` TO 'asset_server'@'127.0.0.1';
+GRANT DELETE ON `vbam`.`asset_enterprise_info` TO 'asset_server'@'localhost';
+GRANT DELETE ON `vbam`.`asset_enterprise_info` TO 'asset_server'@'192.168.192.0/255.255.255.0';
+
+
+
+
+
+
+
+
+
+
+
+

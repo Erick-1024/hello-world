@@ -1,0 +1,8 @@
+apply from:'common.settings.gradle'
+apply from:'message.settings.gradle'
+include 'member:member-server'
+include 'member:member-client'
+include 'member:member-dao'
+include 'member:member-api'
+include 'member:member-service'
+include 'member:member-authorization'

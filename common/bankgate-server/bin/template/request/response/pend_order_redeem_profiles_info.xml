@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息varchar(254) -->
+	<returnRecords></returnRecords><!--返回记录条数 integer -->
+	<totalRecords></totalRecords><!--总记录条数 integer -->
+	<list name="userDataList">
+		<row>
+			<clientID></clientID><!--客户流水号varchar(20) -->
+			<recvAccNo></recvAccNo><!--收款账号varchar(19) -->
+			<payAccNo></payAccNo><!--付款账号varchar(19) -->
+			<stt></stt><!--制单状态varchar(2) ，取值参见附录4.7 -->
+			<tranAmt></tranAmt><!--交易金额 decimal(15,2) -->
+			<memo></memo><!--摘要varchar(22) -->
+			<purpose></purpose><!--备注varchar(60) -->
+		</row>
+	</list>
+</stream>

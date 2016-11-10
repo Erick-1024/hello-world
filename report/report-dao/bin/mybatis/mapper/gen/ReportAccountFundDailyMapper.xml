@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.report.dao.mapper.gen.ReportAccountFundDailyMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.report.dao.po.ReportAccountFundDaily" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="report_date" property="reportDate" jdbcType="CHAR" />
+    <result column="last_balance" property="lastBalance" jdbcType="DECIMAL" />
+    <result column="last_own_supervision_balance" property="lastOwnSupervisionBalance" jdbcType="DECIMAL" />
+    <result column="last_other_supervision_balance" property="lastOtherSupervisionBalance" jdbcType="DECIMAL" />
+    <result column="current_balance" property="currentBalance" jdbcType="DECIMAL" />
+    <result column="current_own_supervision_balance" property="currentOwnSupervisionBalance" jdbcType="DECIMAL" />
+    <result column="current_other_supervision_balance" property="currentOtherSupervisionBalance" jdbcType="DECIMAL" />
+    <result column="deposit_fund" property="depositFund" jdbcType="DECIMAL" />
+    <result column="transfer_fund" property="transferFund" jdbcType="DECIMAL" />
+    <result column="withdraw_fund" property="withdrawFund" jdbcType="DECIMAL" />
+    <result column="withdraw_fee" property="withdrawFee" jdbcType="DECIMAL" />
+    <result column="freeze_fund" property="freezeFund" jdbcType="DECIMAL" />
+    <result column="unfreeze_fund" property="unfreezeFund" jdbcType="DECIMAL" />
+    <result column="refund_fund" property="refundFund" jdbcType="DECIMAL" />
+    <result column="supervision_deposit_fund" property="supervisionDepositFund" jdbcType="DECIMAL" />
+    <result column="supervision_transfer_fund" property="supervisionTransferFund" jdbcType="DECIMAL" />
+    <result column="supervision_withdraw_fund" property="supervisionWithdrawFund" jdbcType="DECIMAL" />
+    <result column="supervision_withdraw_fee" property="supervisionWithdrawFee" jdbcType="DECIMAL" />
+    <result column="supervision_freeze_fund" property="supervisionFreezeFund" jdbcType="DECIMAL" />
+    <result column="supervision_unfreeze_fund" property="supervisionUnfreezeFund" jdbcType="DECIMAL" />
+    <result column="supervision_refund_fund" property="supervisionRefundFund" jdbcType="DECIMAL" />
+    <result column="fund_report_state" property="fundReportState" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, customer_id, report_date, last_balance, last_own_supervision_balance, last_other_supervision_balance, 
+    current_balance, current_own_supervision_balance, current_other_supervision_balance, 
+    deposit_fund, transfer_fund, withdraw_fund, withdraw_fee, freeze_fund, unfreeze_fund, 
+    refund_fund, supervision_deposit_fund, supervision_transfer_fund, supervision_withdraw_fund, 
+    supervision_withdraw_fee, supervision_freeze_fund, supervision_unfreeze_fund, supervision_refund_fund, 
+    fund_report_state, create_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.report.dao.po.ReportAccountFundDailyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from report_account_fund_daily
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from report_account_fund_daily
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from report_account_fund_daily
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.report.dao.po.ReportAccountFundDailyExample" >
+    delete from report_account_fund_daily
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.report.dao.po.ReportAccountFundDaily" useGeneratedKeys="true" keyProperty="id" >
+    insert into report_account_fund_daily (customer_id, report_date, last_balance, 
+      last_own_supervision_balance, last_other_supervision_balance, 
+      current_balance, current_own_supervision_balance, 
+      current_other_supervision_balance, deposit_fund, 
+      transfer_fund, withdraw_fund, withdraw_fee, 
+      freeze_fund, unfreeze_fund, refund_fund, 
+      supervision_deposit_fund, supervision_transfer_fund, 
+      supervision_withdraw_fund, supervision_withdraw_fee, 
+      supervision_freeze_fund, supervision_unfreeze_fund, 
+      supervision_refund_fund, fund_report_state, 
+      create_time)
+    values (#{customerId,jdbcType=VARCHAR}, #{reportDate,jdbcType=CHAR}, #{lastBalance,jdbcType=DECIMAL}, 
+      #{lastOwnSupervisionBalance,jdbcType=DECIMAL}, #{lastOtherSupervisionBalance,jdbcType=DECIMAL}, 
+      #{currentBalance,jdbcType=DECIMAL}, #{currentOwnSupervisionBalance,jdbcType=DECIMAL}, 
+      #{currentOtherSupervisionBalance,jdbcType=DECIMAL}, #{depositFund,jdbcType=DECIMAL}, 
+      #{transferFund,jdbcType=DECIMAL}, #{withdrawFund,jdbcType=DECIMAL}, #{withdrawFee,jdbcType=DECIMAL}, 
+      #{freezeFund,jdbcType=DECIMAL}, #{unfreezeFund,jdbcType=DECIMAL}, #{refundFund,jdbcType=DECIMAL}, 
+      #{supervisionDepositFund,jdbcType=DECIMAL}, #{supervisionTransferFund,jdbcType=DECIMAL}, 
+      #{supervisionWithdrawFund,jdbcType=DECIMAL}, #{supervisionWithdrawFee,jdbcType=DECIMAL}, 
+      #{supervisionFreezeFund,jdbcType=DECIMAL}, #{supervisionUnfreezeFund,jdbcType=DECIMAL}, 
+      #{supervisionRefundFund,jdbcType=DECIMAL}, #{fundReportState,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.report.dao.po.ReportAccountFundDaily" useGeneratedKeys="true" keyProperty="id" >
+    insert into report_account_fund_daily
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="reportDate != null" >
+        report_date,
+      </if>
+      <if test="lastBalance != null" >
+        last_balance,
+      </if>
+      <if test="lastOwnSupervisionBalance != null" >
+        last_own_supervision_balance,
+      </if>
+      <if test="lastOtherSupervisionBalance != null" >
+        last_other_supervision_balance,
+      </if>
+      <if test="currentBalance != null" >
+        current_balance,
+      </if>
+      <if test="currentOwnSupervisionBalance != null" >
+        current_own_supervision_balance,
+      </if>
+      <if test="currentOtherSupervisionBalance != null" >
+        current_other_supervision_balance,
+      </if>
+      <if test="depositFund != null" >
+        deposit_fund,
+      </if>
+      <if test="transferFund != null" >
+        transfer_fund,
+      </if>
+      <if test="withdrawFund != null" >
+        withdraw_fund,
+      </if>
+      <if test="withdrawFee != null" >
+        withdraw_fee,
+      </if>
+      <if test="freezeFund != null" >
+        freeze_fund,
+      </if>
+      <if test="unfreezeFund != null" >
+        unfreeze_fund,
+      </if>
+      <if test="refundFund != null" >
+        refund_fund,
+      </if>
+      <if test="supervisionDepositFund != null" >
+        supervision_deposit_fund,
+      </if>
+      <if test="supervisionTransferFund != null" >
+        supervision_transfer_fund,
+      </if>
+      <if test="supervisionWithdrawFund != null" >
+        supervision_withdraw_fund,
+      </if>
+      <if test="supervisionWithdrawFee != null" >
+        supervision_withdraw_fee,
+      </if>
+      <if test="supervisionFreezeFund != null" >
+        supervision_freeze_fund,
+      </if>
+      <if test="supervisionUnfreezeFund != null" >
+        supervision_unfreeze_fund,
+      </if>
+      <if test="supervisionRefundFund != null" >
+        supervision_refund_fund,
+      </if>
+      <if test="fundReportState != null" >
+        fund_report_state,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="reportDate != null" >
+        #{reportDate,jdbcType=CHAR},
+      </if>
+      <if test="lastBalance != null" >
+        #{lastBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="lastOwnSupervisionBalance != null" >
+        #{lastOwnSupervisionBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="lastOtherSupervisionBalance != null" >
+        #{lastOtherSupervisionBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="currentBalance != null" >
+        #{currentBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="currentOwnSupervisionBalance != null" >
+        #{currentOwnSupervisionBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="currentOtherSupervisionBalance != null" >
+        #{currentOtherSupervisionBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="depositFund != null" >
+        #{depositFund,jdbcType=DECIMAL},
+      </if>
+      <if test="transferFund != null" >
+        #{transferFund,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawFund != null" >
+        #{withdrawFund,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawFee != null" >
+        #{withdrawFee,jdbcType=DECIMAL},
+      </if>
+      <if test="freezeFund != null" >
+        #{freezeFund,jdbcType=DECIMAL},
+      </if>
+      <if test="unfreezeFund != null" >
+        #{unfreezeFund,jdbcType=DECIMAL},
+      </if>
+      <if test="refundFund != null" >
+        #{refundFund,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionDepositFund != null" >
+        #{supervisionDepositFund,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionTransferFund != null" >
+        #{supervisionTransferFund,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionWithdrawFund != null" >
+        #{supervisionWithdrawFund,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionWithdrawFee != null" >
+        #{supervisionWithdrawFee,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionFreezeFund != null" >
+        #{supervisionFreezeFund,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionUnfreezeFund != null" >
+        #{supervisionUnfreezeFund,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionRefundFund != null" >
+        #{supervisionRefundFund,jdbcType=DECIMAL},
+      </if>
+      <if test="fundReportState != null" >
+        #{fundReportState,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.report.dao.po.ReportAccountFundDailyExample" resultType="java.lang.Integer" >
+    select count(*) from report_account_fund_daily
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update report_account_fund_daily
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.customerId != null" >
+        customer_id = #{record.customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reportDate != null" >
+        report_date = #{record.reportDate,jdbcType=CHAR},
+      </if>
+      <if test="record.lastBalance != null" >
+        last_balance = #{record.lastBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lastOwnSupervisionBalance != null" >
+        last_own_supervision_balance = #{record.lastOwnSupervisionBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lastOtherSupervisionBalance != null" >
+        last_other_supervision_balance = #{record.lastOtherSupervisionBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.currentBalance != null" >
+        current_balance = #{record.currentBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.currentOwnSupervisionBalance != null" >
+        current_own_supervision_balance = #{record.currentOwnSupervisionBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.currentOtherSupervisionBalance != null" >
+        current_other_supervision_balance = #{record.currentOtherSupervisionBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.depositFund != null" >
+        deposit_fund = #{record.depositFund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.transferFund != null" >
+        transfer_fund = #{record.transferFund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.withdrawFund != null" >
+        withdraw_fund = #{record.withdrawFund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.withdrawFee != null" >
+        withdraw_fee = #{record.withdrawFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.freezeFund != null" >
+        freeze_fund = #{record.freezeFund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.unfreezeFund != null" >
+        unfreeze_fund = #{record.unfreezeFund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.refundFund != null" >
+        refund_fund = #{record.refundFund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.supervisionDepositFund != null" >
+        supervision_deposit_fund = #{record.supervisionDepositFund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.supervisionTransferFund != null" >
+        supervision_transfer_fund = #{record.supervisionTransferFund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.supervisionWithdrawFund != null" >
+        supervision_withdraw_fund = #{record.supervisionWithdrawFund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.supervisionWithdrawFee != null" >
+        supervision_withdraw_fee = #{record.supervisionWithdrawFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.supervisionFreezeFund != null" >
+        supervision_freeze_fund = #{record.supervisionFreezeFund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.supervisionUnfreezeFund != null" >
+        supervision_unfreeze_fund = #{record.supervisionUnfreezeFund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.supervisionRefundFund != null" >
+        supervision_refund_fund = #{record.supervisionRefundFund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fundReportState != null" >
+        fund_report_state = #{record.fundReportState,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update report_account_fund_daily
+    set id = #{record.id,jdbcType=INTEGER},
+      customer_id = #{record.customerId,jdbcType=VARCHAR},
+      report_date = #{record.reportDate,jdbcType=CHAR},
+      last_balance = #{record.lastBalance,jdbcType=DECIMAL},
+      last_own_supervision_balance = #{record.lastOwnSupervisionBalance,jdbcType=DECIMAL},
+      last_other_supervision_balance = #{record.lastOtherSupervisionBalance,jdbcType=DECIMAL},
+      current_balance = #{record.currentBalance,jdbcType=DECIMAL},
+      current_own_supervision_balance = #{record.currentOwnSupervisionBalance,jdbcType=DECIMAL},
+      current_other_supervision_balance = #{record.currentOtherSupervisionBalance,jdbcType=DECIMAL},
+      deposit_fund = #{record.depositFund,jdbcType=DECIMAL},
+      transfer_fund = #{record.transferFund,jdbcType=DECIMAL},
+      withdraw_fund = #{record.withdrawFund,jdbcType=DECIMAL},
+      withdraw_fee = #{record.withdrawFee,jdbcType=DECIMAL},
+      freeze_fund = #{record.freezeFund,jdbcType=DECIMAL},
+      unfreeze_fund = #{record.unfreezeFund,jdbcType=DECIMAL},
+      refund_fund = #{record.refundFund,jdbcType=DECIMAL},
+      supervision_deposit_fund = #{record.supervisionDepositFund,jdbcType=DECIMAL},
+      supervision_transfer_fund = #{record.supervisionTransferFund,jdbcType=DECIMAL},
+      supervision_withdraw_fund = #{record.supervisionWithdrawFund,jdbcType=DECIMAL},
+      supervision_withdraw_fee = #{record.supervisionWithdrawFee,jdbcType=DECIMAL},
+      supervision_freeze_fund = #{record.supervisionFreezeFund,jdbcType=DECIMAL},
+      supervision_unfreeze_fund = #{record.supervisionUnfreezeFund,jdbcType=DECIMAL},
+      supervision_refund_fund = #{record.supervisionRefundFund,jdbcType=DECIMAL},
+      fund_report_state = #{record.fundReportState,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.report.dao.po.ReportAccountFundDaily" >
+    update report_account_fund_daily
+    <set >
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="reportDate != null" >
+        report_date = #{reportDate,jdbcType=CHAR},
+      </if>
+      <if test="lastBalance != null" >
+        last_balance = #{lastBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="lastOwnSupervisionBalance != null" >
+        last_own_supervision_balance = #{lastOwnSupervisionBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="lastOtherSupervisionBalance != null" >
+        last_other_supervision_balance = #{lastOtherSupervisionBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="currentBalance != null" >
+        current_balance = #{currentBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="currentOwnSupervisionBalance != null" >
+        current_own_supervision_balance = #{currentOwnSupervisionBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="currentOtherSupervisionBalance != null" >
+        current_other_supervision_balance = #{currentOtherSupervisionBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="depositFund != null" >
+        deposit_fund = #{depositFund,jdbcType=DECIMAL},
+      </if>
+      <if test="transferFund != null" >
+        transfer_fund = #{transferFund,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawFund != null" >
+        withdraw_fund = #{withdrawFund,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawFee != null" >
+        withdraw_fee = #{withdrawFee,jdbcType=DECIMAL},
+      </if>
+      <if test="freezeFund != null" >
+        freeze_fund = #{freezeFund,jdbcType=DECIMAL},
+      </if>
+      <if test="unfreezeFund != null" >
+        unfreeze_fund = #{unfreezeFund,jdbcType=DECIMAL},
+      </if>
+      <if test="refundFund != null" >
+        refund_fund = #{refundFund,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionDepositFund != null" >
+        supervision_deposit_fund = #{supervisionDepositFund,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionTransferFund != null" >
+        supervision_transfer_fund = #{supervisionTransferFund,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionWithdrawFund != null" >
+        supervision_withdraw_fund = #{supervisionWithdrawFund,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionWithdrawFee != null" >
+        supervision_withdraw_fee = #{supervisionWithdrawFee,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionFreezeFund != null" >
+        supervision_freeze_fund = #{supervisionFreezeFund,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionUnfreezeFund != null" >
+        supervision_unfreeze_fund = #{supervisionUnfreezeFund,jdbcType=DECIMAL},
+      </if>
+      <if test="supervisionRefundFund != null" >
+        supervision_refund_fund = #{supervisionRefundFund,jdbcType=DECIMAL},
+      </if>
+      <if test="fundReportState != null" >
+        fund_report_state = #{fundReportState,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.report.dao.po.ReportAccountFundDaily" >
+    update report_account_fund_daily
+    set customer_id = #{customerId,jdbcType=VARCHAR},
+      report_date = #{reportDate,jdbcType=CHAR},
+      last_balance = #{lastBalance,jdbcType=DECIMAL},
+      last_own_supervision_balance = #{lastOwnSupervisionBalance,jdbcType=DECIMAL},
+      last_other_supervision_balance = #{lastOtherSupervisionBalance,jdbcType=DECIMAL},
+      current_balance = #{currentBalance,jdbcType=DECIMAL},
+      current_own_supervision_balance = #{currentOwnSupervisionBalance,jdbcType=DECIMAL},
+      current_other_supervision_balance = #{currentOtherSupervisionBalance,jdbcType=DECIMAL},
+      deposit_fund = #{depositFund,jdbcType=DECIMAL},
+      transfer_fund = #{transferFund,jdbcType=DECIMAL},
+      withdraw_fund = #{withdrawFund,jdbcType=DECIMAL},
+      withdraw_fee = #{withdrawFee,jdbcType=DECIMAL},
+      freeze_fund = #{freezeFund,jdbcType=DECIMAL},
+      unfreeze_fund = #{unfreezeFund,jdbcType=DECIMAL},
+      refund_fund = #{refundFund,jdbcType=DECIMAL},
+      supervision_deposit_fund = #{supervisionDepositFund,jdbcType=DECIMAL},
+      supervision_transfer_fund = #{supervisionTransferFund,jdbcType=DECIMAL},
+      supervision_withdraw_fund = #{supervisionWithdrawFund,jdbcType=DECIMAL},
+      supervision_withdraw_fee = #{supervisionWithdrawFee,jdbcType=DECIMAL},
+      supervision_freeze_fund = #{supervisionFreezeFund,jdbcType=DECIMAL},
+      supervision_unfreeze_fund = #{supervisionUnfreezeFund,jdbcType=DECIMAL},
+      supervision_refund_fund = #{supervisionRefundFund,jdbcType=DECIMAL},
+      fund_report_state = #{fundReportState,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from report_account_fund_daily
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.report.dao.po.ReportAccountFundDailyExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from report_account_fund_daily
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

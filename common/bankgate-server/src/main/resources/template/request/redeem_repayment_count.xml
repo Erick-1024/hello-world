@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLNRMCAL</action>
+	<userName></userName><!--登录名 varchar(30) -->
+	<mctNo></mctNo><!--商户编号char(8) -->
+	<list name="userDataList">
+		<row>
+			<stockNo></stockNo><!--仓单编号varchar(20) -->
+		</row>
+	</list>
+</stream>

@@ -1,0 +1,38 @@
+1. 增加homsom-openapi应用,nginx, 并手工建立客户，额度，业务（利率，罚息利率，结算账号）,应收账款
+
+新增：global/properties/homsom_param.properties
+   
+#保理商id
+factorId=201607050033
+
+HOMSOM-md5key=homsom-cana
+#恒顺业务合同号
+HOMSOM-contractNo=01234567890
+#默认放款期限
+HOMSOM-DEFAULT_LOAN_PERIOD=60
+#默认回购期限
+HOMSOM-DEFAULT_BUYBACK_PERIOD=3
+
+2. 增加setting-server应用, 发布完后要导入节假日数据
+新增:
+setting-server/properties/mysql-jdbc.properties
+
+jdbc.username=setting_server
+jdbc.password=Abc12345
+jdbc.initialPoolSize=0
+jdbc.minPoolSize=0
+jdbc.maxPoolSize=20
+
+[op3]
+grant select,insert,update,execute,delete on vbam.* to 'setting_server'@'192.168.1.0/255.255.255.0' identified by 'Abc12345';
+grant select,insert,update,execute,delete on vbam.* to 'setting_server'@'127.0.0.1' identified by 'Abc12345';
+grant select,insert,update,execute,delete on vbam.* to 'setting_server'@'localhost' identified by 'Abc12345';
+
+[prod]
+grant select,insert,update,execute,delete on vbam.* to 'setting_server'@'192.168.192.0/255.255.255.0' identified by 'Abc12345';
+grant select,insert,update,execute,delete on vbam.* to 'setting_server'@'127.0.0.1' identified by 'Abc12345';
+grant select,insert,update,execute,delete on vbam.* to 'setting_server'@'localhost' identified by 'Abc12345';
+
+
+3. 需要导入节假日数据
+

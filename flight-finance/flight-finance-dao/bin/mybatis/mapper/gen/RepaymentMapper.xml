@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.flight.finance.dao.mapper.gen.RepaymentMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.flight.finance.dao.po.Repayment" >
+    <id column="record_id" property="recordId" jdbcType="INTEGER" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="payment_start_date" property="paymentStartDate" jdbcType="VARCHAR" />
+    <result column="payment_end_date" property="paymentEndDate" jdbcType="VARCHAR" />
+    <result column="repayment_date" property="repaymentDate" jdbcType="VARCHAR" />
+    <result column="late_repayment_date" property="lateRepaymentDate" jdbcType="VARCHAR" />
+    <result column="actual_repayment_date" property="actualRepaymentDate" jdbcType="VARCHAR" />
+    <result column="account_amount" property="accountAmount" jdbcType="DECIMAL" />
+    <result column="payed_amount" property="payedAmount" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    record_id, customer_id, customer_name, payment_start_date, payment_end_date, repayment_date, 
+    late_repayment_date, actual_repayment_date, account_amount, payed_amount, create_time, 
+    update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.flight.finance.dao.po.RepaymentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from repayment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from repayment
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from repayment
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.flight.finance.dao.po.RepaymentExample" >
+    delete from repayment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.flight.finance.dao.po.Repayment" >
+    insert into repayment (record_id, customer_id, customer_name, 
+      payment_start_date, payment_end_date, repayment_date, 
+      late_repayment_date, actual_repayment_date, 
+      account_amount, payed_amount, create_time, 
+      update_time)
+    values (#{recordId,jdbcType=INTEGER}, #{customerId,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, 
+      #{paymentStartDate,jdbcType=VARCHAR}, #{paymentEndDate,jdbcType=VARCHAR}, #{repaymentDate,jdbcType=VARCHAR}, 
+      #{lateRepaymentDate,jdbcType=VARCHAR}, #{actualRepaymentDate,jdbcType=VARCHAR}, 
+      #{accountAmount,jdbcType=DECIMAL}, #{payedAmount,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.flight.finance.dao.po.Repayment" >
+    insert into repayment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        record_id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="paymentStartDate != null" >
+        payment_start_date,
+      </if>
+      <if test="paymentEndDate != null" >
+        payment_end_date,
+      </if>
+      <if test="repaymentDate != null" >
+        repayment_date,
+      </if>
+      <if test="lateRepaymentDate != null" >
+        late_repayment_date,
+      </if>
+      <if test="actualRepaymentDate != null" >
+        actual_repayment_date,
+      </if>
+      <if test="accountAmount != null" >
+        account_amount,
+      </if>
+      <if test="payedAmount != null" >
+        payed_amount,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentStartDate != null" >
+        #{paymentStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentEndDate != null" >
+        #{paymentEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentDate != null" >
+        #{repaymentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="lateRepaymentDate != null" >
+        #{lateRepaymentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="actualRepaymentDate != null" >
+        #{actualRepaymentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="accountAmount != null" >
+        #{accountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payedAmount != null" >
+        #{payedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.flight.finance.dao.po.RepaymentExample" resultType="java.lang.Integer" >
+    select count(*) from repayment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update repayment
+    <set >
+      <if test="record.recordId != null" >
+        record_id = #{record.recordId,jdbcType=INTEGER},
+      </if>
+      <if test="record.customerId != null" >
+        customer_id = #{record.customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerName != null" >
+        customer_name = #{record.customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentStartDate != null" >
+        payment_start_date = #{record.paymentStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentEndDate != null" >
+        payment_end_date = #{record.paymentEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repaymentDate != null" >
+        repayment_date = #{record.repaymentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lateRepaymentDate != null" >
+        late_repayment_date = #{record.lateRepaymentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actualRepaymentDate != null" >
+        actual_repayment_date = #{record.actualRepaymentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountAmount != null" >
+        account_amount = #{record.accountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.payedAmount != null" >
+        payed_amount = #{record.payedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update repayment
+    set record_id = #{record.recordId,jdbcType=INTEGER},
+      customer_id = #{record.customerId,jdbcType=VARCHAR},
+      customer_name = #{record.customerName,jdbcType=VARCHAR},
+      payment_start_date = #{record.paymentStartDate,jdbcType=VARCHAR},
+      payment_end_date = #{record.paymentEndDate,jdbcType=VARCHAR},
+      repayment_date = #{record.repaymentDate,jdbcType=VARCHAR},
+      late_repayment_date = #{record.lateRepaymentDate,jdbcType=VARCHAR},
+      actual_repayment_date = #{record.actualRepaymentDate,jdbcType=VARCHAR},
+      account_amount = #{record.accountAmount,jdbcType=DECIMAL},
+      payed_amount = #{record.payedAmount,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.flight.finance.dao.po.Repayment" >
+    update repayment
+    <set >
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentStartDate != null" >
+        payment_start_date = #{paymentStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentEndDate != null" >
+        payment_end_date = #{paymentEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentDate != null" >
+        repayment_date = #{repaymentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="lateRepaymentDate != null" >
+        late_repayment_date = #{lateRepaymentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="actualRepaymentDate != null" >
+        actual_repayment_date = #{actualRepaymentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="accountAmount != null" >
+        account_amount = #{accountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payedAmount != null" >
+        payed_amount = #{payedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.flight.finance.dao.po.Repayment" >
+    update repayment
+    set customer_id = #{customerId,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      payment_start_date = #{paymentStartDate,jdbcType=VARCHAR},
+      payment_end_date = #{paymentEndDate,jdbcType=VARCHAR},
+      repayment_date = #{repaymentDate,jdbcType=VARCHAR},
+      late_repayment_date = #{lateRepaymentDate,jdbcType=VARCHAR},
+      actual_repayment_date = #{actualRepaymentDate,jdbcType=VARCHAR},
+      account_amount = #{accountAmount,jdbcType=DECIMAL},
+      payed_amount = #{payedAmount,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+</mapper>

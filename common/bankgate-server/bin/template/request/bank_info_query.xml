@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+<action>DLBNKCOD</action>
+<userName></userName><!--登录名 varchar(30)-->
+<provinceName></provinceName><!--省名称，可空 varchar(42)-->
+<cityName></cityName><!--城市名称，可空 varchar(42)-->
+<bankName></bankName><!--银行名称，可空 varchar(62)-->
+<tgfi></tgfi><!--支付联行号，可空，支付联行号和支付联行名称必填1个 char(12)-->
+<tgname></tgname><!--支付联行名称，可空， 支付联行号和支付联行名称必填1个，varchar(62)-->
+</stream>

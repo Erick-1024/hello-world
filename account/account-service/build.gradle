@@ -1,0 +1,11 @@
+dependencies {
+	compile project(':account:account-dao')
+	compile project(':member:member-dao')
+	compile project(':common:common-dao')
+	compile project(':common:vbam-common-service')
+	compile project(':framework:framework-base')
+	compile project(':member:member-api')
+	compile project(':message:message-client')
+	compile project(':common:bankgate-api')
+	//compile project(':repayment:repayment-api')
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLNRMRLS</action>
+	<userName></userName><!--登录名varchar(30) -->
+	<mctNo></mctNo><!--商户编号char(8) -->
+	<rptFrzNo></rptFrzNo><!--仓单冻结业务流水号varchar(20) -->
+	<rptRlsNo></rptRlsNo><!--仓单解冻业务流水号varchar(20) -->
+	<list name="userDataList">
+		<row>
+			<stockNo></stockNo><!--仓单编号varchar(30) -->
+		</row>
+	</list>
+</stream>

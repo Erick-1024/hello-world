@@ -1,0 +1,11 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+dependencies {
+        compile project(':report:report-api')
+        compile project(':report:report-service')
+}
+
+mainClassName = 'com.cana.report.server.main.ReportServerMain'
+
+applicationDefaultJvmArgs = ["-server", "-Xms256m", "-Xmx2048m", "-XX:MaxPermSize=512m", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=12801", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false"]  

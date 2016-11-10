@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<permissions platform="BIZ" version="22707">
+	<module name="用户管理" key="UM">
+		<button name="全部列表" key="UM_TOTAL" url="/customer/listAll">
+			<perm name="详情" key="UM_TOTAL_DETAIL" url="/customer/customerDetail" />
+			<perm name="审核" key="UM_TOTAL_AUDIT" url="/customer/gotoReview" />
+		</button>
+		<button name="待审核列表" key="UM_UNAUDIT" url="/customer/listPendingAudit">
+			<perm name="详情" key="UM_UNAUDIT_DETAIL" url="/customer/customer`Detail" />
+			<perm name="审核" key="UM_UNAUDIT_AUDIT" url="/customer/gotoReview" />
+		</button>
+		<button name="已审核列表" key="UM_AUDITED" url="/customer/listHavingAudit">
+			<perm name="详情" key="UM_AUDITED_DETAIL" url="/customer/customerDetail" />
+			<perm name="重发邮件" key="UM_AUDITED_RETRY_MAIL" url="/customer/resend" />
+		</button>
+		<button name="正式用户列表" key="UM_NORMAL" url="/customer/listActivated">
+			<perm name="详情" key="UM_NORMAL_DETAIL" url="/customer/customerDetail"></perm>
+			<perm name="重置登陆密码" key="UM_NORMAL_RESET_PASSWORD" url="/customer/resetPassword"></perm>
+			<perm name="重置支付密码" key="UM_NORMAL_RESET_PAYPASSWORD" url="/customer/resetPayPassword"></perm>
+    	</button>
+	</module>
+	<module name="账户管理" key="AM">
+    	<button name="开户审核列表" key="AM_APPLY" url="/account/apply/list">
+    		<perm name="详情" key="AM_APPLY_DETAIL" url="/account/apply/detail"/>
+    		<perm name="审核" key="AM_APPLY_REVIEW" url="/account/apply/review"/>
+    	</button>
+    	<button name="待审核列表" key="AM_PENDING_AUDIT" url="/account/apply/listPendingAudit">
+    		<perm name="详情" key="AM_PENDING_AUDIT_DETAIL" url="/account/apply/detail"/>
+    		<perm name="审核" key="AM_PENDING_AUDIT_REVIEW" url="/account/apply/review"/>
+    	</button>
+    	<button name="已审核列表" key="AM_HAVING_AUDIT" url="/account/apply/listHavingAudit">
+    		<perm name="详情" key="AM_HAVING_AUDIT_DETAIL" url="/account/apply/detail"/>
+    	</button>
+    	<button name="开户申请" key="AM_ACCOUNT_APPLY" url="/account/apply/self"/>
+    	<button name="代开户申请" key="AM_ACCOUNT_APPLY_AGENT" url="/account/apply/agent"/>
+    	<button name="账户列表" key="AM_ACCOUNT" url="/account/list">
+    		<perm name="详情" key="AM_ACCOUNT_DETAIL" url="/account/detail"/>
+    		<perm name="冻结" key="AM_ACCOUNT_FREEZE" url="/account/freeze"/>
+    		<perm name="解冻" key="AM_ACCOUNT_UNFREEZE" url="/account/unfreeze"/>
+    		<perm name="设为默认账户" key="AM_ACCOUNT_SET_DEFAULT" url="/account/setDefault"/>
+    		<perm name="新建监管关系" key="AM_ACCOUNT_SUPERVISION_CREATE" url="/account/supervision/create"/>
+    		<perm name="解除监管关系" key="AM_ACCOUNT_SUPERVISION_REMOVE" url="/account/supervision/remove"/>
+    		<perm name="提现" key="AM_ACCOUNT_WITHDRAW_FUND" url="/account/trade/withdrawFund"/>
+    		<perm name="转账" key="AM_ACCOUNT_TRANSFER_FUND" url="/account/trade/transferFund"/>
+    	</button>
+    	<button name="我的账户" key="AM_ACCOUNT_SELF" url="/account/listSelf">
+    		<perm name="详情" key="AM_ACCOUNT_SELF_DETAIL" url="/account/detail"/>
+    		<perm name="冻结" key="AM_ACCOUNT_SELF_FREEZE" url="/account/freeze"/>
+    		<perm name="解冻" key="AM_ACCOUNT_SELF_UNFREEZE" url="/account/unfreeze"/>
+    		<perm name="提现" key="AM_ACCOUNT_SELF_WITHDRAW_FUND" url="/account/trade/withdrawFund"/>
+    		<perm name="转账" key="AM_ACCOUNT_SELF_TRANSFER_FUND" url="/account/trade/transferFund"/>
+    	</button>
+    	<button name="流水明细" key="AM_ACCOUNT_TRADE_RECORD_LIST" url="/account/trade/listTradeRecord">
+    		<perm name="重新提现" key="AM_ACCOUNT_RELAUNCHING_WITHDRAW" url="/account/trade/relaunchingWithdrawOperate"/>
+    	</button>
+    	<button name="审核列表" key="AM_ACCOUNT_AUDIT_CENTER_LIST" url="/account/audit/list">
+    		<perm name="监管关系详情" key="AM_ACCOUNT_SUPERVISION_APPLY_DETAIL" url="/account/supervision/detail"/>
+    		<perm name="监管关系审核" key="AM_ACCOUNT_SUPERVISION_APPLY_AUDIT" url="/account/supervision/audit"/>
+    		<perm name="转账提现详情" key="AM_ACCOUNT_TRADE_APPLY_DETAIL" url="/account/trade/detail"/>
+    		<perm name="转账提现审核" key="AM_ACCOUNT_TRADE_APPLY_AUDIT" url="/account/trade/audit"/>
+    	</button>
+    </module><!-- <module name="个人中心" key="PP" url="/user/individual">
+		<button name="基本信息" key="PP_BASE_INFO">
+			<perm name="修改基本信息" key="PP_PERSONAL_INFO_MODIFY" url="/user/modifyPersonalInfo" />
+			<perm name="修改登陆密码" key="PP_ACCOUNT_NUMBER_INFO_UPDATE_LOGINPWD" url="/user/modifyLoginPwd" />
+			
+		</button>
+	</module> -->
+	<module name="融资管理" key="FM">
+		<button name="融资信息管理" key="FM_REPAYMENTINFO_MANAGE" url="/loanInfo/manage/gotoLoanInfoManage">
+			<button name="录入还款计划" key="FM_REPAYMENTINFO_MANAGE_PLANSELECT" url="/repayment/plan/input/planSelect" />
+			<button name="还款计划" key="FM_REPAYMENTINFO_MANAGE_PLANDETAIL" url="/loanInfo/manage/gotoRepaymentPlanDetails" >
+				<perm name="详情" key="FM_REPAYMENTINFO_MANAGE_PLANDETAIL_INFO" url="/loanInfo/manage/getRepaymentDetails" />
+				<perm name="手工录入还款" key="FM_REPAYMENTINFO_MANAGE_PLANDETAIL_ACTIVE_REPAYMENT" url="/repayment/active/showActiveRepaymentPage" />
+			</button>
+			<button name="历史还款明细" key="FM_REPAYMENTINFO_MANAGE_REPAYMENTDETAILSHISTORY" url="/loanInfo/manage/getRepaymentDetailsHistory" />
+			<button name="线下还款" key="FM_REPAYMENTINFO_MANAGE_OFFLINEREPAYMENT" url="/repayment/adjustment/toAdjustment" />
+			<button name="调账" key="FM_REPAYMENTINFO_MANAGE_ADJUSTMENT" url="/repayment/adjustment/gotoAdjustment" />
+			<button name="设置还款账号" key="FM_REPAYMENTINFO_MANAGE_SETACCOUNTNO" url="/loanInfo/manage/saveAccountNoToDB" />
+			<button name="主动还款" key="FM_REPAYMENTINFO_MANAGE_ACTIVEREPAYMENT" url="/repayment/active/gotoActiveRepayment" />
+		</button>
+		<button name="放款信息录入" key="FM_LOANINFO_INPUT" url="/loanInfo/input">
+			<perm name="放款信息录入选择" key="FM_LOANINFO_INPUT_SELECT" url="/loanInfo/input/select" />
+			<perm name="Excel导入放款信息" key="FM_LOANINFO_INPUT_EXCEL" url="/loanInfo/input/gotoLoanInfoFromExcel" />
+			<perm name="手工录入放款信息" key="FM_LOANINFO_INPUT_MANUAL" url="/loanInfo/input/manual" />
+		</button>
+		<button name="还款计划录入" key="FM_REPAYPALN_INPUT" url="/repayment/plan/input/planSelect">
+			<perm name="还款计划录入选择" key="FM_REPAYPALN_INPUT_SELECT" url="/repayment/plan/input/planSelect/planInput" />
+			<perm name="Excel导入还款计划" key="FM_REPAYPALN_INPUT_EXCEL" url="/repayment/plan/input/gotoPlanExcelInput" />
+			<perm name="手工导入还款计划" key="FM_REPAYPALN_INPUT_MANUAL" url="/repayment/plan/input/gotoLoanInfoList" />
+		</button>
+		<button name="还款结果查询" key="FM_REPAYMENT_RESULT" url="">
+		</button>
+		<button name="还款计划规则" key="FM_REPAYMENT_RULE" url="/repayment/rule/list">
+			<perm name="新增还款计划" key="FM_REPAYMENT_ADDRULE" url="/repayment/rule/addRule" />
+			<perm name="还款计划详情" key="FM_REPAYMENT_RULEDETAIL" url="/repayment/rule/showDetail" />
+			<perm name="编辑还款计划" key="FM_REPAYMENT_MODIFYRULE" url="/repayment/rule/modifyRule" />
+		</button>
+		<button name="还款计划" key="FM_ACTIVE_REPAYMENT_PLAN" url="/repayment/active/gotoActiveRepaymentPlan">
+			<perm name="导出还款计划" key="FM_ACTIVE_REPAYMENT_PLAN_EXPORT" url="/repayment/active/exportRepaymentPlansBySearchCondition" />
+		</button>
+		<button name="逾期列表" key="FM_OVERDUE_REPAYMENT_PLAN" url="/repayment/active/gotoOverdueRepaymentPlan">
+			<perm name="主动还款" key="FM_OVERDUE_ACTIVE_REPAYMENT" url="/repayment/active/showActiveRepaymentPage"/>
+		</button>
+		<button name="7日应还" key="FM_SEVEN_REPAYMENT_PLAN" url="/repayment/active/goto7DaysRepaymentPlan">
+			<perm name="主动还款" key="FM_SEVEN_ACTIVE_REPAYMENT" url="/repayment/active/showActiveRepaymentPage"/>
+		</button>
+	</module>
+	<module name="权限管理" key="PM">
+		<button name="企业角色" key="PM_COMPANY_ROLE" url="/role/gotoCompanyRoleList">
+			<perm name="添加角色" key="PM_COMPANY_ROLE_ADD" url="/role/addCompanyRole" />
+			<perm name="详情" key="PM_COMPANY_ROLE_DETAIL" url="/role/gotoCompanyRoleDetails" />
+			<perm name="编辑" key="PM_COMPANY_ROLE_UPDATE" url="/role/updateCompanyRole" />
+		</button>
+		<button name="企业列表" key="PM_COMPANY_LIST" url="/customer/list">
+			<perm name="角色分配" key="PM_COMPANY_LIST_ROLE_ASSIGN" url="/role/updateRoleOfUser" />
+			<perm name="详情" key="PM_COMPANY_LIST_DETAIL" url="/customer/customerDetail" />
+			<perm name="个性权限" key="PM_COMPANY_LIST_PERMISSIONS" url="/customer/gotoEditPermissions" />
+		</button>
+		<button name="员工角色" key="PM_EMPLOYEE_ROLE" url="/role/gotoEmployeeRoleList">
+			<perm name="添加角色" key="PM_EMPLOYEE_ROLE_ADD" url="/role/addEmployeeRole" />
+			<perm name="详情" key="PM_EMPLOYEE_ROLE_DETAIL" url="/role/gotoEmployeeRoleDetails" />
+			<perm name="编辑" key="PM_EMPLOYEE_ROLE_UPDATE" url="/role/updateEmployeeRole" />
+		</button>
+		<button name="员工列表" key="PM_EMPLOYEE_LIST" url="/employee/list">
+			<perm name="新增员工" key="PM_EMPLOYEE_ADD" url="/employee/add" />
+			<perm name="详情" key="PM_EMPLOYEE_LIST_DETAIL" url="/employee/employeeDetail" />
+			<perm name="编辑" key="PM_EMPLOYEE_LIST_UPDATE" url="/employee/modify" />
+			<perm name="删除" key="PM_EMPLOYEE_LIST_DELETE" url="/employee/delete" />
+			<perm name="重置密码" key="PM_EMPLOYEE_LIST_RESET_PASSWORD" url="/employee/restPassword" />
+			<perm name="重发邮件" key="PM_EMPLOYEE_LIST_RETRY_MAIL" url="/employee/resend" />
+			<perm name="个性权限" key="PM_EMPLOYEE_LIST_PERMISSIONS" url="/employee/gotoEditPermissions" />
+		</button>
+		<button name="ABS员工设置" key="PM_PRIVILEGE_CUSTOMER_LIST" url="/asset/privilege/customerList">
+			<perm name="新增权限" key="PM_PRIVILEGE_ADD" url="/asset/privilege/add" />
+			<perm name="删除" key="PM_PRIVILEGE_DELETE" url="/asset/privilege/delete" />
+		</button>
+	</module>
+	<module name="企业信息" key="PC" url="/user/company">
+		<button name="企业信息" key="PC_COMPANY_INFO">
+			<perm name="更新企业信息" key="PC_COMPANY_INFO_UPDATE" url="/user/modifyMedia	" />
+		</button>
+		<button name="联系人信息" key="PC_CONTACTS_INFO" >
+			<perm name="修改联系人信息" key="PC_CONTACTS_INFO_MODIFY" url="/user/modifyContactInfo" />
+		</button>
+		<!--  
+		<button name="融资信息" key="PC_FINANCING_INFO" >
+			<perm name="编辑融资" key="PC_FINANCING_INFO_UPDATE" url="" />
+		</button>-->
+		<button name="账户信息" key="PC_ACCOUNT_INFO">
+		   <perm name="设置支付密码" key="PC_ACCOUNT_NUMBER_INFO_SET_PAYPWD" url="/user/setPayPwd" />
+			<perm name="修改支付密码" key="PC_ACCOUNT_NUMBER_INFO_UPDATE_PAYPWD" url="/user/modifyPayPwd" />
+		</button>
+		<button name="我的合同" key="PC_CONTACTS" url="/user/contract"></button>
+		
+	</module> 
+	<!-- <module name="个人中心" key="PP" url="/user/individual">
+		<button name="基本信息" key="PP_BASE_INFO">
+			<perm name="修改基本信息" key="PP_PERSONAL_INFO_MODIFY" url="/user/modifyPersonalInfo" />
+			<perm name="修改登陆密码" key="PP_ACCOUNT_NUMBER_INFO_UPDATE_LOGINPWD" url="/user/modifyLoginPwd" />
+			
+		</button>
+	</module> -->
+	<module name="我的申请" key="MA" url="/account/audit/applys">
+   		<button name="监管关系详情" key="MA_ACCOUNT_SUPERVISION_APPLY_DETAIL_SELF" url="/account/supervision/detail"/>
+   		<button name="转账提现详情" key="MA_ACCOUNT_TRADE_APPLY_DETAIL_SELF" url="/account/trade/detail"/>
+   	</module>
+	<!-- <module name="消息中心" key="NC">
+		<button name="全部" key="NC_LIST" url="/message/notification/list">
+		</button>
+		<button name="已读" key="NC_LIST_HAVING_READ" url="/message/notification/listHavingRead">
+		</button>
+		<button name="未读" key="NC_LIST_NO_READ" url="/message/notification/listNoRead">
+		</button>
+	</module> --> 
+   	<module name="真旅项目" key="TZ">
+   		<button name="白名单列表" key="TZ_CREDIT_WHITE_LIST" url="/credit/white/list"/>
+   		<button name="白名单详情" key="TZ_CREDIT_WHITE_DETAIL" url="/credit/white/detail"/>
+   		<button name="审核列表" key="TZ_CREDIT_AUDIT_LIST" url="/credit/audit/list">
+   			<perm name="详情" key="TZ_CREDIT_AUDIT_DETAIL" url="/credit/audit/detail"/>
+   			<perm name="审核" key="TZ_CREDIT_AUDIT_AUDIT" url="/credit/audit/audit"/>
+   			<perm name="审批" key="TZ_CREDIT_AUDIT_APPROVE" url="/credit/audit/approve"/>
+   		</button>
+   		<button name="准入规则" key="TZ_CREDIT_AUDIT_ACCESSRULE" url="/credit/audit/accessRule"/>
+   		<button name="额度列表" key="LL_CREDIT_CUSTOMER_LIMIT_LIST" url="/credit/limit/customerList">
+   		   <perm name="激活" key="LL_CREDIT_LIMIT_ACTIVE" url="/credit/limit/active"/>
+   		</button>
+   		<button name="交易明细" key="TZ_CREDIT_TRADE">
+	   		<button name="放款明细" key="TZ_LOAN_DETAILS" url="/credit/trade/loan/details">
+				<perm name="详情" key="TZ_LOAN_DETAILS_DETAIL" url="/credit/trade/loan/details/detail" />
+			</button>
+			<button name="退款明细" key="TZ_REFUND_DETAILS" url="/credit/trade/refund/details"/>
+			<button name="放款流水" key="TZ_LOAN_SERIALS" url="/credit/transfer/payment"/>
+			<button name="退款流水" key="TZ_REFUND_SERIALS" url="/credit/transfer/refund"/>
+			<button name="人工操作" key="TZ_MANUAL_OPERATE" url="/credit/transfer/manual"></button>
+			<button name="对账单下载" key="TZ_STATEMENT" url="/credit/statement"/>
+		</button>
+		<button name="监控" key="TZ_CREDIT_MONITOR_LIST" url="/report/monitor/list">
+			<perm name="详情" key="TZ_CREDIT_MONITOR_DETAIL" url="/report/monitor/detail"/>
+		</button>
+		<button name="预警" key="TZ_EARLYWARNING">
+			<button name="贷后预警" key="TZ_EARLYWARNING_CUSTOMER" url="/earlywarning/customer/list" />
+			<button name="预警信息" key="TZ_EARLYWARNING_INFORMATION" url="/earlywarning/customer/information/list">
+				<perm name="调整预警" key="TZ_EARLYWARNING_INFORMATION_ADJUST" url="/earlywarning/customer/Typelist"></perm>
+			</button>
+			<button name="审核列表" key="TZ_EARLYWARNING_REVIEW" url="/earlywarning/review/list">
+				<perm name="审核" key="TZ_EARLYWARNING_REVIEW_AUDIT"></perm>
+			</button>
+			<button name="预警流水" key="TZ_EARLYWARNING_CHANGE_HISTORY" url="/earlywarning/levelchange/list" />
+			<button name="新增预警事件" key="TZ_EARLYWARNING_EVENT" url="/earlywarning/event/addList" />
+		</button>
+   	</module>
+	<module name="统计报表" key="SR">
+		<button name="融资日报表" key="SR_REPAYMENT_DAILY_REPORT" url="/report/repayment/repaymentDailyReportPage"/>
+		<button name="融资汇总表" key="SR_REPAYMENT_ANNUAL_REPORT" url="/report/repayment/repaymentAnnualReportPage"/>
+		<button name="融资计数表" key="SR_REPAYMENT_COUNT_REPORT" url="/report/repayment/repaymentCountReportPage"/>
+		<button name="资金日报表" key="SR_FUND_DAILY_REPORT" url="/report/account/fundDailyReport"/>
+		<button name="资金汇总表" key="SR_FUND_YEAR_REPORT" url="/report/account/fundYearReport"/>
+		<button name="资金计数表" key="SR_FUND_DAILY_COUNT_REPORT" url="/report/account/fundDailyCountReport"/>
+		<button name="资金月报表" key="SR_FUND_MONTHLY_REPORT" url="/report/account/fundMonthlyReportPage">
+			<perm name="资金月报表导出" key="SR_FUND_MONTHLY_REPORT_EXPORT" url="/report/account/exportFundMonthlyReport"/>
+		</button>
+	</module>
+	<module name="资产管理" key="ASSET">
+		<button name="所有列表" key="ASSET_LIST" url="/asset/project/projectList">
+			<perm name="新建" key="ASSET_LIST_CREATE" url="/asset/project/projectCreate"/>
+			<perm name="详情" key="ASSET_LIST_DETAIL" url="/asset/project/projectDetail"/>
+			<perm name="修改" key="ASSET_LIST_UPDATE" url="/asset/project/projectUpdate"/>
+			<perm name="合同新增" key="ASSET_LIST_ADD" url="/asset/project/projectUpdate"/>
+			<perm name="合同删除" key="ASSET_LIST_DELETE" url="/asset/project/projectUpdate"/>
+			
+		</button>
+   	</module>
+   	<module name="韵达项目" key="YD">
+   		<button name="审核列表" key="YD_AUDIT_LIST" url="/yundaex/audit/list">
+   		    <perm name="详情" key="YD_AUDIT_LIST_DETAIL" url="/yundaex/audit/detail"/>
+   			<perm name="审核" key="YD_AUDIT_LIST_AUDIT" url="/yundaex/audit/audit"/>
+   			<perm name="补充资料" key="YD_AUDIT_LIST_GOTOADDDATA" url="/yundaex/audit/gotoAddData"/>
+   		</button>	
+   		<button name="授信列表" key="YD_LIMIT_CREDITLIST" url="/yundaex/limit/creditList"/>
+   		<button name="授信审核" key="YD_LIMIT_CREDITAUDITLIST" url="/yundaex/limit/creditAuditList"/>
+   		<button name="额度列表" key="YD_LIMIT_CUSTOMERLIST" url="/yundaex/limit/customerList"/>
+   		<button name="身份审核" key="YD_PERSONAL_List" url="/yundaex/personal/gotoListPage">
+   			<perm name="详情" key="YD_PERSONAL_List_DETAIL" url="/yundaex/personal/gotoDetailPage"/>
+   			<perm name="审核" key="YD_PERSONAL_List_AUDIT" url="/yundaex/personal/gotoAuditPage"/>
+   			<perm name="重发邮件" key="YD_PERSONAL_List_RESEND" url="/yundaex/personal/resend"/>
+   		</button>
+   		<button name="合同签约情况" key="YD_CONTRACT_GOTOSITUATIONLISTPAGE" url="/yundaex/contract/gotoSituationListPage">
+   			<perm name="重发合同" key="YD_CONTRACT_List_RESEND" url="/yundaex/contract/resendContract"/>
+   		</button>
+   		<button name="用款申请" key="YD_LOAN_LOANDETAIL" url="/yundaex/loan/loanDetail"/>
+   		<button name="用款申请流水" key="YD_LOAN_LOANFLOW" url="/yundaex/loan/loanFlow"/>
+   		<button name="线下数据导入" key="YD_LINE_IMPORT" url="/test/custApplyExcel"/>
+   		<button name="监控" key="YD_MONITOR_LIST" url="/yundaex/monitor/list">
+   			<perm name="详情" key="YD_MONITOR_LIST_DETAIL" url="/yundaex/monitor/detail"/>
+   			<perm name="导入监控信息" key="YD_MONITOR_MONITORIMPORT" url="/yundaex/monitor/monitorImport"/>
+   		</button>
+   		<button name="预警" key="YD_EARLYWARNING">
+			<button name="贷后预警" key="YD_EARLYWARNING_POSTLOAN" url="/yundaex/earlywarning/postLoanlist" />
+			<button name="预警信息" key="YD_EARLYWARNING_INFORMATION" url="/yundaex/earlywarning/informationList">
+				<perm name="调整预警" key="YD_EARLYWARNING_INFORMATION_ADJUST" url="/yundaex/earlywarning/adjustList"></perm>
+			</button>
+			<button name="审核列表" key="YD_EARLYWARNING_REVIEW" url="/yundaex/earlywarning/reviewList">
+				<perm name="详情" key="YD_EARLYWARNING_REVIEW_DETAIL" url="/yundaex/earlywarning/query/reviewDetail"></perm>
+				<perm name="审核" key="YD_EARLYWARNING_REVIEW_REVIEW" url="/yundaex/earlywarning/audit"></perm>
+			</button>
+			<button name="预警流水" key="YD_EARLYWARNING_CHANGE_HISTORY" url="/yundaex/earlywarning/changeList" />
+			<button name="新增预警事件" key="YD_EARLYWARNING_ADD" url="/yundaex/earlywarning/addList" />
+		</button>
+	</module>
+	<module name="VJ项目" key="VJ">
+   		<button name="额度列表" key="VJ_LIMIT_LIST" url="/vj/limit/list"/>
+   		<button name="交易明细" key="VJ_TRAN">
+	   		<button name="放款明细" key="VJ_TRAN_LOAN_DETAILLIST" url="/vj/tran/loan/detailList">
+	   			<perm name="下载合同" key="VJ_DOWNLOAD_CONTRACT"/>
+	   		</button>
+			<button name="主动还款明细" key="VJ_TRAN_REPAYMENT_DETAILLIST" url="/vj/tran/repayment/detailList">
+				<perm name="详情" key="VJ_TRAN_REPAYMENT_DETAIL" url="/vj/tran/repayment/detail"/>
+			</button>
+			<button name="对账单" key="VJ_TRAN_ACCOUNT_BALANCE" url="/vj/tran/account/balance"/>
+		</button>
+	</module>
+	<module name="基础资产信息" key="BAI">
+		<button name="客户信息列表" key="BAI_CI" url="/asset/customer/customerListPage">
+	   		<perm name="新建" key="BAI_CI_CREATE" url="/asset/customer/customerCreate"/>
+			<perm name="详情" key="BAI_CI_DETAIL" url="/asset/customer/customerDetail"/>
+			<perm name="修改" key="BAI_CI_EDIT" url="/asset/customer/customerUpdate"/>
+		</button>
+		<button name="企业信息列表" key="BAI_EI" url="/asset/enterpriseInfo/listPage">
+	   		<perm name="新建" key="BAI_EI_CREATE" url="/asset/enterpriseInfo/add"/>
+			<perm name="详情" key="BAI_EI_DETAIL" url="/asset/enterpriseInfo/queryEnterpisrInfo"/>
+			<perm name="修改" key="BAI_EI_EDIT" url="/asset/enterpriseInfo"/>
+		</button>
+		<button name="额度管理" key="BAI_CM" url="/asset/credit/customerList">
+	   		<perm name="新建" key="BAI_CM_CREATE" url="/asset/credit/creditCreate"/>
+			<perm name="详情" key="BAI_CM_DETAIL" url="/asset/credit/listpage"/>
+			<perm name="修改" key="BAI_CM_EDIT" url="/asset/credit/listpage"/>
+			<perm name="查询历史" key="BAI_CM_HISTORY" url="/asset/credit/audit/listpage"/> 
+		</button>
+		<button name="业务管理" key="BAI_FB" url="/asset/factorBusiness/goto/list">
+	   		<perm name="新建" key="BAI_FB_CREATE" url="/asset/factorBusiness/goto/new"/>
+			<perm name="详情" key="BAI_FB_DETAIL" url="/asset/factorBusiness/goto/detail"/>
+			<perm name="删除" key="BAI_FB_DELETE" url="/asset/factorBusiness/delete"/>
+			<perm name="修改" key="BAI_FB_EDIT" url="/asset/factorBusiness/goto/edit"/>
+		</button>
+		<button name="应收账款管理" key="BAI_IV" url="/asset/invoice/invoiceList">
+	   		<perm name="新建" key="BAI_IV_CREATE" url="/asset/invoice/invoiceCreate"/>
+	   		<perm name="文件导入" key="BAI_IV_IMPEXCEL" url="/asset/invoice/invImportList"/>
+			<perm name="详情" key="BAI_IV_DETAIL" url="/asset/invoice/invoiceDetail"/>
+			<perm name="删除" key="BAI_IV_DELETE" url="/asset/invoice/invoiceDelete"/>
+			<perm name="修改" key="BAI_IV_EDIT" url="/asset/invoice/invoiceUpdate"/>
+		</button>
+		<button name="融资管理" key="BAI_LM" url="/asset/loan/goto/loanList">
+	   		<perm name="放款信息录入-手工" key="BAI_LM_LI_MANNUAL" url="/asset/loan/createAssetLoan"/>
+	   		<perm name="放款信息录入-EXCEL" key="BAI_LM_LI_IMPEXCEL" url="/asset/loan/gotoLoanInfoImport"/>
+	   		<perm name="还款计划录入-EXCEL" key="BAI_LM_RP_IMPEXCEL" url="/asset/loan/gotoLoanPlanImport"/>
+			<perm name="放款详情" key="BAI_LM_DETAIL" url="/asset/loan/goto/loanDetail"/>
+			<perm name="放款修改" key="BAI_LM_MODIFY" url="/asset/loan/editAssetLoan"/>
+			<perm name="放款删除" key="BAI_LM_DELETE" url="/asset/loan/deleteAssetLoan"/>
+			<perm name="历史还款明细" key="BAI_LM_PAID_HISTORY" url="/asset/loan/get/paidList"/>
+			<perm name="还款冲销" key="BAI_LM_PAID" url="/asset/loan/paid"/>
+		</button>
+	</module>
+	<module name="证券化发行管理" key="SIM">
+		<button name="专项计划管理" key="SIM_SP" url="/asset/specialprogram/specialProgram/list">
+		    <perm name="新建" key="SIM_SP_ADD" url="/asset/specialprogram/addSpeciaProgram"/>
+	   		<perm name="详情" key="SIM_SP_DETAIL" url="/asset/specialprogram/specialProgramDetail"/>
+	   		<perm name="修改" key="SIM_SP_UPDATE" url="/asset/specialprogram/updateSpecialProgram"/>
+	   		<perm name="删除" key="SIM_SP_DELETE" url="/asset/specialprogram/delete"/> 
+		</button>
+		<button name="档案管理" key="SIM_AM" url="/asset/archivesManagement/goto/list">
+	   		<perm name="管理" key="SIM_AM_MANAGE" url="/asset/archivesManagement/goto/manage"/>
+	   		<perm name="上传文件" key="SIM_AM_UPLOAD" url="/asset/archivesManagement/saveMedia"/>
+	   		<perm name="新建文件夹" key="SIM_AM_DIRECTORY" url="/asset/archivesManagement/saveDirectory"/>
+	   		<perm name="下载" key="SIM_AM_DOWNLOAD" url="/asset/archivesManagement/download"/>
+	   		<perm name="删除" key="SIM_AM_DELETE" url="/asset/archivesManagement/delete"/>
+		</button>
+		<button name="基础资产管理" key="SIM_UAM" url="/asset/underlyingAsset/underlyingAssetList">
+	   		<perm name="资产选择" key="SIM_UAM_CHOOSE" url="/asset/underlyingAsset/createUnderlyingAssetByFactorLoan"/>
+	   		<perm name="资产导入" key="SIM_UAM_IMPORT" url="/asset/underlyingAsset/import"/>
+	   		<perm name="详情" key="SIM_UAM_DETAIL" url="/asset/underlyingAsset/underlyingAssetDetail"/>
+	   		<perm name="删除" key="SIM_UAM_DELETE" url="/asset/underlyingAsset/deleteUnderlyingAsset"/>
+	   		<perm name="入池" key="SIM_UAM_BINDING" url="/asset/underlyingAsset/bindSpecialProgram"/>
+	   		<perm name="出池" key="SIM_UAM_UNBIND" url="/asset/underlyingAsset/unbindSpecialProgram"/>
+	   		<perm name="修改" key="SIM_UAM_EDIT" url="/asset/underlyingAsset/editAsset"/>
+		</button>
+	    <button name="资产池管理" key="SIM_PM" url="/asset/pool/assetpoolList">
+	   		<button name="管理" key="SIM_PM_MANAGE" url="/asset/pool/assetpoolManage">
+	   			<perm name="入池" key="SIM_PM_ENTER" url="/asset/pool/assetpoolEnter"/>
+	   			<perm name="赎回" key="SIM_PM_REDEEM" url="/asset/pool/redeemAssetPool"/>
+	   			<perm name="待入池" key="SIM_PM_KEEP" url="/asset/pool/outAssetPoolAndKeepBind"/>
+	   			<perm name="出池" key="SIM_PM_OUT" url="/asset/pool/outAssetPoolAndDelete"/>
+	   			<perm name="还款计划" key="SIM_PM_PAID" url="/asset/pool/getLoanPaidList"/>
+	   			<perm name="历史还款明细" key="SIM_PM_HISTORY" url="/asset/pool/getLoanHistoryList"/>
+	   		</button>
+	   		<button name="封包" key="SIM_PM_PACKET" url="/asset/pool/assetpoolPacket"/>
+		</button>
+		<button name="管理日志" key="SIM_LOG" url="/asset/log/list">
+	   		<perm name="计划日志" key="SIM_LOG_SPECIAL_PROGRAM" url="/asset/log/list"/>
+	   		<perm name="资产日志" key="SIM_LOG_ASSET" url="/asset/log/list"/>
+		</button>
+		<button name="发行后管理" key="SIM_SPI" url="/asset/specialprogram/specialProgramIssue/list">
+		    <perm name="成立" key="SIM_SPI_ADD" url="/asset/specialprogram/addSpeciaProgramIssue"/>
+	   		<perm name="管理" key="SIM_SPI_MANAGE" url="/asset/specialprogram/issueSpecialProgramManage"/>
+		</button>
+	</module>
+	<module name="ABS市场研究" key="MR">
+		<module name="市场数据导入" key="MR_import" url="/asset/marketData/gotoImport"></module>
+	</module>
+	<module name="恒顺国旅项目" key="HS">
+   		<button name="保理业务配置" key="HS_ASSET_SET" url="/homsom/config/goto/list/HOMSOM">
+   			<perm name="新增/修改" key="HS_ASSET_SET_MODIFY" url="/homsom/config/modify/HOMSOM"/>
+		</button>
+		<button name="客票查询" key="HS_TICKET"  url="/homsom/ticket/goto/list/HOMSOM">
+			<perm name="导出" key="HS_TICKET_EXPORT" url="/homsom/ticket/export/HOMSOM"/>
+		</button>
+		<button name="放款审核" key="HS_LOAN_AUDIT"  url="/homsom/loan/goto/list/HOMSOM">
+			<perm name="导出" key="HS_LOAN_AUDIT_EXPORT" url="/homsom/loan/export/HOMSOM"/>
+			<perm name="明细" key="HS_LOAN_AUDIT_DETAIL" url="/homsom/loan/detail/HOMSOM"/>
+			<perm name="放款" key="HS_LOAN_AUDIT_LOAN" url="/homsom/loan/loan/HOMSOM"/>
+		</button>
+		<button name="还款核销" key="HS_SETTLEMENT_IMPORT"  url="/homsom/settlement/goto/settlement/import/HOMSOM">
+		</button>
+		<button name="核销对账" key="HS_SETTLEMENT_RECONCILIATION"  url="/homsom/settlement/goto/reconciliation/HOMSOM">
+		</button>
+		<button name="账款回购" key="HS_BUYBACK_IMPORT"  url="/homsom/settlement/goto/buyBack/import/HOMSOM">
+		</button>
+		<button name="回购核销" key="HS_BUYBACK_BUYBACK"  url="/homsom/settlement/goto/buyback/HOMSOM">
+		</button>
+		<button name="核销履历" key="HS_SETTLEMENT_TRACK_LIST" url="/homsom/settlement/track/list/HOMSOM"/>
+	</module>
+	<module name="设置" key="SET">
+   		<button name="节假日" key="SET_CALENDAR"  url="/setting/calendar/list">
+			<perm name="Excel导入" key="SET_CALENDAR_IMPORT" url="/setting/calendar/import"/>
+			<perm name="Excel导出" key="SET_CALENDAR_EXPORT" url="/setting/calendar/export"/>
+			<perm name="修改" key="SET_CALENDAR_MODIFY" url="/setting/calendar/modify"/>
+		</button>
+	</module>
+</permissions>

@@ -1,0 +1,13 @@
+dependencies {
+        compile project(':report:report-dao')
+        compile project(':member:member-service')
+        compile project(':member:member-api')
+        compile project(':repayment:repayment-service')
+        compile project(':repayment:repayment-api')
+        compile project(':account:account-service')
+        compile project(':account:account-api')
+        compile project(':framework:framework-dubbo-support')
+        compile project(':credit:credit-api')
+		compile project(':flight-finance:flight-finance-api')
+		compile project(':yundaex:yundaex-api')
+}

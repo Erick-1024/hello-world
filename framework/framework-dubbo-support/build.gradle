@@ -1,0 +1,10 @@
+
+jar {
+    baseName =  'framework-dubbo-support'
+}
+
+dependencies {
+     compile project(':framework:framework-base')
+     compile libraries.dubbo2
+     testCompile libraries.junit
+}

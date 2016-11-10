@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.wechat.dao.mapper.TradeRecordCustomMapper" >
+
+  <resultMap id="CustomResultMap" type="com.cana.vbam.common.wechat.account.TradeRecordResponse" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="business_seq" property="businessSeq" jdbcType="VARCHAR" />
+    <result column="operate_type" property="operateType" jdbcType="VARCHAR" />
+    <result column="trade_type" property="tradeType" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="account_name" property="accountName" jdbcType="VARCHAR" />
+    <result column="account_no" property="accountNo" jdbcType="VARCHAR" />
+    <result column="opposite_account_name" property="oppositeAccountName" jdbcType="VARCHAR" />
+    <result column="opposite_account_no" property="oppositeAccountNo" jdbcType="VARCHAR" />
+    <result column="trade_end_time" property="tradeEndTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="queryTradeRecordRowNumber" parameterType="com.cana.vbam.common.wechat.account.TradeRecordRequest" resultType="java.lang.Integer" >
+	select row_number from (
+		select @rownum:=@rownum+1 as row_number,t.id  
+  		from 
+  			vbam.account_trade_record t
+    	left join 
+    		vbam.account_supervision s
+    	on
+     		t.account_supervision_id = s.id
+     		
+     		,(select   @rownum:=0) as r
+     	<include refid="Where_Clause" />
+    	order by t.id desc
+		) as row_number_id 
+  		where id = #{currentTradeRecordId}
+  </select>
+  
+   <select id="find" resultMap="CustomResultMap" parameterType="com.cana.vbam.common.wechat.account.TradeRecordRequest" >
+    select
+	    t.id,
+	    t.business_seq,
+	    t.operate_type,
+	    t.trade_type,
+	    t.amount,
+	    t.account_name,
+	    t.account_no,
+	    t.opposite_account_name,
+	    t.opposite_account_no,
+	    t.trade_end_time,
+	    t.status
+	from 
+    	account_trade_record t
+    left join 
+    	account_supervision s
+     on
+     	t.account_supervision_id = s.id
+    <include refid="Where_Clause" />
+    order by t.id desc
+    limit ${offset}, ${pageSize}
+  </select>
+	 
+  <sql id="Where_Clause" >
+    <where >
+      <if test="tradeTypes != null">
+      	and t.trade_type in
+      	<foreach item="item" index="index" collection="tradeTypes" open="(" separator="," close=")">  
+  			#{item}  
+ 		</foreach> 
+      </if>
+      <if test="factorId != null">
+        and (
+       			(t.company_id = #{factorId,jdbcType=VARCHAR})
+		        or
+		        (s.user_type = 'FINACE' and s.supervisor_id = #{factorId,jdbcType=VARCHAR})
+	        )
+      </if>
+      <if test="finaceId != null">
+        and (
+        		(t.company_id = #{finaceId,jdbcType=VARCHAR})
+       			or
+          		(s.user_type = 'FACTOR' and s.supervisor_id = #{finaceId,jdbcType=VARCHAR})
+        	)
+      </if>
+      <if test="coreCompanyId != null">
+      	and t.company_id = #{coreCompanyId,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </sql>
+</mapper>

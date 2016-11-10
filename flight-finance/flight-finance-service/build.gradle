@@ -1,0 +1,6 @@
+dependencies {
+	compile project(':flight-finance:flight-finance-dao')
+	compile project(':framework:framework-base')
+	compile project(':tops-common-mediaclient')
+	compile project(':common:common-dao')
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cana.asset.dao.mapper.ABSDataPrivilegeMapper">
+   
+    <select id="allowedProjectList" resultType="java.lang.String" parameterType="com.cana.vbam.common.repayment.dto.QueryRepaymentSummaryRequestDTO" >
+	
+   		select distinct(program.id) 
+   		from asset_special_program program left join asset_originator originator on program.id=originator.special_program_id
+   		                                   left join asset_service_agency agency on program.id=agency.special_program_id
+		<where>
+			<choose>
+				<when test="userType.name() == 'FACTOR'">
+					(originator.originator_name is not null and originator.originator_name=#{companyName}) 
+					or (agency.service_agency_name is not null and agency.service_agency_name=#{companyName})
+					or (program.manager_name is not null and program.manager_name=#{companyName})
+				</when>
+				<when test="userType.name() == 'BROKERTRUSTORG'">
+					program.manager_name is not null and program.manager_name=#{companyName}
+				</when>
+				<when test="userType.name() == 'OTHERORG'">
+					(program.law_firm_name is not null and program.law_firm_name=#{companyName}) 
+					or (program.accounting_firm_name is not null and program.accounting_firm_name=#{companyName}) 
+					or (program.supervision_bank is not null and program.supervision_bank=#{companyName}) 
+					or (program.custodian_bank is not null and program.custodian_bank=#{companyName}) 
+					or (program.rating_agency is not null and program.rating_agency=#{companyName}) 
+					or (program.asset_evaluation_agency is not null and program.asset_evaluation_agency=#{companyName}) 
+				</when>
+				<otherwise>
+					1=0
+				</otherwise>
+			</choose>
+		</where>
+	
+	</select>
+	
+</mapper>

@@ -1,0 +1,12 @@
+apply plugin:'application'
+dependencies {
+	compile libraries.activiti_engine
+	compile libraries.activiti_spring
+	compile project(':framework:framework-base')
+	compile project(':framework:framework-dubbo-support')
+	compile project(':common:workflow-api')
+}
+
+mainClassName = 'com.cana.workflow.server.main.Main'
+
+applicationDefaultJvmArgs = ["-server", "-Xms512m", "-Xmx1024m", "-XX:MaxPermSize=512m", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=12402", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false"]

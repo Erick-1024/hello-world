@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息 varchar(254) -->
+	<list name="userDataList">
+		<row>
+			<tgname></tgname><!--支付联行名称 varchar(62) -->
+			<tgfi></tgfi><!--支付联行号 char(12) -->
+		</row>
+		……
+		<row>
+			<tgname></tgname><!--支付联行名称 varchar(62) -->
+			<tgfi></tgfi><!--支付联行号 char(12) -->
+		</row>
+	</list>
+</stream>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.report.dao.mapper.IReportFactorFinanceSummarySearchMapper" >
+
+  <select id="getSummaryReportDayByCondition" resultType="com.cana.report.dao.po.ReportFactorFinanceDay">
+		SELECT id, owner_id, report_date, sum(finance_balance) as finance_balance, sum(finance_amount) as finance_amount, sum(account_principal) as account_principal, 
+		sum(account_charge) as account_charge, sum(account_expense) as account_expense, sum(account_overdue) as account_overdue, sum(paid_principal) as paid_principal, 
+		sum(paid_charge) as paid_charge, sum(paid_expense) as paid_expense,	sum(paid_overdue) as paid_overdue, sum(adjust_principal) as adjust_principal, 
+		sum(adjust_amount) as adjust_amount, sum(account_interest) as account_interest, sum(account_service_charge) as account_service_charge, 
+		sum(account_extension_charge) as account_extension_charge, sum(account_overdue_principal) as account_overdue_principal, sum(account_overdue_interest) as account_overdue_interest,
+		sum(account_overdue_service_charge) as account_overdue_service_charge, sum(account_overdue_extension_charge) as account_overdue_extension_charge,
+		sum(account_overdue_principal_penalty) as account_overdue_principal_penalty, sum(account_overdue_interest_penalty) as account_overdue_interest_penalty,
+		sum(account_overdue_service_charge_penalty) as account_overdue_service_charge_penalty, sum(account_other_penalty) as account_other_penalty, sum(paid_interest) as paid_interest,
+		sum(paid_service_charge) as paid_service_charge, sum(paid_extension_charge) as paid_extension_charge, sum(paid_early_repayment_charge) as paid_early_repayment_charge,
+		sum(paid_overdue_principal) as paid_overdue_principal, sum(paid_overdue_interest) as paid_overdue_interest, sum(paid_overdue_service_charge) as paid_overdue_service_charge,
+		sum(paid_overdue_extension_charge) as paid_overdue_extension_charge, sum(paid_overdue_principal_penalty) as paid_overdue_principal_penalty,
+		sum(paid_overdue_interest_penalty) as paid_overdue_interest_penalty, sum(paid_overdue_service_charge_penalty) as paid_overdue_service_charge_penalty, sum(paid_other_penalty) as paid_other_penalty,
+		sum(adjust_interest) as adjust_interest, sum(adjust_service_charge) as adjust_service_charge, sum(adjust_extension) as adjust_extension, sum(adjust_overdue_interest) as adjust_overdue_interest,
+		sum(adjust_overdue_service_charge) as adjust_overdue_service_charge, sum(adjust_penalty) as adjust_penalty, sum(adjust_expense) as adjust_expense
+		FROM vbam.report_factor_finance_day 
+		where 
+		<include refid="query_common_criteria" />
+		order by report_date desc
+		limit ${(page-1) * pageSize}, ${pageSize}
+  </select>
+  <select id="countSummaryReportDayByCondition" resultType="com.cana.report.dao.po.ReportFactorFinanceDay">
+		SELECT id, owner_id, report_date, sum(finance_balance) as finance_balance, sum(finance_amount) as finance_amount, sum(account_principal) as account_principal, 
+		sum(account_charge) as account_charge, sum(account_expense) as account_expense, sum(account_overdue) as account_overdue, sum(paid_principal) as paid_principal, 
+		sum(paid_charge) as paid_charge, sum(paid_expense) as paid_expense,	sum(paid_overdue) as paid_overdue, sum(adjust_principal) as adjust_principal, 
+		sum(adjust_amount) as adjust_amount, sum(account_interest) as account_interest, sum(account_service_charge) as account_service_charge, 
+		sum(account_extension_charge) as account_extension_charge, sum(account_overdue_principal) as account_overdue_principal, sum(account_overdue_interest) as account_overdue_interest,
+		sum(account_overdue_service_charge) as account_overdue_service_charge, sum(account_overdue_extension_charge) as account_overdue_extension_charge,
+		sum(account_overdue_principal_penalty) as account_overdue_principal_penalty, sum(account_overdue_interest_penalty) as account_overdue_interest_penalty,
+		sum(account_overdue_service_charge_penalty) as account_overdue_service_charge_penalty, sum(account_other_penalty) as account_other_penalty, sum(paid_interest) as paid_interest,
+		sum(paid_service_charge) as paid_service_charge, sum(paid_extension_charge) as paid_extension_charge, sum(paid_early_repayment_charge) as paid_early_repayment_charge,
+		sum(paid_overdue_principal) as paid_overdue_principal, sum(paid_overdue_interest) as paid_overdue_interest, sum(paid_overdue_service_charge) as paid_overdue_service_charge,
+		sum(paid_overdue_extension_charge) as paid_overdue_extension_charge, sum(paid_overdue_principal_penalty) as paid_overdue_principal_penalty,
+		sum(paid_overdue_interest_penalty) as paid_overdue_interest_penalty, sum(paid_overdue_service_charge_penalty) as paid_overdue_service_charge_penalty, sum(paid_other_penalty) as paid_other_penalty,
+		sum(adjust_interest) as adjust_interest, sum(adjust_service_charge) as adjust_service_charge, sum(adjust_extension) as adjust_extension, sum(adjust_overdue_interest) as adjust_overdue_interest,
+		sum(adjust_overdue_service_charge) as adjust_overdue_service_charge, sum(adjust_penalty) as adjust_penalty, sum(adjust_expense) as adjust_expense 
+		FROM vbam.report_factor_finance_day 
+		where 
+		<include refid="query_common_criteria" />
+  </select>
+
+  <select id="getSummaryReportYearByCondition" resultType="com.cana.report.dao.po.ReportFactorFinanceYear">
+		SELECT id, owner_id, report_date, sum(finance_balance) as finance_balance, sum(finance_amount) as finance_amount, sum(account_principal) as account_principal, 
+		sum(account_charge) as account_charge, sum(account_expense) as account_expense, sum(account_overdue) as account_overdue, sum(paid_principal) as paid_principal, 
+		sum(paid_charge) as paid_charge, sum(paid_expense) as paid_expense, sum(paid_overdue) as paid_overdue, sum(total_overdue) as total_overdue, 
+		sum(total_extension) as total_extension, sum(adjust_principal) as adjust_principal, sum(adjust_amount) as adjust_amount, sum(account_interest) as account_interest, sum(account_service_charge) as account_service_charge, 
+		sum(account_extension_charge) as account_extension_charge, sum(account_overdue_principal) as account_overdue_principal, sum(account_overdue_interest) as account_overdue_interest,
+		sum(account_overdue_service_charge) as account_overdue_service_charge, sum(account_overdue_extension_charge) as account_overdue_extension_charge,
+		sum(account_overdue_principal_penalty) as account_overdue_principal_penalty, sum(account_overdue_interest_penalty) as account_overdue_interest_penalty,
+		sum(account_overdue_service_charge_penalty) as account_overdue_service_charge_penalty, sum(account_other_penalty) as account_other_penalty, sum(paid_interest) as paid_interest,
+		sum(paid_service_charge) as paid_service_charge, sum(paid_extension_charge) as paid_extension_charge, sum(paid_early_repayment_charge) as paid_early_repayment_charge,
+		sum(paid_overdue_principal) as paid_overdue_principal, sum(paid_overdue_interest) as paid_overdue_interest, sum(paid_overdue_service_charge) as paid_overdue_service_charge,
+		sum(paid_overdue_extension_charge) as paid_overdue_extension_charge, sum(paid_overdue_principal_penalty) as paid_overdue_principal_penalty,
+		sum(paid_overdue_interest_penalty) as paid_overdue_interest_penalty, sum(paid_overdue_service_charge_penalty) as paid_overdue_service_charge_penalty, sum(paid_other_penalty) as paid_other_penalty,
+		sum(adjust_interest) as adjust_interest, sum(adjust_service_charge) as adjust_service_charge, sum(adjust_extension) as adjust_extension, sum(adjust_overdue_interest) as adjust_overdue_interest,
+		sum(adjust_overdue_service_charge) as adjust_overdue_service_charge, sum(adjust_penalty) as adjust_penalty, sum(adjust_expense) as adjust_expense
+		FROM vbam.report_factor_finance_year
+		where 
+		<include refid="query_common_criteria" />
+		order by report_date desc
+		limit ${(page-1) * pageSize}, ${pageSize}
+  </select>
+  <select id="countSummaryReportYearByCondition" resultType="com.cana.report.dao.po.ReportFactorFinanceYear">
+		SELECT id, owner_id, report_date, sum(finance_balance) as finance_balance, sum(finance_amount) as finance_amount, sum(account_principal) as account_principal, 
+		sum(account_charge) as account_charge, sum(account_expense) as account_expense, sum(account_overdue) as account_overdue, sum(paid_principal) as paid_principal, 
+		sum(paid_charge) as paid_charge, sum(paid_expense) as paid_expense, sum(paid_overdue) as paid_overdue, sum(total_overdue) as total_overdue, 
+		sum(total_extension) as total_extension, sum(adjust_principal) as adjust_principal, sum(adjust_amount) as adjust_amount, sum(account_interest) as account_interest, sum(account_service_charge) as account_service_charge, 
+		sum(account_extension_charge) as account_extension_charge, sum(account_overdue_principal) as account_overdue_principal, sum(account_overdue_interest) as account_overdue_interest,
+		sum(account_overdue_service_charge) as account_overdue_service_charge, sum(account_overdue_extension_charge) as account_overdue_extension_charge,
+		sum(account_overdue_principal_penalty) as account_overdue_principal_penalty, sum(account_overdue_interest_penalty) as account_overdue_interest_penalty,
+		sum(account_overdue_service_charge_penalty) as account_overdue_service_charge_penalty, sum(account_other_penalty) as account_other_penalty, sum(paid_interest) as paid_interest,
+		sum(paid_service_charge) as paid_service_charge, sum(paid_extension_charge) as paid_extension_charge, sum(paid_early_repayment_charge) as paid_early_repayment_charge,
+		sum(paid_overdue_principal) as paid_overdue_principal, sum(paid_overdue_interest) as paid_overdue_interest, sum(paid_overdue_service_charge) as paid_overdue_service_charge,
+		sum(paid_overdue_extension_charge) as paid_overdue_extension_charge, sum(paid_overdue_principal_penalty) as paid_overdue_principal_penalty,
+		sum(paid_overdue_interest_penalty) as paid_overdue_interest_penalty, sum(paid_overdue_service_charge_penalty) as paid_overdue_service_charge_penalty, sum(paid_other_penalty) as paid_other_penalty,
+		sum(adjust_interest) as adjust_interest, sum(adjust_service_charge) as adjust_service_charge, sum(adjust_extension) as adjust_extension, sum(adjust_overdue_interest) as adjust_overdue_interest,
+		sum(adjust_overdue_service_charge) as adjust_overdue_service_charge, sum(adjust_penalty) as adjust_penalty, sum(adjust_expense) as adjust_expense
+		FROM vbam.report_factor_finance_year
+		where 
+		<include refid="query_common_criteria" />
+  </select>
+
+  <select id="getSummaryReportCountByCondition" resultType="com.cana.report.dao.po.ReportFactorFinanceCount">
+		SELECT id, owner_id, report_date, sum(loan_items) as loan_items, sum(overdue_items) as overdue_items, sum(extension_items) as extension_items,
+		sum(repayment_items) as repayment_items, sum(adjust_items) as adjust_items, sum(overdue_customer) as overdue_customer
+		FROM vbam.report_factor_finance_count
+		where 
+		<include refid="query_common_criteria" />
+		order by report_date desc
+		limit ${(page-1) * pageSize}, ${pageSize};
+  </select>
+  <select id="countSummaryReportCountByCondition" resultType="com.cana.report.dao.po.ReportFactorFinanceCount">
+		SELECT id, owner_id, report_date, sum(loan_items) as loan_items, sum(overdue_items) as overdue_items, sum(extension_items) as extension_items,
+		sum(repayment_items) as repayment_items, sum(adjust_items) as adjust_items, sum(overdue_customer) as overdue_customer
+		FROM vbam.report_factor_finance_count
+		where 
+		<include refid="query_common_criteria" />
+  </select>
+  
+  <sql id="query_common_criteria">
+		<if test="(startTime != null and startTime != '')">
+				<![CDATA[ report_date >= #{startTime, jdbcType=CHAR} and ]]>
+		</if>
+		<if test="(endTime != null and endTime != '')">
+				<![CDATA[ report_date <= #{endTime, jdbcType=VARCHAR} and ]]>
+		</if>
+		owner_id=#{masterId, jdbcType=VARCHAR}
+		group by report_date
+	</sql>
+</mapper>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ - Copyright 1999-2011 Alibaba Group.
+ -
+ - Licensed under the Apache License, Version 2.0 (the "License");
+ - you may not use this file except in compliance with the License.
+ - You may obtain a copy of the License at
+ -
+ -      http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+						   http://code.alibabatech.com/schema/dubbo         http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<bean class="com.travelzen.framework.config.tops.TzPropertyPlaceholderConfigurer">
+        <property name="tzProperties">
+            <list>
+                <value>R:properties/zkService.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <dubbo:application name="${APP_NAME}" owner="shui.ren"/>
+    
+    <dubbo:registry protocol="zookeeper" address="${connectionString}"
+    	group="${dubboRegistryPath}" file="${user.home}/.dubbo/cache/${APP_NAME}.cache"/>
+    
+    <!-- dubbo的缺省超时时间是1秒，缺省重试为2次，check表示启动时检查提供者是否存在，true报错，false忽略-->
+    <dubbo:consumer timeout="60000" retries="2" check="false" />
+
+    <!--生成远程对象的本地存根，每个接口的超时时间需要根据该接口的复杂情况来设置，默认为 dubbo:consumer 的timeout -->
+     <!--生成远程对象的本地存根，每个接口的超时时间需要根据该接口的复杂情况来设置，默认为 dubbo:consumer 的timeout -->
+    <dubbo:reference id="interestRateApi" interface="com.cana.marketing.api.IInterestRateApi"/>
+    
+    <dubbo:reference id="memberQueryApi" interface="com.cana.member.api.IMemberQueryApi"/>
+    <dubbo:reference id="assetProjectManageApi" interface="com.cana.asset.api.IAssetProjectManageApi" 
+    	url="dubbo://192.168.1.141:20766"/>
+    
+    <dubbo:reference interface="com.cana.crawler.shixincourt.api.IShixinCourtApi" id="courtApi" />
+    
+    <dubbo:reference interface="com.cana.vj.api.IVJApi" id="vjApi"  url="dubbo://192.168.1.141:21189/com.cana.vj.api.IVJApi"/>
+
+</beans>

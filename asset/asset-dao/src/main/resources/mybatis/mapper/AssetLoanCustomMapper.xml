@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cana.asset.dao.mapper.AssetLoanCustomMapper">
+    
+    <resultMap type="com.cana.vbam.common.asset.loan.dto.LoanPaidDTO" id="LoanPaidDTOMap">
+ 	    <id column="id" property="id" jdbcType="VARCHAR" />
+	    <result column="loan_info_id" property="loanInfoId" jdbcType="VARCHAR" />
+	    <result column="loan_plan_id" property="loanPlanId" jdbcType="VARCHAR" />
+	    <result column="paid_amount" property="paidAmount" jdbcType="DECIMAL" />
+	    <result column="paid_principal" property="paidPrincipal" jdbcType="DECIMAL" />
+	    <result column="paid_interest" property="paidInterest" jdbcType="DECIMAL" />
+	    <result column="paid_overdue" property="paidOverdue" jdbcType="DECIMAL" />
+	    <result column="paid_date" property="paidDate" jdbcType="VARCHAR" />
+	    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    	<result column="repayment_date" property="repaymentDate" jdbcType="VARCHAR" />
+ 	</resultMap>
+	
+	<select id="getLoanPaidDTOList" parameterType="com.cana.vbam.common.asset.loan.dto.AssetLoanPaidListRequest" resultMap="LoanPaidDTOMap">
+		select paid.*, plan.repayment_date from vbam.asset_loan_paid as paid left join vbam.asset_loan_plan as plan on paid.loan_plan_id = plan.id
+		where plan.loan_info_id = #{loanId}
+		order by paid.create_time
+       	limit ${(page -1) * pageSize} , #{pageSize}
+  	</select>
+  	
+  	<select id="countLoanPaidDTOList" parameterType="com.cana.vbam.common.asset.loan.dto.AssetLoanPaidListRequest" resultType="java.lang.Integer">
+  		select count(*) from vbam.asset_loan_paid where loan_info_id = #{loanId}
+  	</select>
+	
+</mapper>

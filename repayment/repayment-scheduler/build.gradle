@@ -1,0 +1,12 @@
+apply plugin:'application'
+
+dependencies {
+	compile project(':repayment:repayment-service')
+	compile project(':vj:vj-api')
+	compile project(':credit:credit-api')
+	compile project(':asset:asset-api')
+}
+
+mainClassName = 'com.cana.repayment.scheduler.main.Main'
+
+applicationDefaultJvmArgs = ["-server", "-Xms256m", "-Xmx1024m", "-XX:MaxPermSize=512m", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=12702", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false"]

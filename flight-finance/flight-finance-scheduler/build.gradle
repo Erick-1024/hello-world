@@ -1,0 +1,11 @@
+apply plugin:'application'
+
+dependencies {
+	compile project(':common:vbam-common-service')
+	compile project(':flight-finance:flight-finance-dataaccess-travelzen')
+	compile project(':flight-finance:flight-finance-service')
+}
+
+mainClassName = 'com.cana.flight.finance.scheduler.main.Main'
+
+applicationDefaultJvmArgs = ["-server", "-Xms256m", "-Xmx1024m", "-XX:MaxPermSize=512m", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=12703", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false"]

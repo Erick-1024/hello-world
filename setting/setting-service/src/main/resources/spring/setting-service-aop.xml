@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd"
+	default-lazy-init="true"
+	>
+
+	<aop:aspectj-autoproxy />
+	
+	<bean id="transactionalRetryFaultToleranceAspect4settingService" class="com.cana.setting.service.aop.TransactionalRetryFaultToleranceAspect">
+		<property name="retryTemplate" ref="retryTemplate"/>
+	</bean>
+	<bean id="retryTemplate" class="org.springframework.batch.retry.support.RetryTemplate">
+		<property name="retryPolicy" ref="retryPolicy"/>
+		<property name="backOffPolicy" ref="backoffPolicy"/>
+	</bean>
+	<bean id="retryPolicy" class="org.springframework.batch.retry.policy.ExceptionClassifierRetryPolicy">
+		<property name="policyMap">
+			<map>
+			    <!-- 数据库异常 -->
+				<entry key="org.springframework.dao.DataAccessException" value-ref="timeoutRetryPolicy"/>
+				<entry key="java.sql.SQLException" value-ref="timeoutRetryPolicy"/>
+			</map>
+		</property>
+	</bean> 
+	<bean id="maxAttemptRetryPolicy" class="org.springframework.batch.retry.policy.SimpleRetryPolicy">
+		<property name="maxAttempts" value="3"/>
+	</bean>
+	<bean id="timeoutRetryPolicy" class="org.springframework.batch.retry.policy.TimeoutRetryPolicy">
+		<property name="timeout" value="3000"/>
+	</bean>
+	<bean id="backoffPolicy" class="org.springframework.batch.retry.backoff.FixedBackOffPolicy">
+		<property name="backOffPeriod" value="100"/>
+	</bean>
+
+</beans>

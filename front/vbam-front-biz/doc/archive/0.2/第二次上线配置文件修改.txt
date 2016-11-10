@@ -1,0 +1,32 @@
+————配置文件————
+
+1. 修改global/properties/zkService.properties,增加以下配置项
+
+# dubbo服务注册根目录，默认设置为/dubbo，如果要调用OP3的注册中心，则改为/dubbo_op3
+dubboRegistryPath=/dubbo
+
+
+2. 增加asset-server/properties/mysql-jdbc.properties
+
+jdbc.username=root（以实际为准）
+jdbc.password=Abc12345（以实际为准）
+jdbc.initialPoolSize=0
+jdbc.minPoolSize=0
+jdbc.maxPoolSize=20
+jdbc.dataSourceName=asset-server-dataSource
+
+3. 增加global/properties/travelzen-url.properties
+
+travelzen.repayment.url.prefix=http://fcana.tdxinfo.com/tops-finance-cana/finance/cana/query/
+travelzen.flight.ticket.url.prefix=http://op.tdxinfo.com/tops-front-ticket/order/ticket/getTickets?
+travelzen.audit.result.url.prefix=http://116.228.99.245:8080/tops-front-operator-member/member/financialProduct/auditResultNotify
+travelzen.credit.limit.feedback.url.prefix=http://116.228.99.245:8080/tops-front-operator-member/member/financialProduct/activeResultNotify
+
+4. 增加marketing-server/properties/mysql-jdbc.properties
+
+jdbc.username=marketing_server
+jdbc.password=Abc12345
+jdbc.initialPoolSize=0
+jdbc.minPoolSize=0
+jdbc.maxPoolSize=20
+

@@ -1,0 +1,12 @@
+apply plugin: 'application'
+
+dependencies {
+	compile project(':framework:framework-dubbo-support')
+	compile project(':setting:setting-api')
+	compile project(':setting:setting-service')
+}
+
+mainClassName = 'com.cana.setting.server.main.SettingServerMain'
+
+applicationDefaultJvmArgs = ["-server", "-Xms256m", "-Xmx2048m", "-XX:MaxPermSize=512m", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=12616", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false"]
+

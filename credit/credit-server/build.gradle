@@ -1,0 +1,9 @@
+apply plugin:'application'
+dependencies {
+	compile project(':credit:credit-service')
+	compile project(':credit:credit-api')
+	compile project(':framework:framework-dubbo-support')
+}
+mainClassName = 'com.cana.credit.server.main.CreditServerMain'
+
+applicationDefaultJvmArgs = ["-server", "-Xms256m", "-Xmx1024m", "-XX:MaxPermSize=512m", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=12365", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false"]

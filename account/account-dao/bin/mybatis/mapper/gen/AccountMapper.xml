@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.account.dao.mapper.gen.AccountMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.account.dao.po.Account" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="accumulation_id" property="accumulationId" jdbcType="VARCHAR" />
+    <result column="account_apply_id" property="accountApplyId" jdbcType="VARCHAR" />
+    <result column="user_type" property="userType" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="account_supervision_id" property="accountSupervisionId" jdbcType="VARCHAR" />
+    <result column="supervisor_id" property="supervisorId" jdbcType="VARCHAR" />
+    <result column="supervisor_name" property="supervisorName" jdbcType="VARCHAR" />
+    <result column="account_type" property="accountType" jdbcType="VARCHAR" />
+    <result column="account_no" property="accountNo" jdbcType="VARCHAR" />
+    <result column="account_status" property="accountStatus" jdbcType="VARCHAR" />
+    <result column="supervision_status" property="supervisionStatus" jdbcType="VARCHAR" />
+    <result column="accumulation_status" property="accumulationStatus" jdbcType="VARCHAR" />
+    <result column="buyer_name" property="buyerName" jdbcType="VARCHAR" />
+    <result column="is_default_repayment" property="isDefaultRepayment" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="operate_company_id" property="operateCompanyId" jdbcType="VARCHAR" />
+    <result column="is_transfer_in_account" property="isTransferInAccount" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, accumulation_id, account_apply_id, user_type, company_id, company_name, account_supervision_id, 
+    supervisor_id, supervisor_name, account_type, account_no, account_status, supervision_status, 
+    accumulation_status, buyer_name, is_default_repayment, create_time, update_time, 
+    operate_company_id, is_transfer_in_account
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.account.dao.po.AccountExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from account
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from account
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from account
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.account.dao.po.AccountExample" >
+    delete from account
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.account.dao.po.Account" >
+    insert into account (id, accumulation_id, account_apply_id, 
+      user_type, company_id, company_name, 
+      account_supervision_id, supervisor_id, supervisor_name, 
+      account_type, account_no, account_status, 
+      supervision_status, accumulation_status, 
+      buyer_name, is_default_repayment, create_time, 
+      update_time, operate_company_id, is_transfer_in_account
+      )
+    values (#{id,jdbcType=VARCHAR}, #{accumulationId,jdbcType=VARCHAR}, #{accountApplyId,jdbcType=VARCHAR}, 
+      #{userType,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{accountSupervisionId,jdbcType=VARCHAR}, #{supervisorId,jdbcType=VARCHAR}, #{supervisorName,jdbcType=VARCHAR}, 
+      #{accountType,jdbcType=VARCHAR}, #{accountNo,jdbcType=VARCHAR}, #{accountStatus,jdbcType=VARCHAR}, 
+      #{supervisionStatus,jdbcType=VARCHAR}, #{accumulationStatus,jdbcType=VARCHAR}, 
+      #{buyerName,jdbcType=VARCHAR}, #{isDefaultRepayment,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{operateCompanyId,jdbcType=VARCHAR}, #{isTransferInAccount,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.account.dao.po.Account" >
+    insert into account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="accumulationId != null" >
+        accumulation_id,
+      </if>
+      <if test="accountApplyId != null" >
+        account_apply_id,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="accountSupervisionId != null" >
+        account_supervision_id,
+      </if>
+      <if test="supervisorId != null" >
+        supervisor_id,
+      </if>
+      <if test="supervisorName != null" >
+        supervisor_name,
+      </if>
+      <if test="accountType != null" >
+        account_type,
+      </if>
+      <if test="accountNo != null" >
+        account_no,
+      </if>
+      <if test="accountStatus != null" >
+        account_status,
+      </if>
+      <if test="supervisionStatus != null" >
+        supervision_status,
+      </if>
+      <if test="accumulationStatus != null" >
+        accumulation_status,
+      </if>
+      <if test="buyerName != null" >
+        buyer_name,
+      </if>
+      <if test="isDefaultRepayment != null" >
+        is_default_repayment,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="operateCompanyId != null" >
+        operate_company_id,
+      </if>
+      <if test="isTransferInAccount != null" >
+        is_transfer_in_account,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="accumulationId != null" >
+        #{accumulationId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountApplyId != null" >
+        #{accountApplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountSupervisionId != null" >
+        #{accountSupervisionId,jdbcType=VARCHAR},
+      </if>
+      <if test="supervisorId != null" >
+        #{supervisorId,jdbcType=VARCHAR},
+      </if>
+      <if test="supervisorName != null" >
+        #{supervisorName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null" >
+        #{accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null" >
+        #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountStatus != null" >
+        #{accountStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="supervisionStatus != null" >
+        #{supervisionStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="accumulationStatus != null" >
+        #{accumulationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerName != null" >
+        #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefaultRepayment != null" >
+        #{isDefaultRepayment,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateCompanyId != null" >
+        #{operateCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="isTransferInAccount != null" >
+        #{isTransferInAccount,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.account.dao.po.AccountExample" resultType="java.lang.Integer" >
+    select count(*) from account
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update account
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accumulationId != null" >
+        accumulation_id = #{record.accumulationId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountApplyId != null" >
+        account_apply_id = #{record.accountApplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userType != null" >
+        user_type = #{record.userType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null" >
+        company_id = #{record.companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyName != null" >
+        company_name = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountSupervisionId != null" >
+        account_supervision_id = #{record.accountSupervisionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supervisorId != null" >
+        supervisor_id = #{record.supervisorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supervisorName != null" >
+        supervisor_name = #{record.supervisorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountType != null" >
+        account_type = #{record.accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountNo != null" >
+        account_no = #{record.accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountStatus != null" >
+        account_status = #{record.accountStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supervisionStatus != null" >
+        supervision_status = #{record.supervisionStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accumulationStatus != null" >
+        accumulation_status = #{record.accumulationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerName != null" >
+        buyer_name = #{record.buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDefaultRepayment != null" >
+        is_default_repayment = #{record.isDefaultRepayment,jdbcType=BIT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.operateCompanyId != null" >
+        operate_company_id = #{record.operateCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isTransferInAccount != null" >
+        is_transfer_in_account = #{record.isTransferInAccount,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update account
+    set id = #{record.id,jdbcType=VARCHAR},
+      accumulation_id = #{record.accumulationId,jdbcType=VARCHAR},
+      account_apply_id = #{record.accountApplyId,jdbcType=VARCHAR},
+      user_type = #{record.userType,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=VARCHAR},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      account_supervision_id = #{record.accountSupervisionId,jdbcType=VARCHAR},
+      supervisor_id = #{record.supervisorId,jdbcType=VARCHAR},
+      supervisor_name = #{record.supervisorName,jdbcType=VARCHAR},
+      account_type = #{record.accountType,jdbcType=VARCHAR},
+      account_no = #{record.accountNo,jdbcType=VARCHAR},
+      account_status = #{record.accountStatus,jdbcType=VARCHAR},
+      supervision_status = #{record.supervisionStatus,jdbcType=VARCHAR},
+      accumulation_status = #{record.accumulationStatus,jdbcType=VARCHAR},
+      buyer_name = #{record.buyerName,jdbcType=VARCHAR},
+      is_default_repayment = #{record.isDefaultRepayment,jdbcType=BIT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      operate_company_id = #{record.operateCompanyId,jdbcType=VARCHAR},
+      is_transfer_in_account = #{record.isTransferInAccount,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.account.dao.po.Account" >
+    update account
+    <set >
+      <if test="accumulationId != null" >
+        accumulation_id = #{accumulationId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountApplyId != null" >
+        account_apply_id = #{accountApplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountSupervisionId != null" >
+        account_supervision_id = #{accountSupervisionId,jdbcType=VARCHAR},
+      </if>
+      <if test="supervisorId != null" >
+        supervisor_id = #{supervisorId,jdbcType=VARCHAR},
+      </if>
+      <if test="supervisorName != null" >
+        supervisor_name = #{supervisorName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null" >
+        account_type = #{accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null" >
+        account_no = #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountStatus != null" >
+        account_status = #{accountStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="supervisionStatus != null" >
+        supervision_status = #{supervisionStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="accumulationStatus != null" >
+        accumulation_status = #{accumulationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerName != null" >
+        buyer_name = #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefaultRepayment != null" >
+        is_default_repayment = #{isDefaultRepayment,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateCompanyId != null" >
+        operate_company_id = #{operateCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="isTransferInAccount != null" >
+        is_transfer_in_account = #{isTransferInAccount,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.account.dao.po.Account" >
+    update account
+    set accumulation_id = #{accumulationId,jdbcType=VARCHAR},
+      account_apply_id = #{accountApplyId,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      account_supervision_id = #{accountSupervisionId,jdbcType=VARCHAR},
+      supervisor_id = #{supervisorId,jdbcType=VARCHAR},
+      supervisor_name = #{supervisorName,jdbcType=VARCHAR},
+      account_type = #{accountType,jdbcType=VARCHAR},
+      account_no = #{accountNo,jdbcType=VARCHAR},
+      account_status = #{accountStatus,jdbcType=VARCHAR},
+      supervision_status = #{supervisionStatus,jdbcType=VARCHAR},
+      accumulation_status = #{accumulationStatus,jdbcType=VARCHAR},
+      buyer_name = #{buyerName,jdbcType=VARCHAR},
+      is_default_repayment = #{isDefaultRepayment,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      operate_company_id = #{operateCompanyId,jdbcType=VARCHAR},
+      is_transfer_in_account = #{isTransferInAccount,jdbcType=BIT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

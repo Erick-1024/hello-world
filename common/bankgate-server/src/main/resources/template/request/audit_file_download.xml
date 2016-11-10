@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLSESMDN </action>
+	<userName></userName><!--登录名 varchar(30) -->
+	<accountNo></accountNo><!--商户结算账号char(19) -->
+	<date></date><!--清算日期char(8) -->
+</stream>

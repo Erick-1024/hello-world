@@ -1,0 +1,7 @@
+dependencies {
+	compile project(':common:vbam-common-service')
+	compile project(':early-warning:early-warning-dao')
+	compile project(':repayment:repayment-api')
+	compile project(':credit:credit-api')
+	compile project(':yundaex:yundaex-api')
+}

@@ -1,0 +1,16 @@
+
+dependencies {
+    compile libraries.cglib_nodep
+	compile libraries.javassist
+	compile libraries.ognl
+	compile libraries.slf4j_api
+	compile libraries.jcl_over_slf4j
+	compile libraries.log4j_over_slf4j
+	compile libraries.mybatis_spring
+	compile libraries.mybatis_generator
+	compile libraries.mybatis_generator_plugins
+	compile libraries.ant
+	compile libraries.joda_time
+	compile libraries.spring_core
+}
+

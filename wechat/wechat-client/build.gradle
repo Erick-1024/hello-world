@@ -1,0 +1,14 @@
+
+rootProject.allprojects {
+    configurations {
+        all { resolutionStrategy.force 'org.apache.httpcomponents:httpcore:4.3.2' }
+        all { resolutionStrategy.force 'org.apache.httpcomponents:httpclient:4.3.4' }
+    }
+}
+
+dependencies {
+    compile project(':framework:framework-base')
+    compile project(':framework:framework-spring')
+    compile project(':common:vbam-common')
+    compile project(':wechat:wechat-common')
+}

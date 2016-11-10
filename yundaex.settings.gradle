@@ -1,0 +1,33 @@
+apply from: 'framework.settings.gradle'
+apply from: 'credit.settings.gradle'
+include ':yundaex:yundaex-server'
+include ':yundaex:yundaex-openapi'
+include ':yundaex:yundaex-service'
+include ':yundaex:yundaex-dao'
+include ':yundaex:yundaex-api'
+include ':yundaex:yundaex-scheduler'
+include ':yundaex:yundaex-common'
+include ':yundaex:yundaex-response'
+
+include ':common:vbam-common'
+include ':common:common-dao'
+include ':common:vbam-common-service'
+include ':common:bankgate-api'
+include ':common:vbam-rabbitmq'
+
+include ':member:member-api'
+include ':member:member-dao'
+include ':member:member-authorization'
+
+include ':tops-common-mediaclient'
+
+include ':repayment:repayment-service'
+include ':repayment:repayment-dao'
+
+include ':account:account-api'
+include ':repayment:repayment-api'
+
+include ':message:message-client'
+
+include ':marketing:marketing-api'
+include ':asset:asset-api'

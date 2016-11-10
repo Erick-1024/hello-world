@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.asset.dao.mapper.gen.AssetInvoiceBasicInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.asset.dao.po.AssetInvoiceBasicInfo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="factor_id" property="factorId" jdbcType="VARCHAR" />
+    <result column="factor_name" property="factorName" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="business_product" property="businessProduct" jdbcType="VARCHAR" />
+    <result column="business_contract_no" property="businessContractNo" jdbcType="VARCHAR" />
+    <result column="currency" property="currency" jdbcType="VARCHAR" />
+    <result column="count_invoice" property="countInvoice" jdbcType="INTEGER" />
+    <result column="sum_invoice_amt" property="sumInvoiceAmt" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, factor_id, factor_name, customer_id, customer_name, business_product, business_contract_no, 
+    currency, count_invoice, sum_invoice_amt, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.asset.dao.po.AssetInvoiceBasicInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from asset_invoice_basic_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset_invoice_basic_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from asset_invoice_basic_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.asset.dao.po.AssetInvoiceBasicInfoExample" >
+    delete from asset_invoice_basic_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.asset.dao.po.AssetInvoiceBasicInfo" >
+    insert into asset_invoice_basic_info (id, factor_id, factor_name, 
+      customer_id, customer_name, business_product, 
+      business_contract_no, currency, count_invoice, 
+      sum_invoice_amt, create_time, update_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{factorId,jdbcType=VARCHAR}, #{factorName,jdbcType=VARCHAR}, 
+      #{customerId,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, #{businessProduct,jdbcType=VARCHAR}, 
+      #{businessContractNo,jdbcType=VARCHAR}, #{currency,jdbcType=VARCHAR}, #{countInvoice,jdbcType=INTEGER}, 
+      #{sumInvoiceAmt,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.asset.dao.po.AssetInvoiceBasicInfo" >
+    insert into asset_invoice_basic_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="factorId != null" >
+        factor_id,
+      </if>
+      <if test="factorName != null" >
+        factor_name,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="businessProduct != null" >
+        business_product,
+      </if>
+      <if test="businessContractNo != null" >
+        business_contract_no,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="countInvoice != null" >
+        count_invoice,
+      </if>
+      <if test="sumInvoiceAmt != null" >
+        sum_invoice_amt,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="factorId != null" >
+        #{factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="factorName != null" >
+        #{factorName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessProduct != null" >
+        #{businessProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="businessContractNo != null" >
+        #{businessContractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="countInvoice != null" >
+        #{countInvoice,jdbcType=INTEGER},
+      </if>
+      <if test="sumInvoiceAmt != null" >
+        #{sumInvoiceAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.asset.dao.po.AssetInvoiceBasicInfoExample" resultType="java.lang.Integer" >
+    select count(*) from asset_invoice_basic_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update asset_invoice_basic_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factorId != null" >
+        factor_id = #{record.factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factorName != null" >
+        factor_name = #{record.factorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerId != null" >
+        customer_id = #{record.customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerName != null" >
+        customer_name = #{record.customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessProduct != null" >
+        business_product = #{record.businessProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessContractNo != null" >
+        business_contract_no = #{record.businessContractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currency != null" >
+        currency = #{record.currency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countInvoice != null" >
+        count_invoice = #{record.countInvoice,jdbcType=INTEGER},
+      </if>
+      <if test="record.sumInvoiceAmt != null" >
+        sum_invoice_amt = #{record.sumInvoiceAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update asset_invoice_basic_info
+    set id = #{record.id,jdbcType=VARCHAR},
+      factor_id = #{record.factorId,jdbcType=VARCHAR},
+      factor_name = #{record.factorName,jdbcType=VARCHAR},
+      customer_id = #{record.customerId,jdbcType=VARCHAR},
+      customer_name = #{record.customerName,jdbcType=VARCHAR},
+      business_product = #{record.businessProduct,jdbcType=VARCHAR},
+      business_contract_no = #{record.businessContractNo,jdbcType=VARCHAR},
+      currency = #{record.currency,jdbcType=VARCHAR},
+      count_invoice = #{record.countInvoice,jdbcType=INTEGER},
+      sum_invoice_amt = #{record.sumInvoiceAmt,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.asset.dao.po.AssetInvoiceBasicInfo" >
+    update asset_invoice_basic_info
+    <set >
+      <if test="factorId != null" >
+        factor_id = #{factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="factorName != null" >
+        factor_name = #{factorName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessProduct != null" >
+        business_product = #{businessProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="businessContractNo != null" >
+        business_contract_no = #{businessContractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="countInvoice != null" >
+        count_invoice = #{countInvoice,jdbcType=INTEGER},
+      </if>
+      <if test="sumInvoiceAmt != null" >
+        sum_invoice_amt = #{sumInvoiceAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.asset.dao.po.AssetInvoiceBasicInfo" >
+    update asset_invoice_basic_info
+    set factor_id = #{factorId,jdbcType=VARCHAR},
+      factor_name = #{factorName,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      business_product = #{businessProduct,jdbcType=VARCHAR},
+      business_contract_no = #{businessContractNo,jdbcType=VARCHAR},
+      currency = #{currency,jdbcType=VARCHAR},
+      count_invoice = #{countInvoice,jdbcType=INTEGER},
+      sum_invoice_amt = #{sumInvoiceAmt,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

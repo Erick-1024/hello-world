@@ -1,0 +1,696 @@
+[tops-mediaserver]
+gradletask = tops-common:tops-common-mediaserver:war
+packagename = tops-mediaserver.war
+thriftserver = False
+packagepath = tops-common/tops-common-mediaserver/target/libs
+
+[tops-common-fax]
+gradletask = tops-common:tops-common-fax-server:war
+packagename = tops-common-fax.war
+thriftserver = False
+packagepath = tops-common/tops-common-fax-server/target/libs
+
+[tops-common-messaging-center]
+gradletask = tops-common:tops-common-messaging-center:war
+packagename = tops-messaging-center.war
+thriftserver = False
+packagepath = tops-common/tops-common-messaging-center/target/libs
+
+[tops-common-sms]
+gradletask = tops-common:tops-common-sms:war
+packagename = tops-common-sms.war
+thriftserver = False
+packagepath = tops-common/tops-common-sms/target/libs
+
+[tops-common-sms-yunpian]
+gradletask = tops-common:tops-common-sms-yunpian:war
+packagename = tops-common-sms-yunpian.war
+thriftserver = False
+packagepath = tops-common/tops-common-sms-yunpian/target/libs
+
+[tops-data-statistics]
+gradletask = tops-data:tops-data-statistics:war
+packagename = tops-data-statistics.war
+thriftserver = False
+packagepath = tops-data/tops-data-statistics/target/libs
+
+[tops-front-purchaser-cruise]
+gradletask = tops-cruise:tops-cruise-purchaser:tops-front-purchaser-cruise:war
+packagename = tops-front-purchaser-cruise.war
+thriftserver = False
+packagepath = tops-cruise/tops-cruise-purchaser/tops-front-purchaser-cruise/target/libs
+
+[tops-front-provider-cruise]
+gradletask = tops-cruise:tops-cruise-provider:tops-front-provider-cruise:war
+packagename = tops-front-provider-cruise.war
+thriftserver = False
+packagepath = tops-cruise/tops-cruise-provider/tops-front-provider-cruise/target/libs
+
+[tops-front-operator-paperfare]
+gradletask = tops-front:tops-front-operator-paperfare:war
+packagename = tops-front-operator-paperfare.war
+thriftserver = False
+packagepath = tops-front/tops-front-operator-paperfare/target/libs
+
+[tops-front-provider-pricing]
+gradletask = tops-front:tops-front-provider-pricing:war
+packagename = tops-front-provider-pricing.war
+thriftserver = False
+packagepath = tops-front/tops-front-provider-pricing/target/libs
+
+[tops-front-distributor-pricing]
+gradletask = tops-front:tops-front-distributor-pricing:war
+packagename = tops-front-distributor-pricing.war
+thriftserver = False
+packagepath = tops-front/tops-front-distributor-pricing/target/libs
+
+[tops-front-operator-member]
+gradletask = tops-front:tops-front-operator-member:war
+packagename = tops-front-operator-member.war
+thriftserver = False
+packagepath = tops-front/tops-front-operator-member/target/libs
+
+[tops-front-operator-hotel]
+gradletask = tops-hotel:tops-front-operator-hotel:war
+packagename = tops-front-operator-hotel.war
+thriftserver = False
+packagepath = tops-hotel/tops-front-operator-hotel/target/libs
+
+[tops-front-report]
+gradletask = tops-front:tops-front-report:war
+packagename = tops-front-report.war
+thriftserver = False
+packagepath = tops-front/tops-front-report/target/libs
+
+[tops-report-timing]
+gradletask = tops-report:tops-report-timing:war
+packagename = tops-report-timing.war
+thriftserver = False
+packagepath = tops-report/tops-report-timing/target/libs
+
+[tops-hotel-schedule]
+gradletask = tops-hotel:tops-hotel-schedule:war
+packagename = tops-hotel-schedule.war
+thriftserver = False
+packagepath = tops-hotel/tops-hotel-schedule/target/libs
+
+[tops-flight-farego-connector]
+gradletask = tops-flight:tops-flight-farego-connector:war
+packagename = tops-flight-farego-connector.war
+thriftserver = False
+packagepath = tops-flight/tops-flight-farego-connector/target/libs
+
+[tops-flight-cache-server]
+gradletask = tops-flight:tops-flight-cache-server:war
+packagename = tops-flight-cache-server.war
+thriftserver = False
+packagepath = tops-flight/tops-flight-cache-server/target/libs
+
+[tops-flight-travelsky-connector]
+gradletask = tops-flight:tops-flight-travelsky-connector:war
+packagename = tops-flight-travelsky-connector.war
+thriftserver = False
+packagepath = tops-flight/tops-flight-travelsky-connector/target/libs
+
+[tops-flight-ibeplus-server]
+gradletask = tops-flight:tops-flight-ibeplus-server:war
+packagename = tops-flight-ibeplus-server.war
+thriftserver = False
+packagepath = tops-flight/tops-flight-ibeplus-server/target/libs
+
+[tops-front-operator-flight]
+gradletask = tops-front:tops-front-operator-flight:war
+packagename = tops-front-operator-flight.war
+thriftserver = False
+packagepath = tops-front/tops-front-operator-flight/target/libs
+
+[tops-front-provider]
+gradletask = tops-front:tops-front-provider:war
+packagename = tops-front-provider.war
+thriftserver = False
+packagepath = tops-front/tops-front-provider/target/libs
+
+[tops-front-purchaser]
+gradletask = tops-front:tops-front-purchaser:war
+packagename = tops-front-purchaser.war
+thriftserver = False
+packagepath = tops-front/tops-front-purchaser/target/libs
+
+[tops-front-messaging]
+gradletask = tops-front:tops-front-messaging:war
+packagename = tops-front-messaging.war
+thriftserver = False
+packagepath = tops-front/tops-front-messaging/target/libs
+
+[tops-front-distributor]
+other = xs
+gradletask = tops-front:tops-front-purchaser:war
+packagename = tops-front-distributor.war
+thriftserver = False
+packagepath = tops-front/tops-front-purchaser/target/libs
+
+[tops-settlement-timing]
+gradletask = tops-settlement:tops-settlement-timing:war
+packagename = tops-settlement-timing.war
+thriftserver = False
+packagepath = tops-settlement/tops-settlement-timing/target/libs
+
+[tops-front-operator-biz]
+gradletask = tops-front:tops-front-operator-biz:war
+packagename = tops-front-operator-biz.war
+thriftserver = False
+packagepath = tops-front/tops-front-operator-biz/target/libs
+
+[tops-paygate-server-alipay]
+gradletask = tops-finance:tops-paygate-server-alipay:war
+packagename = tops-paygate-server-alipay.war
+thriftserver = False
+packagepath = tops-finance/tops-paygate-server-alipay/target/libs
+
+[tops-paygate-server-tenpay]
+gradletask = tops-finance:tops-paygate-server-tenpay:war
+packagename = tops-paygate-server-tenpay.war
+thriftserver = False
+packagepath = tops-finance/tops-paygate-server-tenpay/target/libs
+
+[tops-paygate-server-chinapnr]
+gradletask = tops-finance:tops-paygate-server-chinapnr:war
+packagename = tops-paygate-server-chinapnr.war
+thriftserver = False
+packagepath = tops-finance/tops-paygate-server-chinapnr/target/libs
+
+[tops-paygate-server-dovepay]
+gradletask = tops-finance:tops-paygate-server-dovepay:war
+packagename = tops-paygate-server-dovepay.war
+thriftserver = False
+packagepath = tops-finance/tops-paygate-server-dovepay/target/libs
+
+[tops-paygate-web]
+gradletask = tops-finance:tops-paygate-web:war
+packagename = tops-paygate-web.war
+thriftserver = False
+packagepath = tops-finance/tops-paygate-web/target/libs
+
+[tops-finance-server]
+gradletask = tops-finance:tops-finance-server:war
+packagename = tops-finance-server.war
+thriftserver = False
+packagepath = tops-finance/tops-finance-server/target/libs
+
+[tops-front-operator-finance]
+gradletask = tops-front:tops-front-operator-finance:war
+packagename = tops-front-operator-finance.war
+thriftserver = False
+packagepath = tops-front/tops-front-operator-finance/target/libs
+
+[tops-front-purchaser-journey]
+gradletask = tops-journey:tops-front-purchaser-journey:war
+packagename = tops-front-purchaser-journey.war
+thriftserver = False
+packagepath = tops-journey/tops-front-purchaser-journey/target/libs
+
+[tops-front-provider-journey]
+gradletask = tops-journey:tops-front-provider-journey:war
+packagename = tops-front-provider-journey.war
+thriftserver = False
+packagepath = tops-journey/tops-front-provider-journey/target/libs
+
+[tops-pricing-51book-deploy]
+gradletask = tops-pricing:tops-pricing-51book-deploy:war
+packagename = tops-pricing-51book-deploy.war
+thriftserver = False
+packagepath = tops-pricing/tops-pricing-51book-deploy/target/libs
+
+[tops-pricing-baitour-deploy]
+gradletask = tops-pricing:tops-pricing-baitour-deploy:war
+packagename = tops-pricing-baitour-deploy.war
+thriftserver = False
+packagepath = tops-pricing/tops-pricing-baitour-deploy/target/libs
+
+[tops-pricing-qunaerexport]
+gradletask = tops-pricing:tops-pricing-qunaerexport:war
+packagename = tops-pricing-qunaerexport.war
+thriftserver = False
+packagepath = tops-pricing/tops-pricing-qunaerexport/target/libs
+
+[tops-front-operator-pricing]
+gradletask = tops-front:tops-front-operator-pricing:war
+packagename = tops-front-operator-pricing.war
+thriftserver = False
+packagepath = tops-front/tops-front-operator-pricing/target/libs
+
+[tops-pricing-deploybackgroundtasks]
+gradletask = tops-pricing:tops-pricing-deploybackgroundtasks:war
+packagename = tops-pricing-deploybackgroundtasks.war
+thriftserver = False
+packagepath = tops-pricing/tops-pricing-deploybackgroundtasks/target/libs
+
+[tops-nebula-fare-itinerary]
+gradletask = tops-nebula:tops-nebula-fare-itinerary:war
+packagename = tops-nebula-fare-itinerary.war
+thriftserver = False
+packagepath = tops-nebula/tops-nebula-fare-itinerary/target/libs
+
+[tops-nebula-fare-thrift-server]
+gradletask = tops-nebula:tops-nebula-fare-thrift-server:war
+packagename = tops-nebula-fare-thrift-server.war
+thriftserver = False
+packagepath = tops-nebula/tops-nebula-fare-thrift-server/target/libs
+
+[tops-pricing-deploypricerule]
+gradletask = tops-pricing:tops-pricing-deploypricerule:war
+packagename = tops-pricing-deploypricerule.war
+thriftserver = False
+packagepath = tops-pricing/tops-pricing-deploypricerule/target/libs
+
+[tops-front-operator-journey]
+gradletask = tops-journey:tops-front-operator-journey:war
+packagename = tops-front-operator-journey.war
+thriftserver = False
+packagepath = tops-journey/tops-front-operator-journey/target/libs
+
+[tops-visa-server]
+gradletask = tops-journey:tops-visa-server:war
+packagename = tops-visa-server.war
+thriftserver = False
+packagepath = tops-journey/tops-visa-server/target/libs
+
+[tops-jn-server]
+gradletask = tops-journey:tops-jn-server:war
+packagename = tops-jn-server.war
+thriftserver = False
+packagepath = tops-journey/tops-jn-server/target/libs
+
+[tfc-web]
+gradletask = tops-finance-core:tfc-web:war
+packagename = tfc-web.war
+thriftserver = False
+packagepath = tops-finance-core/tfc-web/target/libs
+other = zyc
+
+[tfc-frontend-web]
+gradletask = tops-finance-core:tfc-frontend-web:war
+packagename = tfc-frontend-web.war
+thriftserver = False
+packagepath = tops-finance-core/tfc-frontend-web/target/libs
+other = zyc
+
+[tfc-admin-web]
+gradletask = tops-finance-core:tfc-admin-web:war
+packagename = tfc-admin-web.war
+thriftserver = False
+packagepath = tops-finance-core/tfc-admin-web/target/libs
+other = zyc
+
+[tfc-fin-web]
+gradletask = tops-finance-core:tfc-fin-web:war
+packagename = tfc-fin-web.war
+thriftserver = False
+packagepath = tops-finance-core/tfc-fin-web/target/libs
+other = zyc
+
+[tfc-payment-server]
+gradletask = tops-finance-core:tfc-payment-server:war
+packagename = tfc-payment-server.war
+thriftserver = False
+packagepath = tops-finance-core/tfc-payment-server/target/libs
+other = zyc
+
+[tops-monitor-server]
+gradletask = tops-common:tops-monitor-server:war
+packagename = tops-monitor-server.war
+thriftserver = False
+packagepath = tops-common/tops-monitor-server/target/libs
+
+[tops-report-server]
+gradletype = zip
+gradletask = tops-report:tops-report-server:zip
+packagename = tops-report-server.zip
+thriftserver = False
+packagepath = tops-report/tops-report-server/target/distributions
+
+[tops-pricing-deploy]
+gradletask = tops-pricing:tops-pricing-deploy:war
+packagename = tops-pricing-deploy.war
+thriftserver = False
+packagepath = tops-pricing/tops-pricing-deploy/target/libs
+
+[tops-pricing-query-deploy]
+gradletask = tops-pricing:tops-pricing-query-deploy:war
+packagename = tops-pricing-query-deploy.war
+thriftserver = False
+packagepath = tops-pricing/tops-pricing-query-deploy/target/libs
+
+[tops-pricing-relation-deploy]
+gradletask = tops-pricing:tops-pricing-relation-deploy:war
+packagename = tops-pricing-relation-deploy.war
+thriftserver = False
+packagepath = tops-pricing/tops-pricing-relation-deploy/target/libs
+
+[tops-pricing-taobao-export]
+gradletask = tops-pricing:tops-pricing-taobao-export:war
+packagename = tops-pricing-taobao-export.war
+thriftserver = False
+packagepath = tops-pricing/tops-pricing-taobao-export/target/libs
+
+[tops-pricing-files-deploy]
+gradletask = tops-pricing:tops-pricing-files-deploy:war
+packagename = tops-pricing-files-deploy.war
+thriftserver = False
+packagepath = tops-pricing/tops-pricing-files-deploy/target/libs
+
+[tops-order-api]
+gradletask = tops-order:tops-order-api:war
+packagename = tops-order-api.war
+thriftserver = False
+packagepath = tops-order/tops-order-api/target/libs
+
+[tops-additional-interface-server]
+gradletask = tops-additional:tops-additional-interface-server:war
+packagename = tops-additional-interface-server.war
+thriftserver = False
+packagepath = tops-additional/tops-additional-interface-server/target/libs
+
+[tops-additional-thirdparty-interface]
+gradletype = zip
+gradletask = tops-additional:tops-additional-thirdparty-interface:zip
+packagename = tops-additional-thirdparty-interface.zip
+thriftserver = False
+packagepath = tops-additional/tops-additional-thirdparty-interface/target/distributions
+
+[tops-flight-inventory]
+gradletask = tops-flight:tops-flight-inventory:war
+packagename = tops-flight-inventory.war
+thriftserver = False
+packagepath = tops-flight/tops-flight-inventory/target/libs
+
+[tops-flight-inventory-new]
+gradletask = tops-flight:tops-flight-inventory-new:war
+packagename = tops-flight-inventory-new.war
+thriftserver = False
+packagepath = tops-flight/tops-flight-inventory-new/target/libs
+
+[tops-member-server]
+gradletask = tops-member:tops-member-server:war
+packagename = tops-member-server.war
+thriftserver = False
+packagepath = tops-member/tops-member-server/target/libs
+
+[tops-autocomplete]
+gradletype = zip
+gradletask = tops-search:tops-autocomplete:zip
+packagename = tops-autocomplete.zip
+thriftserver = False
+packagepath = tops-search/tops-autocomplete/target/distributions
+
+[tops-hotel-indexer]
+gradletype = zip
+gradletask = tops-hotel:tops-hotel-indexer:zip
+packagename = tops-hotel-indexer.zip
+thriftserver = False
+packagepath = tops-hotel/tops-hotel-indexer/target/distributions
+
+[tops-hotel-searcher-salespolicy]
+gradletype = zip
+gradletask = tops-hotel:tops-hotel-searcher-salespolicy:zip
+packagename = tops-hotel-searcher-salespolicy.zip
+thriftserver = False
+packagepath = tops-hotel/tops-hotel-searcher-salespolicy/target/distributions
+
+[tops-hotel-searcher-guesthouse]
+gradletype = zip
+gradletask = tops-hotel:tops-hotel-searcher-guesthouse:zip
+packagename = tops-hotel-searcher-guesthouse.zip
+thriftserver = False
+packagepath = tops-hotel/tops-hotel-searcher-guesthouse/target/distributions
+
+[tops-hotel-creme]
+gradletype = zip
+gradletask = tops-hotel:tops-hotel-creme:zip
+packagename = tops-hotel-creme.zip
+thriftserver = False
+packagepath = tops-hotel/tops-hotel-creme/target/distributions
+
+[tops-hotel-api-server]
+gradletype = zip
+gradletask = tops-hotel:tops-hotel-api-server:distZip
+packagename = tops-hotel-api-server.zip
+thriftserver = False
+packagepath = tops-hotel/tops-hotel-api-server/target/distributions
+other = smy
+
+[tops-paperfare-matcher]
+gradletype = zip
+gradletask = tops-paperfare:tops-paperfare-matcher:zip
+packagename = tops-paperfare-matcher.zip
+thriftserver = False
+packagepath = tops-paperfare/tops-paperfare-matcher/target/distributions
+
+[tops-paperfare-mongoDB]
+gradletype = zip
+gradletask = tops-paperfare:tops-paperfare-mongoDB:zip
+packagename = tops-paperfare-mongoDB.zip
+thriftserver = False
+packagepath = tops-paperfare/tops-paperfare-mongoDB/target/distributions
+
+[tops-paperfare-oracle2mongoDB]
+gradletype = zip
+gradletask = tops-paperfare:tops-paperfare-oracle2mongoDB:zip
+packagename = tops-paperfare-oracle2mongoDB.zip
+thriftserver = False
+packagepath = tops-paperfare/tops-paperfare-oracle2mongoDB/target/distributions
+
+[tops-hotel-api-open]
+gradletask = tops-hotel:tops-hotel-api-open:war
+packagename = tops-hotel-api-open.war
+thriftserver = False
+packagepath = tops-hotel/tops-hotel-api-open/target/libs
+
+[tops-openapi]
+gradletask = tops-openapi:war
+packagename = tops-openapi.war
+thriftserver = False
+packagepath = tops-openapi/target/libs
+
+[tops-front-router]
+gradletask = tops-router:tops-front-router:war
+packagename = tops-front-router.war
+thriftserver = False
+packagepath = tops-router/tops-front-router/target/libs
+
+[tops-front-hotel-qunar]
+gradletask = tops-hotel:tops-hotel-thirdparty:tops-front-hotel-qunar:war
+packagename = tops-front-hotel-qunar.war
+thriftserver = False
+packagepath = tops-hotel/tops-hotel-thirdparty/tops-front-hotel-qunar/target/libs
+
+[tz-eterm-interface-web]
+gradletask = tops-eterm-interface:tz-eterm-interface-web:war
+packagename = tz-eterm-interface-web.war
+thriftserver = False
+packagepath = tops-eterm-interface/tz-eterm-interface-web/target/libs
+other = zyc
+
+[tops-flight-eterm-pnr_batch_import]
+gradletask = tops-eterm-interface:tz-eterm-interface-web:war
+packagename = tz-eterm-interface-web.war
+thriftserver = False
+packagepath = tops-eterm-interface/tz-eterm-interface-web/target/libs
+other = zyc
+
+[tops-flight-eterm_del_pnr]
+gradletask = tops-eterm-interface:tz-eterm-interface-web:war
+packagename = tz-eterm-interface-web.war
+thriftserver = False
+packagepath = tops-eterm-interface/tz-eterm-interface-web/target/libs
+other = zyc
+
+[tops-fare-international]
+gradletask = tops-fare:tops-fare-international:war
+packagename = tops-fare-international.war
+thriftserver = False
+packagepath = tops-fare/tops-fare-international/target/libs
+
+[tops-rule-international]
+gradletask = tops-fare:tops-rule-international:war
+packagename = tops-rule-international.war
+thriftserver = False
+packagepath = tops-fare/tops-rule-international/target/libs
+
+[tops-outer-interface]
+gradletask = tops-outer-interface:war
+packagename = tops-outer-interface.war
+thriftserver = False
+packagepath = tops-outer-interface/target/libs
+
+[tops-front-purchaser-hotel]
+gradletask = tops-hotel:tops-front-purchaser-hotel:war
+packagename = tops-front-purchaser-hotel.war
+thriftserver = False
+packagepath = tops-hotel/tops-front-purchaser-hotel/target/libs
+
+[tops-front-operator-hotel-order]
+gradletask = tops-hotel:tops-front-operator-hotel-order:war
+packagename = tops-front-operator-hotel-order.war
+thriftserver = False
+packagepath = tops-hotel/tops-front-operator-hotel-order/target/libs
+
+[tops-fare-domestic]
+gradletask = tops-fare:tops-fare-domestic:war
+packagename = tops-fare-domestic.war
+thriftserver = False
+packagepath = tops-fare/tops-fare-domestic/target/libs
+
+[tops-paperfare-wunit-web]
+gradletask = tops-paperfare:tops-paperfare-wunit:tops-paperfare-wunit-web:war
+packagename = tops-paperfare-wunit-web.war
+thriftserver = False
+packagepath = tops-paperfare/tops-paperfare-wunit/tops-paperfare-wunit-web/target/libs
+
+[tops-hotel-order-schedule]
+gradletype = zip
+gradletask = tops-hotel:tops-hotel-order-schedule:distZip
+packagename = tops-hotel-order-schedule.zip
+thriftserver = False
+packagepath = tops-hotel/tops-hotel-order-schedule/target/distributions
+other = smy
+
+[tops-hotel-order-engine-server]
+gradletype = zip
+gradletask = tops-hotel:order-engine:tops-hotel-order-engine-server:distZip
+packagename = tops-hotel-order-engine-server.zip
+thriftserver = False
+packagepath = tops-hotel/order-engine/tops-hotel-order-engine-server/target/distributions
+other = smy
+
+[tops-hotel-elong-connector]
+gradletask = top-hotel:tops-hotel-selfpay:elong:tops-hotel-elong-connector:war
+packagename = tops-hotel-elong-connector.war
+thriftserver = False
+packagepath = tops-hotel/tops-hotel-selfpay/elong/tops-hotel-elong-connector/target/libs
+
+[tops-front-fit-biz]
+gradletask = tops-fit:tops-front-fit-biz:war
+packagename = tops-front-fit-biz.war
+thriftserver = False
+packagepath = tops-fit/tops-front-fit-biz/target/libs
+
+[tops-front-fit-pch]
+gradletask = tops-fit:tops-front-fit-pch:war
+packagename = tops-front-fit-pch.war
+thriftserver = False
+packagepath = tops-fit/tops-front-fit-pch/target/libs
+
+[tops-fit-timming]
+gradletask = tops-fit:tops-fit-timming:war
+packagename = tops-fit-timming.war
+thriftserver = False
+packagepath = tops-fit/tops-fit-timming/target/libs
+
+[tops-paygate-server-allinpay]
+other = dgx
+gradletask = tops-finance:tops-paygate-server-allinpay:war
+packagename = tops-paygate-server-allinpay.war
+thriftserver = False
+packagepath = tops-finance/tops-paygate-server-allinpay/target/libs
+
+[tops-paygate-web-allinpay]
+other = dgx
+gradletask = tops-finance:tops-paygate-web-allinpay:war
+packagename = tops-paygate-web-allinpay.war
+thriftserver = False
+packagepath = tops-finance/tops-paygate-web-allinpay/target/libs
+
+[tops-front-ali-journey]
+gradletask = tops-journey:tops-ali-journey:tops-front-ali-journey:war
+packagename = tops-front-ali-journey.war
+thriftserver = False
+packagepath = tops-journey/tops-ali-journey/tops-front-ali-journey/target/libs
+
+[tops-flight-pricing-api]
+gradletask = tops-flight-openapi:tops-flight-pricing-api:war
+packagename = tops-flight-pricing-api.war
+thriftserver = False
+packagepath = tops-flight-openapi/tops-flight-pricing-api/target/libs
+
+[tops-fit-thrift-server]
+gradletask = tops-fit:tops-fit-thrift-server:war
+packagename = tops-fit-thrift-server.war
+thriftserver = False
+packagepath = tops-fit/tops-fit-thrift-server/target/libs
+
+[tops-front-operator-cruise]
+gradletask = tops-cruise:tops-cruise-operator:tops-front-operator-cruise:war
+packagename = tops-front-operator-cruise.war
+thriftserver = False
+packagepath = tops-cruise/tops-cruise-operator/tops-front-operator-cruise/target/libs
+
+[cruise-thrift-server]
+other = smy
+gradletype = zip
+gradletask = tops-cruise:tops-cruise-thrift-server:cruise-thrift-server:distZip
+packagename = cruise-thrift-server.zip
+thriftserver = False
+packagepath = tops-cruise/tops-cruise-thrift-server/cruise-thrift-server/target/distributions
+
+[cruise-thrift-basedata-server]
+other = smy
+gradletype = zip
+gradletask = tops-cruise:tops-cruise-thrift-server:cruise-thrift-basedata-server:distZip
+packagename = cruise-thrift-basedata-server.zip
+thriftserver = False
+packagepath = tops-cruise/tops-cruise-thrift-server/cruise-thrift-basedata-server/target/distributions
+
+[cruise-schedule]
+other = smy
+gradletype = zip
+gradletask = tops-cruise:tops-cruise-performance:cruise-schedule:distZip
+packagename = cruise-schedule.zip
+thriftserver = False
+packagepath = tops-cruise/tops-cruise-performance/cruise-schedule/target/distributions
+
+[tops-farerule-mongo-front]
+gradletask = tops-farerule:tops-farerule-mongo-front:war
+packagename = tops-farerule-mongo-front.war
+thriftserver = False
+packagepath = tops-farerule/tops-farerule-mongo-front/target/libs
+
+[tops-cluster-wizard-web]
+gradletask = tops-cluster:tops-cluster-wizard-web:war
+packagename = tops-cluster-wizard-web.war
+thriftserver = False
+packagepath = tops-cluster/tops-cluster-wizard-web/target/libs
+other = zyc
+
+[tops-cluster-wizard-static]
+gradletask = tops-cluster:tops-cluster-wizard-static:war
+packagename = tops-cluster-wizard-static.war
+thriftserver = False
+packagepath = tops-cluster/tops-cluster-wizard-static/target/libs
+other = zyc
+
+[tops-ufis-server]
+gradletask = tops-ufis:tops-ufis-server:zip
+packagename = tops-ufis-server.zip
+thriftserver = False
+packagepath = tops-ufis/tops-ufis-server/target/distributions
+
+[tz-cpbs-manager]
+gradletask = tz-cpbs:tz-cpbs-manager:war
+packagename = tz-cpbs-manager.war
+thriftserver = False
+packagepath = tz-cpbs/tz-cpbs-manager/target/libs
+other = zyc
+
+[tops-farerule-jpecker-server]
+gradletask = tops-farerule:tops-farerule-jpecker-server:war
+packagename = tops-farerule-jpecker-server.war
+thriftserver = False
+packagepath = tops-farerule/tops-farerule-jpecker-server/target/libs
+
+[tops-settlement-thrift-server]
+gradletask = tops-settlement:tops-settlement-thrift-server:distZip
+packagename = tops-settlement-thrift-server.zip
+thriftserver = False
+packagepath = tops-settlement/tops-settlement-thrift-server/target/distributions
+other = smy

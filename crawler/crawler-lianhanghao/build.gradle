@@ -1,0 +1,7 @@
+
+dependencies {
+	compile project(':crawler:crawler-common')
+	compile project(':crawler:crawler-dao')
+}
+
+

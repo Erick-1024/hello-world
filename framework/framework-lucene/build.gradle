@@ -1,0 +1,11 @@
+
+dependencies {
+
+//   	compile libraries.framework
+	compile project(':framework:framework-base')
+   	compile libraries.luecne_core
+	compile libraries.IKAnalyzer
+	compile libraries.lucene_highlighter
+	
+}
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息varchar(254) -->
+	<list name="resultStockList"><!--仓单信息列表 -->
+		<row>
+			<stockNo>
+			</stockNo><!--仓单编号 varchar(20) -->
+		</row>
+	</list>
+	<list name="userDataList1"><!--支付状态列表 -->
+		<row>
+			<stt></stt><!--支付状态 varchar(2)，取值参见附录4.4 -->
+			<status>
+			</status><!--支付交易结果码 varchar(7) -->
+			<statusText></statusText><!--支付交易状态信息 varchar(254) -->
+		</row>
+	</list>
+	<list name="userDataList2"><!--还款状态列表 -->
+		<row>
+			<stt></stt><!--还款状态 varchar(2)，取值参见附录4.5 -->
+			<status></status><!--还款交易结果码 varchar(7) -->
+			<statusText></statusText><!--还款交易状态信息 varchar(254) -->
+		</row>
+	</list>
+	<list name="userDataList3"><!--赎货状态列表 -->
+		<row>
+			<stt></stt><!--赎货状态varchar(2)，取值参见附录4.6 -->
+			<status></status><!--赎货交易结果码 varchar(7) -->
+			<statusText></statusText><!--赎货交易状态信息 varchar(254) -->
+		</row>
+	</list>
+</stream>

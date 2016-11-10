@@ -1,0 +1,12 @@
+
+group = 'com.travelzen'
+//version = "${versions.tops_common_msg}"
+
+jar { baseName =  "tops-common-mediaclient" }
+
+archivesBaseName="tops-common-mediaclient"
+
+dependencies {
+	compile project(':framework:framework-base')
+	compile libraries.httpclient
+}

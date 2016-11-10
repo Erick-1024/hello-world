@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.account.dao.mapper.AccountCustomMapper" >
+
+  <select id="find" resultMap="com.cana.account.dao.mapper.gen.AccountMapper.BaseResultMap" parameterType="com.cana.vbam.common.account.dto.AccountQueryCriteria" >
+    select
+    <include refid="com.cana.account.dao.mapper.gen.AccountMapper.Base_Column_List" />
+    from account
+    <include refid="Where_Clause" />
+    order by id desc
+    limit ${(page-1)*pageSize}, ${pageSize}
+  </select>
+
+	<select id="findAll" resultMap="com.cana.account.dao.mapper.gen.AccountMapper.BaseResultMap" parameterType="com.cana.vbam.common.account.dto.AccountQueryCriteria" >
+    select
+    <include refid="com.cana.account.dao.mapper.gen.AccountMapper.Base_Column_List" />
+    from account
+    <include refid="Where_Clause" />
+  </select>
+  
+  <select id="count" parameterType="com.cana.vbam.common.account.dto.AccountQueryCriteria" resultType="java.lang.Integer" >
+    select count(*) from account
+    <include refid="Where_Clause" />
+  </select>
+  
+ <select id="queryAccountsByCustomerId" resultMap="com.cana.account.dao.mapper.gen.AccountMapper.BaseResultMap" parameterType="com.cana.vbam.common.account.dto.AccountQueryCriteria">
+    select
+    <include refid="com.cana.account.dao.mapper.gen.AccountMapper.Base_Column_List" />
+    from account
+    <include refid="Where_Clause" />
+    order by id desc
+ </select>
+
+
+  <sql id="Where_Clause" >
+    <where >
+      <if test="accountName != null">
+        and company_name like #{accountName,jdbcType=VARCHAR}
+      </if>
+      <if test="coreCompanyName != null">
+        and user_type='CORECOMPANY' and company_name like #{coreCompanyName,jdbcType=VARCHAR}
+      </if>
+      <if test="companyId != null">
+        and company_id = #{companyId,jdbcType=VARCHAR}
+      </if>
+      <if test="accountNo != null">
+        and account_no = #{accountNo,jdbcType=VARCHAR}
+      </if>
+      <if test="accountStatus != null">
+        and account_status = #{accountStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="accountType != null">
+        and account_type = #{accountType,jdbcType=VARCHAR}
+      </if>
+      <if test="accumulationStatus != null">
+        and accumulation_status = #{accumulationStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="supervisoryStatus != null">
+        and supervision_status = #{supervisoryStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="isTransferInAccount != null">
+        and is_transfer_in_account = #{isTransferInAccount,jdbcType=BIT}
+      </if>
+      <if test="factorId != null">
+        and (
+          (user_type = 'FACTOR' and company_id = #{factorId,jdbcType=VARCHAR})
+          or
+          (user_type = 'FINACE' and supervisor_id = #{factorId,jdbcType=VARCHAR})
+        )
+      </if>
+      <if test="finaceId != null">
+        and (
+          (user_type = 'FINACE' and company_id = #{finaceId,jdbcType=VARCHAR})
+          or
+          (user_type = 'FACTOR' and supervisor_id = #{finaceId,jdbcType=VARCHAR})
+        )
+      </if>
+      <if test="factorName != null">
+        and (
+          (user_type = 'FACTOR' and company_name like #{factorName,jdbcType=VARCHAR})
+          or
+          (user_type = 'FINACE' and supervisor_name like #{factorName,jdbcType=VARCHAR})
+        )
+      </if>
+      <if test="finaceName != null">
+        and (
+          (user_type = 'FINACE' and company_name like #{finaceName,jdbcType=VARCHAR})
+          or
+          (user_type = 'FACTOR' and supervisor_name like #{finaceName,jdbcType=VARCHAR})
+        )
+      </if>
+    </where>
+  </sql>
+</mapper>

@@ -1,0 +1,10 @@
+apply from : 'common.settings.gradle'
+apply from : 'member.settings.gradle'
+include 'repayment:repayment-api'
+
+include 'account:account-server'
+include 'account:account-scheduler'
+include 'account:account-service'
+include 'account:account-dao'
+include 'account:account-api'
+

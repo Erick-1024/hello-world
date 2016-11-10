@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLPDIQRY</action>
+	<userName></userName><!--登录名 varchar(30) -->
+	<mctNo></mctNo><!--商户编号char(8) -->
+	<netWorkCode></netWorkCode><!--网络编号 varchar(20) -->
+</stream>

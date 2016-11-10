@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.asset.dao.mapper.gen.AssetInvoiceInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.asset.dao.po.AssetInvoiceInfo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="invoice_base_id" property="invoiceBaseId" jdbcType="VARCHAR" />
+    <result column="counterparty_id" property="counterpartyId" jdbcType="VARCHAR" />
+    <result column="counterparty" property="counterparty" jdbcType="VARCHAR" />
+    <result column="invoice_no" property="invoiceNo" jdbcType="VARCHAR" />
+    <result column="nominvoice_amt" property="nominvoiceAmt" jdbcType="DECIMAL" />
+    <result column="invoice_amt" property="invoiceAmt" jdbcType="DECIMAL" />
+    <result column="financing_ratio" property="financingRatio" jdbcType="DECIMAL" />
+    <result column="invoice_date" property="invoiceDate" jdbcType="VARCHAR" />
+    <result column="due_date" property="dueDate" jdbcType="VARCHAR" />
+    <result column="loan_info_id" property="loanInfoId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, invoice_base_id, counterparty_id, counterparty, invoice_no, nominvoice_amt, invoice_amt, 
+    financing_ratio, invoice_date, due_date, loan_info_id, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.asset.dao.po.AssetInvoiceInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from asset_invoice_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset_invoice_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from asset_invoice_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.asset.dao.po.AssetInvoiceInfoExample" >
+    delete from asset_invoice_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.asset.dao.po.AssetInvoiceInfo" >
+    insert into asset_invoice_info (id, invoice_base_id, counterparty_id, 
+      counterparty, invoice_no, nominvoice_amt, 
+      invoice_amt, financing_ratio, invoice_date, 
+      due_date, loan_info_id, create_time, 
+      update_time)
+    values (#{id,jdbcType=VARCHAR}, #{invoiceBaseId,jdbcType=VARCHAR}, #{counterpartyId,jdbcType=VARCHAR}, 
+      #{counterparty,jdbcType=VARCHAR}, #{invoiceNo,jdbcType=VARCHAR}, #{nominvoiceAmt,jdbcType=DECIMAL}, 
+      #{invoiceAmt,jdbcType=DECIMAL}, #{financingRatio,jdbcType=DECIMAL}, #{invoiceDate,jdbcType=VARCHAR}, 
+      #{dueDate,jdbcType=VARCHAR}, #{loanInfoId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.asset.dao.po.AssetInvoiceInfo" >
+    insert into asset_invoice_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="invoiceBaseId != null" >
+        invoice_base_id,
+      </if>
+      <if test="counterpartyId != null" >
+        counterparty_id,
+      </if>
+      <if test="counterparty != null" >
+        counterparty,
+      </if>
+      <if test="invoiceNo != null" >
+        invoice_no,
+      </if>
+      <if test="nominvoiceAmt != null" >
+        nominvoice_amt,
+      </if>
+      <if test="invoiceAmt != null" >
+        invoice_amt,
+      </if>
+      <if test="financingRatio != null" >
+        financing_ratio,
+      </if>
+      <if test="invoiceDate != null" >
+        invoice_date,
+      </if>
+      <if test="dueDate != null" >
+        due_date,
+      </if>
+      <if test="loanInfoId != null" >
+        loan_info_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceBaseId != null" >
+        #{invoiceBaseId,jdbcType=VARCHAR},
+      </if>
+      <if test="counterpartyId != null" >
+        #{counterpartyId,jdbcType=VARCHAR},
+      </if>
+      <if test="counterparty != null" >
+        #{counterparty,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceNo != null" >
+        #{invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="nominvoiceAmt != null" >
+        #{nominvoiceAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceAmt != null" >
+        #{invoiceAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="financingRatio != null" >
+        #{financingRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceDate != null" >
+        #{invoiceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="dueDate != null" >
+        #{dueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="loanInfoId != null" >
+        #{loanInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.asset.dao.po.AssetInvoiceInfoExample" resultType="java.lang.Integer" >
+    select count(*) from asset_invoice_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update asset_invoice_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceBaseId != null" >
+        invoice_base_id = #{record.invoiceBaseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.counterpartyId != null" >
+        counterparty_id = #{record.counterpartyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.counterparty != null" >
+        counterparty = #{record.counterparty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceNo != null" >
+        invoice_no = #{record.invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nominvoiceAmt != null" >
+        nominvoice_amt = #{record.nominvoiceAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.invoiceAmt != null" >
+        invoice_amt = #{record.invoiceAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.financingRatio != null" >
+        financing_ratio = #{record.financingRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="record.invoiceDate != null" >
+        invoice_date = #{record.invoiceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dueDate != null" >
+        due_date = #{record.dueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanInfoId != null" >
+        loan_info_id = #{record.loanInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update asset_invoice_info
+    set id = #{record.id,jdbcType=VARCHAR},
+      invoice_base_id = #{record.invoiceBaseId,jdbcType=VARCHAR},
+      counterparty_id = #{record.counterpartyId,jdbcType=VARCHAR},
+      counterparty = #{record.counterparty,jdbcType=VARCHAR},
+      invoice_no = #{record.invoiceNo,jdbcType=VARCHAR},
+      nominvoice_amt = #{record.nominvoiceAmt,jdbcType=DECIMAL},
+      invoice_amt = #{record.invoiceAmt,jdbcType=DECIMAL},
+      financing_ratio = #{record.financingRatio,jdbcType=DECIMAL},
+      invoice_date = #{record.invoiceDate,jdbcType=VARCHAR},
+      due_date = #{record.dueDate,jdbcType=VARCHAR},
+      loan_info_id = #{record.loanInfoId,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.asset.dao.po.AssetInvoiceInfo" >
+    update asset_invoice_info
+    <set >
+      <if test="invoiceBaseId != null" >
+        invoice_base_id = #{invoiceBaseId,jdbcType=VARCHAR},
+      </if>
+      <if test="counterpartyId != null" >
+        counterparty_id = #{counterpartyId,jdbcType=VARCHAR},
+      </if>
+      <if test="counterparty != null" >
+        counterparty = #{counterparty,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceNo != null" >
+        invoice_no = #{invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="nominvoiceAmt != null" >
+        nominvoice_amt = #{nominvoiceAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceAmt != null" >
+        invoice_amt = #{invoiceAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="financingRatio != null" >
+        financing_ratio = #{financingRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceDate != null" >
+        invoice_date = #{invoiceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="dueDate != null" >
+        due_date = #{dueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="loanInfoId != null" >
+        loan_info_id = #{loanInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.asset.dao.po.AssetInvoiceInfo" >
+    update asset_invoice_info
+    set invoice_base_id = #{invoiceBaseId,jdbcType=VARCHAR},
+      counterparty_id = #{counterpartyId,jdbcType=VARCHAR},
+      counterparty = #{counterparty,jdbcType=VARCHAR},
+      invoice_no = #{invoiceNo,jdbcType=VARCHAR},
+      nominvoice_amt = #{nominvoiceAmt,jdbcType=DECIMAL},
+      invoice_amt = #{invoiceAmt,jdbcType=DECIMAL},
+      financing_ratio = #{financingRatio,jdbcType=DECIMAL},
+      invoice_date = #{invoiceDate,jdbcType=VARCHAR},
+      due_date = #{dueDate,jdbcType=VARCHAR},
+      loan_info_id = #{loanInfoId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

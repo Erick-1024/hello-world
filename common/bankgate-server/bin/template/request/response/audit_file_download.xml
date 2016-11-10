@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息 varchar(254) -->
+	<accountNo></accountNo><!--商户结算账号char(19) -->
+	<date></date><!--清算日期char(8) -->
+	<fileContent></fileContent><!--对账文件内容，须用BASE64方式进行解码 -->
+</stream>

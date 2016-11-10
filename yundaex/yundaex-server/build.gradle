@@ -1,0 +1,9 @@
+apply plugin:'application'
+dependencies {
+	compile project(':yundaex:yundaex-service')
+	compile project(':yundaex:yundaex-api')
+	compile project(':framework:framework-dubbo-support')
+}
+mainClassName = 'com.cana.yundaex.server.main.YundaexServerMain'
+
+applicationDefaultJvmArgs = ["-server", "-Xms512m", "-Xmx1024m", "-XX:MaxPermSize=512m", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=12369", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false"]

@@ -1,0 +1,17 @@
+apply from : 'common.settings.gradle'
+include 'early-warning:early-warning-server'
+include 'early-warning:early-warning-scheduler'
+include 'early-warning:early-warning-service'
+include 'early-warning:early-warning-dao'
+include 'early-warning:early-warning-api'
+
+include 'report:report-api'
+
+include 'repayment:repayment-api'
+
+include 'member:member-authorization'
+include 'member:member-api'
+
+include 'credit:credit-api'
+
+include 'flight-finance:flight-finance-common'

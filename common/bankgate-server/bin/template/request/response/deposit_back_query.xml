@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息 varchar(254) -->
+	<list name="userDataList">
+		<row>
+			<orderNo></orderNo><!--制单号 char(20) -->
+			<payAccNo></payAccNo><!--付款账号 char(19) -->
+			<payAccNm></payAccNm><!--付款账户名称 varchar(100) -->
+			<cryType></cryType><!--币种 char(2) -->
+			<recvAccNo></recvAccNo><!--收款账号 varchar(32) -->
+			<recvAccNm></recvAccNm><!--收款账户名称 varchar(100) -->
+			<tranAmt></tranAmt><!--金额 decimal(15,2) -->
+			<abstract></abstract><!--摘要 varchar(22) -->
+			<purpose></purpose><!--备注 varchar(256) -->
+			<stt></stt><!--制单状态 char(1) -->
+			<oprNo></oprNo><!--经办人ID char(20) -->
+			<oprNm></oprNm><!--经办人姓名 varchar(30) -->
+			<oprDate></oprDate><!--经办日期 char(8) -->
+			<oprTime></oprTime><!--经办时间 char(8) -->
+		</row>
+	</list>
+</stream>

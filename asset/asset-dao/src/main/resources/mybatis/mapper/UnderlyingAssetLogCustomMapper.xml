@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.asset.dao.mapper.UnderlyingAssetLogCustomMapper" >
+
+  <resultMap id="CustomResultMap" type="com.cana.asset.dao.po.UnderlyingAssetLog" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="loan_info_id" property="loanInfoId" jdbcType="VARCHAR" />
+    <result column="business_contract_no" property="businessContractNo" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="customer_economic_category" property="customerEconomicCategory" jdbcType="VARCHAR" />
+    <result column="counterparty" property="counterparty" jdbcType="VARCHAR" />
+    <result column="counterparty_economic_category" property="counterpartyEconomicCategory" jdbcType="VARCHAR" />
+    <result column="customer_city" property="customerCity" jdbcType="VARCHAR" />
+    <result column="customer_industry" property="customerIndustry" jdbcType="VARCHAR" />
+    <result column="counterparty_city" property="counterpartyCity" jdbcType="VARCHAR" />
+    <result column="counterparty_industry" property="counterpartyIndustry" jdbcType="VARCHAR" />
+    <result column="credit_limit" property="creditLimit" jdbcType="DECIMAL" />
+    <result column="credit_balance" property="creditBalance" jdbcType="DECIMAL" />
+    <result column="counterparty_limit" property="counterpartyLimit" jdbcType="DECIMAL" />
+    <result column="counterparty_balance" property="counterpartyBalance" jdbcType="DECIMAL" />
+    <result column="invoice_amount" property="invoiceAmount" jdbcType="DECIMAL" />
+    <result column="invoice_balance" property="invoiceBalance" jdbcType="DECIMAL" />
+    <result column="finance_amount" property="financeAmount" jdbcType="DECIMAL" />
+    <result column="finance_balance" property="financeBalance" jdbcType="DECIMAL" />
+    <result column="loan_date" property="loanDate" jdbcType="VARCHAR" />
+    <result column="due_date" property="dueDate" jdbcType="VARCHAR" />
+    <result column="repayment_method" property="repaymentMethod" jdbcType="VARCHAR" />
+    <result column="interest_rate_unit" property="interestRateUnit" jdbcType="VARCHAR" />
+    <result column="interest_rate" property="interestRate" jdbcType="DECIMAL" />
+    <result column="loan_period" property="loanPeriod" jdbcType="VARCHAR" />
+    <result column="special_program_id" property="specialProgramId" jdbcType="VARCHAR" />
+    <result column="special_program_name" property="specialProgramName" jdbcType="VARCHAR" />
+    <result column="factor_id" property="factorId" jdbcType="VARCHAR" />
+    <result column="operate_company_name" property="operateCompanyName" jdbcType="VARCHAR" />
+    <result column="operate_username" property="operateUsername" jdbcType="VARCHAR" />
+    <result column="operate_type" property="operateType" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select id="find" resultMap="CustomResultMap" parameterType="com.cana.vbam.common.asset.underlyingasset.dto.UnderlyingAssetLogQuery" >
+    select log.*,program.special_program_name
+    from 
+    	vbam.asset_underlying_asset_log log
+    left join 
+    	vbam.asset_special_program program
+     on
+     	log.special_program_id = program.id
+    <include refid="Where_Clause" />
+    order by log.create_time desc
+    limit ${(page-1)*pageSize}, ${pageSize}
+  </select>
+
+  <select id="count" parameterType="com.cana.vbam.common.asset.underlyingasset.dto.UnderlyingAssetLogQuery" resultType="java.lang.Integer" >
+     select count(*)  
+    from 
+    	vbam.asset_underlying_asset_log log
+    left join 
+    	vbam.asset_special_program program
+     on
+     	log.special_program_id = program.id
+    <include refid="Where_Clause" />
+  </select>
+
+  <sql id="Where_Clause" >
+    <where >
+      <if test="specialProgramName != null">
+        and program.special_program_name like #{specialProgramName,jdbcType=VARCHAR}
+      </if>
+      <if test="loanInfoId != null">
+        and log.loan_info_id = #{loanInfoId,jdbcType=VARCHAR}
+      </if>
+      <if test="businessContractNo != null">
+        and log.business_contract_no = #{businessContractNo,jdbcType=VARCHAR}
+      </if>
+      <if test="operateStartDate != null">
+        <![CDATA[
+        	and log.create_time >= #{operateStartDate, jdbcType=TIMESTAMP}
+        ]]>
+      </if>
+      <if test="operateEndDate != null">
+      	<![CDATA[
+        	and log.create_time < #{operateEndDate, jdbcType=TIMESTAMP}
+        ]]>
+      </if>
+      <if test="operateCompanyName != null">
+      	and log.operate_company_name like #{operateCompanyName,jdbcType=VARCHAR}
+      </if>
+      <if test="operateTypeStr != null">
+      	and log.operate_type = #{operateTypeStr,jdbcType=VARCHAR}
+      </if>
+      <if test="factorId != null">
+      	and log.factor_id = #{factorId,jdbcType=VARCHAR}
+      </if>
+      <if test="specialProgramIds != null">
+      	and log.special_program_id in
+      	<foreach item="item" index="index" collection="specialProgramIds" open="(" separator="," close=")">  
+  			#{item}  
+ 		</foreach> 
+      </if>
+    </where>
+  </sql>
+</mapper>

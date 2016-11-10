@@ -1,0 +1,80 @@
+package com.dianping.cat.report.task;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.codehaus.plexus.logging.LogEnabled;
+import org.codehaus.plexus.logging.Logger;
+import org.codehaus.plexus.personality.plexus.lifecycle.phase.Initializable;
+import org.codehaus.plexus.personality.plexus.lifecycle.phase.InitializationException;
+import org.unidal.lookup.ContainerHolder;
+
+import com.dianping.cat.Cat;
+import com.dianping.cat.core.dal.Task;
+import com.dianping.cat.task.TaskManager;
+
+public class ReportFacade extends ContainerHolder implements LogEnabled, Initializable {
+
+	private Logger m_logger;
+
+	private Map<String, TaskBuilder> m_reportBuilders = new HashMap<String, TaskBuilder>();
+
+	public boolean builderReport(Task task) {
+		try {
+			if (task == null) {
+				return false;
+			}
+//			System.out.println(new Date());
+//			System.out.println("-------------------------------------------------------------------");
+//			System.out.println(task);
+			int type = task.getTaskType();   // 0 小时任务　１　天任务　２　周任务　３月任务　
+			String reportName = task.getReportName();   // 监控类型　transaction, event,problem等
+			String reportDomain = task.getReportDomain();     //  项目名
+			Date reportPeriod = task.getReportPeriod();  	 	//	报表开始
+			TaskBuilder reportBuilder = getReportBuilder(reportName);
+
+			if (reportBuilder == null) {
+				Cat.logError(new RuntimeException("no report builder for type:" + " " + reportName));
+				return false;
+			} else {
+				boolean result = false;
+
+				if (type == TaskManager.REPORT_HOUR) {
+					result = reportBuilder.buildHourlyTask(reportName, reportDomain, reportPeriod);
+				} else if (type == TaskManager.REPORT_DAILY) {
+					result = reportBuilder.buildDailyTask(reportName, reportDomain, reportPeriod);
+				} else if (type == TaskManager.REPORT_WEEK) {
+					result = reportBuilder.buildWeeklyTask(reportName, reportDomain, reportPeriod);
+				} else if (type == TaskManager.REPORT_MONTH) {
+					result = reportBuilder.buildMonthlyTask(reportName, reportDomain, reportPeriod);
+				}
+				if (result) {
+					return result;
+				} else {
+					m_logger.error(task.toString());
+				}
+			}
+		} catch (Exception e) {
+			m_logger.error("Error when building report," + e.getMessage(), e);
+			Cat.logError(e);
+			return false;
+		}
+		return false;
+	}
+
+	@Override
+	public void enableLogging(Logger logger) {
+		m_logger = logger;
+	}
+
+	private TaskBuilder getReportBuilder(String reportName) {
+		return m_reportBuilders.get(reportName);
+	}
+
+	@Override
+	public void initialize() throws InitializationException {
+		m_reportBuilders = lookupMap(TaskBuilder.class);
+	}
+
+}

@@ -1,0 +1,7 @@
+
+dependencies {
+	compile project(':framework:framework-logger')
+	compile project(':framework:framework-redis')
+	compile project(':framework:framework-base')
+	compile project(':common:common-dao')
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cana.credit.dao.mapper.CreditTableLockMapper">
+    
+	<select id="lockCustomerApplyById" parameterType="string"  resultType="com.cana.credit.dao.po.CustomerApply">
+		select * from vbam.credit_customer_apply where id=#{id} for update
+  	</select>
+    <select id="lockCreditTradeByTradeNoAndInstitution" parameterType="string" resultType="com.cana.credit.dao.po.CreditTrade">
+    	select * from vbam.credit_trade where out_trade_no=#{tradeNo} and institution=#{institution} for update
+    </select>
+    <select id="lockCreditTransferById" parameterType="string" resultType="com.cana.credit.dao.po.CreditTransfer">
+    	select * from vbam.credit_transfer where id=#{id} for update
+    </select>
+    
+  	
+</mapper>

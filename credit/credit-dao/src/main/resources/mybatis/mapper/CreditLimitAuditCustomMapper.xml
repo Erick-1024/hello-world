@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cana.credit.dao.mapper.CreditLimitAuditCustomMapper">
+    
+  	<select id="queryUsedLimit" parameterType="com.cana.vbam.common.credit.dto.limit.CreditUsedLimitQueryDTO"  resultMap="com.cana.credit.dao.mapper.CreditTradeDetailMapper.CreditUsedLimitMap">
+  		select finace_customer_id, out_customer_id, used_limit from (
+			select a.member_id finace_customer_id, a.out_customer_id, c.used_limit, c.create_time from vbam.credit_out_customer as a
+    			left join vbam.credit_limit as b on a.member_id = b.member_id and a.out_customer_id =  b.out_customer_id
+    			left join vbam.credit_limit_audit as c on b.id = c.limit_id
+    		where a.institution_id = #{institution} and c.create_time &lt; #{date, jdbcType=TIMESTAMP} and b.project_id = #{productId}
+    		order by c.create_time desc
+		) as tmp group by out_customer_id, finace_customer_id;
+  	</select>
+  	
+</mapper>

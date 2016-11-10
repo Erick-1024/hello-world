@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLMDETRN </action>
+	<userName></userName><!--登录名 varchar(30) -->
+	<clientID></clientID><!--客户流水号varchar (20) -->
+	<accountNo></accountNo><!--主体账号varchar(19) -->
+	<payAccNo></payAccNo><!--付款账号varchar(19) -->
+	<tranType></tranType><!--转账类型varchar(2) ，BF：转账；BG：解冻；BH：解冻支付；BR：冻结；BS：支付冻结 -->
+	<recvAccNo></recvAccNo><!--收款账号varchar(19)，当转账类型为“冻结”时可空，其他类型必输 -->
+	<recvAccNm></recvAccNm><!--收款账户名称varchar(60) ，当转账类型为“冻结”时可空，其他类型必输 -->
+	<tranAmt></tranAmt><!--交易金额decimal(15,2) -->
+	<freezeNo></freezeNo><!--冻结编号varchar(22)，转账类型为“解冻”或“解冻支付”时，必输 -->
+	<memo></memo><!--摘要varchar(22) 可空 -->
+	<tranFlag></tranFlag><!--转账时效标识char (1)，0：异步交易；1：同步交易 -->
+</stream>

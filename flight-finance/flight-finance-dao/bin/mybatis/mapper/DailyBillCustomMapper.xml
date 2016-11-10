@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.flight.finance.dao.mapper.DailyBillCustomMapper" >
+ 
+   	<resultMap type="com.cana.flight.finance.common.dto.DailySales" id="DailySalesMap">
+ 	    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    	<result column="daily_sales" property="dailySales" jdbcType="DECIMAL" />
+ 	</resultMap>
+ 
+ <select id="sumPriceByExample" resultType="java.lang.Long" parameterType="com.cana.flight.finance.dao.po.DailyBillExample">
+  	select sum(price)
+  	from daily_bill
+  	<if test="_parameter != null" >
+      <include refid="com.cana.flight.finance.dao.mapper.gen.DailyBillMapper.Example_Where_Clause" />
+    </if>
+  </select>
+  
+  <select id="getDailySales"  parameterType="com.cana.flight.finance.common.dto.DailySalesQueryCriteria"  resultMap="DailySalesMap" >
+  	SELECT customer_id, sum(price)/${dayNumber} daily_sales 
+  	FROM travelzen.daily_bill 
+  	<include refid="Where_Clause" />
+  	group by customer_id;
+  </select>
+  
+    <sql id="Where_Clause" >
+    <where >
+        and date >= #{startMonth,jdbcType=VARCHAR}
+        and date &lt; #{endMonth,jdbcType=VARCHAR}
+      	and customer_id in
+      	<foreach item="item" index="index" collection="customerIds" open="(" separator="," close=")">  
+  			#{item}  
+ 		</foreach> 
+    </where>
+  </sql>
+  
+  
+</mapper>

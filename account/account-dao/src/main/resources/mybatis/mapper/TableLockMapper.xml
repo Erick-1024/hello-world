@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cana.account.dao.mapper.AccountTableLockMapper">
+  
+	<select id="lockAccountById" parameterType="string"  resultType="com.cana.account.dao.po.Account">
+		select * from account where id=#{id} for update
+  	</select>
+
+    <select id="lockAccountByAccountNo" parameterType="string"  resultType="com.cana.account.dao.po.Account">
+		select * from account where account_no=#{accnoutNo} for update
+  	</select>
+
+	<select id="lockAccountByIds" parameterType="list" resultMap="com.cana.account.dao.mapper.gen.AccountMapper.BaseResultMap">
+		select * from account where id in
+		  <foreach collection="list" item="ids" open="(" separator="," close=")">
+		    #{ids}
+		  </foreach>
+		for update
+  	</select>
+  	<select id="lockAccountByAccumulationId" parameterType="string"  resultMap="com.cana.account.dao.mapper.gen.AccountMapper.BaseResultMap">
+		select * from account where accumulation_id=#{id} for update
+  	</select>
+
+	<select id="lockAccountApplyById" parameterType="string"  resultType="com.cana.account.dao.po.AccountApply">
+		select * from account_apply where id=#{id} for update
+  	</select>
+
+	<select id="lockAccountTradeApplyById" parameterType="string"  resultType="com.cana.account.dao.po.AccountTradeApply">
+		select * from account_trade_apply where id=#{id} for update
+  	</select>
+
+	<select id="lockTradeRecordBySeq" parameterType="string"  resultMap="com.cana.account.dao.mapper.gen.AccountTradeRecordMapper.BaseResultMap">
+		select * from account_trade_record where business_seq=#{businessSeq} for update
+  	</select>
+  	
+</mapper>

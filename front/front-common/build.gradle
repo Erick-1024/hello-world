@@ -1,0 +1,8 @@
+
+
+dependencies {
+	compile project(':framework:framework-spring')
+	compile project(':member:member-authorization')
+	compile libraries.commons_fileupload
+	compile libraries.kaptcha
+}

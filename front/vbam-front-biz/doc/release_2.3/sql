@@ -1,0 +1,306 @@
+
+create index index_business_contract_no on `asset_business_basic_info` (`business_contract_no`);
+
+create index index_counterparty_id on `asset_business_counterparty` (`counterparty_id`);
+
+
+CREATE TABLE `homsom_counterparty_config` (
+  `channel` varchar(32) NOT NULL COMMENT '渠道',
+  `counterparty_id` varchar(32) NOT NULL COMMENT '交易对手Id',
+  `counterparty` varchar(100) DEFAULT NULL COMMENT '交易对手',
+  `loan_period` int(11) NOT NULL COMMENT '放款期限，单位天',
+  `buyback_period` int(11) NOT NULL COMMENT '回购期限，单位天',
+  `repayment_method` varchar(255) NOT NULL DEFAULT '' COMMENT '还本付息方式',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`channel`,`counterparty_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='交易对手配置';
+
+
+CREATE TABLE `homsom_daily_loan_report` (
+  `channel` varchar(32) NOT NULL COMMENT '渠道',
+  `date` varchar(10) NOT NULL COMMENT '日期',
+  `counterparty_id` varchar(32) NOT NULL COMMENT '交易对手Id,空串代表总报表',
+  `counterparty_name` varchar(100) NOT NULL COMMENT '交易对手名称',
+  `apply_amount` decimal(18,0) DEFAULT '0' COMMENT '申请金额',
+  `loan_amount` decimal(18,0) DEFAULT '0' COMMENT '实际放款金额',
+  `loan_state` varchar(32) NOT NULL COMMENT '放款状态',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`channel`,`date`,`counterparty_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='恒顺国旅日放款报表';
+
+CREATE TABLE `homsom_ticket` (
+  `id` varchar(32) NOT NULL COMMENT '主键',
+  `channel` varchar(32) NOT NULL COMMENT '渠道',
+  `agent_code` varchar(30) NOT NULL COMMENT '代理商编号',
+  `agent_name` varchar(100) NOT NULL COMMENT '代理商名称',
+  `order_id` varchar(32) NOT NULL COMMENT '订单号',
+  `order_type` varchar(32) NOT NULL COMMENT '订单类型',
+  `ticket_no` varchar(13) NOT NULL COMMENT '票号',
+  `amount` decimal(18,0) NOT NULL DEFAULT '0' COMMENT '代理商购票金额',
+  `issue_date` varchar(10) NOT NULL COMMENT '出票日期，格式:yyyy-MM-dd',
+  `is_domestic` tinyint(1) NOT NULL COMMENT '是否是国内机票',
+  `pnr` varchar(6) NOT NULL COMMENT '预定编码',
+  `ticket_office_no` varchar(16) DEFAULT NULL COMMENT '出票office号',
+  `airline` varchar(255) DEFAULT NULL COMMENT '航班号',
+  `itinerary` varchar(255) NOT NULL COMMENT '航程',
+  `departure_date_time` varchar(255) DEFAULT NULL COMMENT '起飞日期和时间',
+  `cabin_code` varchar(32) DEFAULT NULL COMMENT '舱位代码',
+  `passenger_name` varchar(50) NOT NULL COMMENT '乘客姓名',
+  `state` varchar(32) NOT NULL COMMENT '客票状态: 待处理、作废、已处理（即生成了应收账款，但依然存在三个状态：没有配置、额度不足、已生成放款）',
+  `detail_state` varchar(32) NOT NULL COMMENT '详细状态',
+  `flags` int(4) DEFAULT '0' COMMENT '标记位',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `index_agent_code` (`channel`,`agent_code`),
+  KEY `index_agent_name` (`channel`,`agent_name`),
+  KEY `index_ticket_no` (`channel`,`ticket_no`),
+  KEY `index_issue_date` (`channel`,`issue_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+一、报表需求数据修改：
+
+日报表：
+
+ALTER TABLE `vbam`.`report_factor_finance_day`
+
+ADD COLUMN `account_interest` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还正常利息' AFTER `account_principal`,
+
+ADD COLUMN `account_service_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还正常服务费' AFTER `account_interest`,
+
+ADD COLUMN `account_extension_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还正常展期费' AFTER `account_service_charge`,
+
+ADD COLUMN `account_overdue_principal` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还逾期本金' AFTER `account_expense`,
+
+ADD COLUMN `account_overdue_interest` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还逾期利息' AFTER `account_overdue_principal`,
+
+ADD COLUMN `account_overdue_service_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还逾期服务费' AFTER `account_overdue_interest`,
+
+ADD COLUMN `account_overdue_extension_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还逾期展期费' AFTER `account_overdue_service_charge`,
+
+ADD COLUMN `paid_interest` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还正常利息' AFTER `paid_principal`,
+
+ADD COLUMN `paid_service_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还正常服务费' AFTER `paid_interest`,
+
+ADD COLUMN `paid_extension_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还正常展期费' AFTER `paid_service_charge`,
+
+ADD COLUMN `paid_early_repayment_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '提前还款手续费' AFTER `paid_extension_charge`,
+
+ADD COLUMN `paid_overdue_principal_penalty` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还逾期本金罚息' AFTER `paid_early_repayment_charge`,
+
+ADD COLUMN `paid_overdue_interest_penalty` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还逾期利息罚息' AFTER `paid_overdue_principal_penalty`,
+
+ADD COLUMN `paid_overdue_service_charge_penalty` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还逾期服务费罚息' AFTER `paid_overdue_interest_penalty`,
+
+ADD COLUMN `paid_other_penalty` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还其他罚息' AFTER `paid_overdue_service_charge_penalty`,
+
+ADD COLUMN `adjust_interest` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '调账利息' AFTER `adjust_principal`,
+
+ADD COLUMN `adjust_service_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '调账服务费' AFTER `adjust_interest`,
+
+ADD COLUMN `adjust_extension` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '调账展期' AFTER `adjust_service_charge`,
+
+ADD COLUMN `adjust_overdue_interest` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '调账逾期利息' AFTER `adjust_extension`,
+
+ADD COLUMN `adjust_overdue_service_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '调账逾期服务费' AFTER `adjust_overdue_interest`,
+
+ADD COLUMN `adjust_penalty` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '调账罚息' AFTER `adjust_overdue_service_charge`,
+
+ADD COLUMN `adjust_expense` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '调账固定费用' AFTER `adjust_penalty`,
+
+ADD COLUMN `account_overdue_principal_penalty` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还逾期本金罚息' AFTER `account_overdue_extension_charge`,
+
+ADD COLUMN `account_overdue_interest_penalty` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还逾期利息罚息' AFTER `account_overdue_principal_penalty`,
+
+ADD COLUMN `account_overdue_service_charge_penalty` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还逾期服务费罚息' AFTER `account_overdue_interest_penalty`,
+
+ADD COLUMN `account_other_penalty` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还其他罚息' AFTER `account_overdue_service_charge_penalty`,
+
+ADD COLUMN `paid_overdue_principal` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还逾期本金' AFTER `paid_expense`,
+
+ADD COLUMN `paid_overdue_interest` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还逾期利息' AFTER `paid_overdue_principal`,
+
+ADD COLUMN `paid_overdue_service_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还逾期服务费' AFTER `paid_overdue_interest`,
+
+ADD COLUMN `paid_overdue_extension_charge` DECIMAL(18,0) NULL DEFAULT '0'  COMMENT '已还逾期展期费' AFTER `paid_overdue_service_charge`,
+
+CHANGE COLUMN `account_overdue` `account_overdue` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还逾期金额（逾期的本金）' AFTER `account_overdue_service_charge`,
+
+CHANGE COLUMN `account_expense` `account_expense` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还固定费用' AFTER `account_extension_charge`,
+
+CHANGE COLUMN `create_time` `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '报表创建时间' ,
+
+CHANGE COLUMN `paid_principal` `paid_principal` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还正常本金' AFTER `account_charge`,
+
+CHANGE COLUMN `account_charge` `account_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还费用（包括利息，服务费，展期费，罚息等）' AFTER `account_other_penalty`,
+
+ADD COLUMN `update_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间' AFTER `create_time`;
+
+ 
+
+年报表
+
+ALTER TABLE `vbam`.`report_factor_finance_year`
+
+ADD COLUMN `account_interest` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还正常利息' AFTER `account_principal`,
+
+ADD COLUMN `account_service_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还正常服务费' AFTER `account_interest`,
+
+ADD COLUMN `account_extension_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还正常展期费' AFTER `account_service_charge`,
+
+ADD COLUMN `account_overdue_principal` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还逾期本金' AFTER `account_expense`,
+
+ADD COLUMN `account_overdue_interest` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还逾期利息' AFTER `account_overdue_principal`,
+
+ADD COLUMN `account_overdue_service_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还逾期服务费' AFTER `account_overdue_interest`,
+
+ADD COLUMN `account_overdue_extension_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还逾期展期费' AFTER `account_overdue_service_charge`,
+
+ADD COLUMN `paid_interest` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还正常利息' AFTER `paid_principal`,
+
+ADD COLUMN `paid_service_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还正常服务费' AFTER `paid_interest`,
+
+ADD COLUMN `paid_extension_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还正常展期费' AFTER `paid_service_charge`,
+
+ADD COLUMN `paid_early_repayment_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '提前还款手续费' AFTER `paid_extension_charge`,
+
+ADD COLUMN `paid_overdue_principal_penalty` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还逾期本金罚息' AFTER `paid_early_repayment_charge`,
+
+ADD COLUMN `paid_overdue_interest_penalty` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还逾期利息罚息' AFTER `paid_overdue_principal_penalty`,
+
+ADD COLUMN `paid_overdue_service_charge_penalty` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还逾期服务费罚息' AFTER `paid_overdue_interest_penalty`,
+
+ADD COLUMN `paid_other_penalty` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还其他罚息' AFTER `paid_overdue_service_charge_penalty`,
+
+ADD COLUMN `adjust_interest` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '调账利息' AFTER `adjust_principal`,
+
+ADD COLUMN `adjust_service_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '调账服务费' AFTER `adjust_interest`,
+
+ADD COLUMN `adjust_extension` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '调账展期' AFTER `adjust_service_charge`,
+
+ADD COLUMN `adjust_overdue_interest` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '调账逾期利息' AFTER `adjust_extension`,
+
+ADD COLUMN `adjust_overdue_service_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '调账逾期服务费' AFTER `adjust_overdue_interest`,
+
+ADD COLUMN `adjust_penalty` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '调账罚息' AFTER `adjust_overdue_service_charge`,
+
+ADD COLUMN `adjust_expense` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '调账固定费用' AFTER `adjust_penalty`,
+
+ADD COLUMN `account_overdue_principal_penalty` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还逾期本金罚息' AFTER `account_overdue_extension_charge`,
+
+ADD COLUMN `account_overdue_interest_penalty` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还逾期利息罚息' AFTER `account_overdue_principal_penalty`,
+
+ADD COLUMN `account_overdue_service_charge_penalty` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还逾期服务费罚息' AFTER `account_overdue_interest_penalty`,
+
+ADD COLUMN `account_other_penalty` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还其他罚息' AFTER `account_overdue_service_charge_penalty`,
+
+ADD COLUMN `paid_overdue_principal` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还逾期本金' AFTER `paid_expense`,
+
+ADD COLUMN `paid_overdue_interest` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还逾期利息' AFTER `paid_overdue_principal`,
+
+ADD COLUMN `paid_overdue_service_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还逾期服务费' AFTER `paid_overdue_interest`,
+
+ADD COLUMN `paid_overdue_extension_charge` DECIMAL(18,0) NULL DEFAULT '0'  COMMENT '已还逾期展期费' AFTER `paid_overdue_service_charge`,
+
+CHANGE COLUMN `account_overdue` `account_overdue` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还逾期金额（逾期的本金）' AFTER `account_overdue_service_charge`,
+
+CHANGE COLUMN `account_expense` `account_expense` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还固定费用' AFTER `account_extension_charge`,
+
+CHANGE COLUMN `create_time` `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '报表创建时间' ,
+
+CHANGE COLUMN `paid_principal` `paid_principal` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还正常本金' AFTER `account_charge`,
+
+CHANGE COLUMN `account_charge` `account_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还费用（包括利息，服务费，展期费，罚息等）' AFTER `account_other_penalty`,
+
+ADD COLUMN `update_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间' AFTER `create_time`;
+
+ 
+
+计数表
+
+ALTER TABLE `vbam`.`report_factor_finance_count`
+
+CHANGE COLUMN `create_time` `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '报表创建时间' ,
+
+ADD COLUMN `overdue_customer` INT(11) NULL DEFAULT '0' COMMENT '逾期客户数' AFTER `adjust_items`,
+
+ADD COLUMN `update_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间' AFTER `create_time`;
+
+
+ALTER TABLE `vbam`.`report_factor_finance_day` 
+CHANGE COLUMN `account_principal` `account_principal` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还正常本金' ,
+CHANGE COLUMN `account_expense` `account_expense` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还正常固定费用' ,
+CHANGE COLUMN `account_overdue` `account_overdue` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还逾期金额' ,
+CHANGE COLUMN `paid_overdue` `paid_overdue` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还逾期金额' ;
+
+
+二、节假日需求修改
+
+基础服务增加项目setting-server：
+
+１．建表语句：
+CREATE TABLE `setting_calendar` (
+  `date` varchar(10) NOT NULL COMMENT 'yyyy-MM-dd',
+  `year` int(11) NOT NULL COMMENT '年份',
+  `month` int(11) NOT NULL COMMENT '月份',
+  `day` int(11) NOT NULL COMMENT '天',
+  `day_of_week` varchar(3) NOT NULL COMMENT '星期几',
+  `is_holiday` tinyint(1) NOT NULL COMMENT '是否为节假日',
+  `description` varchar(45) DEFAULT NULL COMMENT '描述',
+  `operator_id` varchar(32) NOT NULL COMMENT '操作员ID',
+  `holiday_upate_time` timestamp NULL DEFAULT NULL COMMENT '假期属性变更时间',
+  `update_time` timestamp NULL DEFAULT NULL COMMENT '更新时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`date`),
+  UNIQUE KEY `date_str_UNIQUE` (`date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+
+相关项目修改：
+1、还款计划数据表增加展期字段
+
+ALTER TABLE `vbam`.`repayment_plan`  
+ADD COLUMN `extension_days` INT(11) NULL DEFAULT 0 COMMENT '本期展期天数，即MAX（节假日因素产生的展期天数，放款的展期天数）' AFTER `factor_id`;
+ALTER TABLE `vbam`.`repayment_plan_snapshot`  
+ADD COLUMN `extension_days` INT(11) NULL DEFAULT 0 COMMENT '本期展期天数，即MAX（节假日因素产生的展期天数，放款的展期天数）' AFTER `factor_id`;
+
+2、项目表增加是否使用节假日选项，并只在新增项目时可以设置，修改时不允许修改
+
+ALTER TABLE `vbam`.`asset_project`  
+ADD COLUMN `use_holiday_policy` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '是否使用节假日政策，即还款计划遇节假日时，自动计算展期' AFTER `extension_ratio`;
+UPDATE `vbam`.`asset_project` SET `use_holiday_policy`=1 WHERE `id`='travelzen_finance';
+UPDATE `vbam`.`asset_project` SET `use_holiday_policy`=1 WHERE `id`='yundaex_project_id';
+
+3、还款计划表增加还款日索引
+
+ALTER TABLE `vbam`.`repayment_plan`  
+ADD INDEX `index_plan_repayment_date` (`repayment_date` DESC);
+
+4、真旅、韵达展期利率初始化为正常日利率
+
+update `repayment_loan_info_config` config left join repayment_loan_info loan on config.id = loan.id
+set config.`extension_ratio` = (case loan.interest_rate_unit when 'MONTH' then round(loan.interest_rate/30, 5) when 'DAY' then loan.interest_rate else 'ERROR' end)
+where loan.business_product_id in ('travelzen_finance', 'yundaex_project_id')
+    and loan.interest_rate_unit in ('DAY', 'MONTH');
+
+
+ALTER TABLE `vbam`.`member_role`
+CHANGE COLUMN `permissions` `permissions` TEXT NULL DEFAULT NULL COMMENT '权限（以分号隔开）' ;
+
+ALTER TABLE `vbam`.`credit_customer_apply` 
+CHANGE COLUMN `update_time` `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间' ,
+CHANGE COLUMN `create_time` `create_time` TIMESTAMP NULL DEFAULT NULL COMMENT '创建时间' ;
+
+ALTER TABLE `vbam`.`report_factor_finance_year` 
+CHANGE COLUMN `paid_principal` `paid_principal` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还正常本金' AFTER `account_charge`;
+
+ALTER TABLE `vbam`.`report_factor_finance_day` 
+CHANGE COLUMN `account_overdue_extension_charge` `account_overdue_extension_charge` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '应还逾期展期费' AFTER `account_overdue_service_charge`,
+CHANGE COLUMN `paid_principal` `paid_principal` DECIMAL(18,0) NULL DEFAULT '0' COMMENT '已还正常本金' AFTER `account_charge`;
+

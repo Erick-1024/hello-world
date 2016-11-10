@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.flight.finance.dao.mapper.FlightTicketCustomMapper" >
+  
+  <resultMap id="FlightTicket4DailyBillMap" type="com.cana.flight.finance.dao.po.FlightTicket4DailyBillPo" >
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="VARCHAR" />
+    <result column="new_price" property="newPrice" jdbcType="DECIMAL" />
+    <result column="old_price" property="oldPrice" jdbcType="DECIMAL" />
+    <result column="id" property="id" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="FlightTicket4TzCustomerInfoMap" type="com.cana.flight.finance.dao.po.FlightTicket4TzCustomerInfoPo" >
+    <result column="customer_id" property="tzCustomerId" jdbcType="VARCHAR" />
+    <result column="new_name" property="newName" jdbcType="VARCHAR" />
+    <result column="tz_short_id" property="tzShortId" jdbcType="INTEGER" />
+    <result column="old_name" property="oldName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="getBill" resultMap="FlightTicket4DailyBillMap" parameterType="com.cana.flight.finance.common.dto.FlightTicket4DailyBillQueryCriteria">
+  	select l.customer_id,l.date,l.price new_price,daily_bill.price old_price,daily_bill.id from (
+    	select customer_id,left(complete_Issue_time,10) date,sum(total_amount) price 
+		from travelzen.flight_ticket
+    	<include refid="Where_Clause1" />
+		group by customer_id,left(complete_Issue_time,10)) as l
+    left join travelzen.daily_bill
+    on l.customer_id = daily_bill.customer_id and l.date = daily_bill.date;
+  </select>
+  
+  <select id="getTzCustomer" resultMap="FlightTicket4TzCustomerInfoMap" parameterType="com.cana.flight.finance.common.dto.FlightTicket4DailyBillQueryCriteria">
+  	select l.customer_id, l.customer_name new_name, tz_customer_info.tz_short_id, tz_customer_info.customer_names old_name from (
+    	select customer_id,customer_name
+		from travelzen.flight_ticket
+    	<include refid="Where_Clause1" />
+		group by customer_id,customer_name) as l
+    left join travelzen.tz_customer_info
+    on l.customer_id = tz_customer_info.tz_customer_id;
+  </select>
+  
+  <select id="getCurrentLastRecordId" resultType="java.lang.String" parameterType="com.cana.flight.finance.common.dto.FlightTicket4DailyBillQueryCriteria">
+    select record_id 
+    from (
+		select record_id 
+        from flight_ticket 
+        <include refid="Where_Clause2" />
+        order by record_id 
+        limit ${limitSize}) as tmp 
+	order by record_id desc 
+    limit 1
+  </select>
+  
+  <sql id="Where_Clause1" >
+    <where >
+      <if test="startRecordId != null">
+        and record_id > #{startRecordId,jdbcType=VARCHAR}
+      </if>
+      <if test="true">
+		and record_id &lt;= #{endRecordId,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </sql>
+  
+  <sql id="Where_Clause2" >
+    <where >
+      <if test="startRecordId != null">
+        and record_id > #{startRecordId,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </sql>
+  
+  <insert id="insertFlightTicketByBatch" parameterType="java.util.List">
+  	insert into flight_ticket (record_id, customer_id, customer_name, 
+      is_domestic, order_no, order_type, 
+      is_adjust, complete_Issue_time, ticket_no, 
+      conjunction_ticket_seq_no, supplier_name, pay_type, 
+      total_amount, ticket_price, fuel_tax, 
+      construction_fee, crs_pnr, ticket_office_no, 
+      airline, itinerary, departure_date_time, 
+      cabin_code, passenger_name, passenger_type, 
+      doucment_type, document_no, mobile_no, 
+      orig_record_id, create_time, update_time
+      )values
+      <foreach collection="list" item="item" index="index" separator=",">
+      	(#{item.recordId,jdbcType=VARCHAR}, #{item.customerId,jdbcType=VARCHAR}, #{item.customerName,jdbcType=VARCHAR}, 
+      #{item.isDomestic,jdbcType=BIT}, #{item.orderNo,jdbcType=VARCHAR}, #{item.orderType,jdbcType=VARCHAR}, 
+      #{item.isAdjust,jdbcType=BIT}, #{item.completeIssueTime,jdbcType=VARCHAR}, #{item.ticketNo,jdbcType=VARCHAR}, 
+      #{item.conjunctionTicketSeqNo,jdbcType=VARCHAR}, #{item.supplierName,jdbcType=VARCHAR}, #{item.payType,jdbcType=VARCHAR}, 
+      #{item.totalAmount,jdbcType=DECIMAL}, #{item.ticketPrice,jdbcType=DECIMAL}, #{item.fuelTax,jdbcType=DECIMAL}, 
+      #{item.constructionFee,jdbcType=DECIMAL}, #{item.crsPnr,jdbcType=VARCHAR}, #{item.ticketOfficeNo,jdbcType=VARCHAR}, 
+      #{item.airline,jdbcType=VARCHAR}, #{item.itinerary,jdbcType=VARCHAR}, #{item.departureDateTime,jdbcType=VARCHAR}, 
+      #{item.cabinCode,jdbcType=VARCHAR}, #{item.passengerName,jdbcType=VARCHAR}, #{item.passengerType,jdbcType=VARCHAR}, 
+      #{item.doucmentType,jdbcType=VARCHAR}, #{item.documentNo,jdbcType=VARCHAR}, #{item.mobileNo,jdbcType=VARCHAR}, 
+      #{item.origRecordId,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}
+      )
+      </foreach>
+  </insert>
+</mapper>

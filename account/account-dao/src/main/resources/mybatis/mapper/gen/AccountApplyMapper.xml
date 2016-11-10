@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.account.dao.mapper.gen.AccountApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.account.dao.po.AccountApply" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="apply_status" property="applyStatus" jdbcType="VARCHAR" />
+    <result column="user_type" property="userType" jdbcType="VARCHAR" />
+    <result column="account_type" property="accountType" jdbcType="VARCHAR" />
+    <result column="supervisor_type" property="supervisorType" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="agent_company_id" property="agentCompanyId" jdbcType="VARCHAR" />
+    <result column="agent_company_name" property="agentCompanyName" jdbcType="VARCHAR" />
+    <result column="account_number" property="accountNumber" jdbcType="INTEGER" />
+    <result column="buyer_names" property="buyerNames" jdbcType="VARCHAR" />
+    <result column="supervision_account_id" property="supervisionAccountId" jdbcType="VARCHAR" />
+    <result column="contact_name" property="contactName" jdbcType="VARCHAR" />
+    <result column="contact_job_title" property="contactJobTitle" jdbcType="VARCHAR" />
+    <result column="contact_tel" property="contactTel" jdbcType="VARCHAR" />
+    <result column="contact_mail" property="contactMail" jdbcType="VARCHAR" />
+    <result column="contact_identity_card_front_media_id" property="contactIdentityCardFrontMediaId" jdbcType="VARCHAR" />
+    <result column="contact_identity_card_back_media_id" property="contactIdentityCardBackMediaId" jdbcType="VARCHAR" />
+    <result column="authorization_letter_id" property="authorizationLetterId" jdbcType="VARCHAR" />
+    <result column="organization_code" property="organizationCode" jdbcType="VARCHAR" />
+    <result column="organization_code_certificate_media_id" property="organizationCodeCertificateMediaId" jdbcType="VARCHAR" />
+    <result column="business_licence_code" property="businessLicenceCode" jdbcType="VARCHAR" />
+    <result column="business_licence_media_id" property="businessLicenceMediaId" jdbcType="VARCHAR" />
+    <result column="legal_person_identity_card_front_media_id" property="legalPersonIdentityCardFrontMediaId" jdbcType="VARCHAR" />
+    <result column="legal_person_identity_card_back_media_id" property="legalPersonIdentityCardBackMediaId" jdbcType="VARCHAR" />
+    <result column="tax_registration_certificate_code" property="taxRegistrationCertificateCode" jdbcType="VARCHAR" />
+    <result column="tax_registration_certificate_media_id" property="taxRegistrationCertificateMediaId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_default_repayment" property="isDefaultRepayment" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, username, apply_status, user_type, account_type, supervisor_type, company_id, 
+    company_name, agent_company_id, agent_company_name, account_number, buyer_names, 
+    supervision_account_id, contact_name, contact_job_title, contact_tel, contact_mail, 
+    contact_identity_card_front_media_id, contact_identity_card_back_media_id, authorization_letter_id, 
+    organization_code, organization_code_certificate_media_id, business_licence_code, 
+    business_licence_media_id, legal_person_identity_card_front_media_id, legal_person_identity_card_back_media_id, 
+    tax_registration_certificate_code, tax_registration_certificate_media_id, create_time, 
+    update_time, is_default_repayment
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.account.dao.po.AccountApplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from account_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from account_apply
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from account_apply
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.account.dao.po.AccountApplyExample" >
+    delete from account_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.account.dao.po.AccountApply" >
+    insert into account_apply (id, username, apply_status, 
+      user_type, account_type, supervisor_type, 
+      company_id, company_name, agent_company_id, 
+      agent_company_name, account_number, buyer_names, 
+      supervision_account_id, contact_name, contact_job_title, 
+      contact_tel, contact_mail, contact_identity_card_front_media_id, 
+      contact_identity_card_back_media_id, authorization_letter_id, 
+      organization_code, organization_code_certificate_media_id, 
+      business_licence_code, business_licence_media_id, 
+      legal_person_identity_card_front_media_id, legal_person_identity_card_back_media_id, 
+      tax_registration_certificate_code, tax_registration_certificate_media_id, 
+      create_time, update_time, is_default_repayment
+      )
+    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{applyStatus,jdbcType=VARCHAR}, 
+      #{userType,jdbcType=VARCHAR}, #{accountType,jdbcType=VARCHAR}, #{supervisorType,jdbcType=VARCHAR}, 
+      #{companyId,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, #{agentCompanyId,jdbcType=VARCHAR}, 
+      #{agentCompanyName,jdbcType=VARCHAR}, #{accountNumber,jdbcType=INTEGER}, #{buyerNames,jdbcType=VARCHAR}, 
+      #{supervisionAccountId,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, #{contactJobTitle,jdbcType=VARCHAR}, 
+      #{contactTel,jdbcType=VARCHAR}, #{contactMail,jdbcType=VARCHAR}, #{contactIdentityCardFrontMediaId,jdbcType=VARCHAR}, 
+      #{contactIdentityCardBackMediaId,jdbcType=VARCHAR}, #{authorizationLetterId,jdbcType=VARCHAR}, 
+      #{organizationCode,jdbcType=VARCHAR}, #{organizationCodeCertificateMediaId,jdbcType=VARCHAR}, 
+      #{businessLicenceCode,jdbcType=VARCHAR}, #{businessLicenceMediaId,jdbcType=VARCHAR}, 
+      #{legalPersonIdentityCardFrontMediaId,jdbcType=VARCHAR}, #{legalPersonIdentityCardBackMediaId,jdbcType=VARCHAR}, 
+      #{taxRegistrationCertificateCode,jdbcType=VARCHAR}, #{taxRegistrationCertificateMediaId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDefaultRepayment,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.account.dao.po.AccountApply" >
+    insert into account_apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="applyStatus != null" >
+        apply_status,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="accountType != null" >
+        account_type,
+      </if>
+      <if test="supervisorType != null" >
+        supervisor_type,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="agentCompanyId != null" >
+        agent_company_id,
+      </if>
+      <if test="agentCompanyName != null" >
+        agent_company_name,
+      </if>
+      <if test="accountNumber != null" >
+        account_number,
+      </if>
+      <if test="buyerNames != null" >
+        buyer_names,
+      </if>
+      <if test="supervisionAccountId != null" >
+        supervision_account_id,
+      </if>
+      <if test="contactName != null" >
+        contact_name,
+      </if>
+      <if test="contactJobTitle != null" >
+        contact_job_title,
+      </if>
+      <if test="contactTel != null" >
+        contact_tel,
+      </if>
+      <if test="contactMail != null" >
+        contact_mail,
+      </if>
+      <if test="contactIdentityCardFrontMediaId != null" >
+        contact_identity_card_front_media_id,
+      </if>
+      <if test="contactIdentityCardBackMediaId != null" >
+        contact_identity_card_back_media_id,
+      </if>
+      <if test="authorizationLetterId != null" >
+        authorization_letter_id,
+      </if>
+      <if test="organizationCode != null" >
+        organization_code,
+      </if>
+      <if test="organizationCodeCertificateMediaId != null" >
+        organization_code_certificate_media_id,
+      </if>
+      <if test="businessLicenceCode != null" >
+        business_licence_code,
+      </if>
+      <if test="businessLicenceMediaId != null" >
+        business_licence_media_id,
+      </if>
+      <if test="legalPersonIdentityCardFrontMediaId != null" >
+        legal_person_identity_card_front_media_id,
+      </if>
+      <if test="legalPersonIdentityCardBackMediaId != null" >
+        legal_person_identity_card_back_media_id,
+      </if>
+      <if test="taxRegistrationCertificateCode != null" >
+        tax_registration_certificate_code,
+      </if>
+      <if test="taxRegistrationCertificateMediaId != null" >
+        tax_registration_certificate_media_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDefaultRepayment != null" >
+        is_default_repayment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="applyStatus != null" >
+        #{applyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null" >
+        #{accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="supervisorType != null" >
+        #{supervisorType,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentCompanyId != null" >
+        #{agentCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="agentCompanyName != null" >
+        #{agentCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null" >
+        #{accountNumber,jdbcType=INTEGER},
+      </if>
+      <if test="buyerNames != null" >
+        #{buyerNames,jdbcType=VARCHAR},
+      </if>
+      <if test="supervisionAccountId != null" >
+        #{supervisionAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactJobTitle != null" >
+        #{contactJobTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTel != null" >
+        #{contactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="contactMail != null" >
+        #{contactMail,jdbcType=VARCHAR},
+      </if>
+      <if test="contactIdentityCardFrontMediaId != null" >
+        #{contactIdentityCardFrontMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="contactIdentityCardBackMediaId != null" >
+        #{contactIdentityCardBackMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizationLetterId != null" >
+        #{authorizationLetterId,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null" >
+        #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCodeCertificateMediaId != null" >
+        #{organizationCodeCertificateMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceCode != null" >
+        #{businessLicenceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceMediaId != null" >
+        #{businessLicenceMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonIdentityCardFrontMediaId != null" >
+        #{legalPersonIdentityCardFrontMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonIdentityCardBackMediaId != null" >
+        #{legalPersonIdentityCardBackMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationCertificateCode != null" >
+        #{taxRegistrationCertificateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationCertificateMediaId != null" >
+        #{taxRegistrationCertificateMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDefaultRepayment != null" >
+        #{isDefaultRepayment,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.account.dao.po.AccountApplyExample" resultType="java.lang.Integer" >
+    select count(*) from account_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update account_apply
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyStatus != null" >
+        apply_status = #{record.applyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userType != null" >
+        user_type = #{record.userType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountType != null" >
+        account_type = #{record.accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supervisorType != null" >
+        supervisor_type = #{record.supervisorType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null" >
+        company_id = #{record.companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyName != null" >
+        company_name = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agentCompanyId != null" >
+        agent_company_id = #{record.agentCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agentCompanyName != null" >
+        agent_company_name = #{record.agentCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountNumber != null" >
+        account_number = #{record.accountNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyerNames != null" >
+        buyer_names = #{record.buyerNames,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supervisionAccountId != null" >
+        supervision_account_id = #{record.supervisionAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactName != null" >
+        contact_name = #{record.contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactJobTitle != null" >
+        contact_job_title = #{record.contactJobTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactTel != null" >
+        contact_tel = #{record.contactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactMail != null" >
+        contact_mail = #{record.contactMail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactIdentityCardFrontMediaId != null" >
+        contact_identity_card_front_media_id = #{record.contactIdentityCardFrontMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactIdentityCardBackMediaId != null" >
+        contact_identity_card_back_media_id = #{record.contactIdentityCardBackMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authorizationLetterId != null" >
+        authorization_letter_id = #{record.authorizationLetterId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizationCode != null" >
+        organization_code = #{record.organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizationCodeCertificateMediaId != null" >
+        organization_code_certificate_media_id = #{record.organizationCodeCertificateMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessLicenceCode != null" >
+        business_licence_code = #{record.businessLicenceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessLicenceMediaId != null" >
+        business_licence_media_id = #{record.businessLicenceMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalPersonIdentityCardFrontMediaId != null" >
+        legal_person_identity_card_front_media_id = #{record.legalPersonIdentityCardFrontMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalPersonIdentityCardBackMediaId != null" >
+        legal_person_identity_card_back_media_id = #{record.legalPersonIdentityCardBackMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxRegistrationCertificateCode != null" >
+        tax_registration_certificate_code = #{record.taxRegistrationCertificateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxRegistrationCertificateMediaId != null" >
+        tax_registration_certificate_media_id = #{record.taxRegistrationCertificateMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDefaultRepayment != null" >
+        is_default_repayment = #{record.isDefaultRepayment,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update account_apply
+    set id = #{record.id,jdbcType=VARCHAR},
+      username = #{record.username,jdbcType=VARCHAR},
+      apply_status = #{record.applyStatus,jdbcType=VARCHAR},
+      user_type = #{record.userType,jdbcType=VARCHAR},
+      account_type = #{record.accountType,jdbcType=VARCHAR},
+      supervisor_type = #{record.supervisorType,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=VARCHAR},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      agent_company_id = #{record.agentCompanyId,jdbcType=VARCHAR},
+      agent_company_name = #{record.agentCompanyName,jdbcType=VARCHAR},
+      account_number = #{record.accountNumber,jdbcType=INTEGER},
+      buyer_names = #{record.buyerNames,jdbcType=VARCHAR},
+      supervision_account_id = #{record.supervisionAccountId,jdbcType=VARCHAR},
+      contact_name = #{record.contactName,jdbcType=VARCHAR},
+      contact_job_title = #{record.contactJobTitle,jdbcType=VARCHAR},
+      contact_tel = #{record.contactTel,jdbcType=VARCHAR},
+      contact_mail = #{record.contactMail,jdbcType=VARCHAR},
+      contact_identity_card_front_media_id = #{record.contactIdentityCardFrontMediaId,jdbcType=VARCHAR},
+      contact_identity_card_back_media_id = #{record.contactIdentityCardBackMediaId,jdbcType=VARCHAR},
+      authorization_letter_id = #{record.authorizationLetterId,jdbcType=VARCHAR},
+      organization_code = #{record.organizationCode,jdbcType=VARCHAR},
+      organization_code_certificate_media_id = #{record.organizationCodeCertificateMediaId,jdbcType=VARCHAR},
+      business_licence_code = #{record.businessLicenceCode,jdbcType=VARCHAR},
+      business_licence_media_id = #{record.businessLicenceMediaId,jdbcType=VARCHAR},
+      legal_person_identity_card_front_media_id = #{record.legalPersonIdentityCardFrontMediaId,jdbcType=VARCHAR},
+      legal_person_identity_card_back_media_id = #{record.legalPersonIdentityCardBackMediaId,jdbcType=VARCHAR},
+      tax_registration_certificate_code = #{record.taxRegistrationCertificateCode,jdbcType=VARCHAR},
+      tax_registration_certificate_media_id = #{record.taxRegistrationCertificateMediaId,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      is_default_repayment = #{record.isDefaultRepayment,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.account.dao.po.AccountApply" >
+    update account_apply
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="applyStatus != null" >
+        apply_status = #{applyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null" >
+        account_type = #{accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="supervisorType != null" >
+        supervisor_type = #{supervisorType,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentCompanyId != null" >
+        agent_company_id = #{agentCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="agentCompanyName != null" >
+        agent_company_name = #{agentCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null" >
+        account_number = #{accountNumber,jdbcType=INTEGER},
+      </if>
+      <if test="buyerNames != null" >
+        buyer_names = #{buyerNames,jdbcType=VARCHAR},
+      </if>
+      <if test="supervisionAccountId != null" >
+        supervision_account_id = #{supervisionAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactJobTitle != null" >
+        contact_job_title = #{contactJobTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTel != null" >
+        contact_tel = #{contactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="contactMail != null" >
+        contact_mail = #{contactMail,jdbcType=VARCHAR},
+      </if>
+      <if test="contactIdentityCardFrontMediaId != null" >
+        contact_identity_card_front_media_id = #{contactIdentityCardFrontMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="contactIdentityCardBackMediaId != null" >
+        contact_identity_card_back_media_id = #{contactIdentityCardBackMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizationLetterId != null" >
+        authorization_letter_id = #{authorizationLetterId,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null" >
+        organization_code = #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCodeCertificateMediaId != null" >
+        organization_code_certificate_media_id = #{organizationCodeCertificateMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceCode != null" >
+        business_licence_code = #{businessLicenceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceMediaId != null" >
+        business_licence_media_id = #{businessLicenceMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonIdentityCardFrontMediaId != null" >
+        legal_person_identity_card_front_media_id = #{legalPersonIdentityCardFrontMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonIdentityCardBackMediaId != null" >
+        legal_person_identity_card_back_media_id = #{legalPersonIdentityCardBackMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationCertificateCode != null" >
+        tax_registration_certificate_code = #{taxRegistrationCertificateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationCertificateMediaId != null" >
+        tax_registration_certificate_media_id = #{taxRegistrationCertificateMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDefaultRepayment != null" >
+        is_default_repayment = #{isDefaultRepayment,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.account.dao.po.AccountApply" >
+    update account_apply
+    set username = #{username,jdbcType=VARCHAR},
+      apply_status = #{applyStatus,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=VARCHAR},
+      account_type = #{accountType,jdbcType=VARCHAR},
+      supervisor_type = #{supervisorType,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      agent_company_id = #{agentCompanyId,jdbcType=VARCHAR},
+      agent_company_name = #{agentCompanyName,jdbcType=VARCHAR},
+      account_number = #{accountNumber,jdbcType=INTEGER},
+      buyer_names = #{buyerNames,jdbcType=VARCHAR},
+      supervision_account_id = #{supervisionAccountId,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      contact_job_title = #{contactJobTitle,jdbcType=VARCHAR},
+      contact_tel = #{contactTel,jdbcType=VARCHAR},
+      contact_mail = #{contactMail,jdbcType=VARCHAR},
+      contact_identity_card_front_media_id = #{contactIdentityCardFrontMediaId,jdbcType=VARCHAR},
+      contact_identity_card_back_media_id = #{contactIdentityCardBackMediaId,jdbcType=VARCHAR},
+      authorization_letter_id = #{authorizationLetterId,jdbcType=VARCHAR},
+      organization_code = #{organizationCode,jdbcType=VARCHAR},
+      organization_code_certificate_media_id = #{organizationCodeCertificateMediaId,jdbcType=VARCHAR},
+      business_licence_code = #{businessLicenceCode,jdbcType=VARCHAR},
+      business_licence_media_id = #{businessLicenceMediaId,jdbcType=VARCHAR},
+      legal_person_identity_card_front_media_id = #{legalPersonIdentityCardFrontMediaId,jdbcType=VARCHAR},
+      legal_person_identity_card_back_media_id = #{legalPersonIdentityCardBackMediaId,jdbcType=VARCHAR},
+      tax_registration_certificate_code = #{taxRegistrationCertificateCode,jdbcType=VARCHAR},
+      tax_registration_certificate_media_id = #{taxRegistrationCertificateMediaId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_default_repayment = #{isDefaultRepayment,jdbcType=BIT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

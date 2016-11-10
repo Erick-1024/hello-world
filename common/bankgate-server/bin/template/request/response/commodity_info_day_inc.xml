@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息varchar(254) -->
+	<synDate></synDate><!--同步日期 char(8) 格式YYYYMMDD -->
+	<list name="userDataList"><!--商品信息列表 -->
+		<row>
+			<productId></productId><!-- 商品ID varchar(10) -->
+			<productCode></productCode><!-- 商品代码 varchar(64) -->
+			<productNm></productNm><!-- 商品名称 varchar(100) -->
+			<productNMall></productNMall><!-- 商品全称 varchar(2000) -->
+			<parentId></parentId><!-- 上级商品类型流水号 integer -->
+			<totalLevel></totalLevel><!-- 商品层技术/总层级 integer -->
+			<productLevel></productLevel><!-- 本级商品类型层级 integer -->
+			<unit></unit><!--计量单位 varchar(2) -->
+			<stt></stt><!-- 商品状态 "1":有效,"2":无效char(1) -->
+		</row>
+	</list>
+</stream>

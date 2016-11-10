@@ -1,0 +1,8 @@
+apply plugin: 'war'
+dependencies {
+	compile project(':front:front-common')
+	compile project(':wechat:wechat-api')
+	compile project(':framework:framework-dubbo-support')
+	compile project(':common:vbam-common')
+	compile project(':member:member-api')
+}

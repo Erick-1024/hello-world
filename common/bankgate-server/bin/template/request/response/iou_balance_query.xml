@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息varchar(254) -->
+	<mctNo></mctNo><!--商户编号char(8) -->
+	<list name="userDataList">
+		<row>
+			<mctJnlNo></mctJnlNo><!--融资订单的商户流水号varchar(20) -->
+			<coreDuebillNo></coreDuebillNo><!--借据编号varchar(22) -->
+			<balance></balance><!--借据余额decimal(15,2) -->
+			<status></status><!--交易状态 char(7) AAAAAAA 表示借据余额查询成功，其他状态码代表借据余额查询失败 -->
+			<statusText></statusText><!--交易状态信息varchar(254) -->
+		</row>
+	</list>
+</stream>

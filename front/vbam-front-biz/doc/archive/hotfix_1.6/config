@@ -1,0 +1,8 @@
+上线项目：
+
+vbam-front-biz,account-scheduler,account-server,bankgate-server,member-server,message-server,credit-scheduler,credit-server,credit-openapi,flight-finance-server,repayment-scheduler,repayment-server,report-scheduler,report-server,early-warning-server,early-warning-scheduler,asset-server,signature-server
+
+
+增加配置文件：
+global/properties/early-warning.properties
+

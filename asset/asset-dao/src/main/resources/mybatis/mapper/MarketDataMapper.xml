@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.asset.dao.mapper.MarketDataMapper" >
+
+<select id="selectSummaryProjectsByTypeAndMonth" resultType="com.cana.vbam.common.asset.dto.MarketDataReportDTO">
+     SELECT underlying_asset_type  ,DATE_FORMAT(`value_date`,'%Y-%m') as month,sum(issue_total_amount) as issue_amount, count(*) as issue_num
+     FROM asset_market_data_project 
+     group by underlying_asset_type ,DATE_FORMAT(`value_date`,'%Y-%m');
+  </select>
+  
+  <select id="selectUnderlyingAssetType" resultType="java.lang.String">
+     SELECT distinct underlying_asset_type
+     FROM asset_market_data_report;
+  </select>
+  
+</mapper>

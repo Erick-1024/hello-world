@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context				http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/aop    				http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/mvc					http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://mybatis.org/schema/mybatis-spring                    http://mybatis.org/schema/mybatis-spring.xsd
+		http://www.springframework.org/schema/tx            		http://www.springframework.org/schema/tx/spring-tx.xsd">
+		
+	<context:annotation-config />  
+    <context:component-scan base-package="com.cana.quartz" />  
+	
+    <bean id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+        <property name="dataSource" ref="quartzDataSource" />  
+        <property name="quartzProperties">  
+            <props>  
+                <!-- 集群模式下最好指定为AUTO，在程序启动时会自动为该调度器实例分配instanceId, 默认的生成规则：当前主机的hostname+当前系统时间 -->
+                <prop key="org.quartz.scheduler.instanceId">AUTO</prop>  
+                <!-- 获取在未来多少秒内要被触发的trigger -->
+                <prop key="org.quartz.scheduler.idleWaitTime">30000</prop>  
+                <!-- 每次最大获取的trigger数量 -->
+                <prop key="org.quartz.scheduler.batchTriggerAcquisitionMaxCount">1</prop>  
+                <!-- 线程池配置 -->  
+                <prop key="org.quartz.threadPool.class">org.quartz.simpl.SimpleThreadPool</prop>  
+                <prop key="org.quartz.threadPool.threadCount">6</prop>  
+                <prop key="org.quartz.threadPool.threadPriority">5</prop>  
+                <!-- 集群配置 -->  
+                <prop key="org.quartz.jobStore.isClustered">true</prop>  
+                <!-- 每个调度器实例每隔指定20秒签到一次，如果未准时签到，就被认为失败，失败实例之前正在执行的任务会被其他实例接管 -->
+                <prop key="org.quartz.jobStore.clusterCheckinInterval">20000</prop>  
+                <prop key="org.quartz.jobStore.maxMisfiresToHandleAtATime">1</prop>  
+                <prop key="org.quartz.jobStore.misfireThreshold">120000</prop>  
+                <prop key="org.quartz.jobStore.tablePrefix">TEST_</prop>  
+            </props>  
+        </property>  
+        <!-- 这个字段用于标识不同的调度器，每个调度程序的名称要保证不一样，否则可能会出现trigger，job相互覆盖的情况 -->
+        <property name="schedulerName" value="testClusterScheduler14" />  
+        <!-- 进程启动15秒后调度器才开始工作 -->
+        <property name="startupDelay" value="15" />  
+        <property name="applicationContextSchedulerContextKey" value="applicationContext" />  
+        <!-- 使用此实现可以为job实现类自动注入依赖 -->
+        <property name="jobFactory">  
+    		<bean class="com.travelzen.framework.quartz.AutowireSpringBeanJobFactory" />  
+		</property>  
+        <property name="overwriteExistingJobs" value="true" />  
+        <property name="autoStartup" value="true" />  
+        <property name="triggers">  
+            <list>  
+                <ref bean="testTrigger1" />  
+            </list>  
+        </property>  
+    </bean>  
+	
+	<bean id="testTrigger1"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
+	    <property name="cronExpression" value="0/2 * * * * ?" />  
+	    <property name="jobDetail" ref="testJobDetail" />  
+	</bean>  
+  
+	<bean id="testJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">  
+	    <property name="jobClass" value="com.cana.quartz.job.TestJob" />  
+	    <property name="durability" value="true" />  
+	    <!-- 设置为true时，失败任务会被其他实例接管重新执行 -->
+	    <property name="requestsRecovery" value="true" />  
+	</bean>		
+	
+	<bean id="quartzDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	    <property name="driverClassName" value="com.mysql.jdbc.Driver" />        
+		<property name="url" value="jdbc:mysql://192.168.1.7:3306/quartz" /> 
+	    <property name="username" value="root" />         
+	    <property name="password" value="Abc12345" />         
+        <property name="maxActive" value="10"></property>
+        <property name="minIdle" value="3"></property>  
+	    <property name="maxIdle" value="5"></property>  
+    </bean>	
+	
+</beans>

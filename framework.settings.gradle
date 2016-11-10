@@ -1,0 +1,23 @@
+include 'framework:framework-mongo-support'
+include 'framework:framework-core'
+include 'framework:framework-config'
+
+include 'framework:framework-redis'
+include 'framework:framework-spring'
+
+include 'framework:framework-base'
+include 'framework:framework-spring'
+include 'framework:framework-dao-base'
+
+include 'framework:framework-logger'
+include 'framework:framework-logger-core'
+include 'framework:framework-zookeeper-support'
+
+include 'framework:framework-mybatis'
+
+include 'framework:framework-retry'
+
+include 'framework:framework-dubbo-support'
+
+include 'framework:framework-rabbitmq'
+include 'framework:framework-lucene'

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"				xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"					xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:sc="http://www.springframework.org/schema/security"			xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/aop					http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/tx						http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+		http://www.springframework.org/schema/context				http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/security				http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/task					http://www.springframework.org/schema/task/spring-task-3.1.xsd">
+
+	<context:component-scan base-package="com.cana.member.authorization"/>
+
+	<bean
+		class="com.travelzen.framework.config.tops.TzPropertyPlaceholderConfigurer">
+		<property name="tzProperties">
+			<list>
+				<value>G:properties/member-auth.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<sc:http pattern="/" security="none" />
+	<sc:http pattern="/index.jsp" security="none"/>
+	<sc:http pattern="/resources/**" security="none"/>
+	<sc:http pattern="/facade/**" security="none"/>
+	<sc:http pattern="/error/**" security="none"/>
+	<!-- 激活成功权限列表 -->
+	<sc:http pattern="/role/facade/getActivateSuccessPermissionsTree" security="none"/>
+	<sc:http pattern="/credit/repaymentNotice" security="none"/><!-- see CreditRepaymentNoticeController -->
+	<sc:http pattern="/yundaex/personal/facade/**" security="none"/>
+	<sc:http entry-point-ref="loginEntryPoint">
+		<sc:logout logout-url="/signOut" success-handler-ref="logoutSuccessHandler"/>
+		<sc:access-denied-handler ref="accessAuthDeniedHandler"/>
+		<sc:request-cache ref="requestCache"/>
+		<sc:remember-me key="membertoken" services-ref="rememberMeServiceHandler"/>
+		<!-- <sc:custom-filter ref="redisSessionFilter" before="FIRST"/> -->
+		<sc:custom-filter ref="captchaGeneratingFilter" after="CONCURRENT_SESSION_FILTER"/>
+		<sc:custom-filter ref="securityInterceptorFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
+		<sc:custom-filter ref="guideStatusFilter" after="FILTER_SECURITY_INTERCEPTOR"/>
+		<sc:custom-filter ref="formLoginFiter" position="FORM_LOGIN_FILTER" />
+		<sc:custom-filter ref="authResultPrintingFilter" after="FORM_LOGIN_FILTER" />
+		<!-- <sc:custom-filter ref="distributorDomainFilter" before="SESSION_MANAGEMENT_FILTER"/> -->
+		<!-- <sc:custom-filter ref="loginStatusFilter" after="ANONYMOUS_FILTER"/> -->
+		<sc:custom-filter ref="loginStatusFilter" after="EXCEPTION_TRANSLATION_FILTER"/>
+		
+	</sc:http>
+
+	<!-- <bean id="distributorDomainFilter" class="com.travelzen.tops.member.authorization.securityfilter.DistributorDomainFilter"></bean> -->
+
+	<!-- <bean id="redisSessionFilter" class="com.travelzen.tops.member.authorization.securityfilter.RedisSessionFilter"></bean> -->
+
+	<bean id="captchaGeneratingFilter" class="com.cana.member.authorization.filter.CaptchaGeneratingFilter"/>
+
+	<bean id="loginStatusFilter" class="com.cana.member.authorization.filter.LoginStatusFilter"
+			p:loginUrl="/facade/signin"/>
+
+	<bean id="guideStatusFilter" class="com.cana.member.authorization.filter.GuideStatusFilter"
+			p:guideUrl="/guide/setup"/>
+
+	<bean id="requestCache" class="org.springframework.security.web.savedrequest.HttpSessionRequestCache"
+			p:requestMatcher-ref="antPathRequestMatcher"/>
+
+	<bean id="antPathRequestMatcher" class="org.springframework.security.web.util.matcher.AntPathRequestMatcher">
+			<constructor-arg value="/**" index="0"></constructor-arg>
+			<constructor-arg value="GET" index="1"></constructor-arg>
+	</bean>
+			
+	<bean id="loginEntryPoint"
+		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint"
+			p:loginFormUrl="/facade/signin"
+			p:forceHttps="${forceHttps}"/>
+
+	<bean id="formLoginFiter"
+		class="com.cana.member.authorization.filter.CaptchaCheckingUsernamePasswordAuthenticationFilter"
+			p:filterProcessesUrl="/signIn"
+			p:authenticationSuccessHandler-ref="authSuccessHandler"
+			p:authenticationFailureHandler-ref="authFailureHandler"
+			p:authenticationManager-ref="authenticationManager"
+			p:rememberMeServices-ref="rememberMeServiceHandler"
+			p:usernameParameter="username"
+			p:passwordParameter="password"
+			p:postOnly="false"/>
+
+	<bean id="authSuccessHandler"
+		class="com.cana.member.authorization.handler.AuthSuccessHandler"
+			p:rememberMeService-ref="rememberMeServiceHandler"
+			p:defaultTargetUrl="${member.url.loginSuccess}"/>
+
+	<bean id="authFailureHandler"
+		class="com.cana.member.authorization.handler.AuthFailureHandler"
+			p:defaultFailureUrl="/facade/signin"/>
+
+	<bean id="rememberMeServiceHandler" class="com.cana.member.authorization.handler.RememberMeServiceHandler">
+		<constructor-arg ref="userDetailsServiceHandler"></constructor-arg>
+		<property name="parameter" value="remember_me"/>
+	</bean>
+
+	<bean id="accessAuthDeniedHandler" class="com.cana.member.authorization.handler.AccessAuthDeniedHandler"
+			p:errorPage="/facade/denied"/>
+
+	<bean	id="securityInterceptorFilter"
+			class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor"
+			p:securityMetadataSource-ref="metadataSourceServiceHandler"
+			p:authenticationManager-ref="authenticationManager"
+			p:accessDecisionManager-ref="unanimousBasedDecisionManger"
+			p:validateConfigAttributes="false"/>
+
+	<sc:authentication-manager alias="authenticationManager">
+		<sc:authentication-provider ref="authenticationProvider"/>
+	</sc:authentication-manager>
+
+	<bean	id="authenticationProvider"
+			class="org.springframework.security.authentication.dao.DaoAuthenticationProvider"
+			p:passwordEncoder-ref="passwordEncoderHandler"
+			p:userDetailsService-ref="userDetailsServiceHandler"
+			p:postAuthenticationChecks-ref="postAnthenticationHandler"
+			p:hideUserNotFoundExceptions="false">
+	</bean>
+
+	<bean id="unanimousBasedDecisionManger" class="org.springframework.security.access.vote.UnanimousBased">
+		<property name="decisionVoters">
+			<list>
+				<bean class="com.cana.member.authorization.voter.SimpleDecisionVoter"></bean>
+			</list>
+		</property>
+		<property name="allowIfAllAbstainDecisions" value="true"></property>
+	</bean>
+
+	<bean id="userDetailsServiceHandler" class="com.cana.member.authorization.handler.UserDetailsServiceHandler"/>
+	<!-- <bean id="permissionsRefresher" class="com.travelzen.tops.member.authorization.scheduler.PermissionsRefresher"/> -->
+	<bean id="authResultPrintingFilter" class="com.cana.member.authorization.filter.AuthResultPrintingFilter"></bean>
+
+</beans>

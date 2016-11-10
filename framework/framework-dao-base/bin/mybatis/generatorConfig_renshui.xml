@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<!-- 驱动程序 -->
+	<classPathEntry
+		location="/Users/renshui/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.24/a7d599d73b86a928303909b9be7573a4ea0ed28e/mysql-connector-java-5.1.24.jar" />
+
+	<context id="context1" targetRuntime="MyBatis3"
+		defaultModelType="conditional">
+
+
+		<property name="targetPackage" value="mybatis.gen" />
+		<property name="targetProject" value="framework-dao-base/src/main/resources" />
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+
+		<commentGenerator>
+			<!-- 是否取消注释 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!-- 数据库链接 -->
+		<jdbcConnection driverClass="org.postgresql.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/common" userId="root"
+			password="Passw9rd" />
+
+		<!-- java entity生成位置 -->
+		<javaModelGenerator targetPackage="com.travelzen.async.download.server.po"
+			targetProject="/home/ducengzeng/tz/tz-async/async-download-server/src/main/java">
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- mapper xml配置文件生成位置 -->
+		<sqlMapGenerator targetPackage="mybatis.mapper.gen"
+			targetProject="/home/ducengzeng/tz/tz-async/async-download-server/src/main/resources">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<!-- mapper 接口生成位置 -->
+		<javaClientGenerator targetPackage="com.travelzen.async.download.server.mapper.gen"
+			targetProject="/home/ducengzeng/tz/tz-async/async-download-server/src/main/java"
+			type="XMLMAPPER">
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+
+		<!-- 表以及关系配置 -->
+		<!-- 
+		-->
+		<table schema="common" tableName="download_task" delimitIdentifiers="true">
+			<generatedKey column="id" sqlStatement="JDBC" identity="true" />
+		</table>
+		<table schema="common" tableName="download_log" delimitIdentifiers="true"></table>
+	</context>
+</generatorConfiguration>

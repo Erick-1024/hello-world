@@ -1,0 +1,11 @@
+apply from : 'common.settings.gradle'
+
+include 'wechat:wechat-dao'
+include 'wechat:wechat-service'
+include 'wechat:wechat-api'
+include 'wechat:wechat-server'
+include 'wechat:wechat-scheduler'
+include 'wechat:wechat-client'
+include 'wechat:wechat-common'
+include 'wechat:wechat-openapi'
+

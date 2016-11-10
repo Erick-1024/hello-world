@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions id="definitions"
+             targetNamespace="http://activiti.org/bpmn20"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:activiti="http://activiti.org/bpmn">
+
+  <process id="accountRequest" name="account request">
+
+    <startEvent id="request" activiti:initiator="applyUserId">
+      <extensionElements>
+      	<activiti:formProperty id="auditor" name="审批者" type="string" required="true"/>
+      	<activiti:formProperty id="accountId" name="账户Id" type="string" required="true"/>
+      	<activiti:formProperty id="type" name="操作类型" type="string" required="true"/>
+        <!-- <activiti:formProperty id="numberOfDays" name="Number of days" type="long" value="1" required="true"/>
+        <activiti:formProperty id="startDate" name="First day of holiday (dd-MM-yyy)" datePattern="dd-MM-yyyy hh:mm" type="date" required="true" />
+        <activiti:formProperty id="vacationMotivation" name="Motivation" type="string" /> -->
+      </extensionElements>
+    </startEvent>
+    <sequenceFlow id="flow1" sourceRef="request" targetRef="handleRequest" />
+
+    <userTask id="handleRequest" name="Handle request" >
+      
+      <documentation>
+        ${applyUserId} would like to apply ${type} from ${accountId} by ${auditor}.
+      </documentation>
+      <extensionElements>
+        <activiti:formProperty id="accountApproved" name="Do you approve this request" type="enum" required="true">
+          <activiti:value id="true" name="Approve" />
+          <activiti:value id="false" name="Reject" />
+        </activiti:formProperty>
+        <activiti:formProperty id="comment" name="备注" type="string" />
+      </extensionElements>
+      <humanPerformer>
+        <resourceAssignmentExpression>
+          <formalExpression>${auditor}</formalExpression>
+        </resourceAssignmentExpression>
+      </humanPerformer>
+    </userTask>
+    
+    <sequenceFlow id="flow2" sourceRef="handleRequest" targetRef="requestApprovedDecision" />
+
+    <exclusiveGateway id="requestApprovedDecision" name="Request approved?" />
+    
+    <sequenceFlow id="flow3" sourceRef="requestApprovedDecision" targetRef="theEnd">
+      <conditionExpression xsi:type="tFormalExpression">${accountApproved == 'true'}</conditionExpression>
+    </sequenceFlow>
+   
+    <sequenceFlow id="flow5" sourceRef="requestApprovedDecision" targetRef="theEnd">
+      <conditionExpression xsi:type="tFormalExpression">${accountApproved == 'false'}</conditionExpression>
+    </sequenceFlow>
+
+	<endEvent id="theEnd" >
+		<terminateEventDefinition/>
+	</endEvent>
+
+  </process>
+
+</definitions>

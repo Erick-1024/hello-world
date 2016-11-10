@@ -1,0 +1,6 @@
+apply from:'member.settings.gradle'
+apply from: 'framework.settings.gradle'
+include 'signature:signature-server'
+include 'signature:signature-service'
+include 'signature:signature-api'
+include 'signature:signature-dao'

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息varchar(254) -->
+	<subAccNo></subAccNo><!--附属账号varchar(19) -->
+	<subAccNm></subAccNm><!--附属账户名varchar(100) -->
+	<inrtAmt></inrtAmt><!--利息金额decimal(15,2) -->
+</stream>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cana.repayment.dao.mapper.IRepaymentPlanAndExpenseSearchMapper">
+
+	<select id="searchRepaymentPlan" resultMap="ActiveRepaymentPlan" parameterType="com.cana.vbam.common.repayment.dto.QueryRepaymentAndExpenseRequestDTO" >
+		select plan.*, info.business_product as business_product, info.factor_company as factor_company, info.finance_balance as info_finance_balance,
+		(plan.overdue_principal_penalty + plan.overdue_interest_penalty + plan.overdue_service_charge_penalty + plan.other_penalty) as overdue_manage_charge,
+		(plan.paid_overdue_principal_penalty + plan.paid_overdue_interest_penalty + plan.paid_overdue_service_charge_penalty + plan.paid_other_penalty) as paid_overdue_manage_charge
+		from repayment_loan_info as info, repayment_plan as plan 
+		where  
+			<include refid="queryLoanInfo_common_criteria" />
+		order by repayment_date desc limit ${(queryDTO.page-1) * queryDTO.pageSize}, ${queryDTO.pageSize};
+	</select>
+	
+	<select id="countRepaymentPlan" resultType="java.lang.Integer" parameterType="com.cana.vbam.common.repayment.dto.QueryRepaymentAndExpenseRequestDTO">
+		select count(*) as totalNum
+		from repayment_loan_info as info, repayment_plan as plan 
+		where 
+			<include refid="queryLoanInfo_common_criteria" />
+	</select>
+    
+	<select id="searchRepaymentExpense" resultMap="ActiveRepaymentExpense" parameterType="com.cana.vbam.common.repayment.dto.QueryRepaymentAndExpenseRequestDTO">
+		select expense.* from repayment_loan_info as info, repayment_expense as expense 
+		where 
+			<include refid="queryExpense_common_criteria" />
+		order by repayment_date desc limit ${(queryDTO.page-1) * queryDTO.pageSize}, ${queryDTO.pageSize};
+	</select>
+	
+	<select id="countRepaymentExpense" resultType="java.lang.Integer" parameterType="com.cana.vbam.common.repayment.dto.QueryRepaymentAndExpenseRequestDTO">
+		select count(*) as totalNum
+		from repayment_loan_info as info, repayment_expense as expense 
+		where 
+			<include refid="queryExpense_common_criteria" />
+	</select>
+	
+	<sql id="queryLoanInfo_common_criteria">
+		<if test="(queryDTO.beginRepaymentDate != null and queryDTO.beginRepaymentDate != '')">  
+			<![CDATA[ repayment_date >= #{queryDTO.beginRepaymentDate, jdbcType=VARCHAR} and ]]> 
+		</if> 
+		<if test="(queryDTO.endRepaymentDate != null and queryDTO.endRepaymentDate != '')">  
+			<![CDATA[ repayment_date <= #{queryDTO.endRepaymentDate, jdbcType=VARCHAR} and ]]>
+		</if>
+		<if test="(queryDTO.financeId != null and queryDTO.financeId != '') ">  
+			plan.finance_id = #{queryDTO.financeId, jdbcType=VARCHAR} and
+		</if> 
+		<if test="(queryDTO.financeCompany != null and queryDTO.financeCompany != '')">  
+			plan.finance_company like CONCAT('%',#{queryDTO.financeCompany, jdbcType=VARCHAR},'%') and
+		</if>
+		<if test="(queryDTO.factorId != null and queryDTO.factorId !='') ">  
+       		plan.factor_id = #{queryDTO.factorId, jdbcType=VARCHAR} and
+		</if>
+		<if test="(queryDTO.factorCompany != null and queryDTO.factorCompany !='') ">  
+			info.factor_company like CONCAT('%',#{queryDTO.factorCompany, jdbcType=VARCHAR},'%') and
+		</if>
+		<if test="(queryDTO.coreCompanyId != null and queryDTO.coreCompanyId !='') ">  
+       		info.core_company_id = #{queryDTO.coreCompanyId, jdbcType=VARCHAR} and   
+		</if>
+		<if test="(queryDTO.coreCompanyName != null and queryDTO.coreCompanyName !='') ">  
+			info.core_company_name like CONCAT('%',#{queryDTO.coreCompanyName, jdbcType=VARCHAR},'%') and
+		</if>
+		<if test="queryDTO.overdue == 'true'">
+			(overdue_principal + overdue_interest + overdue_service_charge + overdue_principal_penalty + overdue_interest_penalty + overdue_service_charge_penalty + other_penalty) &gt; 0 and
+		</if>
+		<if test="queryDTO.settleStatus == 'UNSETTLE' ">
+			plan.settle_status = 'UNSETTLE' and
+		</if>
+		<if test="queryDTO.settleStatus == 'SETTLED' ">
+			plan.settle_status = 'SETTLED' and
+		</if>
+		<if test="(queryDTO.businessProduct != null and queryDTO.businessProduct !='') ">  
+			info.business_product like CONCAT('%',#{queryDTO.businessProduct, jdbcType=VARCHAR},'%') and
+		</if>
+		<if test="(queryDTO.loanNo != null and queryDTO.loanNo !='') ">  
+			plan.loan_no like CONCAT('%',#{queryDTO.loanNo, jdbcType=VARCHAR},'%') and
+		</if>
+		<if test="(queryDTO.loanId != null and queryDTO.loanId !='') ">  
+			info.id = #{queryDTO.loanId , jdbcType=VARCHAR} and 
+		</if>
+		info.id = plan.loan_info_id
+	</sql>
+	
+	<sql id="queryExpense_common_criteria">
+		<if test="(queryDTO.beginRepaymentDate != null and queryDTO.beginRepaymentDate != '')">  
+			<![CDATA[ repayment_date >= #{queryDTO.beginRepaymentDate, jdbcType=VARCHAR} and ]]> 
+		</if> 
+		<if test="(queryDTO.endRepaymentDate != null and queryDTO.endRepaymentDate != '')">  
+			<![CDATA[ repayment_date <= #{queryDTO.endRepaymentDate, jdbcType=VARCHAR} and ]]>
+		</if>
+		<if test="(queryDTO.financeId != null and queryDTO.financeId != '') ">  
+			expense.finance_id = #{queryDTO.financeId, jdbcType=VARCHAR} and
+		</if> 
+		<if test="(queryDTO.financeCompany != null and queryDTO.financeCompany != '')">  
+			expense.finance_company like CONCAT('%',#{queryDTO.financeCompany, jdbcType=VARCHAR},'%') and
+		</if>
+		<if test="(queryDTO.factorId != null and queryDTO.factorId !='') ">  
+       		expense.factor_id = #{queryDTO.factorId, jdbcType=VARCHAR} and  
+		</if>
+		<if test="(queryDTO.factorCompany != null and queryDTO.factorCompany !='') ">  
+			info.factor_company like CONCAT('%',#{queryDTO.factorCompany, jdbcType=VARCHAR},'%') and
+		</if>
+		<if test="(queryDTO.coreCompanyId != null and queryDTO.coreCompanyId !='') ">  
+       		info.core_company_id = #{queryDTO.coreCompanyId, jdbcType=VARCHAR} and   
+		</if>
+		<if test="(queryDTO.coreCompanyName != null and queryDTO.coreCompanyName !='') ">  
+			info.core_company_name like CONCAT('%',#{queryDTO.coreCompanyName, jdbcType=VARCHAR},'%') and
+		</if>
+		<if test="queryDTO.settleStatus == 'UNSETTLE' ">
+			expense.settle_status = 'UNSETTLE' and
+		</if>
+		<if test="queryDTO.settleStatus == 'SETTLED' ">
+			expense.settle_status = 'SETTLED' and
+		</if>
+		<if test="queryDTO.overdue == 'true'">
+			<![CDATA[ expense.repayment_date < #{queryDTO.endRepaymentDate, jdbcType=VARCHAR} and ]]>
+		</if>
+		<if test="(queryDTO.businessProduct != null and queryDTO.businessProduct !='') ">  
+			info.business_product like CONCAT('%',#{queryDTO.businessProduct, jdbcType=VARCHAR},'%') and
+		</if>
+		<if test="(queryDTO.loanNo != null and queryDTO.loanNo !='') ">  
+			expense.loan_no like CONCAT('%',#{queryDTO.loanNo, jdbcType=VARCHAR},'%') and
+		</if>
+		<if test="(queryDTO.loanId != null and queryDTO.loanId !='') ">  
+			info.id = #{queryDTO.loanId , jdbcType=VARCHAR} and
+		</if>
+		info.id = expense.loan_info_id
+	</sql>
+	
+	<resultMap type="com.cana.repayment.dao.po.manual.ActiveRepaymentPlan" id="ActiveRepaymentPlan">
+		<id property="id" column="id"/>
+		<result property="loanInfoId" column="loan_info_id" jdbcType="VARCHAR"/>
+		<result property="businessProduct" column="business_product" jdbcType="VARCHAR"/>
+		<result property="factorCompany" column="factor_company" jdbcType="VARCHAR"/>
+		<result property="financeCompany" column="finance_company" jdbcType="VARCHAR"/>
+		<result property="coreCompanyName" column="core_company_name" jdbcType="VARCHAR"/>
+		<result property="loanNo" column="loan_no" jdbcType="VARCHAR"/>
+		<result property="repaymentPeriod" column="repayment_period" jdbcType="INTEGER"/>
+		<result property="financeAmount" column="finance_amount" jdbcType="DECIMAL"/>
+		<result property="financeBalance" column="info_finance_balance" jdbcType="DECIMAL"/>
+		<result property="valueDate" column="value_date" jdbcType="VARCHAR"/>
+		<result property="settleInterestDate" column="settle_interest_date" jdbcType="VARCHAR"/>
+		<result property="repaymentDate" column="repayment_date" jdbcType="VARCHAR"/>
+		<result property="settleStatus" column="settle_status" jdbcType="VARCHAR"/>
+		<result property="accountPrincipal" column="account_principal" jdbcType="DECIMAL"/>
+		<result property="accountInterest" column="account_interest" jdbcType="DECIMAL"/>
+		<result property="accountServiceCharge" column="account_service_charge" jdbcType="DECIMAL"/>
+		<result property="accountExtensionCharge" column="account_extension_charge" jdbcType="DECIMAL"/>
+		<result property="paidNormalPrincipal" column="paid_normal_principal" jdbcType="DECIMAL"/>
+		<result property="paidNormalInterest" column="paid_normal_interest" jdbcType="DECIMAL"/>
+		<result property="paidNormalServiceCharge" column="paid_normal_service_charge" jdbcType="DECIMAL"/>
+		<result property="paidExtensionCharge" column="paid_extension_charge" jdbcType="DECIMAL"/>
+		<result property="overduePrincipal" column="overdue_principal" jdbcType="DECIMAL"/>
+		<result property="overdueInterest" column="overdue_interest" jdbcType="DECIMAL"/>
+		<result property="overdueServiceCharge" column="overdue_service_charge" jdbcType="DECIMAL"/>
+		<result property="overdueManageCharge" column="overdue_manage_charge" jdbcType="DECIMAL"/>
+		<result property="paidOverduePrincipal" column="paid_overdue_principal" jdbcType="DECIMAL"/>
+		<result property="paidOverdueInterest" column="paid_overdue_interest" jdbcType="DECIMAL"/>
+		<result property="paidOverdueManageCharge" column="paid_overdue_manage_charge" jdbcType="DECIMAL"/>
+    </resultMap>
+	
+   	<resultMap type="com.cana.repayment.dao.po.manual.ActiveRepaymentExpense" id="ActiveRepaymentExpense">
+   		<id property="id" column="id"/>
+		<result property="loanInfoId" column="loan_info_id" jdbcType="VARCHAR"/>
+		<result property="loanNo" column="loan_no" jdbcType="VARCHAR"/>
+		<result property="expenseSubject" column="expense_subject" jdbcType="VARCHAR"/>
+		<result property="repaymentDate" column="repayment_date" jdbcType="VARCHAR"/>
+		<result property="repaymentAmount" column="repayment_amount" jdbcType="DECIMAL"/>
+		<result property="paidAmount" column="paid_amount" jdbcType="DECIMAL"/>
+		<result property="settleStatus" column="settle_status" jdbcType="VARCHAR"/>
+    </resultMap>
+</mapper>

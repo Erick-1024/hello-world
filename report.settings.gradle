@@ -1,0 +1,11 @@
+apply from : 'common.settings.gradle'
+apply from : 'member.settings.gradle'
+apply from : 'repayment.settings.gradle'
+apply from : 'account.settings.gradle'
+include 'report:report-server'
+include 'report:report-scheduler'
+include 'report:report-service'
+include 'report:report-api'
+include 'report:report-dao'
+
+include ':flight-finance:flight-finance-api'

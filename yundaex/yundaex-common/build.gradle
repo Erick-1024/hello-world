@@ -1,0 +1,5 @@
+dependencies {
+	compile project(':framework:framework-logger')
+	compile libraries.commons_httpclient
+	compile project(':framework:framework-base')
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLDRTSUB</action>
+	<userName></userName><!--登录名 varchar(30) -->
+	<clientID></clientID><!--客户流水号 char(20) -->
+	<retType></retType><!--退还方式 char(1)，0：原路退还；1：非原路退还 -->
+	<purpose></purpose><!--经办意见(备注) char(60)，可空 -->
+	<mctJnlNo></mctJnlNo><!--商户流水号 varchar(20) -->
+	<sameBank></sameBank><!--中信标识char(1)，0：中信；1：他行，当retType为1时，必输 -->
+	<recvAccNo></recvAccNo><!--收款人账号varchar(32) ，可空，当retType为1时，必输 -->
+	<recvAccNm></recvAccNm><!--收款人账户名称varchar(60)，可空，当retType为1时，必输 -->
+	<!--当retType为1时，联行号与账户开户行名不能同时为空 -->
+	<tgfi></tgfi><!--联行号 char(12)，可空 -->
+	<mngNode></mngNode><!--帐户开户行名 varchar(62)，可空 -->
+	<!--当retType为1时，联行号与账户开户行名不能同时为空 -->
+	<cryType></cryType><!--币种代码 char(2)，可空，当retType为1时，必输，且只支持01（人民币） -->
+	<abstract></abstract><!--摘要 varchar(22)，可空 -->
+</stream>

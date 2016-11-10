@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cana.asset.dao.mapper.ABSUnderlyingAssetMapper">
+
+    <select id="queryGrossBySpecialProgramIds" resultType="com.cana.asset.dao.custom.po.SpecialProgramGrossResult" parameterType="java.util.Set" >
+		select asset.special_program_id as id,
+			sum( COALESCE(asset.finance_balance, 0) + COALESCE(loan.finance_balance, 0)) as gross 
+    	from asset_underlying_asset asset left join asset_loan_info loan on asset.id = loan.id 
+   		<where>
+   			asset.asset_pool_status = 'ENTERED' and
+   			asset.special_program_id in (
+   				<foreach collection="specialProgramIds" separator="," item="specialProgramId" >#{specialProgramId}</foreach>
+	   		)
+   		</where>
+    	group by asset.special_program_id;
+	</select>
+
+	<select id="queryAccountAmountBySpecialProgramIds" resultType="com.cana.vbam.common.asset.underlyingasset.dto.UnderlyingAssetAmountSummary">
+		select asset.special_program_id as id,
+			sum( COALESCE(plan.account_principal, 0)) as account_principal,
+			sum( COALESCE(plan.account_interest, 0)) as account_interest,
+			sum( COALESCE(plan.account_overdue, 0)) as account_overdue
+		from asset_underlying_asset asset 
+		left join asset_loan_plan plan on asset.id = plan.loan_info_id
+		where asset.special_program_id in (<foreach collection="specialProgramIds" separator="," item="specialProgramId" >#{specialProgramId}</foreach>)
+			and plan.repayment_date = #{date}
+			and asset.asset_pool_status = 'ENTERED'
+		group by asset.special_program_id
+	</select>
+
+	<select id="queryPaidAmountBySpecialProgramIds" resultType="com.cana.vbam.common.asset.underlyingasset.dto.UnderlyingAssetAmountSummary">
+		select asset.special_program_id as id,
+			sum( COALESCE(paid.paid_principal, 0)) as paid_principal,
+			sum( COALESCE(paid.paid_interest, 0)) as paid_interest,
+			sum( COALESCE(paid.paid_overdue, 0)) as paid_overdue
+		from asset_underlying_asset asset 
+		left join asset_loan_paid paid on asset.id = paid.loan_info_id
+		where asset.special_program_id in (<foreach collection="specialProgramIds" separator="," item="specialProgramId" >#{specialProgramId}</foreach>)
+			and paid.paid_date = #{date}
+			and asset.asset_pool_status = 'ENTERED'
+		group by asset.special_program_id
+	</select>
+
+	<select id="queryAccountAmountByUnderlyingAssetIds" resultType="com.cana.vbam.common.asset.underlyingasset.dto.UnderlyingAssetAmountSummary">
+		select asset.id as id,
+			sum( COALESCE(plan.account_principal, 0)) as account_principal,
+			sum( COALESCE(plan.account_interest, 0)) as account_interest,
+			sum( COALESCE(plan.account_overdue, 0)) as account_overdue
+		from asset_underlying_asset asset 
+		left join asset_loan_plan plan on asset.id = plan.loan_info_id
+		where asset.id in (<foreach collection="underlyingAssetIds" separator="," item="underlyingAssetId" >#{underlyingAssetId}</foreach>)
+			and plan.repayment_date = #{date}
+			and asset.asset_pool_status = 'ENTERED'
+		group by asset.id
+	</select>
+
+	<select id="queryPaidAmountByUnderlyingAssetIds" resultType="com.cana.vbam.common.asset.underlyingasset.dto.UnderlyingAssetAmountSummary">
+		select asset.id as id,
+			sum( COALESCE(paid.paid_principal, 0)) as paid_principal,
+			sum( COALESCE(paid.paid_interest, 0)) as paid_interest,
+			sum( COALESCE(paid.paid_overdue, 0)) as paid_overdue
+		from asset_underlying_asset asset 
+		left join asset_loan_paid paid on asset.id = paid.loan_info_id
+		where asset.id in (<foreach collection="underlyingAssetIds" separator="," item="underlyingAssetId" >#{underlyingAssetId}</foreach>)
+			and paid.paid_date = #{date}
+			and asset.asset_pool_status = 'ENTERED'
+		group by asset.id
+	</select>
+
+	<sql id="queryFactorLoanForUnderlyingAssetWhereClause" >
+		where asset.id is null
+			and loan.factor_id = #{factorId}
+		<if test = "loanInfoId != null">
+			and loan.id like #{loanInfoId, jdbcType=VARCHAR}
+		</if>
+		<if test = "financeBalanceCentLower != null">
+			and loan.finance_balance >= #{financeBalanceCentLower}
+		</if>
+		<if test = "financeBalanceCentUpper != null">
+			and loan.finance_balance &lt;= #{financeBalanceCentUpper}
+		</if>
+		<if test = "dueDateBegin != null and dueDateBegin != ''">
+			and loan.due_date >= #{dueDateBegin}
+		</if>
+		<if test = "dueDateEnd != null and dueDateEnd != ''">
+			and loan.due_date &lt;= #{dueDateEnd}
+		</if>
+	</sql>
+
+	<select id="queryFactorLoanForUnderlyingAsset" resultType="com.cana.asset.dao.po.LoanInfo"
+		parameterType="com.cana.vbam.common.asset.underlyingasset.dto.QueryFactorLoanForUnderlyingAssetRequest">
+		select loan.* from asset_loan_info loan 
+		left join asset_underlying_asset asset on asset.id = loan.id 
+
+		<include refid="queryFactorLoanForUnderlyingAssetWhereClause" />
+
+		order by loan.update_time desc
+		<if test="page >= 1" >
+       		limit ${(page -1) * pageSize} , #{pageSize}
+    	</if>
+	</select>
+
+	<select id="countFactorLoanForUnderlyingAsset" resultType="int"
+		parameterType="com.cana.vbam.common.asset.underlyingasset.dto.QueryFactorLoanForUnderlyingAssetRequest">
+		select count(loan.id) from asset_loan_info loan 
+		left join asset_underlying_asset asset on asset.id = loan.id 
+
+		<include refid="queryFactorLoanForUnderlyingAssetWhereClause" />
+	</select>
+</mapper>

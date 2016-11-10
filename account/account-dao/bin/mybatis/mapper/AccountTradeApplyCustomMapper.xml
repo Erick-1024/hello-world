@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.account.dao.mapper.AccountTradeApplyCustomMapper" >
+
+  <select id="find" resultMap="com.cana.account.dao.mapper.gen.AccountTradeApplyMapper.BaseResultMap"
+  	      parameterType="com.cana.vbam.common.account.dto.AccountTradeApplyQueryCriteria" >
+    select
+    <include refid="com.cana.account.dao.mapper.gen.AccountTradeApplyMapper.Base_Column_List" />
+    from account_trade_apply
+    <include refid="Where_Clause" />
+    order by id desc
+    limit ${(page-1)*pageSize}, ${pageSize}
+  </select>
+
+  <select id="count" parameterType="com.cana.vbam.common.account.dto.AccountTradeApplyQueryCriteria"
+  		  resultType="java.lang.Integer" >
+    select count(*) from account_trade_apply
+    <include refid="Where_Clause" />
+  </select>
+
+  <sql id="Where_Clause" >
+    <where >
+      <if test="tradeApplyId != null">
+        and id = #{tradeApplyId,jdbcType=VARCHAR}
+      </if>
+      <if test="accountName != null">
+        and account_name like #{accountName,jdbcType=VARCHAR}
+      </if>
+      <if test="accountNo != null">
+        and account_no = #{accountNo,jdbcType=VARCHAR}
+      </if>
+      <if test="applyCompanyName != null">
+        and apply_company_name like #{applyCompanyName, jdbcType=VARCHAR}
+      </if>
+      <if test="applyType != null">
+        and trade_type = #{applyType,jdbcType=VARCHAR}
+      </if>
+      <if test="applyStatus != null">
+        and status = #{applyStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="startTime != null">
+        and create_time <![CDATA[ >= ]]> #{startTime, jdbcType=TIMESTAMP}
+      </if>
+      <if test="endTime != null">
+        and create_time <![CDATA[ < ]]> #{endTime, jdbcType=TIMESTAMP}
+      </if>
+      <if test="companyId != null">
+        and (apply_company_id = #{companyId,jdbcType=VARCHAR}
+        	or audit_company_id = #{companyId,jdbcType=VARCHAR})
+      </if>
+      <if test="applyCompanyId != null">
+        and apply_company_id = #{applyCompanyId,jdbcType=VARCHAR}
+      </if>
+      <if test="auditCompanyId != null">
+        and audit_company_id = #{auditCompanyId,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </sql>
+</mapper>

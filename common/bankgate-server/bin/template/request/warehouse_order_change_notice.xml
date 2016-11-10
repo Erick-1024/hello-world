@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLPTSTAN</action>
+	<userName></userName><!--登录名 varchar(30) -->
+	<mctNo></mctNo><!--商户编号char(8) -->
+	<operation></operation><!--仓单变更操作 00：申请出质 varchar(2) -->
+	<list name="whRptList">
+		<row>
+			<stockNo></stockNo><!--仓单编号varchar(20) -->
+		</row>
+	</list>
+</stream>

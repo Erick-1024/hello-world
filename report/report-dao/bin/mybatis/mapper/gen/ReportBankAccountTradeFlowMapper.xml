@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.report.dao.mapper.gen.ReportBankAccountTradeFlowMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.report.dao.po.ReportBankAccountTradeFlow" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="main_account_no" property="mainAccountNo" jdbcType="VARCHAR" />
+    <result column="bank_user_name" property="bankUserName" jdbcType="VARCHAR" />
+    <result column="account_no" property="accountNo" jdbcType="VARCHAR" />
+    <result column="supervision_status" property="supervisionStatus" jdbcType="VARCHAR" />
+    <result column="trade_type" property="tradeType" jdbcType="VARCHAR" />
+    <result column="trade_date" property="tradeDate" jdbcType="CHAR" />
+    <result column="trade_time" property="tradeTime" jdbcType="CHAR" />
+    <result column="trade_state" property="tradeState" jdbcType="VARCHAR" />
+    <result column="trade_amount" property="tradeAmount" jdbcType="DECIMAL" />
+    <result column="trade_fee" property="tradeFee" jdbcType="DECIMAL" />
+    <result column="opposite_account_no" property="oppositeAccountNo" jdbcType="VARCHAR" />
+    <result column="opposite_account_name" property="oppositeAccountName" jdbcType="VARCHAR" />
+    <result column="cash_transferF_flag" property="cashTransferfFlag" jdbcType="VARCHAR" />
+    <result column="account_balance" property="accountBalance" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, customer_id, main_account_no, bank_user_name, account_no, supervision_status, 
+    trade_type, trade_date, trade_time, trade_state, trade_amount, trade_fee, opposite_account_no, 
+    opposite_account_name, cash_transferF_flag, account_balance, create_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.report.dao.po.ReportBankAccountTradeFlowExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from report_bank_account_trade_flow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from report_bank_account_trade_flow
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from report_bank_account_trade_flow
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.report.dao.po.ReportBankAccountTradeFlowExample" >
+    delete from report_bank_account_trade_flow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.report.dao.po.ReportBankAccountTradeFlow" useGeneratedKeys="true" keyProperty="id" >
+    insert into report_bank_account_trade_flow (customer_id, main_account_no, bank_user_name, 
+      account_no, supervision_status, trade_type, 
+      trade_date, trade_time, trade_state, 
+      trade_amount, trade_fee, opposite_account_no, 
+      opposite_account_name, cash_transferF_flag, 
+      account_balance, create_time)
+    values (#{customerId,jdbcType=VARCHAR}, #{mainAccountNo,jdbcType=VARCHAR}, #{bankUserName,jdbcType=VARCHAR}, 
+      #{accountNo,jdbcType=VARCHAR}, #{supervisionStatus,jdbcType=VARCHAR}, #{tradeType,jdbcType=VARCHAR}, 
+      #{tradeDate,jdbcType=CHAR}, #{tradeTime,jdbcType=CHAR}, #{tradeState,jdbcType=VARCHAR}, 
+      #{tradeAmount,jdbcType=DECIMAL}, #{tradeFee,jdbcType=DECIMAL}, #{oppositeAccountNo,jdbcType=VARCHAR}, 
+      #{oppositeAccountName,jdbcType=VARCHAR}, #{cashTransferfFlag,jdbcType=VARCHAR}, 
+      #{accountBalance,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.report.dao.po.ReportBankAccountTradeFlow" useGeneratedKeys="true" keyProperty="id" >
+    insert into report_bank_account_trade_flow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="mainAccountNo != null" >
+        main_account_no,
+      </if>
+      <if test="bankUserName != null" >
+        bank_user_name,
+      </if>
+      <if test="accountNo != null" >
+        account_no,
+      </if>
+      <if test="supervisionStatus != null" >
+        supervision_status,
+      </if>
+      <if test="tradeType != null" >
+        trade_type,
+      </if>
+      <if test="tradeDate != null" >
+        trade_date,
+      </if>
+      <if test="tradeTime != null" >
+        trade_time,
+      </if>
+      <if test="tradeState != null" >
+        trade_state,
+      </if>
+      <if test="tradeAmount != null" >
+        trade_amount,
+      </if>
+      <if test="tradeFee != null" >
+        trade_fee,
+      </if>
+      <if test="oppositeAccountNo != null" >
+        opposite_account_no,
+      </if>
+      <if test="oppositeAccountName != null" >
+        opposite_account_name,
+      </if>
+      <if test="cashTransferfFlag != null" >
+        cash_transferF_flag,
+      </if>
+      <if test="accountBalance != null" >
+        account_balance,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="mainAccountNo != null" >
+        #{mainAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankUserName != null" >
+        #{bankUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null" >
+        #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="supervisionStatus != null" >
+        #{supervisionStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null" >
+        #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeDate != null" >
+        #{tradeDate,jdbcType=CHAR},
+      </if>
+      <if test="tradeTime != null" >
+        #{tradeTime,jdbcType=CHAR},
+      </if>
+      <if test="tradeState != null" >
+        #{tradeState,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeAmount != null" >
+        #{tradeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeFee != null" >
+        #{tradeFee,jdbcType=DECIMAL},
+      </if>
+      <if test="oppositeAccountNo != null" >
+        #{oppositeAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oppositeAccountName != null" >
+        #{oppositeAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="cashTransferfFlag != null" >
+        #{cashTransferfFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBalance != null" >
+        #{accountBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.report.dao.po.ReportBankAccountTradeFlowExample" resultType="java.lang.Integer" >
+    select count(*) from report_bank_account_trade_flow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update report_bank_account_trade_flow
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.customerId != null" >
+        customer_id = #{record.customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainAccountNo != null" >
+        main_account_no = #{record.mainAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankUserName != null" >
+        bank_user_name = #{record.bankUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountNo != null" >
+        account_no = #{record.accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supervisionStatus != null" >
+        supervision_status = #{record.supervisionStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradeType != null" >
+        trade_type = #{record.tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradeDate != null" >
+        trade_date = #{record.tradeDate,jdbcType=CHAR},
+      </if>
+      <if test="record.tradeTime != null" >
+        trade_time = #{record.tradeTime,jdbcType=CHAR},
+      </if>
+      <if test="record.tradeState != null" >
+        trade_state = #{record.tradeState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradeAmount != null" >
+        trade_amount = #{record.tradeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tradeFee != null" >
+        trade_fee = #{record.tradeFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.oppositeAccountNo != null" >
+        opposite_account_no = #{record.oppositeAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oppositeAccountName != null" >
+        opposite_account_name = #{record.oppositeAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cashTransferfFlag != null" >
+        cash_transferF_flag = #{record.cashTransferfFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountBalance != null" >
+        account_balance = #{record.accountBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update report_bank_account_trade_flow
+    set id = #{record.id,jdbcType=INTEGER},
+      customer_id = #{record.customerId,jdbcType=VARCHAR},
+      main_account_no = #{record.mainAccountNo,jdbcType=VARCHAR},
+      bank_user_name = #{record.bankUserName,jdbcType=VARCHAR},
+      account_no = #{record.accountNo,jdbcType=VARCHAR},
+      supervision_status = #{record.supervisionStatus,jdbcType=VARCHAR},
+      trade_type = #{record.tradeType,jdbcType=VARCHAR},
+      trade_date = #{record.tradeDate,jdbcType=CHAR},
+      trade_time = #{record.tradeTime,jdbcType=CHAR},
+      trade_state = #{record.tradeState,jdbcType=VARCHAR},
+      trade_amount = #{record.tradeAmount,jdbcType=DECIMAL},
+      trade_fee = #{record.tradeFee,jdbcType=DECIMAL},
+      opposite_account_no = #{record.oppositeAccountNo,jdbcType=VARCHAR},
+      opposite_account_name = #{record.oppositeAccountName,jdbcType=VARCHAR},
+      cash_transferF_flag = #{record.cashTransferfFlag,jdbcType=VARCHAR},
+      account_balance = #{record.accountBalance,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.report.dao.po.ReportBankAccountTradeFlow" >
+    update report_bank_account_trade_flow
+    <set >
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="mainAccountNo != null" >
+        main_account_no = #{mainAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankUserName != null" >
+        bank_user_name = #{bankUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null" >
+        account_no = #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="supervisionStatus != null" >
+        supervision_status = #{supervisionStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null" >
+        trade_type = #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeDate != null" >
+        trade_date = #{tradeDate,jdbcType=CHAR},
+      </if>
+      <if test="tradeTime != null" >
+        trade_time = #{tradeTime,jdbcType=CHAR},
+      </if>
+      <if test="tradeState != null" >
+        trade_state = #{tradeState,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeAmount != null" >
+        trade_amount = #{tradeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeFee != null" >
+        trade_fee = #{tradeFee,jdbcType=DECIMAL},
+      </if>
+      <if test="oppositeAccountNo != null" >
+        opposite_account_no = #{oppositeAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oppositeAccountName != null" >
+        opposite_account_name = #{oppositeAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="cashTransferfFlag != null" >
+        cash_transferF_flag = #{cashTransferfFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBalance != null" >
+        account_balance = #{accountBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.report.dao.po.ReportBankAccountTradeFlow" >
+    update report_bank_account_trade_flow
+    set customer_id = #{customerId,jdbcType=VARCHAR},
+      main_account_no = #{mainAccountNo,jdbcType=VARCHAR},
+      bank_user_name = #{bankUserName,jdbcType=VARCHAR},
+      account_no = #{accountNo,jdbcType=VARCHAR},
+      supervision_status = #{supervisionStatus,jdbcType=VARCHAR},
+      trade_type = #{tradeType,jdbcType=VARCHAR},
+      trade_date = #{tradeDate,jdbcType=CHAR},
+      trade_time = #{tradeTime,jdbcType=CHAR},
+      trade_state = #{tradeState,jdbcType=VARCHAR},
+      trade_amount = #{tradeAmount,jdbcType=DECIMAL},
+      trade_fee = #{tradeFee,jdbcType=DECIMAL},
+      opposite_account_no = #{oppositeAccountNo,jdbcType=VARCHAR},
+      opposite_account_name = #{oppositeAccountName,jdbcType=VARCHAR},
+      cash_transferF_flag = #{cashTransferfFlag,jdbcType=VARCHAR},
+      account_balance = #{accountBalance,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from report_bank_account_trade_flow
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.report.dao.po.ReportBankAccountTradeFlowExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from report_bank_account_trade_flow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

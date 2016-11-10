@@ -1,0 +1,12 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+
+
+jar {
+	baseName =  'framework-retry'
+}
+
+dependencies {
+	compile project(':framework:framework-dao-base')
+}

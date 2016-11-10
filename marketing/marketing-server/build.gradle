@@ -1,0 +1,15 @@
+apply plugin: 'application'
+
+dependencies {
+	compile project(':framework:framework-base')
+	compile project(':framework:framework-dubbo-support')
+	compile project(':marketing:marketing-api')
+	compile project(':framework:framework-redis')
+	compile project(':marketing:marketing-service')
+	compile project(':marketing:marketing-dao')
+	compile project(':common:common-dao')
+}
+
+mainClassName = 'com.cana.marketing.server.main.MarketingServerMain'
+
+applicationDefaultJvmArgs = ["-server", "-Xms256m", "-Xmx2048m", "-XX:MaxPermSize=512m", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=12503", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false"]

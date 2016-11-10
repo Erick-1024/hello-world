@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.bankgate.server.mapper.gen.BankgateTransMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.bankgate.server.po.BankgateTrans" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="origin_id" property="originId" jdbcType="VARCHAR" />
+    <result column="trans_date" property="transDate" jdbcType="CHAR" />
+    <result column="trans_type" property="transType" jdbcType="VARCHAR" />
+    <result column="business_type" property="businessType" jdbcType="VARCHAR" />
+    <result column="business_seq" property="businessSeq" jdbcType="VARCHAR" />
+    <result column="gate_seq" property="gateSeq" jdbcType="VARCHAR" />
+    <result column="bank_seq" property="bankSeq" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="bank_check_date" property="bankCheckDate" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="bank_user_name" property="bankUserName" jdbcType="VARCHAR" />
+    <result column="main_account_no" property="mainAccountNo" jdbcType="VARCHAR" />
+    <result column="account_no" property="accountNo" jdbcType="VARCHAR" />
+    <result column="receive_account_no" property="receiveAccountNo" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, origin_id, trans_date, trans_type, business_type, business_seq, gate_seq, bank_seq, 
+    amount, bank_check_date, status, bank_user_name, main_account_no, account_no, receive_account_no, 
+    create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.bankgate.server.po.BankgateTransExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from common_bankgate_trans
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from common_bankgate_trans
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from common_bankgate_trans
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.bankgate.server.po.BankgateTransExample" >
+    delete from common_bankgate_trans
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.bankgate.server.po.BankgateTrans" >
+    insert into common_bankgate_trans (id, origin_id, trans_date, 
+      trans_type, business_type, business_seq, 
+      gate_seq, bank_seq, amount, 
+      bank_check_date, status, bank_user_name, 
+      main_account_no, account_no, receive_account_no, 
+      create_time, update_time)
+    values (#{id,jdbcType=VARCHAR}, #{originId,jdbcType=VARCHAR}, #{transDate,jdbcType=CHAR}, 
+      #{transType,jdbcType=VARCHAR}, #{businessType,jdbcType=VARCHAR}, #{businessSeq,jdbcType=VARCHAR}, 
+      #{gateSeq,jdbcType=VARCHAR}, #{bankSeq,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
+      #{bankCheckDate,jdbcType=CHAR}, #{status,jdbcType=VARCHAR}, #{bankUserName,jdbcType=VARCHAR}, 
+      #{mainAccountNo,jdbcType=VARCHAR}, #{accountNo,jdbcType=VARCHAR}, #{receiveAccountNo,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.bankgate.server.po.BankgateTrans" >
+    insert into common_bankgate_trans
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="originId != null" >
+        origin_id,
+      </if>
+      <if test="transDate != null" >
+        trans_date,
+      </if>
+      <if test="transType != null" >
+        trans_type,
+      </if>
+      <if test="businessType != null" >
+        business_type,
+      </if>
+      <if test="businessSeq != null" >
+        business_seq,
+      </if>
+      <if test="gateSeq != null" >
+        gate_seq,
+      </if>
+      <if test="bankSeq != null" >
+        bank_seq,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="bankCheckDate != null" >
+        bank_check_date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="bankUserName != null" >
+        bank_user_name,
+      </if>
+      <if test="mainAccountNo != null" >
+        main_account_no,
+      </if>
+      <if test="accountNo != null" >
+        account_no,
+      </if>
+      <if test="receiveAccountNo != null" >
+        receive_account_no,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="originId != null" >
+        #{originId,jdbcType=VARCHAR},
+      </if>
+      <if test="transDate != null" >
+        #{transDate,jdbcType=CHAR},
+      </if>
+      <if test="transType != null" >
+        #{transType,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null" >
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="businessSeq != null" >
+        #{businessSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="gateSeq != null" >
+        #{gateSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="bankSeq != null" >
+        #{bankSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="bankCheckDate != null" >
+        #{bankCheckDate,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="bankUserName != null" >
+        #{bankUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="mainAccountNo != null" >
+        #{mainAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null" >
+        #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveAccountNo != null" >
+        #{receiveAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.bankgate.server.po.BankgateTransExample" resultType="java.lang.Integer" >
+    select count(*) from common_bankgate_trans
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update common_bankgate_trans
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.originId != null" >
+        origin_id = #{record.originId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transDate != null" >
+        trans_date = #{record.transDate,jdbcType=CHAR},
+      </if>
+      <if test="record.transType != null" >
+        trans_type = #{record.transType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessType != null" >
+        business_type = #{record.businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessSeq != null" >
+        business_seq = #{record.businessSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gateSeq != null" >
+        gate_seq = #{record.gateSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankSeq != null" >
+        bank_seq = #{record.bankSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null" >
+        amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bankCheckDate != null" >
+        bank_check_date = #{record.bankCheckDate,jdbcType=CHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankUserName != null" >
+        bank_user_name = #{record.bankUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainAccountNo != null" >
+        main_account_no = #{record.mainAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountNo != null" >
+        account_no = #{record.accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveAccountNo != null" >
+        receive_account_no = #{record.receiveAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update common_bankgate_trans
+    set id = #{record.id,jdbcType=VARCHAR},
+      origin_id = #{record.originId,jdbcType=VARCHAR},
+      trans_date = #{record.transDate,jdbcType=CHAR},
+      trans_type = #{record.transType,jdbcType=VARCHAR},
+      business_type = #{record.businessType,jdbcType=VARCHAR},
+      business_seq = #{record.businessSeq,jdbcType=VARCHAR},
+      gate_seq = #{record.gateSeq,jdbcType=VARCHAR},
+      bank_seq = #{record.bankSeq,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=DECIMAL},
+      bank_check_date = #{record.bankCheckDate,jdbcType=CHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      bank_user_name = #{record.bankUserName,jdbcType=VARCHAR},
+      main_account_no = #{record.mainAccountNo,jdbcType=VARCHAR},
+      account_no = #{record.accountNo,jdbcType=VARCHAR},
+      receive_account_no = #{record.receiveAccountNo,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.bankgate.server.po.BankgateTrans" >
+    update common_bankgate_trans
+    <set >
+      <if test="originId != null" >
+        origin_id = #{originId,jdbcType=VARCHAR},
+      </if>
+      <if test="transDate != null" >
+        trans_date = #{transDate,jdbcType=CHAR},
+      </if>
+      <if test="transType != null" >
+        trans_type = #{transType,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null" >
+        business_type = #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="businessSeq != null" >
+        business_seq = #{businessSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="gateSeq != null" >
+        gate_seq = #{gateSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="bankSeq != null" >
+        bank_seq = #{bankSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="bankCheckDate != null" >
+        bank_check_date = #{bankCheckDate,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="bankUserName != null" >
+        bank_user_name = #{bankUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="mainAccountNo != null" >
+        main_account_no = #{mainAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null" >
+        account_no = #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveAccountNo != null" >
+        receive_account_no = #{receiveAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.bankgate.server.po.BankgateTrans" >
+    update common_bankgate_trans
+    set origin_id = #{originId,jdbcType=VARCHAR},
+      trans_date = #{transDate,jdbcType=CHAR},
+      trans_type = #{transType,jdbcType=VARCHAR},
+      business_type = #{businessType,jdbcType=VARCHAR},
+      business_seq = #{businessSeq,jdbcType=VARCHAR},
+      gate_seq = #{gateSeq,jdbcType=VARCHAR},
+      bank_seq = #{bankSeq,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      bank_check_date = #{bankCheckDate,jdbcType=CHAR},
+      status = #{status,jdbcType=VARCHAR},
+      bank_user_name = #{bankUserName,jdbcType=VARCHAR},
+      main_account_no = #{mainAccountNo,jdbcType=VARCHAR},
+      account_no = #{accountNo,jdbcType=VARCHAR},
+      receive_account_no = #{receiveAccountNo,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from common_bankgate_trans
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.bankgate.server.po.BankgateTransExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from common_bankgate_trans
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

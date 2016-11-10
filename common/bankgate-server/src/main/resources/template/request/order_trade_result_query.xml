@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLPGOSTT</action>
+	<userName></userName><!--登录名 varchar(30) -->
+	<mctNo></mctNo><!--商户编号varchar(8) -->
+	<mctJnlNo></mctJnlNo><!--商户流水号varchar(20) -->
+</stream>

@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.account.dao.mapper.gen.AccountTradeApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.account.dao.po.AccountTradeApply" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="account_id" property="accountId" jdbcType="VARCHAR" />
+    <result column="account_no" property="accountNo" jdbcType="VARCHAR" />
+    <result column="account_name" property="accountName" jdbcType="VARCHAR" />
+    <result column="trade_type" property="tradeType" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="opposite_account_id" property="oppositeAccountId" jdbcType="VARCHAR" />
+    <result column="opposite_account_no" property="oppositeAccountNo" jdbcType="VARCHAR" />
+    <result column="opposite_account_name" property="oppositeAccountName" jdbcType="VARCHAR" />
+    <result column="withdraw_bank" property="withdrawBank" jdbcType="VARCHAR" />
+    <result column="lian_hang_no" property="lianHangNo" jdbcType="VARCHAR" />
+    <result column="withdraw_bank_address" property="withdrawBankAddress" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="charge" property="charge" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="apply_company_id" property="applyCompanyId" jdbcType="VARCHAR" />
+    <result column="apply_company_name" property="applyCompanyName" jdbcType="VARCHAR" />
+    <result column="audit_company_id" property="auditCompanyId" jdbcType="VARCHAR" />
+    <result column="audit_user_id" property="auditUserId" jdbcType="VARCHAR" />
+    <result column="audit_message" property="auditMessage" jdbcType="VARCHAR" />
+    <result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="is_remove_all_supervision" property="isRemoveAllSupervision" jdbcType="BIT" />
+    <result column="special_account_ids" property="specialAccountIds" jdbcType="VARCHAR" />
+    <result column="remove_special_account_ids" property="removeSpecialAccountIds" jdbcType="VARCHAR" />
+    <result column="is_default_repayment" property="isDefaultRepayment" jdbcType="BIT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, account_id, account_no, account_name, trade_type, status, opposite_account_id, 
+    opposite_account_no, opposite_account_name, withdraw_bank, lian_hang_no, withdraw_bank_address, 
+    amount, charge, create_time, apply_company_id, apply_company_name, audit_company_id, 
+    audit_user_id, audit_message, audit_time, is_remove_all_supervision, special_account_ids, 
+    remove_special_account_ids, is_default_repayment, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.account.dao.po.AccountTradeApplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from account_trade_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from account_trade_apply
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from account_trade_apply
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.account.dao.po.AccountTradeApplyExample" >
+    delete from account_trade_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.account.dao.po.AccountTradeApply" >
+    insert into account_trade_apply (id, account_id, account_no, 
+      account_name, trade_type, status, 
+      opposite_account_id, opposite_account_no, opposite_account_name, 
+      withdraw_bank, lian_hang_no, withdraw_bank_address, 
+      amount, charge, create_time, 
+      apply_company_id, apply_company_name, audit_company_id, 
+      audit_user_id, audit_message, audit_time, 
+      is_remove_all_supervision, special_account_ids, 
+      remove_special_account_ids, is_default_repayment, 
+      remark)
+    values (#{id,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, #{accountNo,jdbcType=VARCHAR}, 
+      #{accountName,jdbcType=VARCHAR}, #{tradeType,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{oppositeAccountId,jdbcType=VARCHAR}, #{oppositeAccountNo,jdbcType=VARCHAR}, #{oppositeAccountName,jdbcType=VARCHAR}, 
+      #{withdrawBank,jdbcType=VARCHAR}, #{lianHangNo,jdbcType=VARCHAR}, #{withdrawBankAddress,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{charge,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{applyCompanyId,jdbcType=VARCHAR}, #{applyCompanyName,jdbcType=VARCHAR}, #{auditCompanyId,jdbcType=VARCHAR}, 
+      #{auditUserId,jdbcType=VARCHAR}, #{auditMessage,jdbcType=VARCHAR}, #{auditTime,jdbcType=TIMESTAMP}, 
+      #{isRemoveAllSupervision,jdbcType=BIT}, #{specialAccountIds,jdbcType=VARCHAR}, 
+      #{removeSpecialAccountIds,jdbcType=VARCHAR}, #{isDefaultRepayment,jdbcType=BIT}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.account.dao.po.AccountTradeApply" >
+    insert into account_trade_apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="accountNo != null" >
+        account_no,
+      </if>
+      <if test="accountName != null" >
+        account_name,
+      </if>
+      <if test="tradeType != null" >
+        trade_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="oppositeAccountId != null" >
+        opposite_account_id,
+      </if>
+      <if test="oppositeAccountNo != null" >
+        opposite_account_no,
+      </if>
+      <if test="oppositeAccountName != null" >
+        opposite_account_name,
+      </if>
+      <if test="withdrawBank != null" >
+        withdraw_bank,
+      </if>
+      <if test="lianHangNo != null" >
+        lian_hang_no,
+      </if>
+      <if test="withdrawBankAddress != null" >
+        withdraw_bank_address,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="charge != null" >
+        charge,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="applyCompanyId != null" >
+        apply_company_id,
+      </if>
+      <if test="applyCompanyName != null" >
+        apply_company_name,
+      </if>
+      <if test="auditCompanyId != null" >
+        audit_company_id,
+      </if>
+      <if test="auditUserId != null" >
+        audit_user_id,
+      </if>
+      <if test="auditMessage != null" >
+        audit_message,
+      </if>
+      <if test="auditTime != null" >
+        audit_time,
+      </if>
+      <if test="isRemoveAllSupervision != null" >
+        is_remove_all_supervision,
+      </if>
+      <if test="specialAccountIds != null" >
+        special_account_ids,
+      </if>
+      <if test="removeSpecialAccountIds != null" >
+        remove_special_account_ids,
+      </if>
+      <if test="isDefaultRepayment != null" >
+        is_default_repayment,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null" >
+        #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null" >
+        #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="oppositeAccountId != null" >
+        #{oppositeAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="oppositeAccountNo != null" >
+        #{oppositeAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oppositeAccountName != null" >
+        #{oppositeAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawBank != null" >
+        #{withdrawBank,jdbcType=VARCHAR},
+      </if>
+      <if test="lianHangNo != null" >
+        #{lianHangNo,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawBankAddress != null" >
+        #{withdrawBankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="charge != null" >
+        #{charge,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyCompanyId != null" >
+        #{applyCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyCompanyName != null" >
+        #{applyCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="auditCompanyId != null" >
+        #{auditCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="auditUserId != null" >
+        #{auditUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="auditMessage != null" >
+        #{auditMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="auditTime != null" >
+        #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isRemoveAllSupervision != null" >
+        #{isRemoveAllSupervision,jdbcType=BIT},
+      </if>
+      <if test="specialAccountIds != null" >
+        #{specialAccountIds,jdbcType=VARCHAR},
+      </if>
+      <if test="removeSpecialAccountIds != null" >
+        #{removeSpecialAccountIds,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefaultRepayment != null" >
+        #{isDefaultRepayment,jdbcType=BIT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.account.dao.po.AccountTradeApplyExample" resultType="java.lang.Integer" >
+    select count(*) from account_trade_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update account_trade_apply
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountId != null" >
+        account_id = #{record.accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountNo != null" >
+        account_no = #{record.accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountName != null" >
+        account_name = #{record.accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradeType != null" >
+        trade_type = #{record.tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oppositeAccountId != null" >
+        opposite_account_id = #{record.oppositeAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oppositeAccountNo != null" >
+        opposite_account_no = #{record.oppositeAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oppositeAccountName != null" >
+        opposite_account_name = #{record.oppositeAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.withdrawBank != null" >
+        withdraw_bank = #{record.withdrawBank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lianHangNo != null" >
+        lian_hang_no = #{record.lianHangNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.withdrawBankAddress != null" >
+        withdraw_bank_address = #{record.withdrawBankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null" >
+        amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.charge != null" >
+        charge = #{record.charge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.applyCompanyId != null" >
+        apply_company_id = #{record.applyCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyCompanyName != null" >
+        apply_company_name = #{record.applyCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditCompanyId != null" >
+        audit_company_id = #{record.auditCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditUserId != null" >
+        audit_user_id = #{record.auditUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditMessage != null" >
+        audit_message = #{record.auditMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditTime != null" >
+        audit_time = #{record.auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isRemoveAllSupervision != null" >
+        is_remove_all_supervision = #{record.isRemoveAllSupervision,jdbcType=BIT},
+      </if>
+      <if test="record.specialAccountIds != null" >
+        special_account_ids = #{record.specialAccountIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeSpecialAccountIds != null" >
+        remove_special_account_ids = #{record.removeSpecialAccountIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDefaultRepayment != null" >
+        is_default_repayment = #{record.isDefaultRepayment,jdbcType=BIT},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update account_trade_apply
+    set id = #{record.id,jdbcType=VARCHAR},
+      account_id = #{record.accountId,jdbcType=VARCHAR},
+      account_no = #{record.accountNo,jdbcType=VARCHAR},
+      account_name = #{record.accountName,jdbcType=VARCHAR},
+      trade_type = #{record.tradeType,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      opposite_account_id = #{record.oppositeAccountId,jdbcType=VARCHAR},
+      opposite_account_no = #{record.oppositeAccountNo,jdbcType=VARCHAR},
+      opposite_account_name = #{record.oppositeAccountName,jdbcType=VARCHAR},
+      withdraw_bank = #{record.withdrawBank,jdbcType=VARCHAR},
+      lian_hang_no = #{record.lianHangNo,jdbcType=VARCHAR},
+      withdraw_bank_address = #{record.withdrawBankAddress,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=DECIMAL},
+      charge = #{record.charge,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      apply_company_id = #{record.applyCompanyId,jdbcType=VARCHAR},
+      apply_company_name = #{record.applyCompanyName,jdbcType=VARCHAR},
+      audit_company_id = #{record.auditCompanyId,jdbcType=VARCHAR},
+      audit_user_id = #{record.auditUserId,jdbcType=VARCHAR},
+      audit_message = #{record.auditMessage,jdbcType=VARCHAR},
+      audit_time = #{record.auditTime,jdbcType=TIMESTAMP},
+      is_remove_all_supervision = #{record.isRemoveAllSupervision,jdbcType=BIT},
+      special_account_ids = #{record.specialAccountIds,jdbcType=VARCHAR},
+      remove_special_account_ids = #{record.removeSpecialAccountIds,jdbcType=VARCHAR},
+      is_default_repayment = #{record.isDefaultRepayment,jdbcType=BIT},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.account.dao.po.AccountTradeApply" >
+    update account_trade_apply
+    <set >
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null" >
+        account_no = #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null" >
+        trade_type = #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="oppositeAccountId != null" >
+        opposite_account_id = #{oppositeAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="oppositeAccountNo != null" >
+        opposite_account_no = #{oppositeAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oppositeAccountName != null" >
+        opposite_account_name = #{oppositeAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawBank != null" >
+        withdraw_bank = #{withdrawBank,jdbcType=VARCHAR},
+      </if>
+      <if test="lianHangNo != null" >
+        lian_hang_no = #{lianHangNo,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawBankAddress != null" >
+        withdraw_bank_address = #{withdrawBankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="charge != null" >
+        charge = #{charge,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyCompanyId != null" >
+        apply_company_id = #{applyCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyCompanyName != null" >
+        apply_company_name = #{applyCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="auditCompanyId != null" >
+        audit_company_id = #{auditCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="auditUserId != null" >
+        audit_user_id = #{auditUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="auditMessage != null" >
+        audit_message = #{auditMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="auditTime != null" >
+        audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isRemoveAllSupervision != null" >
+        is_remove_all_supervision = #{isRemoveAllSupervision,jdbcType=BIT},
+      </if>
+      <if test="specialAccountIds != null" >
+        special_account_ids = #{specialAccountIds,jdbcType=VARCHAR},
+      </if>
+      <if test="removeSpecialAccountIds != null" >
+        remove_special_account_ids = #{removeSpecialAccountIds,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefaultRepayment != null" >
+        is_default_repayment = #{isDefaultRepayment,jdbcType=BIT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.account.dao.po.AccountTradeApply" >
+    update account_trade_apply
+    set account_id = #{accountId,jdbcType=VARCHAR},
+      account_no = #{accountNo,jdbcType=VARCHAR},
+      account_name = #{accountName,jdbcType=VARCHAR},
+      trade_type = #{tradeType,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      opposite_account_id = #{oppositeAccountId,jdbcType=VARCHAR},
+      opposite_account_no = #{oppositeAccountNo,jdbcType=VARCHAR},
+      opposite_account_name = #{oppositeAccountName,jdbcType=VARCHAR},
+      withdraw_bank = #{withdrawBank,jdbcType=VARCHAR},
+      lian_hang_no = #{lianHangNo,jdbcType=VARCHAR},
+      withdraw_bank_address = #{withdrawBankAddress,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      charge = #{charge,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      apply_company_id = #{applyCompanyId,jdbcType=VARCHAR},
+      apply_company_name = #{applyCompanyName,jdbcType=VARCHAR},
+      audit_company_id = #{auditCompanyId,jdbcType=VARCHAR},
+      audit_user_id = #{auditUserId,jdbcType=VARCHAR},
+      audit_message = #{auditMessage,jdbcType=VARCHAR},
+      audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      is_remove_all_supervision = #{isRemoveAllSupervision,jdbcType=BIT},
+      special_account_ids = #{specialAccountIds,jdbcType=VARCHAR},
+      remove_special_account_ids = #{removeSpecialAccountIds,jdbcType=VARCHAR},
+      is_default_repayment = #{isDefaultRepayment,jdbcType=BIT},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from account_trade_apply
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.account.dao.po.AccountTradeApplyExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from account_trade_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

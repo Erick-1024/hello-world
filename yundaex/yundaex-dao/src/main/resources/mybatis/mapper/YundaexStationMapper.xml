@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cana.yundaex.dao.mapper.YundaexStationMapper">
+	<select id="getAllTstationAndMaxStatmonth" resultType="com.cana.yundaex.common.dto.YundaexTstationSynDTO" parameterType="string">
+		select syn.station_no,syn.maxStatmonth FROM 
+		(select station_no,max(statmonth) maxStatmonth from yundaex_tstation_info group by `station_no`) syn 
+		where syn.maxStatmonth &lt; #{endDate}
+	</select>
+</mapper>

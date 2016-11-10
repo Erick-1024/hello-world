@@ -1,0 +1,5 @@
+apply from : 'common.settings.gradle'
+include 'marketing:marketing-server'
+include 'marketing:marketing-service'
+include 'marketing:marketing-dao'
+include 'marketing:marketing-api'

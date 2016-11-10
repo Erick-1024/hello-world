@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cana.repayment.dao.mapper.gen.RepaymentLoanInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cana.repayment.dao.po.RepaymentLoanInfo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="loan_no" property="loanNo" jdbcType="VARCHAR" />
+    <result column="business_mode" property="businessMode" jdbcType="VARCHAR" />
+    <result column="input_method" property="inputMethod" jdbcType="VARCHAR" />
+    <result column="business_contract_no" property="businessContractNo" jdbcType="VARCHAR" />
+    <result column="factor_id" property="factorId" jdbcType="VARCHAR" />
+    <result column="factor_company" property="factorCompany" jdbcType="VARCHAR" />
+    <result column="finance_id" property="financeId" jdbcType="VARCHAR" />
+    <result column="finance_company" property="financeCompany" jdbcType="VARCHAR" />
+    <result column="out_customer_id" property="outCustomerId" jdbcType="VARCHAR" />
+    <result column="out_customer_name" property="outCustomerName" jdbcType="VARCHAR" />
+    <result column="core_company_id" property="coreCompanyId" jdbcType="VARCHAR" />
+    <result column="core_company_name" property="coreCompanyName" jdbcType="VARCHAR" />
+    <result column="voucher_no" property="voucherNo" jdbcType="VARCHAR" />
+    <result column="currency" property="currency" jdbcType="VARCHAR" />
+    <result column="business_product" property="businessProduct" jdbcType="VARCHAR" />
+    <result column="business_product_id" property="businessProductId" jdbcType="VARCHAR" />
+    <result column="receivables_amount" property="receivablesAmount" jdbcType="DECIMAL" />
+    <result column="receivables_balance" property="receivablesBalance" jdbcType="DECIMAL" />
+    <result column="finance_amount" property="financeAmount" jdbcType="DECIMAL" />
+    <result column="finance_balance" property="financeBalance" jdbcType="DECIMAL" />
+    <result column="interest_rate" property="interestRate" jdbcType="DECIMAL" />
+    <result column="account_supervision_id" property="accountSupervisionId" jdbcType="VARCHAR" />
+    <result column="account_no" property="accountNo" jdbcType="VARCHAR" />
+    <result column="loan_date" property="loanDate" jdbcType="VARCHAR" />
+    <result column="due_date" property="dueDate" jdbcType="VARCHAR" />
+    <result column="repayment_method" property="repaymentMethod" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="upate_time" property="upateTime" jdbcType="TIMESTAMP" />
+    <result column="loan_period" property="loanPeriod" jdbcType="VARCHAR" />
+    <result column="loan_period_unit" property="loanPeriodUnit" jdbcType="VARCHAR" />
+    <result column="repayment_period" property="repaymentPeriod" jdbcType="INTEGER" />
+    <result column="paid_total_amount" property="paidTotalAmount" jdbcType="DECIMAL" />
+    <result column="settle_status" property="settleStatus" jdbcType="VARCHAR" />
+    <result column="interest_rate_unit" property="interestRateUnit" jdbcType="VARCHAR" />
+    <result column="change_type" property="changeType" jdbcType="VARCHAR" />
+    <result column="current_version" property="currentVersion" jdbcType="VARCHAR" />
+    <result column="last_version" property="lastVersion" jdbcType="VARCHAR" />
+    <result column="change_id" property="changeId" jdbcType="VARCHAR" />
+    <result column="extra_data" property="extraData" jdbcType="VARCHAR" />
+    <result column="active_repayment_status" property="activeRepaymentStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, loan_no, business_mode, input_method, business_contract_no, factor_id, factor_company, 
+    finance_id, finance_company, out_customer_id, out_customer_name, core_company_id, 
+    core_company_name, voucher_no, currency, business_product, business_product_id, receivables_amount, 
+    receivables_balance, finance_amount, finance_balance, interest_rate, account_supervision_id, 
+    account_no, loan_date, due_date, repayment_method, create_time, upate_time, loan_period, 
+    loan_period_unit, repayment_period, paid_total_amount, settle_status, interest_rate_unit, 
+    change_type, current_version, last_version, change_id, extra_data, active_repayment_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cana.repayment.dao.po.RepaymentLoanInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from repayment_loan_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+      <if test="limitStart >= 0" >
+        limit ${limitStart} , ${limitEnd}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from repayment_loan_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from repayment_loan_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cana.repayment.dao.po.RepaymentLoanInfoExample" >
+    delete from repayment_loan_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cana.repayment.dao.po.RepaymentLoanInfo" >
+    insert into repayment_loan_info (id, loan_no, business_mode, 
+      input_method, business_contract_no, factor_id, 
+      factor_company, finance_id, finance_company, 
+      out_customer_id, out_customer_name, core_company_id, 
+      core_company_name, voucher_no, currency, 
+      business_product, business_product_id, receivables_amount, 
+      receivables_balance, finance_amount, finance_balance, 
+      interest_rate, account_supervision_id, account_no, 
+      loan_date, due_date, repayment_method, 
+      create_time, upate_time, loan_period, 
+      loan_period_unit, repayment_period, paid_total_amount, 
+      settle_status, interest_rate_unit, change_type, 
+      current_version, last_version, change_id, 
+      extra_data, active_repayment_status)
+    values (#{id,jdbcType=VARCHAR}, #{loanNo,jdbcType=VARCHAR}, #{businessMode,jdbcType=VARCHAR}, 
+      #{inputMethod,jdbcType=VARCHAR}, #{businessContractNo,jdbcType=VARCHAR}, #{factorId,jdbcType=VARCHAR}, 
+      #{factorCompany,jdbcType=VARCHAR}, #{financeId,jdbcType=VARCHAR}, #{financeCompany,jdbcType=VARCHAR}, 
+      #{outCustomerId,jdbcType=VARCHAR}, #{outCustomerName,jdbcType=VARCHAR}, #{coreCompanyId,jdbcType=VARCHAR}, 
+      #{coreCompanyName,jdbcType=VARCHAR}, #{voucherNo,jdbcType=VARCHAR}, #{currency,jdbcType=VARCHAR}, 
+      #{businessProduct,jdbcType=VARCHAR}, #{businessProductId,jdbcType=VARCHAR}, #{receivablesAmount,jdbcType=DECIMAL}, 
+      #{receivablesBalance,jdbcType=DECIMAL}, #{financeAmount,jdbcType=DECIMAL}, #{financeBalance,jdbcType=DECIMAL}, 
+      #{interestRate,jdbcType=DECIMAL}, #{accountSupervisionId,jdbcType=VARCHAR}, #{accountNo,jdbcType=VARCHAR}, 
+      #{loanDate,jdbcType=VARCHAR}, #{dueDate,jdbcType=VARCHAR}, #{repaymentMethod,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{upateTime,jdbcType=TIMESTAMP}, #{loanPeriod,jdbcType=VARCHAR}, 
+      #{loanPeriodUnit,jdbcType=VARCHAR}, #{repaymentPeriod,jdbcType=INTEGER}, #{paidTotalAmount,jdbcType=DECIMAL}, 
+      #{settleStatus,jdbcType=VARCHAR}, #{interestRateUnit,jdbcType=VARCHAR}, #{changeType,jdbcType=VARCHAR}, 
+      #{currentVersion,jdbcType=VARCHAR}, #{lastVersion,jdbcType=VARCHAR}, #{changeId,jdbcType=VARCHAR}, 
+      #{extraData,jdbcType=VARCHAR}, #{activeRepaymentStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cana.repayment.dao.po.RepaymentLoanInfo" >
+    insert into repayment_loan_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="loanNo != null" >
+        loan_no,
+      </if>
+      <if test="businessMode != null" >
+        business_mode,
+      </if>
+      <if test="inputMethod != null" >
+        input_method,
+      </if>
+      <if test="businessContractNo != null" >
+        business_contract_no,
+      </if>
+      <if test="factorId != null" >
+        factor_id,
+      </if>
+      <if test="factorCompany != null" >
+        factor_company,
+      </if>
+      <if test="financeId != null" >
+        finance_id,
+      </if>
+      <if test="financeCompany != null" >
+        finance_company,
+      </if>
+      <if test="outCustomerId != null" >
+        out_customer_id,
+      </if>
+      <if test="outCustomerName != null" >
+        out_customer_name,
+      </if>
+      <if test="coreCompanyId != null" >
+        core_company_id,
+      </if>
+      <if test="coreCompanyName != null" >
+        core_company_name,
+      </if>
+      <if test="voucherNo != null" >
+        voucher_no,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="businessProduct != null" >
+        business_product,
+      </if>
+      <if test="businessProductId != null" >
+        business_product_id,
+      </if>
+      <if test="receivablesAmount != null" >
+        receivables_amount,
+      </if>
+      <if test="receivablesBalance != null" >
+        receivables_balance,
+      </if>
+      <if test="financeAmount != null" >
+        finance_amount,
+      </if>
+      <if test="financeBalance != null" >
+        finance_balance,
+      </if>
+      <if test="interestRate != null" >
+        interest_rate,
+      </if>
+      <if test="accountSupervisionId != null" >
+        account_supervision_id,
+      </if>
+      <if test="accountNo != null" >
+        account_no,
+      </if>
+      <if test="loanDate != null" >
+        loan_date,
+      </if>
+      <if test="dueDate != null" >
+        due_date,
+      </if>
+      <if test="repaymentMethod != null" >
+        repayment_method,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="upateTime != null" >
+        upate_time,
+      </if>
+      <if test="loanPeriod != null" >
+        loan_period,
+      </if>
+      <if test="loanPeriodUnit != null" >
+        loan_period_unit,
+      </if>
+      <if test="repaymentPeriod != null" >
+        repayment_period,
+      </if>
+      <if test="paidTotalAmount != null" >
+        paid_total_amount,
+      </if>
+      <if test="settleStatus != null" >
+        settle_status,
+      </if>
+      <if test="interestRateUnit != null" >
+        interest_rate_unit,
+      </if>
+      <if test="changeType != null" >
+        change_type,
+      </if>
+      <if test="currentVersion != null" >
+        current_version,
+      </if>
+      <if test="lastVersion != null" >
+        last_version,
+      </if>
+      <if test="changeId != null" >
+        change_id,
+      </if>
+      <if test="extraData != null" >
+        extra_data,
+      </if>
+      <if test="activeRepaymentStatus != null" >
+        active_repayment_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="loanNo != null" >
+        #{loanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="businessMode != null" >
+        #{businessMode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputMethod != null" >
+        #{inputMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="businessContractNo != null" >
+        #{businessContractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="factorId != null" >
+        #{factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="factorCompany != null" >
+        #{factorCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="financeId != null" >
+        #{financeId,jdbcType=VARCHAR},
+      </if>
+      <if test="financeCompany != null" >
+        #{financeCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="outCustomerId != null" >
+        #{outCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="outCustomerName != null" >
+        #{outCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="coreCompanyId != null" >
+        #{coreCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="coreCompanyName != null" >
+        #{coreCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherNo != null" >
+        #{voucherNo,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="businessProduct != null" >
+        #{businessProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="businessProductId != null" >
+        #{businessProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="receivablesAmount != null" >
+        #{receivablesAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="receivablesBalance != null" >
+        #{receivablesBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="financeAmount != null" >
+        #{financeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="financeBalance != null" >
+        #{financeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="interestRate != null" >
+        #{interestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="accountSupervisionId != null" >
+        #{accountSupervisionId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null" >
+        #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="loanDate != null" >
+        #{loanDate,jdbcType=VARCHAR},
+      </if>
+      <if test="dueDate != null" >
+        #{dueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentMethod != null" >
+        #{repaymentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upateTime != null" >
+        #{upateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loanPeriod != null" >
+        #{loanPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="loanPeriodUnit != null" >
+        #{loanPeriodUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentPeriod != null" >
+        #{repaymentPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="paidTotalAmount != null" >
+        #{paidTotalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="settleStatus != null" >
+        #{settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="interestRateUnit != null" >
+        #{interestRateUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="changeType != null" >
+        #{changeType,jdbcType=VARCHAR},
+      </if>
+      <if test="currentVersion != null" >
+        #{currentVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="lastVersion != null" >
+        #{lastVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="changeId != null" >
+        #{changeId,jdbcType=VARCHAR},
+      </if>
+      <if test="extraData != null" >
+        #{extraData,jdbcType=VARCHAR},
+      </if>
+      <if test="activeRepaymentStatus != null" >
+        #{activeRepaymentStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cana.repayment.dao.po.RepaymentLoanInfoExample" resultType="java.lang.Integer" >
+    select count(*) from repayment_loan_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update repayment_loan_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanNo != null" >
+        loan_no = #{record.loanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessMode != null" >
+        business_mode = #{record.businessMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inputMethod != null" >
+        input_method = #{record.inputMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessContractNo != null" >
+        business_contract_no = #{record.businessContractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factorId != null" >
+        factor_id = #{record.factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factorCompany != null" >
+        factor_company = #{record.factorCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financeId != null" >
+        finance_id = #{record.financeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financeCompany != null" >
+        finance_company = #{record.financeCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outCustomerId != null" >
+        out_customer_id = #{record.outCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outCustomerName != null" >
+        out_customer_name = #{record.outCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coreCompanyId != null" >
+        core_company_id = #{record.coreCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coreCompanyName != null" >
+        core_company_name = #{record.coreCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voucherNo != null" >
+        voucher_no = #{record.voucherNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currency != null" >
+        currency = #{record.currency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessProduct != null" >
+        business_product = #{record.businessProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessProductId != null" >
+        business_product_id = #{record.businessProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receivablesAmount != null" >
+        receivables_amount = #{record.receivablesAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.receivablesBalance != null" >
+        receivables_balance = #{record.receivablesBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.financeAmount != null" >
+        finance_amount = #{record.financeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.financeBalance != null" >
+        finance_balance = #{record.financeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.interestRate != null" >
+        interest_rate = #{record.interestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountSupervisionId != null" >
+        account_supervision_id = #{record.accountSupervisionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountNo != null" >
+        account_no = #{record.accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanDate != null" >
+        loan_date = #{record.loanDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dueDate != null" >
+        due_date = #{record.dueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repaymentMethod != null" >
+        repayment_method = #{record.repaymentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.upateTime != null" >
+        upate_time = #{record.upateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.loanPeriod != null" >
+        loan_period = #{record.loanPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanPeriodUnit != null" >
+        loan_period_unit = #{record.loanPeriodUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repaymentPeriod != null" >
+        repayment_period = #{record.repaymentPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.paidTotalAmount != null" >
+        paid_total_amount = #{record.paidTotalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.settleStatus != null" >
+        settle_status = #{record.settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.interestRateUnit != null" >
+        interest_rate_unit = #{record.interestRateUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.changeType != null" >
+        change_type = #{record.changeType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currentVersion != null" >
+        current_version = #{record.currentVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastVersion != null" >
+        last_version = #{record.lastVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.changeId != null" >
+        change_id = #{record.changeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extraData != null" >
+        extra_data = #{record.extraData,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activeRepaymentStatus != null" >
+        active_repayment_status = #{record.activeRepaymentStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update repayment_loan_info
+    set id = #{record.id,jdbcType=VARCHAR},
+      loan_no = #{record.loanNo,jdbcType=VARCHAR},
+      business_mode = #{record.businessMode,jdbcType=VARCHAR},
+      input_method = #{record.inputMethod,jdbcType=VARCHAR},
+      business_contract_no = #{record.businessContractNo,jdbcType=VARCHAR},
+      factor_id = #{record.factorId,jdbcType=VARCHAR},
+      factor_company = #{record.factorCompany,jdbcType=VARCHAR},
+      finance_id = #{record.financeId,jdbcType=VARCHAR},
+      finance_company = #{record.financeCompany,jdbcType=VARCHAR},
+      out_customer_id = #{record.outCustomerId,jdbcType=VARCHAR},
+      out_customer_name = #{record.outCustomerName,jdbcType=VARCHAR},
+      core_company_id = #{record.coreCompanyId,jdbcType=VARCHAR},
+      core_company_name = #{record.coreCompanyName,jdbcType=VARCHAR},
+      voucher_no = #{record.voucherNo,jdbcType=VARCHAR},
+      currency = #{record.currency,jdbcType=VARCHAR},
+      business_product = #{record.businessProduct,jdbcType=VARCHAR},
+      business_product_id = #{record.businessProductId,jdbcType=VARCHAR},
+      receivables_amount = #{record.receivablesAmount,jdbcType=DECIMAL},
+      receivables_balance = #{record.receivablesBalance,jdbcType=DECIMAL},
+      finance_amount = #{record.financeAmount,jdbcType=DECIMAL},
+      finance_balance = #{record.financeBalance,jdbcType=DECIMAL},
+      interest_rate = #{record.interestRate,jdbcType=DECIMAL},
+      account_supervision_id = #{record.accountSupervisionId,jdbcType=VARCHAR},
+      account_no = #{record.accountNo,jdbcType=VARCHAR},
+      loan_date = #{record.loanDate,jdbcType=VARCHAR},
+      due_date = #{record.dueDate,jdbcType=VARCHAR},
+      repayment_method = #{record.repaymentMethod,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      upate_time = #{record.upateTime,jdbcType=TIMESTAMP},
+      loan_period = #{record.loanPeriod,jdbcType=VARCHAR},
+      loan_period_unit = #{record.loanPeriodUnit,jdbcType=VARCHAR},
+      repayment_period = #{record.repaymentPeriod,jdbcType=INTEGER},
+      paid_total_amount = #{record.paidTotalAmount,jdbcType=DECIMAL},
+      settle_status = #{record.settleStatus,jdbcType=VARCHAR},
+      interest_rate_unit = #{record.interestRateUnit,jdbcType=VARCHAR},
+      change_type = #{record.changeType,jdbcType=VARCHAR},
+      current_version = #{record.currentVersion,jdbcType=VARCHAR},
+      last_version = #{record.lastVersion,jdbcType=VARCHAR},
+      change_id = #{record.changeId,jdbcType=VARCHAR},
+      extra_data = #{record.extraData,jdbcType=VARCHAR},
+      active_repayment_status = #{record.activeRepaymentStatus,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cana.repayment.dao.po.RepaymentLoanInfo" >
+    update repayment_loan_info
+    <set >
+      <if test="loanNo != null" >
+        loan_no = #{loanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="businessMode != null" >
+        business_mode = #{businessMode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputMethod != null" >
+        input_method = #{inputMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="businessContractNo != null" >
+        business_contract_no = #{businessContractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="factorId != null" >
+        factor_id = #{factorId,jdbcType=VARCHAR},
+      </if>
+      <if test="factorCompany != null" >
+        factor_company = #{factorCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="financeId != null" >
+        finance_id = #{financeId,jdbcType=VARCHAR},
+      </if>
+      <if test="financeCompany != null" >
+        finance_company = #{financeCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="outCustomerId != null" >
+        out_customer_id = #{outCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="outCustomerName != null" >
+        out_customer_name = #{outCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="coreCompanyId != null" >
+        core_company_id = #{coreCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="coreCompanyName != null" >
+        core_company_name = #{coreCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherNo != null" >
+        voucher_no = #{voucherNo,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="businessProduct != null" >
+        business_product = #{businessProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="businessProductId != null" >
+        business_product_id = #{businessProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="receivablesAmount != null" >
+        receivables_amount = #{receivablesAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="receivablesBalance != null" >
+        receivables_balance = #{receivablesBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="financeAmount != null" >
+        finance_amount = #{financeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="financeBalance != null" >
+        finance_balance = #{financeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="interestRate != null" >
+        interest_rate = #{interestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="accountSupervisionId != null" >
+        account_supervision_id = #{accountSupervisionId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null" >
+        account_no = #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="loanDate != null" >
+        loan_date = #{loanDate,jdbcType=VARCHAR},
+      </if>
+      <if test="dueDate != null" >
+        due_date = #{dueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentMethod != null" >
+        repayment_method = #{repaymentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upateTime != null" >
+        upate_time = #{upateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loanPeriod != null" >
+        loan_period = #{loanPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="loanPeriodUnit != null" >
+        loan_period_unit = #{loanPeriodUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentPeriod != null" >
+        repayment_period = #{repaymentPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="paidTotalAmount != null" >
+        paid_total_amount = #{paidTotalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="settleStatus != null" >
+        settle_status = #{settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="interestRateUnit != null" >
+        interest_rate_unit = #{interestRateUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="changeType != null" >
+        change_type = #{changeType,jdbcType=VARCHAR},
+      </if>
+      <if test="currentVersion != null" >
+        current_version = #{currentVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="lastVersion != null" >
+        last_version = #{lastVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="changeId != null" >
+        change_id = #{changeId,jdbcType=VARCHAR},
+      </if>
+      <if test="extraData != null" >
+        extra_data = #{extraData,jdbcType=VARCHAR},
+      </if>
+      <if test="activeRepaymentStatus != null" >
+        active_repayment_status = #{activeRepaymentStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cana.repayment.dao.po.RepaymentLoanInfo" >
+    update repayment_loan_info
+    set loan_no = #{loanNo,jdbcType=VARCHAR},
+      business_mode = #{businessMode,jdbcType=VARCHAR},
+      input_method = #{inputMethod,jdbcType=VARCHAR},
+      business_contract_no = #{businessContractNo,jdbcType=VARCHAR},
+      factor_id = #{factorId,jdbcType=VARCHAR},
+      factor_company = #{factorCompany,jdbcType=VARCHAR},
+      finance_id = #{financeId,jdbcType=VARCHAR},
+      finance_company = #{financeCompany,jdbcType=VARCHAR},
+      out_customer_id = #{outCustomerId,jdbcType=VARCHAR},
+      out_customer_name = #{outCustomerName,jdbcType=VARCHAR},
+      core_company_id = #{coreCompanyId,jdbcType=VARCHAR},
+      core_company_name = #{coreCompanyName,jdbcType=VARCHAR},
+      voucher_no = #{voucherNo,jdbcType=VARCHAR},
+      currency = #{currency,jdbcType=VARCHAR},
+      business_product = #{businessProduct,jdbcType=VARCHAR},
+      business_product_id = #{businessProductId,jdbcType=VARCHAR},
+      receivables_amount = #{receivablesAmount,jdbcType=DECIMAL},
+      receivables_balance = #{receivablesBalance,jdbcType=DECIMAL},
+      finance_amount = #{financeAmount,jdbcType=DECIMAL},
+      finance_balance = #{financeBalance,jdbcType=DECIMAL},
+      interest_rate = #{interestRate,jdbcType=DECIMAL},
+      account_supervision_id = #{accountSupervisionId,jdbcType=VARCHAR},
+      account_no = #{accountNo,jdbcType=VARCHAR},
+      loan_date = #{loanDate,jdbcType=VARCHAR},
+      due_date = #{dueDate,jdbcType=VARCHAR},
+      repayment_method = #{repaymentMethod,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      upate_time = #{upateTime,jdbcType=TIMESTAMP},
+      loan_period = #{loanPeriod,jdbcType=VARCHAR},
+      loan_period_unit = #{loanPeriodUnit,jdbcType=VARCHAR},
+      repayment_period = #{repaymentPeriod,jdbcType=INTEGER},
+      paid_total_amount = #{paidTotalAmount,jdbcType=DECIMAL},
+      settle_status = #{settleStatus,jdbcType=VARCHAR},
+      interest_rate_unit = #{interestRateUnit,jdbcType=VARCHAR},
+      change_type = #{changeType,jdbcType=VARCHAR},
+      current_version = #{currentVersion,jdbcType=VARCHAR},
+      last_version = #{lastVersion,jdbcType=VARCHAR},
+      change_id = #{changeId,jdbcType=VARCHAR},
+      extra_data = #{extraData,jdbcType=VARCHAR},
+      active_repayment_status = #{activeRepaymentStatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from repayment_loan_info
+    where id = #{id}  for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.cana.repayment.dao.po.RepaymentLoanInfoExample" >
+    select 
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from repayment_loan_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+       order by #{orderByClause} 
+    </if>
+    <if test="limitStart >= 0" >
+       limit #{limitStart} , #{limitEnd} 
+    </if>
+     for update 
+  </select>
+</mapper>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息varchar(254) -->
+	<tranAmt></tranAmt><!--交易金额decimal(15,2) -->
+	<principal></principal><!--还款本金decimal(15,2) -->
+	<interest></interest><!--还款利息decimal(15,2) -->
+</stream>

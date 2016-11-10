@@ -1,0 +1,316 @@
+package com.dianping.cat.report.alert.transaction;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.codehaus.plexus.logging.LogEnabled;
+import org.codehaus.plexus.logging.Logger;
+import org.codehaus.plexus.util.StringUtils;
+import org.unidal.helper.Splitters;
+import org.unidal.helper.Threads.Task;
+import org.unidal.lookup.annotation.Inject;
+import org.unidal.tuple.Pair;
+
+import com.dianping.cat.Cat;
+import com.dianping.cat.Constants;
+import com.dianping.cat.consumer.transaction.TransactionAnalyzer;
+import com.dianping.cat.consumer.transaction.model.entity.Range;
+import com.dianping.cat.consumer.transaction.model.entity.TransactionName;
+import com.dianping.cat.consumer.transaction.model.entity.TransactionReport;
+import com.dianping.cat.consumer.transaction.model.entity.TransactionType;
+import com.dianping.cat.helper.TimeHelper;
+import com.dianping.cat.home.rule.entity.Condition;
+import com.dianping.cat.home.rule.entity.Config;
+import com.dianping.cat.home.rule.entity.MonitorRules;
+import com.dianping.cat.home.rule.entity.Rule;
+import com.dianping.cat.message.Transaction;
+import com.dianping.cat.report.alert.AlertResultEntity;
+import com.dianping.cat.report.alert.AlertType;
+import com.dianping.cat.report.alert.DataChecker;
+import com.dianping.cat.report.alert.sender.AlertEntity;
+import com.dianping.cat.report.alert.sender.AlertManager;
+import com.dianping.cat.report.page.transaction.transform.TransactionMergeHelper;
+import com.dianping.cat.report.service.ModelPeriod;
+import com.dianping.cat.report.service.ModelRequest;
+import com.dianping.cat.report.service.ModelResponse;
+import com.dianping.cat.report.service.ModelService;
+
+public class TransactionAlert implements Task, LogEnabled {
+
+	@Inject(type = ModelService.class, value = TransactionAnalyzer.ID)
+	private ModelService<TransactionReport> m_service;
+
+	@Inject
+	private TransactionMergeHelper m_mergeHelper;
+
+	@Inject
+	protected TransactionRuleConfigManager m_ruleConfigManager;
+
+	@Inject
+	protected DataChecker m_dataChecker;
+
+	@Inject
+	protected AlertManager m_sendManager;
+
+	protected Logger m_logger;
+
+	private static String MIN = "min";
+
+	private static String MAX = "max";
+
+	private static String AVG = "avg";
+
+	private static String COUNT = "count";
+
+	private static final int DATA_AREADY_MINUTE = 1;
+
+	protected static final long DURATION = TimeHelper.ONE_MINUTE;
+
+/**
+ * 根据传入的条件，将report组装构建成需要进行对比的数据
+ * @param start 开始时间
+ * @param end 结束时间
+ * @param type transaction类型
+ * @param name 监控执行的方法，默认为all
+ * @param monitor 监控项：avg响应时间，count执行次数
+ * @param report transaction告警发生时所在的transaction报表时间段的报表
+ * @return transaction报表时间段的报表中符合传入条件的数据数组
+ * */
+
+	private double[] buildArrayData(int start, int end, String type, String name, String monitor,
+	      TransactionReport report) {
+		TransactionType t = report.findOrCreateMachine(Constants.ALL).findOrCreateType(type);
+		TransactionName transactionName = t.findOrCreateName(name);
+		Map<Integer, Range> range = transactionName.getRanges();
+		int length = end - start + 1;
+		double[] datas = new double[60];
+		double[] result = new double[length];
+
+		if (AVG.equalsIgnoreCase(monitor)) {
+			for (Entry<Integer, Range> entry : range.entrySet()) {
+				datas[entry.getKey()] = entry.getValue().getAvg();
+			}
+		} else if (COUNT.equalsIgnoreCase(monitor)) {
+			for (Entry<Integer, Range> entry : range.entrySet()) {
+				datas[entry.getKey()] = entry.getValue().getCount();
+			}
+		}
+		System.arraycopy(datas, start, result, 0, length);
+
+		return result;
+	}
+
+/**
+ * @return 当前小时从xx:01开始已经过去了几分钟
+ * */
+
+	protected int calAlreadyMinute() {
+		long current = (System.currentTimeMillis()) / 1000 / 60;
+		int minute = (int) (current % (60)) - DATA_AREADY_MINUTE;
+
+		return minute;
+	}
+
+/**
+ * 传入domain, type, name, monitor和监控规则配置，判断匹配计算后，返回告警内容
+ * @param domain 项目名
+ * @param type transaction类型
+ * @param name 监控执行的方法，默认为all
+ * @param monitor 监控项：avg响应时间，count执行次数
+ * @param configs 监控规则配置
+ * */
+
+	private List<AlertResultEntity> computeAlertForRule(String domain, String type, String name, String monitor,
+	      List<Config> configs) {
+		List<AlertResultEntity> results = new ArrayList<AlertResultEntity>();
+		Pair<Integer, List<Condition>> conditionPair = m_ruleConfigManager.convertConditions(configs);
+		int minute = calAlreadyMinute();
+		Map<String, String> pars = new HashMap<String, String>();
+
+		pars.put("type", type);
+		pars.put("name", name);
+
+		if (conditionPair != null) {
+			int maxMinute = conditionPair.getKey();
+			List<Condition> conditions = conditionPair.getValue();
+
+			if (StringUtils.isEmpty(name)) {
+				name = Constants.ALL;
+			}
+			if (minute >= maxMinute - 1) {
+				int start = minute + 1 - maxMinute;
+				int end = minute;
+
+				pars.put(MIN, String.valueOf(start));
+				pars.put(MAX, String.valueOf(end));
+
+				TransactionReport report = fetchTransactionReport(domain, ModelPeriod.CURRENT, pars);
+
+				if (report != null) {
+					double[] data = buildArrayData(start, end, type, name, monitor, report);
+
+					results.addAll(m_dataChecker.checkData(data, conditions));
+				}
+			} else if (minute < 0) {
+				int start = 60 + minute + 1 - (maxMinute);
+				int end = 60 + minute;
+
+				pars.put(MIN, String.valueOf(start));
+				pars.put(MAX, String.valueOf(end));
+
+				TransactionReport report = fetchTransactionReport(domain, ModelPeriod.LAST, pars);
+
+				if (report != null) {
+					double[] data = buildArrayData(start, end, type, name, monitor, report);
+
+					results.addAll(m_dataChecker.checkData(data, conditions));
+				}
+			} else {
+				int currentStart = 0, currentEnd = minute;
+				int lastStart = 60 + 1 - (maxMinute - minute);
+				int lastEnd = 59;
+
+				pars.put(MIN, String.valueOf(currentStart));
+				pars.put(MAX, String.valueOf(currentEnd));
+
+				TransactionReport currentReport = fetchTransactionReport(domain, ModelPeriod.CURRENT, pars);
+
+				pars.put(MIN, String.valueOf(lastStart));
+				pars.put(MAX, String.valueOf(lastEnd));
+
+				TransactionReport lastReport = fetchTransactionReport(domain, ModelPeriod.LAST, pars);
+
+				if (currentReport != null && lastReport != null) {
+					double[] currentValue = buildArrayData(currentStart, currentEnd, type, name, monitor, currentReport);
+
+					double[] lastValue = buildArrayData(lastStart, lastEnd, type, name, monitor, lastReport);
+
+					double[] data = mergerArray(lastValue, currentValue);
+					results.addAll(m_dataChecker.checkData(data, conditions));
+				}
+			}
+		}
+		return results;
+	}
+
+	@Override
+	public void enableLogging(Logger logger) {
+		m_logger = logger;
+	}
+
+/**
+ * 获取transaction告警发生时所在的transaction报表的监控内容
+ * @param domain 项目名
+ * @param period transaction模式，CURRENT（当前小时）或者LAST（上一个小时）
+ * @param pars transaction告警的type, name, starttime, endtime
+ * @return transaction告警发生时所在的transaction报表的监控内容
+ * */
+
+	private TransactionReport fetchTransactionReport(String domain, ModelPeriod period, Map<String, String> pars) {
+		ModelRequest request = new ModelRequest(domain, period.getStartTime()).setProperty("ip", Constants.ALL)
+		      .setProperty("requireAll", "true");
+
+		request.getProperties().putAll(pars);
+
+		ModelResponse<TransactionReport> response = m_service.invoke(request);
+
+		if (response != null) {
+			TransactionReport report = response.getModel();
+
+			return m_mergeHelper.mergeAllNames(report, Constants.ALL, pars.get("name"));
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public String getName() {
+		return AlertType.Transaction.getName();
+	}
+
+	protected double[] mergerArray(double[] from, double[] to) {
+		int fromLength = from.length;
+		int toLength = to.length;
+		double[] result = new double[fromLength + toLength];
+		int index = 0;
+
+		for (int i = 0; i < fromLength; i++) {
+			result[i] = from[i];
+			index++;
+		}
+		for (int i = 0; i < toLength; i++) {
+			result[i + index] = to[i];
+		}
+		return result;
+	}
+
+/**
+ * 针对具体的某一条transaction监控规则，取出domain, type, name, monitor和监控规则，
+ * 并计算的出告警结果，组装成告警信息并加入报警队列。
+ * @param rule 具体某一条transaction监控规则配置
+ * */
+
+	private void processRule(Rule rule) {
+		List<String> fields = Splitters.by(";").split(rule.getId());
+		String domain = fields.get(0);
+		String type = fields.get(1);
+		String name = fields.get(2);
+		String monitor = fields.get(3);
+
+		List<AlertResultEntity> alertResults = computeAlertForRule(domain, type, name, monitor, rule.getConfigs());
+		for (AlertResultEntity alertResult : alertResults) {
+			AlertEntity entity = new AlertEntity();
+
+			entity.setDate(alertResult.getAlertTime()).setContent(alertResult.getContent())
+			      .setLevel(alertResult.getAlertLevel());
+			entity.setMetric(type + "-" + name + "-" + monitor).setType(getName()).setGroup(domain);
+			m_sendManager.addAlert(entity);
+		}
+	}
+
+	@Override
+	public void run() {
+		boolean active = TimeHelper.sleepToNextMinute();
+
+		while (active) {
+			Transaction t = Cat.newTransaction("AlertTransaction", TimeHelper.getMinuteStr());
+			long current = System.currentTimeMillis();
+
+			try {
+				MonitorRules monitorRules = m_ruleConfigManager.getMonitorRules();
+				Map<String, Rule> rules = monitorRules.getRules();
+
+				for (Entry<String, Rule> entry : rules.entrySet()) {
+					try {
+						processRule(entry.getValue());
+					} catch (Exception e) {
+						Cat.logError(e);
+					}
+				}
+				t.setStatus(Transaction.SUCCESS);
+			} catch (Exception e) {
+				t.setStatus(e);
+				Cat.logError(e);
+			} finally {
+				t.complete();
+			}
+			long duration = System.currentTimeMillis() - current;
+
+			try {
+				if (duration < DURATION) {
+					Thread.sleep(DURATION - duration);
+				}
+			} catch (InterruptedException e) {
+				active = false;
+			}
+		}
+	}
+
+	@Override
+	public void shutdown() {
+	}
+
+}

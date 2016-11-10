@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLSTRNDT</action>
+	<userName></userName><!--登录名 varchar(30) -->
+	<accountNo></accountNo><!--主体账号varchar(19) -->
+	<subAccNo></subAccNo><!--附属账号varchar(19) -->
+	<queryType></queryType><!--查询类型 varchar(1) 1：查询待调账交易明细 空：查询全部交易明细 -->
+	<startDate></startDate><!--起始日期char(8) -->
+	<endDate></endDate><!--终止日期char(8) -->
+	<tranType></tranType><!--交易类型char(2) 可空 值域参见附录4.8 -->
+	<startRecord></startRecord><!--起始记录号char(4) -->
+	<pageNumber></pageNumber><!--请求记录条数 char(2) 最大为10 -->
+</stream>

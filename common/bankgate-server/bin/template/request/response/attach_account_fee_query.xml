@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息 varchar(254) -->
+	<list name="userDataList">
+		<row>
+			<subAccNo></subAccNo><!--附属账号 char(19) -->
+			<cryType></cryType><!--币种 char(2) -->
+			<tranDate></tranDate><!--交易日期 char(8) -->
+			<tranTime></tranTime><!--交易时间 char(8) -->
+			<tranAmt></tranAmt><!--交易金额 decimal(15,2) -->
+			<feeAmt></feeAmt><!--手续费金额 decimal(15,2) -->
+			<payAccNo></payAccNo><!--付款账号 char(19) -->
+			<payAccNm></payAccNm><!--付款账户名称 varchar(62) -->
+			<recvAccNo></recvAccNo><!--收款账号 varchar(32) -->
+			<recvAccNm></recvAccNm><!--收款账户名称 varchar(100) -->
+		</row>
+	</list>
+</stream>

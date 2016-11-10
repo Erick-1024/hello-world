@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息 varchar(254) -->
+	<list name="userDataList">
+		<row>
+			<productId></productId><!--商品ID varchar(10) -->
+			<productCode></productCode><!--商品代码varchar(64) -->
+			<productNm></productNm><!--商品名称 varchar(100) -->
+			<productNmAll></productNmAll><!--商品全称varchar(2000) -->
+			<parentId></parentId><!--上级商品类型流水号 varchar(10) -->
+			<totoalLevel></totoalLevel><!--商品层级数/总层级varchar(10) -->
+			<productLevel></productLevel><!--本级商品类型层级varchar(10) -->
+			<unit></unit><!--计量单位 varchar(20) -->
+			<stt></stt><!--商品状态char(2) ，值域参见附录4.3 -->
+			<price></price><!--基准价格decimal(15,2) -->
+		</row>
+	</list>
+</stream>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息varchar(254) -->
+	<list name="userDataList"><!--账户明细信息列表 -->
+		<row>
+			<subAccNo></subAccNo><!-- 附属账号 varchar(19) -->
+			<tranType></tranType><!-- 交易类型 varchar(2) -->
+			<tranDate></tranDate><!-- 交易日期 char(8) 格式YYYYMMDD -->
+			<tranTime></tranTime><!-- 交易时间 char(6) 格式HHMMSS -->
+			<tellerNo></tellerNo><!-- 柜员交易号 varchar(14) -->
+			<tranSeqNo></tranSeqNo><!-- 交易序号 varchar(13) -->
+			<accountNo></accountNo><!-- 对方账号 varchar(19) -->
+			<accountNm></accountNm><!-- 对方账户名称 varchar(60) -->
+			<accBnkNm></accBnkNm><!-- 对方开户行名称 varchar(60) -->
+			<loanFlag></loanFlag><!-- 借贷标识 "D":借,"C":贷 varchar(1) -->
+			<tranAmt></tranAmt><!-- 交易金额 decimal(15,2) -->
+			<accBalAmt></accBalAmt><!-- 账户余额 decimal(15,2) -->
+			<pdgAmt></pdgAmt><!-- 手续费金额 decimal(15,2) -->
+			<memo></memo><!-- 摘要 varchar(22) -->
+			<verifyCode></verifyCode><!-- 打印校验码 varchar(20) -->
+		</row>
+	</list>
+</stream>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<action>DLWHIQRY</action>
+	<userName></userName><!--登录名varchar(30) -->
+	<mctNo></mctNo><!--商户编号char(8) -->
+</stream>

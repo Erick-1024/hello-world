@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="GBK"?>
+<stream>
+	<status></status><!--交易状态 char(7) -->
+	<statusText></statusText><!--交易状态信息 varchar(254) -->
+	<list name="userDataList">
+		<row>
+			<subAccNo></subAccNo><!--附属账号varchar(19) -->
+			<DJTYPE></DJTYPE><!--冻结类型varchar(2) -->
+			<DJCODE></DJCODE><!--冻结编号varchar(22) -->
+			<DJDATE></DJDATE><!--冻结日期char(8) -->
+			<DJTIME></DJTIME><!--冻结时间char(6) -->
+			<DJOPR></DJOPR><!--冻结柜员交易号varchar(14) -->
+			<DJAMT></DJAMT><!--冻结金额decimal(15,2) -->
+			<JDDATE></JDDATE><!--解冻日期char(8) -->
+			<JDTIME></JDTIME><!--解冻时间char(6) -->
+			<JDOPR></JDOPR><!--解冻柜员交易号varchar(14) -->
+			<REASON></REASON><!--受理原因varchar(60) -->
+		</row>
+	</list>
+</stream>
