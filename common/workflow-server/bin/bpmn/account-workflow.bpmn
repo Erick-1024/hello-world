@@ -12,6 +12,7 @@
       	<activiti:formProperty id="auditor" name="审批者" type="string" required="true"/>
       	<activiti:formProperty id="accountId" name="账户Id" type="string" required="true"/>
       	<activiti:formProperty id="type" name="操作类型" type="string" required="true"/>
+      	<activiti:formProperty id="hu" name="操作类型" type="date" required="true"/>
         <!-- <activiti:formProperty id="numberOfDays" name="Number of days" type="long" value="1" required="true"/>
         <activiti:formProperty id="startDate" name="First day of holiday (dd-MM-yyy)" datePattern="dd-MM-yyyy hh:mm" type="date" required="true" />
         <activiti:formProperty id="vacationMotivation" name="Motivation" type="string" /> -->

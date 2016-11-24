@@ -5,7 +5,7 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xmlns:activiti="http://activiti.org/bpmn">
 
-  <process id="accountRequest" name="account request">
+  <process id="accountRequest1" name="account request">
 
     <startEvent id="request" activiti:initiator="applyUserId">
       <extensionElements>

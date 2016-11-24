@@ -11,22 +11,12 @@
            http://www.springframework.org/schema/security				http://www.springframework.org/schema/security/spring-security-3.1.xsd
            http://www.springframework.org/schema/task					http://www.springframework.org/schema/task/spring-task-3.1.xsd">
 
-	<import resource="classpath*:META-INF/spring/workflow-server-datasource.xml" />
-	<import resource="classpath*:META-INF/spring/workflow-server-dubbo.xml" />
-	
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
 	<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
 		<property name="dataSource" ref="dataSource" />
-		<property name="transactionManager" ref="transactionManager" />
+	 	<property name="transactionManager" ref="txManager" /> 
 		<property name="databaseSchemaUpdate" value="true" />
-		<property name="jobExecutorActivate" value="false" />
-		<property name="customFormTypes">
-	    	<list>
-		      <bean class="com.cana.workflow.server.utils.ObjectFormType"/>
-		    </list>
-	  	</property>
+		<property name="jobExecutorActivate" value="true" />
+		
 	</bean>
 	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
 		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
@@ -37,4 +27,5 @@
 	<bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService" />
 	<bean id="managementService" factory-bean="processEngine" factory-method="getManagementService" />
 	
+	<context:component-scan base-package="com.cana.workflow.service" />
 </beans>

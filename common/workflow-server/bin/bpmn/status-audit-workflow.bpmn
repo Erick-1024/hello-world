@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions id="definitions"
+             targetNamespace="http://activiti.org/bpmn20"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:activiti="http://activiti.org/bpmn">
+
+  <process id="factoringAuditProcess" name="factoring audit process">
+
+    <startEvent id="request" activiti:initiator="applyUserId">
+      <extensionElements>
+      	<activiti:formProperty id="refId" name="关联Id" type="string" required="true"/>
+      	<activiti:formProperty id="applyUserId" name="申请者" type="string" required="true"/>
+      	<activiti:formProperty id="changeType" name="改变类型" type="string" required="true"/>
+      	<activiti:formProperty id="businessModule" name="业务类型" type="string" required="true"/>
+      	
+      </extensionElements>
+    </startEvent>
+    
+    <sequenceFlow id="request2forkAfterRequestProposed" sourceRef="request" targetRef="forkAfterRequestProposed" />
+    
+    <parallelGateway id="forkAfterRequestProposed" />
+    
+    <sequenceFlow id="forkAfterRequestProposed2sendNotifyReviewMessage" sourceRef="forkAfterRequestProposed" targetRef="sendNotifyMessage4ReviewTask" />
+    
+    <serviceTask id="sendNotifyMessage4ReviewTask" name="发送信息给审核人" activiti:delegateExpression="${sendNotifyMessage4ReviewTask}" activiti:async="true" />
+    
+    <sequenceFlow id="sendNotifyReviewMessage2End" sourceRef="sendNotifyMessage4ReviewTask" targetRef="sendNotifyMessage4ReviewTaskEnd" />
+    
+    <endEvent id="sendNotifyMessage4ReviewTaskEnd" />
+    
+    <sequenceFlow id="flow1" sourceRef="forkAfterRequestProposed" targetRef="auditTask" />
+
+    <userTask id="auditTask" name="auditTask">
+      
+      <documentation>
+        ${applyUserId} would like to apply ${changeType} audit status.
+      </documentation>
+      <extensionElements>
+        <activiti:formProperty id="auditResult" name="审核 " type="enum" required="true">
+          <activiti:value id="AGREE" name="同意" />
+          <activiti:value id="DISAGREE" name="驳回" />
+          <activiti:value id="DELETE" name="作废" />
+        </activiti:formProperty>
+        <activiti:formProperty id="comment" name="备注" type="string" />
+      </extensionElements>
+    </userTask>
+    
+    <sequenceFlow id="flow2" sourceRef="auditTask" targetRef="requestAuditDecision" />
+
+    <exclusiveGateway id="requestAuditDecision" name="Request approved?" />
+    
+    <sequenceFlow id="flow3" sourceRef="requestAuditDecision" targetRef="theEnd1">
+      <conditionExpression xsi:type="tFormalExpression">${auditResult == 'AGREE'}</conditionExpression>
+    </sequenceFlow>
+   
+    <endEvent id="theEnd1" >
+	</endEvent>
+	
+    <sequenceFlow id="flow4" sourceRef="requestAuditDecision" targetRef="forkAfterRejected">
+      <conditionExpression xsi:type="tFormalExpression">${auditResult == 'DISAGREE'}</conditionExpression>
+    </sequenceFlow>
+    
+
+    <parallelGateway id="forkAfterRejected" />
+    
+    <sequenceFlow id="forkAfterRejected2sendRejectNotifyMessage" sourceRef="forkAfterRejected" targetRef="sendRejectNotifyMessage2ApplyUserTask" />
+    
+    <serviceTask id="sendRejectNotifyMessage2ApplyUserTask" name="发送驳回信息给申请人" activiti:delegateExpression="${sendRejectNotifyMessage2ApplyUserTask}" activiti:async="true" />
+    
+    <sequenceFlow id="sendRejectNotifyMessageTask2End" sourceRef="sendRejectNotifyMessage2ApplyUserTask" targetRef="sendRejectNotifyMessage2ApplyUserTaskEnd" />
+    
+    <endEvent id="sendRejectNotifyMessage2ApplyUserTaskEnd" />
+    
+    <sequenceFlow id="forkAfterRejected2closeRejectedTask" sourceRef="forkAfterRejected" targetRef="closeRejectedTask" />
+    
+    <userTask id="closeRejectedTask" name="关闭被驳回的请求" >
+      
+      <extensionElements>
+        <activiti:formProperty id="close" name="关闭" type="string" variable="close" writable="false"/>
+      </extensionElements>
+      <humanPerformer>
+        <resourceAssignmentExpression>
+          <formalExpression>${applyUserId}</formalExpression>
+        </resourceAssignmentExpression>
+      </humanPerformer>
+    </userTask>
+    
+    <sequenceFlow id="flow5" sourceRef="closeRejectedTask" targetRef="theEnd2" />
+    
+    <endEvent id="theEnd2" >
+	</endEvent>
+    
+    <sequenceFlow id="flow6" sourceRef="requestAuditDecision" targetRef="theEnd3">
+      <conditionExpression xsi:type="tFormalExpression">${auditResult == 'DELETE'}</conditionExpression>
+    </sequenceFlow>
+
+	<endEvent id="theEnd3" >
+	</endEvent>
+  </process>
+</definitions>
